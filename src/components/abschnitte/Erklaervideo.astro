@@ -15,13 +15,13 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
       <div>
         <Tagline wort={wort} nummer={nummer} />
         <p class="h3 abstand-header">{zitat}</p>
-        <div class="autor abstand-text">
+        <div class="autor">
           <img src={bilder.eduardPortrait} alt="Eduard Kovac" width="56" height="56" loading="lazy" />
           {autorGross
             ? <p class="autor-gross"><strong>Eduard Kovac</strong><br />Vertrieb · Deutsche Monumentum</p>
             : <p class="text-xs"><strong>Eduard Kovac</strong><br />Vertrieb · Deutsche Monumentum</p>}
         </div>
-        <div class="button-zeile">
+        <div class="button-zeile knoepfe">
           <Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button>
           {projekteButton && <Button href="/projekte" variante="sekundaer">aktuelle Projekte</Button>}
         </div>
@@ -32,11 +32,13 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
   </div>
 </section>
 <style>
-  .raster{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-  .autor{display:flex;align-items:center;gap:1rem}
-  .autor img{width:3.5rem;height:3.5rem;border-radius:50%;object-fit:cover;object-position:50% -15%;border:1px solid #c2c2c2;box-shadow:0 10px 20px rgba(0,0,0,.2);background:var(--paper-tief)}
-  strong{font-weight:600}
+  /* 1:1 nach Webflow: layout2_content, divauthor, testimonial12_client-image-wrapper, text_extrasmall(.bold), margin_button */
+  .raster{display:grid;grid-template-columns:1fr 1fr;gap:4rem 5rem;align-items:center}
+  .autor{display:flex;width:100%;padding:0 15% 3rem 0;justify-content:flex-start;align-items:flex-end;gap:18px}
+  .autor img{flex:none;width:3.5rem;height:3.5rem;border-radius:100%;object-fit:cover;object-position:50% -15%;border:1px solid hsl(0 0% 76%);box-shadow:0 10px 20px 0 rgba(0,0,0,.2);background:var(--paper-tief)}
+  strong{font-weight:700}
   .autor-gross{margin:0}
-  .autor-gross strong{font-weight:700}
-  @media (max-width:767px){.raster{grid-template-columns:1fr;gap:2rem}}
+  .knoepfe{padding-bottom:3rem}
+  @media (max-width:991px){.raster{gap:4rem 3rem}}
+  @media (max-width:767px){.raster{grid-template-columns:1fr;gap:1rem}}
 </style>

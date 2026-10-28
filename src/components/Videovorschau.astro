@@ -1,28 +1,37 @@
 ---
-// Baustein „Videovorschau“: Bild mit Play-Symbol, Eckwinkeln und senkrechtem Schriftzug
-interface Props { bild: string; alt?: string; video?: string; quadrat?: boolean; label?: string }
-const { bild, alt = '', video = '', quadrat = false, label = 'DEUTSCHE MONUMENTUM' } = Astro.props;
+// Baustein „Videovorschau“ – 1:1 nach Webflow:
+// Standard = layout2_lightbox: Bild 1:1 ohne Rahmen, Schatten 0 30px 60px, Eckwinkel-Grafiken oben links/unten rechts,
+//   Play-Symbol + „Video“ (JetBrains Mono 28px) mittig, senkrechter Schriftzug unten rechts. Kein Abdunkeln
+//   (die Overlay-Farbvariable existiert in Webflow nicht mehr → durchsichtig).
+// rahmen = testimonial53_lightbox (Interviews): 0,25rem heller Rand, Schatten auf Rahmen und Bild.
+import { bilder } from '../data/bilder';
+interface Props { bild: string; alt?: string; video?: string; rahmen?: boolean; quadrat?: boolean; label?: string }
+const { bild, alt = '', video = '', rahmen = false, quadrat = false, label = 'DEUTSCHE MONUMENTUM' } = Astro.props;
 ---
-<button class:list={['vorschau', { quadrat }]} type="button" data-video={video} aria-label="Video abspielen">
-  <img src={bild} alt={alt} loading="lazy" />
-  <span class="schleier"></span>
-  <span class="ecke ol" aria-hidden="true"></span>
-  <span class="ecke ur" aria-hidden="true"></span>
+<button class:list={['vorschau', { rahmen: rahmen || quadrat }]} type="button" data-video={video} aria-label="Video abspielen">
+  <img class="bild" src={bild} alt={alt} loading="lazy" />
   <span class="play" aria-hidden="true">
-    <svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="26" fill="none" stroke="#fff" stroke-width="1.2"/><path d="m22 18 14 9-14 9Z" fill="#fff"/></svg>
-    <span>Video</span>
+    <img src={bilder.videoPlay} alt="" />
+    <span class="play-text">Video</span>
   </span>
-  <span class="marke" aria-hidden="true">{label}</span>
+  <span class="schleier" aria-hidden="true"></span>
+  <img class="ecke ol" src={bilder.eckeObenLinks} alt="" aria-hidden="true" />
+  <span class="marke" aria-hidden="true"><span>{label}</span></span>
+  <img class="ecke ur" src={bilder.eckeUntenRechts} alt="" aria-hidden="true" />
 </button>
 <style>
-  .vorschau{position:relative;display:block;width:100%;padding:.25rem;border:0;background:var(--paper-bone);cursor:pointer;box-shadow:var(--shadow-kennzahl);overflow:hidden}
-  img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper-tief)}
-  .quadrat img{aspect-ratio:1/1}
-  .schleier{position:absolute;inset:.25rem;background:rgba(0,0,0,.35);transition:background .3s}
-  .vorschau:hover .schleier{background:rgba(0,0,0,.2)}
-  .play{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.3rem;z-index:2;font-family:var(--font-mono);font-size:28px;color:#fafafa}
-  .ecke{position:absolute;width:18px;height:18px;z-index:2;border-color:#fff;border-style:solid}
-  .ol{top:14px;left:14px;border-width:1px 0 0 1px}
-  .ur{bottom:14px;right:14px;border-width:0 1px 1px 0}
-  .marke{position:absolute;right:16px;top:50%;z-index:2;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font-family:var(--font-mono);font-size:10px;line-height:1;color:#fff;white-space:nowrap;letter-spacing:1px}
+  .vorschau{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:100%;padding:0;border:0;background:none;overflow:visible;cursor:pointer;box-shadow:0 30px 60px 0 rgba(0,0,0,.2);font:inherit}
+  .bild{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 50%;overflow:clip;background:var(--paper-tief)}
+  .play{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.3rem;overflow:hidden}
+  .play-text{font-family:var(--font-mono);font-size:28px;font-weight:400;color:hsl(0 0% 98%)}
+  .schleier{position:absolute;inset:0;z-index:1;overflow:hidden}
+  .ecke{position:absolute;max-width:none}
+  .ol{left:0;top:1%;padding:4px 0 0 7px}
+  .ur{right:0;bottom:0;padding:0 11px 8px 0}
+  .marke{position:absolute;right:10px;bottom:10px;z-index:1;transform:rotate(180deg);transform-origin:50% 50%;font-size:10px;white-space:nowrap;writing-mode:vertical-rl}
+  .marke span{font-family:var(--font-mono);color:#fff;line-height:1;font-weight:400;white-space:nowrap}
+  /* testimonial53_lightbox */
+  .rahmen{overflow:hidden;padding:.25rem}
+  .rahmen .bild{box-shadow:0 30px 60px 0 rgba(0,0,0,.2)}
+  @media (max-width:991px){.bild{height:100%}}
 </style>

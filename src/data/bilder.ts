@@ -65,5 +65,6 @@ export const bilder = {
   taglineStrich: 'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2182aaf17b5d0bf9810c16_%3A%3Abefore.svg',
   kennzahlIcon: 'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2185b64996ea5040ab83b5_Component-2.svg',
   kennzahlPfeil: 'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a218452fa2e57c17ee30f41_Component-2.svg',
+  videoPlay: 'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2be45c81948b1fe5f2ca0a_Frame%20427322536.png',
 } as const;
 export type BildName = keyof typeof bilder;
