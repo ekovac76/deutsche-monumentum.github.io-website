@@ -37,7 +37,8 @@ import { menue, social } from '../data/navigation';
 </div>
 
 <style>
-  .kopf{position:sticky;top:0;z-index:50;background:var(--paper-bone)}
+  /* wie Webflow (navbar16_component): fest oben, durchsichtig, leicht weichgezeichnet – Seitenkopf scheint durch */
+  .kopf{position:fixed;top:0;left:0;right:0;z-index:50;background:hsla(0,0%,86.67%,0);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
   .bar{display:flex;justify-content:space-between;align-items:center;min-height:var(--nav-height);padding:0 var(--page-gutter)}
   .logo{display:block;height:44px;width:auto}
   .rechts{display:flex;align-items:center;gap:var(--space-md)}

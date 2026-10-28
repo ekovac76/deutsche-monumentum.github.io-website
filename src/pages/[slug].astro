@@ -9,7 +9,7 @@ export function getStaticPaths() {
 const { titel } = Astro.props;
 ---
 <Basis titel={`${titel} | Deutsche Monumentum`}>
-  <section class="container" style="padding:var(--section-y-medium) var(--page-gutter)">
+  <section class="container" style="padding:calc(var(--nav-height) + var(--section-y-medium)) var(--page-gutter) var(--section-y-medium)">
     <p class="mono-label">In Arbeit</p>
     <h1 class="display" style="font-size:clamp(2rem,5vw,3.5rem);margin:.5rem 0">{titel}</h1>
     <p>Diese Seite wird noch nachgebaut.</p>
