@@ -1,0 +1,112 @@
+---
+// Baustein „Karussell“ – Nachbau des Slider-Codes aus Webflow (DM Motion Layer, Funktion für .dm-car):
+// - Desktop: 4 Karten sichtbar (unter 1200 px: 3, unter 900 px: 2, unter 560 px: 1,15), 24 px Abstand
+// - wandert langsam von selbst hin und her (pendelt zwischen Anfang und Ende), hält beim Darüberfahren an
+// - mit Maus/Finger ziehbar inkl. Nachschwingen, Trackpad-Wischen seitlich
+// - weiche Ausblendung links/rechts; auf dem Handy 72 % Kartenbreite, randlos, ohne Selbstlauf
+interface Props { label?: string }
+const { label = 'Karussell' } = Astro.props;
+---
+<div class="schale" data-karussell>
+  <div class="fenster" aria-label={label} role="region">
+    <div class="spur">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<script>
+  const reduziert = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('[data-karussell]').forEach((schale) => {
+    const fenster = schale.querySelector<HTMLElement>('.fenster')!;
+    const spur = schale.querySelector<HTMLElement>('.spur')!;
+    const karten = [...spur.children] as HTMLElement[];
+    if (!karten.length) return;
+    const LUECKE = 24;
+    let pos = 0, schwung = 0, max = 0, kante = 1;
+    let ziehen = false, letzteX = 0, weg = 0, ueber = false, tempo = 0, richtung = -1;
+    let zuletztGescrollt = 0, sichtbar = true, fl = -1, fr = -1, zeigerId = -1;
+
+    function messen() {
+      const w = innerWidth;
+      const anzahl = w < 560 ? 1.15 : w < 900 ? 2 : w < 1200 ? 3 : 4;
+      const st = getComputedStyle(fenster);
+      const innen = fenster.clientWidth - parseFloat(st.paddingLeft) - parseFloat(st.paddingRight);
+      let breite = (innen - LUECKE * (anzahl - 1)) / anzahl;
+      if (w < 768) breite = innen * 0.72;
+      spur.style.setProperty('--karte-breite', breite + 'px');
+      const schritt = breite + LUECKE;
+      max = Math.min(0, innen - (schritt * karten.length - LUECKE));
+      if (pos < max) pos = max;
+      kante = fenster.clientWidth * 0.04 || 1;
+    }
+    messen();
+    let breiteAlt = innerWidth;
+    addEventListener('resize', () => { if (innerWidth !== breiteAlt) { breiteAlt = innerWidth; messen(); } });
+    addEventListener('scroll', () => { zuletztGescrollt = Date.now(); }, { passive: true });
+    new IntersectionObserver((e) => { sichtbar = e[0].isIntersecting; }, { rootMargin: '300px 0px' }).observe(fenster);
+
+    function schritt() {
+      if (sichtbar && !(!ziehen && !ueber && Date.now() - zuletztGescrollt < 140)) {
+        let ziel = ziehen || ueber || innerWidth < 768 || reduziert ? 0 : 0.4;
+        const rest = richtung < 0 ? pos - max : -pos;
+        ziel *= Math.max(0.2, Math.min(1, rest / 160));
+        tempo += (ziel - tempo) * 0.05;
+        pos += richtung * tempo;
+        if (!ziehen) { pos += schwung; schwung *= 0.92; }
+        if (pos >= 0) { pos = 0; richtung = -1; schwung = 0; }
+        else if (pos <= max) { pos = max; richtung = 1; schwung = 0; }
+        const l = Math.min(1, -pos / kante), r = Math.min(1, (pos - max) / kante);
+        if (l !== fl) { fl = l; fenster.style.setProperty('--fl', String(l)); }
+        if (r !== fr) { fr = r; fenster.style.setProperty('--fr', String(r)); }
+        spur.style.transform = `translate3d(${pos.toFixed(2)}px,0,0)`;
+      }
+      requestAnimationFrame(schritt);
+    }
+    requestAnimationFrame(schritt);
+
+    fenster.addEventListener('pointerdown', (e) => { ziehen = true; weg = 0; letzteX = e.clientX; zeigerId = e.pointerId; fenster.classList.add('greift'); });
+    fenster.addEventListener('pointermove', (e) => {
+      if (!ziehen) return;
+      const d = e.clientX - letzteX; letzteX = e.clientX;
+      pos += d; schwung = d * 0.6; weg += Math.abs(d);
+      if (pos > 0) pos = 0; else if (pos < max) pos = max;
+      if (zeigerId >= 0 && weg > 6) { try { fenster.setPointerCapture(zeigerId); } catch {} zeigerId = -1; }
+    });
+    const loslassen = (e?: PointerEvent) => {
+      ziehen = false; zeigerId = -1; fenster.classList.remove('greift');
+      try { if (e && fenster.hasPointerCapture(e.pointerId)) fenster.releasePointerCapture(e.pointerId); } catch {}
+    };
+    fenster.addEventListener('pointerup', loslassen);
+    fenster.addEventListener('pointercancel', loslassen);
+    fenster.addEventListener('click', (e) => { if (weg > 6) { e.preventDefault(); e.stopPropagation(); } }, true);
+    fenster.addEventListener('mouseenter', () => { ueber = true; });
+    fenster.addEventListener('mouseleave', () => { ueber = false; });
+    fenster.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+      e.preventDefault(); pos -= e.deltaX; schwung = -e.deltaX * 0.5;
+    }, { passive: false });
+    fenster.addEventListener('dragstart', (e) => e.preventDefault());
+  });
+</script>
+
+<style>
+  .schale{position:relative;width:100%;max-width:100%;min-width:0}
+  .fenster{position:relative;overflow:hidden;padding:40px min(90px,4.5vw) 140px;margin:-40px calc(min(90px,4.5vw) * -1) -140px;cursor:grab;touch-action:pan-y}
+  .fenster.greift{cursor:grabbing}
+  .fenster.greift *{user-select:none}
+  .fenster::before,.fenster::after{content:"";position:absolute;top:0;bottom:0;width:4%;z-index:2;pointer-events:none}
+  .fenster::before{left:0;background:linear-gradient(to right,#ece3cc,#ece3cc00);opacity:var(--fl,0)}
+  .fenster::after{right:0;background:linear-gradient(to left,#ece3cc,#ece3cc00);opacity:var(--fr,1)}
+  .spur{display:flex;flex-wrap:nowrap;width:max-content;gap:24px;will-change:transform}
+  .spur > :global(*){flex:0 0 var(--karte-breite,302px);display:flex}
+  .spur :global(img){-webkit-user-drag:none;user-select:none}
+  /* Projektkarten im Karussell auf volle Kartenbreite strecken (Webflow: .dm-car .card_projekt{flex:1}) */
+  .spur :global(.karte-link){max-width:none;flex:1}
+  .spur :global(.karte){max-width:none;flex:1}
+  @media (max-width:767px){
+    .fenster::before,.fenster::after{display:none}
+    .fenster{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:20px;padding-right:20px}
+    .spur :global(.titel){min-height:3.9em}
+  }
+</style>

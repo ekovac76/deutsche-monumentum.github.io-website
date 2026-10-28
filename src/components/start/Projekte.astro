@@ -4,6 +4,7 @@ import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
 import Randhinweis from '../Randhinweis.astro';
 import Projektkarte from '../Projektkarte.astro';
+import Karussell from '../Karussell.astro';
 import projekte from '../../data/projekte.json';
 ---
 <section class="sektion">
@@ -19,16 +20,14 @@ import projekte from '../../data/projekte.json';
         <Randhinweis nummer="01" titel="STRENG AUSGEWÄHLT" text="Nur wenige Objekte eignen sich für hohe Abschreibungen und beste Förderung – ob Denkmal-AfA oder Sonder-AfA mit KfW-Programm beim Neubau. Unsere Projekte bestehen die Prüfung: nach Lage, Bauträger und Steuerkonzept." />
       </div>
     </div>
-    <div class="karten">
-      {projekte.map((p) => <Projektkarte {...p} />)}
-    </div>
+    <Karussell label="Aktuelle Projekte">
+      {projekte.map((p) => <div><Projektkarte {...p} /></div>)}
+    </Karussell>
     <Kapitelfuss />
   </div>
 </section>
 <style>
   .kopfraster{display:grid;grid-template-columns:1fr .55fr;gap:5rem;align-items:start}
   .rechts{display:flex;justify-content:flex-end}
-  .karten{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
-  @media (max-width:991px){.kopfraster{grid-template-columns:1fr;gap:2rem}.rechts{justify-content:flex-start}.karten{grid-template-columns:1fr 1fr}}
-  @media (max-width:600px){.karten{grid-template-columns:1fr}}
+  @media (max-width:991px){.kopfraster{grid-template-columns:1fr;gap:2rem}.rechts{justify-content:flex-start}}
 </style>
