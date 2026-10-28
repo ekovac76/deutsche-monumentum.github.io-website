@@ -34,13 +34,13 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 
 .container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--page-gutter); }
-.display { font-family: var(--font-display); font-weight: 400; line-height: 1.2; color: var(--ink-weich); }
+.display { font-family: var(--font-display); font-weight: 700; line-height: 1.2; color: var(--ink-weich); }
 .mono-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.33px; text-transform: uppercase; color: var(--ink-stumpf); }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* ---------- Typografie (Werte aus Webflow) ---------- */
-.h1 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 2.8rem; line-height: 1.2; color: var(--ink-weich); }
-.h2 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 2.5rem; line-height: 1.1; color: var(--ink-weich); }
+.h1 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 2.8rem; line-height: 1.2; color: var(--ink-weich); }
+.h2 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 2.5rem; line-height: 1.1; color: var(--ink-weich); }
 .h3 { margin: 0; font-family: var(--font-sans); font-weight: 700; font-size: 2.8rem; line-height: 1; letter-spacing: -1.19px; color: var(--ink-tinte); }
 .h4 { margin: 0; font-family: var(--font-sans); font-weight: 700; font-size: 1.1rem; line-height: 1.4; color: var(--ink-weich); }
 .text-normal { margin: 0; font-size: 1rem; line-height: 1.5; color: var(--ink-stumpf); }
@@ -55,8 +55,9 @@ a { color: inherit; }
 
 /* ---------- Abschnitts-Raster ---------- */
 .sektion { background: var(--paper-warm); }
-.sektion-innen { max-width: 80rem; margin: 0 auto; padding: 4rem 5%; display: flex; flex-direction: column; gap: 4rem; }
-@media (max-width: 991px) { .sektion-innen { padding: 3rem 5%; gap: 3rem; } }
+/* wie Webflow: außen 5 % Rand (padding-global), innen max. 80rem (container-large) */
+.sektion-innen { padding: 4rem max(5%, calc((100% - 80rem) / 2)); display: flex; flex-direction: column; gap: 4rem; }
+@media (max-width: 991px) { .sektion-innen { padding-top: 3rem; padding-bottom: 3rem; gap: 3rem; } }
 .abstand-header { padding-bottom: 2rem; }
 .abstand-text { padding-bottom: 3rem; }
 .button-zeile { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
