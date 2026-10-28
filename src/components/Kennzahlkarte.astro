@@ -1,11 +1,11 @@
 ---
 // Baustein „Kennzahlkarte“: Zahl oben links, Icon, Titel, Text, Pfeil-Kreis
-interface Props { zahl: string; neben?: string; titel: string; text: string; href?: string; icon?: string }
+interface Props { zahl: string; neben?: string; titel: string; text: string; href?: string; icon?: string; zahlen?: boolean }
 import { bilder } from '../data/bilder';
-const { zahl, neben, titel, text, href, icon = bilder.kennzahlIcon } = Astro.props;
+const { zahl, neben, titel, text, href, icon = bilder.kennzahlIcon, zahlen = false } = Astro.props;
 const Tag = href ? 'a' : 'div';
 ---
-<Tag class="karte" href={href}>
+<Tag class:list={['karte', { zahlen }]} href={href}>
   <div class="oben">
     <span class="zahl">{zahl}</span>
     {neben && <span class="neben">{neben}</span>}
@@ -23,4 +23,6 @@ const Tag = href ? 'a' : 'div';
   .icon{width:1.5rem;height:1.5rem;object-fit:contain}
   .text-small{max-width:200px}
   .pfeil{position:absolute;right:1rem;bottom:1rem;display:flex;width:28px;height:28px;justify-content:center;align-items:center;border:1px solid rgba(21,20,15,.16);border-radius:14px}
+  /* Div Block 47 ab 1280 px; Zahlen-Karten (is-zahlen-karte) bleiben oben bündig */
+  @media (min-width:1280px){.karte{justify-content:space-between;border-color:hsl(0 0% 59.33%)}.karte.zahlen{justify-content:flex-start}}
 </style>

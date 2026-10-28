@@ -12,5 +12,7 @@ const { ziffer, thema, zaehler, hell = false } = Astro.props;
   .kopf{display:flex;justify-content:space-between;align-items:center;width:100%;padding-top:18px;border-top:1px solid var(--karte-linie)}
   .label{font-size:.6rem;line-height:1;letter-spacing:1.98px;text-transform:uppercase;color:var(--ink-blass)}
   .ziffer{font-family:var(--font-playfair);font-style:italic;font-size:1.1rem;color:var(--signal-orange)}
+  /* text_kopfzeile ab 1280 px (Webflow „large“) */
+  @media (min-width:1280px){.label{font-size:.7rem}.ziffer{color:#db5f5f;letter-spacing:1px}}
   .hell{border-color:rgba(247,241,222,.16)}
 </style>

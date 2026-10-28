@@ -27,7 +27,7 @@ const zahlen = [
           <div class="button-zeile"><Button href="/team">Mehr Erfahren!</Button></div>
         </div>
         <div class="kacheln">
-          {zahlen.map((z) => <Kennzahlkarte {...z} />)}
+          {zahlen.map((z) => <Kennzahlkarte {...z} zahlen />)}
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@ const zahlen = [
   .raster{display:grid;grid-template-columns:.65fr 1fr;gap:3rem}
   .kacheln{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;align-items:stretch;gap:1rem}
   /* Webflow-Breakpoint „large“ (ab 1280 px): Überschrift-Spalte 1fr/.75fr, Text/Kacheln 1fr/1fr */
-  @media (min-width:1280px){.kopfraster{grid-template-columns:1fr .75fr}.raster{grid-template-columns:1fr 1fr}}
+  @media (min-width:1280px){.kopfraster{grid-template-columns:1fr .75fr}.raster{grid-template-columns:1fr 1fr}.kacheln{gap:2rem}}
   @media (max-width:991px){.kopfraster{grid-template-columns:1fr;gap:2rem 3rem}.raster{grid-template-columns:1fr}.kacheln{gap:3rem}}
   @media (max-width:767px){.kopfraster{gap:1.25rem}}
   @media (max-width:479px){.komponente{gap:3rem}.kacheln{grid-template-columns:1fr;gap:2rem}}

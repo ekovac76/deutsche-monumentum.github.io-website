@@ -23,5 +23,6 @@ const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt au
   .schleier{position:absolute;inset:0;background:rgba(0,0,0,.15);z-index:1}
   .inhalt{position:relative;z-index:2;display:flex;align-items:center;min-height:100svh;max-height:60rem;padding:6rem max(5%, calc((100% - 80rem) / 2))}
   .box{max-width:29.8rem}
+  @media (min-width:1280px){.box{max-width:39rem}}  /* max-width-medium ab 1280 px */
   .fett{font-weight:700}
 </style>
