@@ -1,26 +1,42 @@
 ---
-// Laufband „Das sagen unsere Kunden über uns“ → ProvenExpert
-const eintraege = Array.from({ length: 8 });
+// Banner „Das sagen unsere Kunden über uns“ mit ProvenExpert-Logo – 1:1 nach Webflow (section_banner15 / banner15_*)
+import { bilder } from '../../data/bilder';
+const paare = [
+  { klasse: '' }, { klasse: '' }, { klasse: 'ohne-tablet' }, { klasse: 'ohne-mobil' },
+];
 ---
-<a class="band" href="https://www.provenexpert.com/de-de/deutsche-monumentum/" target="_blank" rel="noopener">
-  <div class="spur">
-    {[0, 1].map(() => (
-      <div class="gruppe" aria-hidden="true">
-        {eintraege.map(() => (
-          <span class="eintrag"><span class="sterne">★★★★★</span> Das sagen unsere Kunden über uns</span>
+<section class="banner">
+  <a class="link" href="https://www.provenexpert.com/de-de/deutsche-monumentum/" target="_blank" rel="noopener" aria-label="Das sagen unsere Kunden über uns – Bewertungen auf ProvenExpert">
+    <div class="komponente">
+      <div class="innen" aria-hidden="true">
+        {[0, 1].map(() => (
+          <div class="laufband">
+            {paare.map((p) => (
+              <>
+                <div class:list={['text', p.klasse]}><span class="titel">Das sagen unsere Kunden über uns</span></div>
+                <div class:list={['bild', p.klasse]}><img src={bilder.provenExpertLogo} alt="" width="162" height="48" loading="lazy" /></div>
+              </>
+            ))}
+          </div>
         ))}
       </div>
-    ))}
-  </div>
-  <span class="visually-hidden">Das sagen unsere Kunden über uns – Bewertungen auf ProvenExpert</span>
-</a>
+    </div>
+  </a>
+</section>
 <style>
-  .band{display:block;overflow:hidden;background:var(--paper-bone);border-block:1px solid var(--karte-linie);padding:1rem 0;text-decoration:none;color:var(--ink-weich)}
-  .spur{display:flex;width:max-content;animation:lauf 40s linear infinite}
-  .band:hover .spur{animation-play-state:paused}
-  .gruppe{display:flex}
-  .eintrag{display:flex;align-items:center;gap:.6rem;padding:0 2.5rem;font-size:.9rem;white-space:nowrap}
-  .sterne{color:var(--gold);letter-spacing:2px}
-  @keyframes lauf{to{transform:translateX(-50%)}}
-  @media (prefers-reduced-motion: reduce){.spur{animation:none}}
+  .banner{background:var(--paper-warm)}
+  .link{display:block;width:100%;text-decoration:none;cursor:pointer;color:inherit}
+  .komponente{display:flex;overflow:hidden;width:100vw;max-width:100%;justify-content:flex-end}
+  .innen{display:flex;padding:2rem 0;justify-content:flex-end}
+  .laufband{display:grid;grid-auto-flow:column;grid-auto-columns:max-content;justify-content:space-around;align-items:center;padding:1.375rem 0;border-top:1px solid hsla(50,16.67%,7.06%,.31);border-bottom:1px solid rgba(21,20,15,.16);background:var(--paper-bone);animation:lauf 40s linear infinite}
+  .text{display:flex;justify-content:center;align-items:center;padding:0 2rem;white-space:nowrap}
+  .titel{font-family:var(--font-sans);font-size:.6rem;line-height:1.2;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--ink-blass)}
+  .bild{position:relative;display:flex;overflow:visible;height:3rem;width:max-content;justify-content:center;align-items:center}
+  .bild img{width:auto;height:3rem;max-width:none;aspect-ratio:1002/296;object-fit:contain;transition:transform 450ms cubic-bezier(.16,1,.3,1)}
+  .banner:hover .bild img{transform:scale(1.08)}
+  /* Relume banner15: Band läuft nach rechts (rechtsbündig verankert) */
+  @keyframes lauf{from{transform:translateX(0)}to{transform:translateX(100%)}}
+  @media (max-width:991px){.ohne-tablet{display:none}}
+  @media (max-width:767px){.ohne-mobil{display:none}.bild{height:4rem}}
+  @media (prefers-reduced-motion: reduce){.laufband{animation:none}}
 </style>
