@@ -1,0 +1,36 @@
+---
+import Button from '../Button.astro';
+import Tagline from '../Tagline.astro';
+import Kennzahlkarte from '../Kennzahlkarte.astro';
+// 1:1 aus Webflow – alle vier Karten tragen dort „01 · Systeme“ (siehe offene Punkte)
+const leistungen = [
+  { titel: 'STEUER & FÖRDERUNG', text: 'Wir erstellen Ihre Steuer- und Wirtschaftlichkeitsberechnung, stimmen uns mit Ihrem Steuerberater ab und sichern alle passenden Fördermittel.' },
+  { titel: 'TÜV-BAUBEGLEITUNG', text: 'Für maximale Sicherheit werden unsere Projekte über die gesamte Bauphase von unabhängigen TÜV-Gutachtern begleitet und engmaschig geprüft.' },
+  { titel: 'FULL-SERVICE-PAKET', text: 'Verwaltung und Vermietung übernehmen erfahrene Profis für Sie – so genießen Sie alle Vorteile Ihrer Kapitalanlage ganz ohne eigenen Aufwand.' },
+  { titel: 'PERSÖNLICHE BERATUNG', text: 'Klare Informationen statt Fachchinesisch: Wir erklären Ihnen jedes Objekt bis ins Detail und begleiten Sie persönlich.' },
+];
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <div class="raster">
+      <div>
+        <Tagline wort="Fähigkeiten" nummer="03" />
+        <h2 class="h2 abstand-header">Steuern sparen, Vermögen aufbauen: Deutsche Monumentum  macht's möglich!</h2>
+        <p class="text-normal abstand-text">Mit den Denkmalimmobilien der Deutsche Monumentum sichern Sie sich herausragende Kapitalanlagen an vielversprechenden Wachstumsstandorten – seit über 30 Jahren Deutschlands führende Marke für exklusive Immobilien.</p>
+        <div class="button-zeile">
+          <Button href="/team">Mehr Erfahren</Button>
+          <Button href="#" variante="sekundaer">Issue öffnen</Button>
+        </div>
+      </div>
+      <div class="liste">
+        {leistungen.map((l) => <Kennzahlkarte zahl="01" neben="Systeme" {...l} />)}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .raster{display:grid;grid-template-columns:.5fr 1fr;gap:2rem;align-items:start}
+  .liste{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media (max-width:991px){.raster{grid-template-columns:1fr;gap:3rem}}
+  @media (max-width:479px){.liste{grid-template-columns:1fr}}
+</style>

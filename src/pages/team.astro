@@ -1,0 +1,22 @@
+---
+// Seite „Team“ – aus Webflow nachgebaut (Stand 28.10.2026)
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/abschnitte/Seitenkopf.astro';
+import Laufband from '../components/start/Laufband.astro';
+import Team from '../components/team/Team.astro';
+import Leistungen from '../components/team/Leistungen.astro';
+import Interviews from '../components/start/Interviews.astro';
+import Erklaervideo from '../components/abschnitte/Erklaervideo.astro';
+import Stimmen from '../components/start/Stimmen.astro';
+import { bilder } from '../data/bilder';
+---
+<Basis titel="Team & Unternehmen | Deutsche Monumentum" beschreibung="Erfahrung, Netzwerk und Leidenschaft: Ihr Spezialist für Denkmalimmobilien. Alles aus einer Hand – von der Objektauswahl bis zur Übergabe.">
+  <Seitenkopf bild={bilder.heroTeam} wort="Team" titel="Erfahrung, Netzwerk und Leidenschaft: ein eingespieltes Team für außergewöhnliche Denkmäler" text="Unsere Leidenschaft sind Denkmalimmobilien: außergewöhnliche Objekte, die begeistern – und sich als Kapitalanlage rechnen." />
+  <Laufband />
+  <Team />
+  <Leistungen />
+  <Interviews />
+  <Erklaervideo ziffer="IV." thema="Wer wir sind / Im Video" zaehler="04 / 05" wort="Team" nummer="04" projekteButton={false}
+    zitat={'„In diesem Video stellen wir uns persönlich vor und zeigen Ihnen, wer hinter Deutsche Monumentum steht und wofür wir stehen."'} />
+  <Stimmen />
+</Basis>

@@ -1,0 +1,15 @@
+---
+// Baustein „Hinweis“: Nummer im Ring oder Plus + kurzer Text
+interface Props { nummer?: string; titel?: string; text: string }
+const { nummer, titel, text } = Astro.props;
+---
+<div class="hinweis">
+  {nummer ? <span class="ring">{nummer}</span> : <span class="plus" aria-hidden="true">+</span>}
+  <p class="text-xs">{titel && <strong>{titel} </strong>}{text}</p>
+</div>
+<style>
+  .hinweis{display:flex;align-items:flex-start;gap:22px;max-width:15rem}
+  .ring{display:flex;flex:none;width:38px;height:38px;justify-content:center;align-items:center;border:1px solid var(--ink-tinte-button);border-radius:19px;font-size:.7rem;font-weight:700}
+  .plus{color:var(--kennzahl-rot);font-size:24px;line-height:24px}
+  strong{font-weight:600}
+</style>

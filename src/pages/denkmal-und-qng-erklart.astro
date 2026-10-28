@@ -1,0 +1,16 @@
+---
+// Seite „Denkmal & QNG erklärt“ – aus Webflow nachgebaut (Stand 28.10.2026)
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/abschnitte/Seitenkopf.astro';
+import Videothek from '../components/erklaert/Videothek.astro';
+import Stimmen from '../components/start/Stimmen.astro';
+import { bilder } from '../data/bilder';
+---
+<Basis titel="Denkmal & QNG-Neubau erklärt | Deutsche Monumentum" beschreibung="Abschreibung, Förderung, Risiken und Kaufablauf: Was Käufer über Denkmalimmobilien und QNG-Neubau wissen sollten – kurz erklärt im Video.">
+  <Seitenkopf bild={bilder.heroReferenzen} wort="Mediathek" nummer="08" titel="Steuern sparen mit Immobilien – Denkmal und QNG-Neubau kurz erklärt" text="Abschreibung, Förderung, Risiken, Kaufablauf: In kurzen Filmen erklären wir die Punkte, die im Beratungsgespräch am häufigsten kommen. Jedes Video dauert etwa eine Minute." />
+  <Videothek />
+  <Stimmen ziffer="III." thema="Referenz / Projektvideo" zaehler="03 / 06"
+    titel="Aus Erfahrung überzeugt: Das sagen Kunden über unsere Denkmalinvestments"
+    hinweisTitel="IDEEN IM WANDEL"
+    hinweisText="Verfolgen Sie Schritt für Schritt, wie aus dem historischen Marineamt hochwertige Loftwohnungen entstanden – dokumentiert in jeder Bauphase." />
+</Basis>

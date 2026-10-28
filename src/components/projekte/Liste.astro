@@ -1,0 +1,32 @@
+---
+import Button from '../Button.astro';
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import Projektkarte from '../Projektkarte.astro';
+import projekte from '../../data/projekte.json';
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer="II." thema="Aktuelle Projekte / Verfügbar" zaehler="02 / 05" />
+    <div class="raster">
+      <div class="links">
+        <Tagline wort="Projekte" nummer="02" />
+        <h2 class="h2 abstand-header">Aktuelle Projekte – ausgewählt für Steuervorteil und Wertbeständigkeit</h2>
+        <p class="text-normal abstand-text">Ob Industriedenkmal, Traditionsgut oder QNG-Neubau: Jedes dieser Häuser erzählt seine eigene Geschichte. Gemeinsam haben sie das geprüfte Konzept – solventer Bauträger, hohe Abschreibung, starke Förderung.</p>
+        <div class="button-zeile"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+      </div>
+      <div class="karten">
+        {projekte.map((p) => <Projektkarte {...p} />)}
+      </div>
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .raster{display:grid;grid-template-columns:.5fr 1fr;gap:2rem;align-items:start}
+  .links{position:sticky;top:6rem}
+  .karten{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media (max-width:991px){.raster{grid-template-columns:1fr;gap:3rem}.links{position:static}}
+  @media (max-width:600px){.karten{grid-template-columns:1fr}}
+</style>

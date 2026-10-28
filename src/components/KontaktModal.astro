@@ -1,0 +1,94 @@
+---
+// Kontaktformular als Fenster – öffnet sich bei allen Links mit data-kontakt oder #kontakt
+import projekte from '../data/projekte.json';
+import { kontakt } from '../data/navigation';
+---
+<dialog id="kontakt" class="modal" aria-labelledby="kontakt-titel">
+  <button class="schliessen" type="button" aria-label="Schließen"><i></i><i></i></button>
+  <div class="innen">
+    <h2 id="kontakt-titel" class="h2 titel">Lassen Sie uns in einem persönlichen Gespräch klären, welche steuerlichen Vorteile diese Steuerimmobilie für Sie bereithält.</h2>
+    <p class="text-normal einleitung">Füllen Sie das Formular aus – wir melden uns zeitnah mit passenden Projekten und beantworten alle Ihre Fragen. Unverbindlich und ohne Verpflichtung.</p>
+    <div class="raster">
+      <form class="formular" name="Kontaktformular" data-danke="/danke" novalidate>
+        <div class="zwei">
+          <label>Anrede*<select name="Anrede" required><option value="">Bitte wählen</option><option>Herr</option><option>Frau</option><option>Divers</option></select></label>
+          <label>Vorname*<input name="Vorname" type="text" autocomplete="given-name" required /></label>
+        </div>
+        <div class="zwei">
+          <label>Nachname*<input name="Nachname" type="text" autocomplete="family-name" required /></label>
+          <label>E-Mail*<input name="E-Mail" type="email" autocomplete="email" required /></label>
+        </div>
+        <div class="zwei">
+          <label>Telefonnummer*<input name="Telefonnummer" type="tel" autocomplete="tel" required /></label>
+          <label>PLZ*<input name="PLZ" type="text" autocomplete="postal-code" inputmode="numeric" required /></label>
+        </div>
+        <label>Wie sind Sie auf uns aufmerksam geworden?*
+          <select name="Wie sind Sie auf uns aufmerksam geworden" required>
+            <option value="">Bitte wählen</option><option>Google</option><option>LinkedIn</option><option>Instagram</option><option>YouTube</option><option>Empfehlung</option><option>Sonstiges</option>
+          </select>
+        </label>
+        <label>Für welches Projekt interessieren Sie sich?*
+          <select name="Für welches Projekt interessieren Sie sich" required>
+            <option value="">Bitte wählen</option>
+            {projekte.map((p) => <option>{p.name}</option>)}
+            <option>Noch offen – bitte beraten Sie mich</option>
+          </select>
+        </label>
+        <label>Nachricht*<textarea name="Nachricht" rows="4" required></textarea></label>
+        <label class="haken"><input type="checkbox" name="Einwilligung Newsletter" required /> <span>Ich bin damit einverstanden, per E-Mail Informationen über neue Immobilienprojekte zu erhalten.</span></label>
+        <button class="senden" type="submit">Absenden</button>
+        <p class="meldung" role="status" hidden></p>
+      </form>
+      <div class="kontakt">
+        <img src="/bilder/logo-deutsche-monumentum.png" alt="Deutsche Monumentum" width="160" height="44" loading="lazy" />
+        <p class="text-small"><strong>Kontakt</strong></p>
+        <p class="text-small">Mobil: {kontakt.mobil}</p>
+        <p class="text-small">Festnetz: {kontakt.festnetz}</p>
+        <p class="text-small"><a href={`mailto:${kontakt.email}`}>{kontakt.email}</a></p>
+        <p class="text-small"><a href="/">{kontakt.domain}</a></p>
+      </div>
+    </div>
+  </div>
+</dialog>
+<style>
+  .modal{width:min(60rem,94vw);max-height:92vh;padding:0;border:0;border-radius:var(--radius-md);background:var(--paper-bone);color:var(--ink-weich);box-shadow:var(--shadow-karte)}
+  .modal::backdrop{background:rgba(22,21,19,.6)}
+  .innen{padding:3rem clamp(1.25rem,4vw,3.5rem)}
+  .titel{text-align:center;max-width:48rem;margin:0 auto 1.5rem}
+  .einleitung{text-align:center;max-width:36rem;margin:0 auto 2.5rem}
+  .raster{display:grid;grid-template-columns:1fr 14rem;gap:3rem;align-items:start}
+  .formular{display:flex;flex-direction:column;gap:1rem}
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  label{display:flex;flex-direction:column;gap:.35rem;font-size:.85rem;color:var(--ink-stumpf)}
+  input,select,textarea{width:100%;padding:.7rem .8rem;border:1px solid var(--karte-rahmen);border-radius:var(--radius-sm);background:#fff;font:inherit;font-size:1rem;color:var(--ink-tinte)}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--signal-orange);outline-offset:1px}
+  .haken{flex-direction:row;align-items:flex-start;gap:.6rem}
+  .haken input{width:auto;margin-top:.2rem}
+  .senden{align-self:flex-start;padding:14px 28px;border:0;border-radius:var(--radius-pill);background:var(--signal-orange-alt);color:var(--paper-bone);font:500 14px var(--font-sans);box-shadow:var(--shadow-primary);cursor:pointer}
+  .meldung{margin:0;font-size:.9rem;color:var(--kennzahl-rot)}
+  .kontakt{display:flex;flex-direction:column;gap:.4rem}
+  .kontakt img{height:44px;width:auto;margin-bottom:1.5rem}
+  .schliessen{position:absolute;top:1rem;right:1rem;width:36px;height:36px;border:0;background:none;cursor:pointer}
+  .schliessen i{position:absolute;left:6px;right:6px;top:50%;height:1.5px;background:var(--ink-tinte)}
+  .schliessen i:first-child{transform:rotate(45deg)}.schliessen i:last-child{transform:rotate(-45deg)}
+  @media (max-width:767px){.raster{grid-template-columns:1fr}.zwei{grid-template-columns:1fr}}
+</style>
+<script>
+  const modal = document.getElementById('kontakt') as HTMLDialogElement | null;
+  if (modal) {
+    const oeffnen = (e: Event) => { e.preventDefault(); modal.showModal(); };
+    document.querySelectorAll('[data-kontakt], a[href$="#kontakt"]').forEach((el) => el.addEventListener('click', oeffnen));
+    modal.querySelector('.schliessen')?.addEventListener('click', () => modal.close());
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
+    if (location.hash === '#kontakt') modal.showModal();
+    const form = modal.querySelector('form')!;
+    const meldung = form.querySelector('.meldung') as HTMLElement;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      // TODO: Versand anbinden (Zoho / E-Mail) – siehe „Offene Punkte“
+      meldung.hidden = false;
+      meldung.textContent = 'Testversion: Das Formular ist noch nicht angebunden. Bitte schreiben Sie an info@deutsche-monumentum.de.';
+    });
+  }
+</script>

@@ -1,0 +1,35 @@
+---
+// Seite „Aktuelle Projekte“ – aus Webflow nachgebaut (Stand 27.10.2026)
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/abschnitte/Seitenkopf.astro';
+import Laufband from '../components/start/Laufband.astro';
+import Liste from '../components/projekte/Liste.astro';
+import Erklaervideo from '../components/abschnitte/Erklaervideo.astro';
+import Vorteile from '../components/projekte/Vorteile.astro';
+import Wissen from '../components/projekte/Wissen.astro';
+import Aufruf from '../components/start/Aufruf.astro';
+import FAQ from '../components/abschnitte/FAQ.astro';
+import { bilder } from '../data/bilder';
+const fragen: [string, string][] = [
+  ['Wie funktioniert die Denkmal-Abschreibung genau?', 'Den kompletten Sanierungsanteil schreiben Sie nach § 7i EStG über zwölf Jahre ab: acht Jahre mit je 9 %, danach vier Jahre mit je 7 % – zusammen 100 %. Da der Sanierungsanteil bei unseren Projekten meist 70 % und mehr des Kaufpreises ausmacht, entsteht so Jahr für Jahr eine spürbare Steuerentlastung. Die genaue Berechnung für Ihre Situation erstellen wir Ihnen vor dem Kauf.'],
+  ['Warum muss ich vor Sanierungsbeginn kaufen?', 'Steuerlich begünstigt sind nur die Sanierungskosten, die nach Ihrem Kaufvertrag anfallen. Wer erst nach Fertigstellung kauft, verschenkt die Sonderabschreibung. Deshalb bieten wir unsere Objekte konsequent vor Sanierungsbeginn an – das ist der ganze „Trick" hinter dem Steuervorteil.'],
+  ['Ist die Wohnung nach der Sanierung nicht praktisch ein Neubau?', 'Technisch ja: Durch den hohen Sanierungsanteil erhalten Sie neuwertige Haustechnik, Bäder und Energiestandards – aber hinter einer historischen Fassade mit Charakter, den kein Neubau bieten kann. Sie verbinden also Neubau-Komfort mit Denkmal-Abschreibung.'],
+  ['Wie sicher ist der Bauträger?', 'Die wichtigste Frage überhaupt – denn Sie kaufen ein Versprechen auf Fertigstellung. Wir arbeiten ausschließlich mit erfahrenen, finanzstarken Bauträgern, prüfen jedes Projekt vorab und lassen die Bauphase von unabhängigen TÜV-Gutachtern begleiten. Ihre Zahlungen erfolgen zudem nach Makler- und Bauträgerverordnung nur nach Baufortschritt.'],
+  ['Wer kümmert sich um Vermietung und Verwaltung?', 'Auf Wunsch übernehmen erfahrene Partner vor Ort die Erstvermietung und die laufende Verwaltung. Sie müssen sich weder um Mietersuche noch um Nebenkostenabrechnungen kümmern – Ihre Kapitalanlage bleibt ein Investment, kein zweiter Job.'],
+  ['Wie wichtig ist die Lage – und wie prüfen Sie sie?', 'Entscheidend. Wir wählen ausschließlich Standorte mit nachweisbarem Wachstumspotenzial – geprüft unter anderem mit der Wohnwetterkarte von bulwiengesa, einem der führenden unabhängigen Immobilien-Analysehäuser Deutschlands. So investieren Sie dort, wo Wohnraum auch morgen gefragt ist.'],
+];
+---
+<Basis titel="Aktuelle Denkmal- & QNG-Projekte | Deutsche Monumentum" beschreibung="Geprüfte Kapitalanlagen vom Denkmal bis zum QNG-Neubau – ausgewählt für Steuervorteil und Wertbeständigkeit. Alle aktuellen Projekte im Überblick.">
+  <Seitenkopf bild={bilder.heroProjekte} wort="Projekte" titel="Unsere aktuellen Projekte – geprüfte Kapitalanlagen vom Denkmal bis zum QNG-Neubau" text="Jedes Objekt in diesem Schaufenster hat unsere Prüfung bestanden – nach Lage, Bauträger und Steuerkonzept. Entdecken Sie, was gerade verfügbar ist, und finden Sie das Projekt, das zu Ihrer Anlagestrategie passt." />
+  <Laufband />
+  <Liste />
+  <Erklaervideo ziffer="III." thema="Chancen & Risiken / Im Video" zaehler="03 / 05" wort="Projekte" nummer="03" projekteButton={false} zitat={'„Chancen, Risiken und die entscheidenden Punkte beim Kauf: In diesem Video sage ich Ihnen offen, worauf es bei einem Denkmalinvestment wirklich ankommt."'} />
+  <Vorteile />
+  <Wissen />
+  <Aufruf />
+  <FAQ ziffer="V." thema="Fragen & Antworten / Denkmalwissen" zaehler="05 / 05" wort="Projekte" nummer="05" projekteButton={false}
+    titel="Hier finden Sie Antworten auf die wichtigsten Fragen rund um Denkmalimmobilien"
+    text="Kurz und klar erklärt: Abschreibung, Kaufzeitpunkt, Sicherheit und Lage – was Anleger vor dem Kauf einer Denkmalimmobilie wissen sollten."
+    hinweis="Jede Anlage ist individuell. Was die Antworten für Ihre Steuersituation bedeuten, rechnen wir Ihnen gern konkret vor."
+    fragen={fragen} />
+</Basis>

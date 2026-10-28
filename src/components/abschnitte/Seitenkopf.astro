@@ -1,0 +1,27 @@
+---
+// Großer Seitenkopf mit Bild (später Video), Tagline, H1, Text, Button
+import Button from '../Button.astro';
+import Tagline from '../Tagline.astro';
+interface Props { bild: string; wort?: string; nummer?: string; titel: string; text: string; button?: string; fett?: boolean }
+const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt aufnehmen', fett = false } = Astro.props;
+---
+<header class="hero">
+  <img class="bild" src={bild} alt="" fetchpriority="high" />
+  <div class="schleier"></div>
+  <div class="inhalt">
+    <div class="box">
+      <Tagline wort={wort} nummer={nummer} hell />
+      <h1 class:list={['h1 weiss abstand-header', { fett }]}>{titel}</h1>
+      <p class="text-normal weiss abstand-text">{text}</p>
+      <div class="button-zeile"><Button href="#kontakt" data-kontakt>{button}</Button></div>
+    </div>
+  </div>
+</header>
+<style>
+  .hero{position:relative;overflow:hidden;background:var(--ink-weich)}
+  .bild{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .schleier{position:absolute;inset:0;background:rgba(0,0,0,.15);z-index:1}
+  .inhalt{position:relative;z-index:2;display:flex;align-items:center;min-height:100svh;max-height:60rem;max-width:80rem;margin:0 auto;padding:6rem 5%}
+  .box{max-width:29.8rem}
+  .fett{font-weight:700;-webkit-text-stroke:.6px currentColor}
+</style>

@@ -1,0 +1,63 @@
+---
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import Randhinweis from '../Randhinweis.astro';
+import Slider from '../Slider.astro';
+import Kunde from '../Kunde.astro';
+import Sterne from '../Sterne.astro';
+import { bilder } from '../../data/bilder';
+interface Props { ziffer?: string; thema?: string; zaehler?: string; titel?: string; hinweisTitel?: string; hinweisText?: string }
+const {
+  ziffer = 'VII.', thema = 'Kundenstimmen / Bewertungen', zaehler = '07 / 10',
+  titel = 'Aus Erfahrung überzeugt: Das sagen Kunden über ihr Investment bei uns',
+  hinweisTitel = 'AUS ERSTER HAND',
+  hinweisText = 'Alle Stimmen stammen von echten Käufern unserer Projekte. Weitere Bewertungen finden Sie jederzeit auf unserem ProvenExpert-Profil.',
+} = Astro.props;
+const stimmen = [
+  { titel: 'Mein Kauf bei Deutsche Monumentum im Projekt „Seidelsche Höfe“', text: '"Im Jahr 2024 habe ich über Deutsche Monumentum eine großzügige Denkmalwohnung im Projekt Seidelsche Höfe in Darmstadt-Pfungstadt erworben. Als Steuerberater war ich auf der Suche nach einer architektonisch anspruchsvollen Immobilie mit hoher Sonderabschreibung – und genau das habe ich hier gefunden. Bislang bin ich mit dem gesamten Service sowie dem Baufortschritt äußerst zufrieden. Alles verläuft professionell, transparent und in hoher Qualität."', name: 'Thorsten Weimar', rolle: 'Steuerberater', bild: bilder.kundeWeimar },
+  { titel: 'Erstklassige Erfahrung – deshalb investiere ich erneut', text: '"Ich habe bei Deutsche Monumentum eine Denkmalwohnung in den Kaiserlofts in Wilhelmshaven gekauft und bin rundum zufrieden. Die Bauausführung ist erstklassig, die Sonderabschreibung lag deutlich über den Prognosen, und der gesamte Ablauf verlief reibungslos. Diese positiven Erfahrungen haben mich dazu veranlasst, nun eine weitere Denkmalwohnung im Projekt Germersheim zu erwerben – um bis zu meiner Rente noch einmal gezielt Steuern zu sparen. Daher kann ich Deutsche Monumentum als Partner für Denkmalinvestitionen uneingeschränkt empfehlen."', name: 'Dr. Jörg Mallossek', rolle: 'Wissenschaftler', bild: bilder.kundeMallossek, kursiv: true },
+  { titel: 'Mein Denkmalinvestment in Pfungstadt – zuverlässig, fair und empfehlenswert', text: 'Im Jahr 2025 habe ich über Deutsche Monumentum ein Denkmalobjekt in Pfungstadt erworben und bin mit der gesamten Abwicklung bis hin zum aktuellen Baufortschritt äußerst zufrieden. Der Bau verläuft planmäßig, ausgeführt vom Generalunternehmer Züblin, und alles bewegt sich in klar strukturierten, verlässlichen Abläufen. Die Lage in Pfungstadt ist zentral und aufgrund der bestehenden Wohnungsnot – nur sieben Minuten von Darmstadt entfernt – äußerst attraktiv. Der Kaufpreis war fair kalkuliert, und die Möglichkeit einer Sonderabschreibung von 75 % macht das Investment besonders interessant. Ich kann dieses Projekt und Deutsche Monumentum daher uneingeschränkt weiterempfehlen.', name: 'Thilo Hanke', rolle: 'Großgastronom', bild: bilder.kundeHanke, kursiv: true },
+  { titel: 'Warum ich erneut in ein Denkmal investiert habe', text: '"Ich habe vor vielen Jahren ein Denkmal bei Herrn Kovac und Herrn Peters erworben, als beide das Thema Denkmalimmobilien noch bei einer Großbank verantworteten. Alles verlief genau so, wie es damals prognostiziert wurde: eine reibungslose Fertigstellung, sogar mehr Sonderabschreibungen als ursprünglich erwartet, keinerlei Mieterwechsel dank einer wunderschönen Loftwohnung – und eine beeindruckende Wertsteigerung. Diese durchweg positiven Erfahrungen haben mich dazu bewegt, erneut über Deutsche Monumentum in eine großzügige Denkmalwohnung zu investieren – diesmal ganz bewusst, um meine Steuerlast maximal zu optimieren und gleichzeitig wieder ein hochwertiges Stück Kulturgut zu sichern."', name: 'Dr. Markus Kratz', rolle: 'Chefarzt, Baden-Baden', bild: bilder.kundeKratz, kursiv: true },
+  { titel: 'Vertrauen und Kompetenz an erster Stelle', text: '"Kenne Herrn Peters aus seiner Bankzeit und fühlte mich immer gut beraten. Die bei ihm gekaufte Steuer-Denkmal-Immobilie war ein Volltreffer. Bauzeiten eingehalten, Erst,- und Weitervermietung hat lückenlos statt gefunden. Prognostizierte Abschreibungen übertroffen. Weiter so. Werde in Zukunft wieder bei der Monumentum kaufen."', name: 'Dr. Cristian Horstmann', rolle: 'IT-Unternehmer', bild: bilder.kundeHorstmann, kursiv: true },
+  { titel: 'Beste Analyse', text: '"Ich wurde auf Herrn Kovac und Peters über das Internet aufmerksam, als ich Denkmalimmobilien zum Steuernsparen suchte. Für mich waren Bauträgersicherheit, wirtschaftsstarker Standort für meine Investition ausschlaggebend. Der Kauf einer Denkmalwohnung in Rastatt hat meine Anforderungen noch übertroffen."', name: 'Stefan Müller', rolle: 'Dipl. Betriebswirt', bild: bilder.kundeMueller, kursiv: true },
+  { titel: 'Denkmalkauf mit Wiederholungsfaktor', text: '"Wir haben über Herrn Peters Team mehrere Steuerimmobilien erworben, die alle Erwartungen erfüllt haben. So waren wir in der Lage viele Steuergutschriften zu realisieren und unsere Steuerlasten in Privatvermögen zu überführen. Ich kann Herr Peters und die Deutsche Monumentum wirklich weiterempfehlen."', name: 'Dr. Holger Lange', rolle: 'Urologe', bild: bilder.kundeLange, kursiv: true },
+  { titel: 'Tolle Betreuung', text: '"Herr Kovac und sein Team haben uns Schritt für Schritt die finanziellen und steuerlichen Vorteile einer Denkmalimmobilie erklärt und berechnet. Wir sind froh eine Wohnung im Denkmal Rastatt erworben zu haben. Punktgenaue Fertigstellung. Sofortige Erstvermietung. Sonderabschreibung höher als prognostiziert. So wünscht man sich das!"', name: 'Stefan Dietrich', rolle: 'Manager', bild: bilder.kundeDietrich, kursiv: true },
+  { titel: 'Klare Empfehlung für eine Denkmalinvestition', text: '"Durch eine Empfehlung bin ich auf Monumentum gestoßen und habe hier meine Denkmalimmobilie erworben. Die Übernahme der Wohnung erfolgte bereits ein halbes Jahr vor dem offiziellen Fertigstellungstermin. Ich bin beeindruckt, dass die tatsächliche Abschreibung sogar höher ist als im Exposé angegeben. Monumentum hat meine Erwartungen übertroffen – eine klare Empfehlung für alle, die auf der Suche nach zuverlässigen Denkmalinvestitionen sind."', name: 'Michael Dorn', rolle: 'Geschäftsführer', bild: bilder.kundeDorn, kursiv: true },
+  { titel: 'Hohe Sicherheit mit hoher Rendite durch die Abschreibung', text: '"Vor über 8 Jahren habe ich bei Monumentum eine Denkmalwohnung erworben, die seitdem kontinuierlich und problemlos vermietet ist. Die herausragende Bauqualität beeindruckt mich nach wie vor. Das Investment hat sich dank der stabilen Mieteinnahmen und der beeindruckenden Steuerersparnis mehr als gelohnt. Monumentum beweist sich als verlässlicher Partner für rentable Immobilieninvestitionen!"', name: 'Volker Bollinger', rolle: 'Geschäftsführer', bild: bilder.kundeBollinger, kursiv: true },
+  { titel: 'Service steht an erster Stelle', text: '"Die Abwicklung mit Monumentum war einwandfrei – ich war rundum zufrieden. Die Reaktionszeiten waren stets beeindruckend kurz, und die Beratung zeugte von hoher Kompetenz. Dank Monumentum konnten wir unsere Traumwohnung erwerben. Klare Empfehlung für alle, die eine reibungslose und professionelle Abwicklung ihres Immobilienerwerbs suchen!"', name: 'Sascha Kamp', rolle: 'Unternehmer', bild: bilder.kundeKamp, kursiv: true },
+];
+---
+<section class="sektion ueberlauf">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer={ziffer} thema={thema} zaehler={zaehler} />
+    <div class="kopfraster">
+      <div>
+        <Tagline nummer="07" />
+        <h2 class="h1 abstand-header">{titel}</h2>
+        <p class="text-normal">Steuerberater, Ärzte und Unternehmer vertrauen uns – viele investieren ein zweites und drittes Mal. Lesen Sie, was unsere Kunden über Kauf, Betreuung und Abschreibung berichten: ungekürzt und aus erster Hand.</p>
+      </div>
+      <div class="rechts"><Randhinweis nummer="03" titel={hinweisTitel} text={hinweisText} /></div>
+    </div>
+    <Slider label="Kundenstimmen" breite="33.333%" breiteTablet="50%" breiteMobil="88%">
+      {stimmen.map((s) => (
+        <article class="stimme">
+          <Sterne />
+          <h3 class="h4">{s.titel}</h3>
+          <p class:list={['text-small', { kursiv: s.kursiv }]}>{s.text}</p>
+          <Kunde name={s.name} rolle={s.rolle} bild={s.bild} />
+        </article>
+      ))}
+    </Slider>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .ueberlauf{overflow:hidden}
+  .kopfraster{display:grid;grid-template-columns:1fr .8fr;gap:4rem;align-items:start}
+  .rechts{display:flex;justify-content:flex-end}
+  .stimme{display:flex;flex-direction:column;gap:1.25rem}
+  .stimme .text-small{flex:1}
+  .kursiv{font-style:italic}
+  @media (max-width:767px){.kopfraster{grid-template-columns:1fr;gap:2rem}.rechts{justify-content:flex-start}}
+</style>

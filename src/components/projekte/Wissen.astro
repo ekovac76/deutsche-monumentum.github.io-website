@@ -1,0 +1,69 @@
+---
+// Tabs „Wissen / im Video erklärt“: links Themen, rechts Video
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import Randhinweis from '../Randhinweis.astro';
+import Videovorschau from '../Videovorschau.astro';
+import { bilder } from '../../data/bilder';
+const themen = [
+  ['Wie die Denkmalabschreibung funktioniert', 'Zwölf Jahre, zwei Stufen: Wie Sie die Sanierungskosten über 8 Jahre mit je 9 % und 4 Jahre mit je 7 % steuerlich geltend machen.'],
+  ['Was das konkret für Sie bedeutet', 'Was die Abschreibung für Ihre persönliche Steuerlast bewirkt – anschaulich an einer Beispielrechnung erklärt.'],
+  ['Die KfW-Förderung', 'Zinsgünstige Kredite und Tilgungszuschüsse: Wie die KfW-Förderung Ihre Finanzierung zusätzlich entlastet.'],
+  ['Wie der Kauf abläuft', 'Vom ersten Gespräch bis zum Notartermin: die Schritte zum Kauf Ihrer Denkmalimmobilie im Überblick.'],
+];
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer="X." thema="Wissen / Im Video erklärt" zaehler="10 / 10" />
+    <div class="kopfraster">
+      <div>
+        <Tagline nummer="10" />
+        <h2 class="h1 abstand-header">Alles, was Sie über Denkmalimmobilien wissen sollten – kurz erklärt im Video</h2>
+        <p class="text-normal">Kurz und verständlich erklärt: Denkmalimmobilien, Ihre Steuervorteile und wie die Zusammenarbeit mit Deutsche Monumentum abläuft.</p>
+      </div>
+      <div class="rechts"><Randhinweis text="Sie wollen tiefer einsteigen? Im persönlichen Gespräch rechnen wir Ihr Beispiel konkret durch." /></div>
+    </div>
+    <div class="tabs" data-tabs>
+      <div class="menue" role="tablist">
+        {themen.map(([titel, text], i) => (
+          <button class:list={['tab', { aktiv: i === 0 }]} role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-tab={i}>
+            <span class="kopf"><span class="nr">{String(i + 1).padStart(2, '0')}</span><span class="h4">{titel}</span></span>
+            <span class="text-small">{text}</span>
+          </button>
+        ))}
+      </div>
+      <div class="inhalt">
+        {themen.map(([titel], i) => (
+          <div class="pane" role="tabpanel" data-pane={i} hidden={i !== 0}>
+            <Videovorschau bild={bilder.eduardVideo} alt={titel} />
+          </div>
+        ))}
+      </div>
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .kopfraster{display:grid;grid-template-columns:1fr .8fr;gap:4rem;align-items:start}
+  .rechts{display:flex;justify-content:flex-end}
+  .tabs{display:grid;grid-template-columns:1fr 1.25fr;gap:4rem;align-items:start}
+  .menue{display:flex;flex-direction:column}
+  .tab{display:flex;flex-direction:column;gap:.5rem;padding:1.25rem 0 1.25rem 1.5rem;border:0;border-left:2px solid var(--karte-linie);background:none;text-align:left;cursor:pointer;opacity:.55;transition:opacity .3s,border-color .3s;font:inherit}
+  .tab.aktiv,.tab:hover{opacity:1}
+  .tab.aktiv{border-left-color:var(--signal-orange)}
+  .kopf{display:flex;gap:1rem;align-items:baseline}
+  .nr{font-family:var(--font-mono);color:var(--signal-orange)}
+  @media (max-width:991px){.tabs{grid-template-columns:1fr;gap:2rem}}
+  @media (max-width:767px){.kopfraster{grid-template-columns:1fr;gap:2rem}.rechts{justify-content:flex-start}}
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((box) => {
+    const tabs = box.querySelectorAll<HTMLElement>('[data-tab]');
+    const panes = box.querySelectorAll<HTMLElement>('[data-pane]');
+    tabs.forEach((t) => t.addEventListener('click', () => {
+      tabs.forEach((x) => { x.classList.toggle('aktiv', x === t); x.setAttribute('aria-selected', String(x === t)); });
+      panes.forEach((p) => { p.hidden = p.dataset.pane !== t.dataset.tab; });
+    }));
+  });
+</script>

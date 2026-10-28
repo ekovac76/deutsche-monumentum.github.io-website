@@ -1,0 +1,13 @@
+---
+// Seite „Berechnungstool“ – aus Webflow nachgebaut (Stand 28.10.2026)
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/abschnitte/Seitenkopf.astro';
+import Laufband from '../components/start/Laufband.astro';
+import Rechnerwahl from '../components/rechner/Rechnerwahl.astro';
+import { bilder } from '../data/bilder';
+---
+<Basis titel="Berechnungstool für Ihre Investition | Deutsche Monumentum" beschreibung="Ihre Investition auf Jahre gerechnet: Steuer, Zins, Tilgung und Überschuss in einer Übersicht – mit dem Denkmal- und dem QNG-Kalkulator.">
+  <Seitenkopf bild={bilder.heroBerechnungstool} wort="Berechnungstool" nummer="01" fett titel="Ihre Investition auf Jahre gerechnet – Steuer, Zins, Tilgung und Überschuss in einer Übersicht" text="Mit unseren Kalkulatoren sehen Sie schon vor dem Kauf, was eine Denkmalimmobilie oder ein QNG-Neubau für Sie bedeutet – Jahr für Jahr, mit Ihren eigenen Zahlen." />
+  <Laufband />
+  <Rechnerwahl />
+</Basis>

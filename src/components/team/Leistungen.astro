@@ -1,0 +1,40 @@
+---
+import Button from '../Button.astro';
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import Kennzahlkarte from '../Kennzahlkarte.astro';
+const leistungen = [
+  ['01', 'NETZWERK', 'EXKLUSIVE OBJEKTE', 'Über unser Netzwerk erhalten Sie exklusiven Zugang zu seltenen Denkmalimmobilien – echte Raritäten, die andere am freien Markt nicht bekommen.'],
+  ['02', 'QUALITÄT', 'BAUTRÄGER-SICHERHEIT', 'Wir arbeiten ausschließlich mit erfahrenen, finanzstarken Bauträgern. So ist die höchste Qualität Ihres Baudenkmals von Beginn an gesichert.'],
+  ['03', 'BERATUNG', 'PERSÖNLICHE BERATUNG', 'Klare Informationen statt Fachchinesisch: Wir erklären Ihnen jedes Objekt bis ins Detail und begleiten Sie persönlich.'],
+  ['04', 'FINANZEN', 'STEUER & FÖRDERUNG', 'Wir erstellen Ihre Steuer- und Wirtschaftlichkeitsberechnung, stimmen uns mit Ihrem Steuerberater ab und sichern alle passenden Fördermittel.'],
+  ['05', 'KONTROLLE', 'TÜV-BAUBEGLEITUNG', 'Für maximale Sicherheit werden unsere Projekte über die gesamte Bauphase von unabhängigen TÜV-Gutachtern begleitet und engmaschig geprüft.'],
+  ['06', 'RUNDUM-SERVICE', 'FULL-SERVICE-PAKET', 'Verwaltung und Vermietung übernehmen erfahrene Profis für Sie – so genießen Sie alle Vorteile Ihrer Kapitalanlage ganz ohne eigenen Aufwand.'],
+];
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer="III." thema="Leistungen / Alles aus einer Hand" zaehler="03 / 05" />
+    <div class="raster">
+      <div>
+        <Tagline wort="Team" nummer="03" />
+        <h2 class="h1 abstand-header">Alles aus einer Hand: von der Objektauswahl über Steuer und Förderung bis zur Übergabe</h2>
+      </div>
+      <div>
+        <p class="text-normal abstand-text">Von der Auswahl des richtigen Objekts bis zur Vermietung begleiten wir Sie persönlich durch jeden Schritt. Sie profitieren von geprüften Bauträgern, klaren Steuerberechnungen und einem echten Rundum-Service – damit Ihr Investment sicher gelingt und Sie sich um nichts kümmern müssen.</p>
+        <div class="button-zeile"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+      </div>
+    </div>
+    <div class="karten">
+      {leistungen.map(([zahl, neben, titel, text]) => <Kennzahlkarte zahl={zahl} neben={neben} titel={titel} text={text} />)}
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .raster{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+  .karten{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  @media (max-width:991px){.raster{grid-template-columns:1fr;gap:2rem}.karten{grid-template-columns:1fr 1fr}}
+  @media (max-width:479px){.karten{grid-template-columns:1fr}}
+</style>

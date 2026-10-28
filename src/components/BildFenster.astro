@@ -1,0 +1,41 @@
+---
+// Lightbox für alle Links mit [data-bild] – Gruppen über data-gruppe, Pfeiltasten zum Blättern
+---
+<dialog id="bild-fenster" class="fenster" aria-label="Bild">
+  <button class="zu" type="button" aria-label="Schließen"><i></i><i></i></button>
+  <button class="nav zurueck" type="button" aria-label="Vorheriges Bild">‹</button>
+  <img alt="" />
+  <button class="nav vor" type="button" aria-label="Nächstes Bild">›</button>
+  <p class="unter"></p>
+</dialog>
+<style>
+  .fenster{max-width:94vw;max-height:94vh;padding:0;border:0;background:transparent;overflow:visible}
+  .fenster::backdrop{background:rgba(22,21,19,.9)}
+  img{display:block;max-width:90vw;max-height:84vh;object-fit:contain}
+  .unter{margin:.75rem 0 0;font-family:var(--font-mono);font-size:12px;color:#fff;text-align:center}
+  .zu{position:absolute;top:-44px;right:0;width:36px;height:36px;border:0;background:none;cursor:pointer}
+  .zu i{position:absolute;left:6px;right:6px;top:50%;height:1.5px;background:#fff}
+  .zu i:first-child{transform:rotate(45deg)}.zu i:last-child{transform:rotate(-45deg)}
+  .nav{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border:1px solid rgba(255,255,255,.5);border-radius:50%;background:rgba(0,0,0,.3);color:#fff;font-size:28px;line-height:1;cursor:pointer}
+  .zurueck{left:2vw}.vor{right:2vw}
+</style>
+<script>
+  const f = document.getElementById('bild-fenster') as HTMLDialogElement;
+  const img = f.querySelector('img')!;
+  const unter = f.querySelector('.unter')!;
+  let liste: HTMLElement[] = []; let pos = 0;
+  const zeige = () => { const el = liste[pos]; img.src = el.dataset.bild!; unter.textContent = el.dataset.titel || ''; };
+  document.addEventListener('click', (e) => {
+    const el = (e.target as HTMLElement).closest<HTMLElement>('[data-bild]');
+    if (!el) return;
+    e.preventDefault();
+    liste = el.dataset.gruppe ? [...document.querySelectorAll<HTMLElement>(`[data-bild][data-gruppe="${el.dataset.gruppe}"]`)] : [el];
+    pos = liste.indexOf(el); zeige(); f.showModal();
+  });
+  const blaettern = (d: number) => { pos = (pos + d + liste.length) % liste.length; zeige(); };
+  f.querySelector('.vor')!.addEventListener('click', () => blaettern(1));
+  f.querySelector('.zurueck')!.addEventListener('click', () => blaettern(-1));
+  f.querySelector('.zu')!.addEventListener('click', () => f.close());
+  f.addEventListener('click', (e) => { if (e.target === f) f.close(); });
+  f.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') blaettern(1); if (e.key === 'ArrowLeft') blaettern(-1); });
+</script>

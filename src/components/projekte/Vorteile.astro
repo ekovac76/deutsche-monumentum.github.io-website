@@ -1,0 +1,40 @@
+---
+import Button from '../Button.astro';
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import Kennzahlkarte from '../Kennzahlkarte.astro';
+const vorteile = [
+  ['01', 'STEUER', 'Steuervorteile', 'Eine der letzten echten Steuersparmöglichkeiten in Deutschland: Die hohe Sonderabschreibung senkt Ihre Steuerlast und steigert Ihre Rendite spürbar.'],
+  ['02', 'FÖRDERUNG', 'Hohe KfW-Förderung', 'Zinsgünstige KfW-Darlehen und Tilgungszuschüsse senken Ihre Finanzierungskosten erheblich – Denkmalimmobilien profitieren von besonders starken Programmen.'],
+  ['03', 'WERTZUWACHS', 'Wertsteigerung', 'Jedes Baudenkmal ist ein Unikat und bleibt dauerhaft begehrt – meist mit stärkerer Wertentwicklung als bei konventionellen Neubauten.'],
+  ['04', 'RENDITE', 'Planbare Rendite', 'Aus hoher Abschreibung und KfW-Förderung entsteht eine attraktive, kalkulierbare Rendite, die wir Ihnen vor jedem Kauf transparent vorrechnen.'],
+  ['05', 'SACHWERT', 'Inflationsgeschützt', 'Immobilien sind Sachwerte und ein bewährter Inflationsschutz – historisch zeigen sie eine stabile, verlässliche Wertentwicklung über lange Zeiträume.'],
+  ['06', 'HEBEL', 'Bankenfinanziert', 'Ein großer Teil des Kaufpreises lässt sich finanzieren – der Kredithebel steigert bei vermieteten Immobilien Ihre Eigenkapitalrendite zusätzlich.'],
+];
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer="IV." thema="Ihre Vorteile / Sechs Gründe" zaehler="04 / 05" />
+    <div class="raster">
+      <div>
+        <Tagline wort="Projekte" nummer="04" />
+        <h2 class="h1">Wie ein Denkmal Ihre Steuerlast senkt, Förderung sichert und stabiles Vermögen schafft</h2>
+      </div>
+      <div>
+        <p class="text-normal abstand-text">Denkmalimmobilien verbinden gleich mehrere Vorteile: eine hohe Sonderabschreibung, attraktive KfW-Förderung und einen wertbeständigen, inflationsgeschützten Sachwert. So senken Sie Ihre Steuerlast spürbar und bauen zugleich planbar privates Vermögen auf.</p>
+        <div class="button-zeile"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+      </div>
+    </div>
+    <div class="karten">
+      {vorteile.map(([zahl, neben, titel, text]) => <Kennzahlkarte zahl={zahl} neben={neben} titel={titel} text={text} />)}
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .raster{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+  .karten{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  @media (max-width:991px){.raster{grid-template-columns:1fr;gap:2rem}.karten{grid-template-columns:1fr 1fr}}
+  @media (max-width:479px){.karten{grid-template-columns:1fr}}
+</style>

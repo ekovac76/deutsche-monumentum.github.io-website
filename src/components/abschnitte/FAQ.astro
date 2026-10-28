@@ -1,0 +1,60 @@
+---
+import Button from '../Button.astro';
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import Randhinweis from '../Randhinweis.astro';
+interface Props { ziffer: string; thema: string; zaehler: string; wort?: string; nummer: string; titel: string; text: string; hinweis: string; fragen: [string, string][]; projekteButton?: boolean }
+const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, titel, text, hinweis, fragen, projekteButton = true } = Astro.props;
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer={ziffer} thema={thema} zaehler={zaehler} />
+    <div class="kopfraster">
+      <div>
+        <Tagline wort={wort} nummer={nummer} />
+        <h2 class="h1 abstand-header">{titel}</h2>
+        <p class="text-normal">{text}</p>
+      </div>
+      <div class="rechts"><Randhinweis text={hinweis} /></div>
+    </div>
+    <div class="liste">
+      {fragen.map(([f, a], i) => (
+        <details class="frage">
+          <summary>
+            <span class="nr">{String(i + 1).padStart(2, '0')}</span>
+            <span class="text">{f}</span>
+            <span class="icon" aria-hidden="true"></span>
+          </summary>
+          <p class="text-normal antwort">{a}</p>
+        </details>
+      ))}
+    </div>
+    <div class="nachfrage">
+      <p class="h2 abstand-header">Noch Fragen offen?</p>
+      <p class="text-normal abstand-text">Manche Antworten passen nicht in fünf Zeilen – zum Beispiel die, was ein Investment für Ihre persönliche Steuersituation bedeutet. Genau dafür gibt es das Gespräch mit uns.</p>
+      <div class="button-zeile">
+        <Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button>
+        {projekteButton && <Button href="/projekte" variante="sekundaer">aktuelle Projekte</Button>}
+      </div>
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .kopfraster{display:grid;grid-template-columns:1fr .8fr;gap:4rem;align-items:start}
+  .rechts{display:flex;justify-content:flex-end}
+  .liste{border-bottom:1px solid #000}
+  .frage{border-top:.5px solid #7c7c7c}
+  summary{display:flex;align-items:flex-start;gap:2rem;padding:1.25rem 0;cursor:pointer;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  .nr{font-family:var(--font-mono);color:var(--signal-orange);padding-top:.15rem}
+  .text{flex:1;font-size:1.125rem;font-weight:700;color:var(--ink-weich)}
+  .icon{position:relative;flex:none;width:2rem;height:2rem}
+  .icon::before,.icon::after{content:'';position:absolute;left:50%;top:50%;width:14px;height:1.5px;background:var(--ink-weich);transform:translate(-50%,-50%);transition:transform .25s}
+  .icon::after{transform:translate(-50%,-50%) rotate(90deg)}
+  details[open] .icon::after{transform:translate(-50%,-50%) rotate(0)}
+  .antwort{max-width:48rem;padding:0 0 1.5rem 3.6rem}
+  .nachfrage{max-width:29.8rem}
+  @media (max-width:767px){.kopfraster{grid-template-columns:1fr;gap:2rem}.rechts{justify-content:flex-start}summary{gap:1rem}.antwort{padding-left:0}}
+</style>

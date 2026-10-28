@@ -1,0 +1,42 @@
+---
+import Button from '../Button.astro';
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import Videovorschau from '../Videovorschau.astro';
+import { bilder } from '../../data/bilder';
+interface Props { ziffer: string; thema: string; zaehler: string; wort?: string; nummer: string; zitat: string; projekteButton?: boolean; video?: string; bild?: string; label?: string; autorGross?: boolean }
+const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton = true, video = '', bild, label, autorGross = false } = Astro.props;
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer={ziffer} thema={thema} zaehler={zaehler} />
+    <div class="raster">
+      <div>
+        <Tagline wort={wort} nummer={nummer} />
+        <p class="h3 abstand-header">{zitat}</p>
+        <div class="autor abstand-text">
+          <img src={bilder.eduardPortrait} alt="Eduard Kovac" width="56" height="56" loading="lazy" />
+          {autorGross
+            ? <p class="autor-gross"><strong>Eduard Kovac</strong><br />Vertrieb · Deutsche Monumentum</p>
+            : <p class="text-xs"><strong>Eduard Kovac</strong><br />Vertrieb · Deutsche Monumentum</p>}
+        </div>
+        <div class="button-zeile">
+          <Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button>
+          {projekteButton && <Button href="/projekte" variante="sekundaer">aktuelle Projekte</Button>}
+        </div>
+      </div>
+      <Videovorschau bild={bild || bilder.eduardVideo} video={video} label={label} alt="Video" />
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .raster{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+  .autor{display:flex;align-items:center;gap:1rem}
+  .autor img{width:3.5rem;height:3.5rem;border-radius:50%;object-fit:cover;object-position:50% -15%;border:1px solid #c2c2c2;box-shadow:0 10px 20px rgba(0,0,0,.2);background:var(--paper-tief)}
+  strong{font-weight:600}
+  .autor-gross{margin:0}
+  .autor-gross strong{font-weight:700}
+  @media (max-width:767px){.raster{grid-template-columns:1fr;gap:2rem}}
+</style>

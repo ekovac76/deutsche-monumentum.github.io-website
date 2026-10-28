@@ -1,0 +1,46 @@
+---
+// Berechnungstool · Auswahl der Kalkulatoren (Webflow: section_layout11)
+import Button from '../Button.astro';
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import Videovorschau from '../Videovorschau.astro';
+import { bilder } from '../../data/bilder';
+const rechner = [
+  { icon: bilder.iconKalkulatorDenkmal, titel: 'Denkmal Kalkulator', text: 'Für denkmalgeschützte Objekte mit erhöhter Abschreibung nach §7i.', href: '/berechnungstool/denkmal' },
+  { icon: bilder.iconKalkulatorNeubau, titel: 'QNG Kalkulator', text: 'Für zertifizierte Neubauten mit KfW-Förderung und Sonderabschreibung nach §7b.', href: '/berechnungstool/qng' },
+];
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer="V." thema="Berechnungstools / Kostenlos" zaehler="05 / 10" />
+    <div class="inhalt">
+      <div>
+        <Tagline nummer="04" />
+        <p class="h3 abstand-header">„Rechnen Sie selbst nach, was aus Ihrer Steuerlast eine eigene Immobilie machen kann – Schritt für Schritt mit Ihren Zahlen."</p>
+        <p class="text-normal abstand-text">Wählen Sie den passenden Rechner und sehen Sie in wenigen Minuten Ihren Steuervorteil, Ihren Eigenkapitaleinsatz und Ihre monatliche Belastung.</p>
+        <div class="liste">
+          {rechner.map((r) => (
+            <div>
+              <div class="klein"><img class="icon" src={r.icon} alt="" width="48" height="48" loading="lazy" /></div>
+              <div class="klein"><h3 class="h4">{r.titel}</h3></div>
+              <div class="klein"><p class="text-small">{r.text}</p></div>
+              <div class="button-zeile"><Button href={r.href} variante="sekundaer">{r.titel}</Button></div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <Videovorschau bild={bilder.rechnerVideo} alt="Video" />
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .inhalt{display:grid;grid-template-columns:1fr 1fr;gap:4rem 5rem;align-items:center}
+  .liste{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding:.5rem 0}
+  .klein{padding-bottom:1rem}
+  .icon{width:3rem;height:3rem}
+  @media (max-width:991px){.inhalt{gap:4rem 3rem}}
+  @media (max-width:767px){.inhalt{grid-template-columns:1fr;gap:3rem}}
+  @media (max-width:479px){.liste{grid-template-columns:1fr}}
+</style>

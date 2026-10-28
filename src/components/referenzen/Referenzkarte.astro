@@ -1,0 +1,35 @@
+---
+// Karte im Zeitstrahl – 1:1 nach Webflow (Div Block 27, leicht gedreht)
+interface Props { href: string; nummer: string; titel: string; text: string; bild: string; ort: string; drehung?: string }
+const { href, nummer, titel, text, bild, ort, drehung = '-3deg' } = Astro.props;
+---
+<a class="link" href={href}>
+  <div class="karte" style={`--dreh:${drehung}`}>
+    <div class="inhalt">
+      <div class="zeile"><span class="kategorie">Referenzprojekt</span><span class="nummer">{nummer}</span></div>
+      <div class="bildrahmen"><img src={bild} alt={titel} loading="lazy" /></div>
+      <div>
+        <div class="titel-abstand"><h3 class="titel">{titel}</h3></div>
+        <div class="text-abstand"><p class="text-small">{text}</p></div>
+      </div>
+      <div class="meta"><span class="status">Denkmal</span><span class="ort">{ort}</span></div>
+    </div>
+  </div>
+</a>
+<style>
+  .link{display:flex;justify-content:center;width:100%;color:inherit;text-decoration:none}
+  .karte{display:flex;flex-direction:column;max-width:20rem;padding:1rem;border:1px solid hsl(0 0% 62%);border-radius:10px;background:#e2d8bc;box-shadow:var(--shadow-karte);transform:rotate(var(--dreh));transition:transform .5s cubic-bezier(.16,1,.3,1)}
+  .link:hover .karte{transform:rotate(0deg)}
+  .inhalt{display:flex;flex-direction:column;flex-grow:1;gap:.9rem}
+  .zeile{display:flex;justify-content:space-between;align-items:center}
+  .kategorie{font-family:var(--font-sans);color:var(--karte-orange);font-size:10px;line-height:16.27px;font-weight:600;letter-spacing:1.89px;text-transform:uppercase}
+  .nummer{font-family:var(--font-mono);color:var(--ink-mono-grau);font-size:11px;line-height:17px;letter-spacing:.44px}
+  .bildrahmen{overflow:hidden;border:1px solid hsl(0 0% 63.33%);border-radius:5px;background:hsl(45.6 60.98% 91.96%)}
+  .bildrahmen img{display:block;width:100%;aspect-ratio:5/3.5;object-fit:cover}
+  .titel-abstand{padding-bottom:.5rem}
+  .titel{margin:0;font-family:var(--font-sans);color:#333;font-size:1.3rem;line-height:1.3;font-weight:700}
+  .text-abstand{padding-bottom:1rem}
+  .meta{display:flex;margin-top:auto;padding-top:14px;justify-content:space-between;align-items:flex-start;border-top:1px solid rgba(21,20,15,.16)}
+  .status{font-family:var(--font-sans);color:var(--karte-orange);font-size:11px;line-height:17px;font-weight:600;letter-spacing:1.76px;text-transform:uppercase}
+  .ort{font-family:var(--font-sans);color:var(--ink-mono-grau);font-size:11px;line-height:17px;letter-spacing:1.76px;text-transform:uppercase}
+</style>

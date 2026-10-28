@@ -1,0 +1,28 @@
+---
+// Baustein „Videovorschau“: Bild mit Play-Symbol, Eckwinkeln und senkrechtem Schriftzug
+interface Props { bild: string; alt?: string; video?: string; quadrat?: boolean; label?: string }
+const { bild, alt = '', video = '', quadrat = false, label = 'DEUTSCHE MONUMENTUM' } = Astro.props;
+---
+<button class:list={['vorschau', { quadrat }]} type="button" data-video={video} aria-label="Video abspielen">
+  <img src={bild} alt={alt} loading="lazy" />
+  <span class="schleier"></span>
+  <span class="ecke ol" aria-hidden="true"></span>
+  <span class="ecke ur" aria-hidden="true"></span>
+  <span class="play" aria-hidden="true">
+    <svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="26" fill="none" stroke="#fff" stroke-width="1.2"/><path d="m22 18 14 9-14 9Z" fill="#fff"/></svg>
+    <span>Video</span>
+  </span>
+  <span class="marke" aria-hidden="true">{label}</span>
+</button>
+<style>
+  .vorschau{position:relative;display:block;width:100%;padding:.25rem;border:0;background:var(--paper-bone);cursor:pointer;box-shadow:var(--shadow-kennzahl);overflow:hidden}
+  img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper-tief)}
+  .quadrat img{aspect-ratio:1/1}
+  .schleier{position:absolute;inset:.25rem;background:rgba(0,0,0,.35);transition:background .3s}
+  .vorschau:hover .schleier{background:rgba(0,0,0,.2)}
+  .play{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.3rem;z-index:2;font-family:var(--font-mono);font-size:28px;color:#fafafa}
+  .ecke{position:absolute;width:18px;height:18px;z-index:2;border-color:#fff;border-style:solid}
+  .ol{top:14px;left:14px;border-width:1px 0 0 1px}
+  .ur{bottom:14px;right:14px;border-width:0 1px 1px 0}
+  .marke{position:absolute;right:16px;top:50%;z-index:2;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font-family:var(--font-mono);font-size:10px;line-height:1;color:#fff;white-space:nowrap;letter-spacing:1px}
+</style>

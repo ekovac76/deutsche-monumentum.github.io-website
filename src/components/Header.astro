@@ -1,0 +1,83 @@
+---
+// Kopfzeile (geschlossen) + Vollbild-Menü nach Baustein „Navigation“
+import Button from './Button.astro';
+import { menue, social } from '../data/navigation';
+---
+<header class="kopf">
+  <div class="bar">
+    <a href="/" aria-label="Deutsche Monumentum – Startseite">
+      <img class="logo" src="/bilder/logo-deutsche-monumentum.png" alt="Deutsche Monumentum" width="160" height="44" />
+    </a>
+    <div class="rechts">
+      <span class="kontakt-btn"><Button href="/#kontakt" variante="klein">Kontaktformular</Button></span>
+      <button class="menu-btn" aria-label="Menü öffnen" aria-expanded="false" aria-controls="hauptmenue">
+        <i></i><i></i><i></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menue" id="hauptmenue" hidden>
+  <div class="bar">
+    <a href="/" aria-label="Deutsche Monumentum – Startseite">
+      <img class="logo" src="/bilder/logo-deutsche-monumentum.png" alt="Deutsche Monumentum" width="160" height="44" />
+    </a>
+    <button class="close" aria-label="Menü schließen"><i></i><i></i></button>
+  </div>
+  <nav class="links" aria-label="Hauptmenü">
+    <div class="liste">
+      {menue.map((m) => (
+        <a href={m.href}><span class="ziffer">{m.ziffer}</span><span class="name">{m.name}</span></a>
+      ))}
+    </div>
+  </nav>
+  <div class="social">
+    {social.map((s) => <a href={s.href}>{s.name}</a>)}
+  </div>
+</div>
+
+<style>
+  .kopf{position:sticky;top:0;z-index:50;background:var(--paper-bone)}
+  .bar{display:flex;justify-content:space-between;align-items:center;min-height:var(--nav-height);padding:0 var(--page-gutter)}
+  .logo{display:block;height:44px;width:auto}
+  .rechts{display:flex;align-items:center;gap:var(--space-md)}
+  .menu-btn,.close{position:relative;width:32px;height:32px;background:none;border:0;padding:0;cursor:pointer}
+  .menu-btn i{position:absolute;left:4px;right:4px;height:1.5px;background:var(--ink-tinte)}
+  .menu-btn i:nth-child(1){top:9px}.menu-btn i:nth-child(2){top:15.25px}.menu-btn i:nth-child(3){top:21.5px}
+  .close i{position:absolute;left:4px;right:4px;top:50%;height:1.5px;background:var(--ink-tinte)}
+  .close i:first-child{transform:rotate(45deg)}.close i:last-child{transform:rotate(-45deg)}
+
+  .menue{position:fixed;inset:0;z-index:100;background:var(--paper-bone);overflow-y:auto;opacity:0;transition:opacity .3s ease}
+  .menue.offen{opacity:1}
+  .links{display:flex;justify-content:center;padding:1rem var(--page-gutter) 2rem}
+  .liste{display:grid;grid-template-columns:auto auto;column-gap:.35em;font-size:3.5rem}
+  .liste a{display:contents;text-decoration:none}
+  .ziffer{justify-self:end;align-self:baseline;font-family:var(--font-playfair);font-style:italic;font-weight:400;font-size:2.5rem;color:var(--signal-orange);padding:.5rem 0;margin:.5rem 0;line-height:1.2}
+  .name{justify-self:start;align-self:baseline;font-family:var(--font-display);font-weight:400;line-height:1.2;color:var(--ink-stumpf);padding:.5rem 0;margin:.5rem 0;white-space:nowrap}
+  .liste a:hover .name{color:var(--ink-tinte)}
+  .social{display:flex;justify-content:center;gap:var(--space-lg);padding:0 var(--page-gutter) 3rem;font-family:var(--font-mono);font-size:11px;letter-spacing:1.33px;text-transform:uppercase}
+  .social a{color:var(--ink-stumpf);text-decoration:none}
+
+  @media (max-width: 767px){
+    .kontakt-btn{display:none}
+    .liste{font-size:2rem}
+    .ziffer{font-size:1.5rem;margin:.25rem 0}
+    .name{margin:.25rem 0;white-space:normal}
+  }
+</style>
+
+<script>
+  const menue = document.getElementById('hauptmenue');
+  const oeffnen = document.querySelector('.menu-btn');
+  const schliessen = menue?.querySelector('.close');
+  function setze(offen: boolean) {
+    if (!menue || !oeffnen) return;
+    oeffnen.setAttribute('aria-expanded', String(offen));
+    document.body.style.overflow = offen ? 'hidden' : '';
+    if (offen) { menue.hidden = false; requestAnimationFrame(() => menue.classList.add('offen')); }
+    else { menue.classList.remove('offen'); setTimeout(() => { menue.hidden = true; }, 300); }
+  }
+  oeffnen?.addEventListener('click', () => setze(true));
+  schliessen?.addEventListener('click', () => setze(false));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setze(false); });
+</script>

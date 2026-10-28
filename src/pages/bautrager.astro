@@ -1,0 +1,18 @@
+---
+// Seite „Für Bauträger“ – aus Webflow nachgebaut (Stand 28.10.2026)
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/abschnitte/Seitenkopf.astro';
+import Laufband from '../components/start/Laufband.astro';
+import Ablauf from '../components/bautraeger/Ablauf.astro';
+import Erklaervideo from '../components/abschnitte/Erklaervideo.astro';
+import Aufruf from '../components/start/Aufruf.astro';
+import { bilder } from '../data/bilder';
+---
+<Basis titel="Für Bauträger: Projekte verkaufen | Deutsche Monumentum" beschreibung="Haben Sie ein Denkmal- oder QNG-Projekt? Wir bringen Ihr Projekt vollständig zum Käufer – schnell, planbar und dokumentiert.">
+  <Seitenkopf bild={bilder.heroBautraeger} wort="Bauträger" nummer="01" titel="Haben Sie ein Denkmal- oder QNG-Projekt? Wir sorgen für den schnellen Verkauf!" text="Wir vermarkten Ihr Projekt bis zur letzten Wohnung – mit geprüftem Ablauf, bonitätsstarken Käufern und über 30 Jahren Erfahrung im Denkmalvertrieb." />
+  <Laufband />
+  <Ablauf />
+  <Erklaervideo ziffer="III." thema="Erklärvideo / Ihre Vorteile" zaehler="03 / 04" wort="Bauträger" nummer="03" projekteButton={false} autorGross
+    zitat={'„In diesem Video zeigen wir Ihnen, welche Vorteile eine Zusammenarbeit mit uns für Sie als Bauträger ganz konkret bedeutet.“'} />
+  <Aufruf />
+</Basis>

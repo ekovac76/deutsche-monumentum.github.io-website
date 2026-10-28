@@ -1,0 +1,833 @@
+[
+ {
+  "slug": "rastatt",
+  "name": "Rastatt Joffre-Areal",
+  "heroHeadline": "Vom Kasernenareal zum Wohnquartier – das Joffre-Areal in Rastatt",
+  "heroSubline": "112 Wohnungen, in nur sechs Monaten verkauft und 2019 übergeben – ausgezeichnet für beispielhaftes Bauen in Baden.",
+  "heroBild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08c6f56e4d53209350f_6a85efd2ae14e1f8b8c6773f_rastatt-hero-bild.webp",
+  "fakten": [
+   [
+    "Volumen",
+    "20.600.000 EUR"
+   ],
+   [
+    "Einheiten",
+    "112 Wohnungen"
+   ],
+   [
+    "Wohnungstypen",
+    "Etagenwohnungen"
+   ],
+   [
+    "Lage",
+    "Rastatt, bei Karlsruhe"
+   ],
+   [
+    "Vertriebszeit",
+    "ab Dez. 2017 – in sechs Monaten verkauft"
+   ],
+   [
+    "Fertigstellung",
+    "2019"
+   ],
+   [
+    "Sonder-AfA",
+    "75 % nach § 7i EStG"
+   ],
+   [
+    "Förderung",
+    "KfW"
+   ],
+   [
+    "Ausstattung",
+    "hochwertig, denkmalgerecht saniert"
+   ]
+  ],
+  "introHeadline": "Die „Bastion 30“ neu erzählt – ein Quartier mit Geschichte",
+  "introText": "<p>Aus den ehemaligen Mannschaftsunterkünften der „Bastion 30“ entstand in Rastatt ein lebendiges Wohnquartier: Drei sanierte Denkmalhäuser, verbunden durch moderne Bauteile, vereinen Historie und zeitgemäßen Wohnkomfort.</p><p>Wo einst der Kasernenhof lag, lädt heute eine großzügige Grünanlage zum Spielen und Entspannen ein – mit Blick vom Balkon auf Wiese und Bäume. Alle 112 Wohnungen waren innerhalb von nur sechs Monaten verkauft, 2019 folgte die pünktliche Übergabe.</p><p>Die Qualität der Sanierung blieb nicht unbemerkt: Das Projekt wurde für beispielhaftes Bauen in Baden ausgezeichnet – und steht bis heute für das, was wir versprechen: schneller Abverkauf, verlässliche Fertigstellung, bleibender Wert.</p>",
+  "infoNummer": "01",
+  "infoLabel": "IDEEN IM WANDEL",
+  "infoText": "Verfolgen Sie Schritt für Schritt, wie aus dem Kasernenareal ein lebendiges Wohnquartier wurde – dokumentiert in jeder Bauphase.",
+  "videoZitat": "Erleben Sie im Video das Joffre-Areal in Rastatt – vom historischen Kasernenareal zum lebendigen Wohnquartier.",
+  "videoLink": "https://youtube.com/watch?v=GBsR2RDY6tA",
+  "videoLabel": "RASTATT 2019",
+  "bauHeadline": "Der Baufortschritt in Bildern – von der Baustelle bis zur Übergabe",
+  "galerie": [
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e2549726873975d7749e1_65e5efc8318b8c9b35090ff7_ENDE-VIS-Nacht-Erker-RA-Joffre-Kaserne.webp",
+    "text": "Abendstimmung am Erker – Denkmal trifft Moderne"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08c6f56e4d53209350f_6a85efd2ae14e1f8b8c6773f_rastatt-hero-bild.webp",
+    "text": "Das Quartier im Überblick – drei Häuser, ein Ensemble"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8db739221eb0ce39efb_6a85f80af1c7c3cec13533cd_rastatt-galerie-bild-3-01-2048.webp",
+    "text": "Dachgeschoss-Wohnen mit freigelegtem Gebälk"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254b726873975d774a7f_65e5f2cb30aad08af5f3d099_VIS-Haus-A-DG-Whg31-RA-Joffre-Kaserne.webp",
+    "text": "Wohnung 31 – Loftgefühl unterm Dach"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254c726873975d774a9f_65e5f2cb47356e7834b60a80_VIS-Haus-A-EG-Whg2-RA-Joffre-Kaserne.webp",
+    "text": "Erdgeschoss-Wohnung mit Blick ins Grüne"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254c726873975d774aa8_65e5f2cb7af017703dbb44ed_VIS-Haus-B-1OG-Whg14-RA-Joffre-Kaserne.webp",
+    "text": "Haus B – lichtdurchflutete Wohnräume"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7870_65e5f2ccada0eabbee8d4f46_VIS-Haus-B-1OG-Whg15-RA-Joffre-Kaserne.webp",
+    "text": "Offenes Wohnen und Essen in Haus B"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb459bed22a54cc7856_65e5f2ca65a091b957cdb2bd_VIS-Haus-C-1OG-Whg14-RA-Joffre-Kaserne.webp",
+    "text": "Haus C – modernes Wohnen hinter historischer Fassade"
+   }
+  ],
+  "bau": [
+   {
+    "datum": "Fert. Zust.",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e2547726873975d7749cb_65e5f230dd98ec25a652d29c_201807_9216.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c4400ea1bea1a042bb7_65e5f23354d9b27a42460269_201807_9218.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c4400ea1bea1a042bb1_65e69f8a8277000d19109e28_202406_8572.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c4400ea1bea1a042bae_65e69f8b4674440ad8b33081_202406_8604.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e2549726873975d7749e7_65e5f23cdc8882dc33f72539_202406_8612.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a36_65e69f91fc41c89b46af5e11_202406_8624.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c967588_65e69f93f637ef62bc233194_202406_8660.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c96758b_65e69f991f30ed3f56c2bd40_202406_8676.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c967591_65e5f24445f52ad6cc731762_202406_8745.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c4400ea1bea1a042bc1_65e69f9e5e3c1e95d847b6cb_202406_8840-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c96758e_65e5f248a53ceb6826b25f84_IMG_0764.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c967597_65e69fa3660cc8948948911d_IMG_0765.webp"
+    ]
+   },
+   {
+    "datum": "Nov. 2019",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e2548726873975d7749d7_65e5f2b502501add53064dad_IMG_0734_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e2549726873975d7749f3_65e5f2b924b033cc20ea8684_IMG_0735_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a11_65e5f2b5ccbd7281b34f6434_IMG_0736_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e2548726873975d7749db_65e5f2b97ce343c4d0e91c74_IMG_0741_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e2549726873975d7749ea_65e5f2b6766730835bd85b1c_IMG_0746_1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a14_65e5f2b7766730835bd85b4d_IMG_0749_1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675fd_65e5f2b8546aed636b08b886_IMG_0750_1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675e5_65e5f2b50e4a799e2f15514e_IMG_0752_1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c967594_65e5f2b530485583bece68bb_IMG_0753_1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675ca_65e5f2b6485b65d48c369ac5_IMG_0754_1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675d0_65e5f2b5489b111bf28e0841_IMG_0718.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675fa_65e5f2b9a290550c22f302da_IMG_0722.webp"
+    ]
+   },
+   {
+    "datum": "Okt. 2019",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a0b_65e5f2ef2b8a17ce51ab45b5_Haus-A_IMG_0519_0-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e2549726873975d7749e4_65e5f2ef36f32a24031e5779_Haus-A_IMG_0521_0-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a05_65e5f2f2d1d55d2e60872ef9_Haus-A_IMG_0522_0-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a45_65e5f2f7da574cf2855128ea_Haus-A_IMG_0526_0-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a1a_65e5f2f095b9b39b1aa4cb41_Haus-A_IMG_0528_0-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a24_65e5f2f2318b8c9b350a8fb3_Haus-A_IMG_0530_0-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675d6_65e5f2f0040adb8d3f4c4b66_Haus-A_IMG_0538_0-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675eb_65e5f2ef572d7f3eda5dff0a_Haus-A_IMG_0542-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675ee_65e5f2f06b3274d0955e40d8_Haus-A_IMG_0543-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c967600_65e5f2f09ca00e8a893c821e_Haus-A_IMG_0546-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675d3_65e5f2f05a280a2303bff765_Haus-A_IMG_0548-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675c4_65e5f2f24279af487fba8f07_Haus-A_IMG_0551-1.webp"
+    ]
+   },
+   {
+    "datum": "Juni 2019",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e2549726873975d7749f6_65e5f30be2e00dda9faec8d2_IMG_0453_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a5a_65e5f30a338d82c8dac3b365_IMG_0454_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254b726873975d774a73_65e5f30bb5a2aa31b50e4813_IMG_0457_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a4e_65e5f30bbdcae772a247448c_IMG_0462_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e2549726873975d7749f0_65e5f30a2601a9cd9816b1c5_IMG_0463.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a08_65e5f30b2601a9cd9816b1da_IMG_0465_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675e8_65e5f30bb9cc030e350d1d59_IMG_0421_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675f7_65e5f30b828a28c54b8aa59e_IMG_0423_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675df_65e5f30b6aebaa3e9e4b7a2f_IMG_0425_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675e2_65e5f30c4fbdff5979d7cc16_IMG_0426_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675cd_65e5f30c5c872c2d20a7185d_IMG_0427_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675dc_65e5f30ce7eace05e838a72d_IMG_0428_0.webp"
+    ]
+   },
+   {
+    "datum": "Mai 2019",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a17_65e5f3253a18de4689990f06_IMG_0240.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e2549726873975d7749ed_65e5f325c0117de93e6f05b4_IMG_0398.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a0e_65e5f3255b0cab998ddb6fe4_IMG_0400.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254b726873975d774a67_65e5f3257ce343c4d0e95171_IMG_0401.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254b726873975d774a60_65e5f325dc8882dc33f7a6dd_IMG_0402.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a48_65e5f325434a3f5145a75e27_IMG_0405.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c96759a_65e5f3280552d529f026dc80_IMG_0406.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675a3_65e5f3286c06591433ece27f_IMG_0407.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675d9_65e5f327568737d4b92838c2_IMG_0467.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c96759d_65e5f325f87d0628f93d4d48_IMG_0468.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675bb_65e5f325e7fe935f13b3cb9d_IMG_0469.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675f4_65e5f325fce1816efa7871a5_IMG_0470.webp"
+    ]
+   },
+   {
+    "datum": "April 2019",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675af_65e5f342f6d9390016acd5a0_DSCN6657.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675a0_65e5f342ccbd7281b34fa706_DSCN6658.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675f1_65e5f34221f0ed2494f2d8d0_DSCN6661.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675be_65e5f3476b3274d0955e7752_DSCN6664.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675b2_65e5f3468985c2fc280e396b_DSCN6666.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675a9_65e5f347572d7f3eda5e28ac_DSCN6670.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675ac_65e5f343b93822dfa1b2fbd9_DSCN6674.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675c7_65e5f342546aed636b08fa4f_DSCN6679.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675b8_65e5f3439ec0b50d3f7d2d2b_DSCN6682.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675c1_65e5f3467ce343c4d0e95bc8_DSCN6683.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675a6_65e5f34281961d3cdd47cabe_DSCN6685.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f69df24ee769e4c9675b5_65e5f3425bdc2128d945a83b_DSCN6686.webp"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "wilhelmshaven",
+  "name": "Wilhelmshaven Kaiserlofts",
+  "heroHeadline": "Maritimes Loftwohnen mit Geschichte – die Kaiserlofts in Wilhelmshaven",
+  "heroSubline": "75 % Sonderabschreibung, hochwertige Sanierung und eine Lage nur 350 m vom Hafen – ein Stück maritime Geschichte, vollständig verkauft und übergeben.",
+  "heroBild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9477_6a85efe67ba29ecb81107ec9_wilhelmshaven-hero-bild.webp",
+  "fakten": [
+   [
+    "Volumen",
+    "20.600.000 EUR"
+   ],
+   [
+    "Einheiten",
+    "77 Wohnungen"
+   ],
+   [
+    "Wohnungstypen",
+    "1-Raum bis 4-Zimmer & Maisonetten"
+   ],
+   [
+    "Lage",
+    "350 m vom Hafen, 3 km zum Südstrand"
+   ],
+   [
+    "Vertriebszeit",
+    "Dez. 2018 – April 2020"
+   ],
+   [
+    "Fertigstellung",
+    "Ende 2022"
+   ],
+   [
+    "Sonder-AfA",
+    "75 % nach § 7i EStG"
+   ],
+   [
+    "Förderung",
+    "KfW 261"
+   ],
+   [
+    "Ausstattung",
+    "hochwertig, erstklassige Ausführung"
+   ]
+  ],
+  "introHeadline": "Wilhelmshaven am Wasser – exklusive Denkmal-Lofts mit maritimem Flair",
+  "introText": "<p>Nur 350 Meter vom Hafen und 3 Kilometer vom Südstrand entfernt steht das ehemalige Kaiserliche Marinebekleidungsamt – mitten in einem gewachsenen Wohngebiet, in dem Einkauf, Restaurants, Ärzte, Schulen und Kindergärten bequem zu Fuß erreichbar sind.</p><p>Der gesamte Komplex wurde in vier „Häuser“ gegliedert und mit viel Liebe zum Detail zu einem attraktiven Wohnquartier saniert. Zur Straße hin blieben die denkmalgeschützten Fassaden weitgehend erhalten. Es entstanden 77 Wohnungen in den unterschiedlichsten Größen – von der 1-Raum-Wohnung bis zur 4-Zimmer-Wohnung sowie Maisonetten im Dachgeschoss.</p><p>Wilhelmshaven, die charmante Hafenstadt an der Nordsee, verleiht dem Projekt einen unverwechselbaren Reiz: Wasser, Strände und maritimes Flair direkt vor der Tür. Mit 75 % Sonderabschreibung und hoher Bauqualität verband sich hier Lebensgefühl mit einer wertbeständigen Kapitalanlage.</p>",
+  "infoNummer": "01",
+  "infoLabel": "IDEEN IM WANDEL",
+  "infoText": "Verfolgen Sie Schritt für Schritt, wie aus dem historischen Marineamt hochwertige Loftwohnungen entstanden – dokumentiert in jeder Bauphase.",
+  "videoZitat": "Erleben Sie im Video die Kaiserlofts Wilhelmshaven – historische Architektur, maritime Lage und moderner Wohnkomfort in einem.",
+  "videoLink": "https://youtube.com/watch?v=lwR9WH2-cHY",
+  "videoLabel": "WILHELMSHAVEN 2022",
+  "bauHeadline": "Der Baufortschritt in Bildern – von der Baustelle bis zur Übergabe",
+  "galerie": [
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9456_6a85efe5ab7f8aa3532c59ce_wilhelmshaven-galerie-bild-1.webp",
+    "text": "Die sanierte Fassade zur Straße – Denkmal bleibt Denkmal"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e945c_6a85efe5e5e69d45bbadd3e0_wilhelmshaven-galerie-bild-2.webp",
+    "text": "Hochwertige Ausstattung mit viel Licht und Charakter"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9477_6a85efe67ba29ecb81107ec9_wilhelmshaven-hero-bild.webp",
+    "text": "Vier „Häuser“ – nur 350 m vom Hafen entfernt"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0fd9c33ccb63f8e942e_6a85efe5ac701e07cd28bf08_wilhelmshaven-galerie-bild-4.webp",
+    "text": "Maisonetten und Balkone mit Blick ins Grüne"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9459_6a85efe585c86549ebc58952_wilhelmshaven-galerie-bild-5.webp",
+    "text": "Vom Dachgeschoss bis zum Spitzboden – Wohnen mit Weitblick"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9453_6a85efe533c8b69b001427e8_wilhelmshaven-galerie-bild-6.webp",
+    "text": "Denkmalgerechte Details, modern interpretiert"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0ff9c33ccb63f8e943f_6a85efe633c8b69b00142841_wilhelmshaven-galerie-bild-7.webp",
+    "text": "Ruhige Wohnlage mit Einkauf und Cafés zu Fuß erreichbar"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0ff9c33ccb63f8e9442_6a85efe67ba29ecb81107e9a_wilhelmshaven-galerie-bild-8.webp",
+    "text": "Großzügige Fenster sorgen für lichtdurchflutete Räume"
+   }
+  ],
+  "bau": [
+   {
+    "datum": "Nov. 2022",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8dc739221eb0ce39f1c_6a85f80820f69b7e9d8a24c0_wilhelmshaven-bg-1-05-2048.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0c97f9ccf52f5e523fc_6a85efd2253fa5fd195dfc8b_wilhelmshaven-bau-galerie-1-02.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8dd739221eb0ce39f35_6a85f80897f847a6bdc28ac3_wilhelmshaven-bg-1-04-2048.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8dd739221eb0ce39f38_6a85f808251420b069d25731_wilhelmshaven-bg-1-02-2048.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8dd739221eb0ce39f3f_6a85f808605045089f5c2113_wilhelmshaven-bg-1-01-2048.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8dd739221eb0ce39f3c_6a85f808b0902db62101ce7e_wilhelmshaven-bg-1-03-2048.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8de739221eb0ce39f48_6a85f80920f69b7e9d8a2526_wilhelmshaven-bg-1-09-2048.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8de739221eb0ce39f50_6a85f8092dd78ff568885459_wilhelmshaven-bg-1-10-2048.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8de739221eb0ce39f56_6a85f8093af28b36a0c11b4d_wilhelmshaven-bg-1-08-2048.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8de739221eb0ce39f53_6a85f809dd1278a3230f99eb_wilhelmshaven-bg-1-06-2048.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8de739221eb0ce39f59_6a85f80989c694a8c9596b0f_wilhelmshaven-bg-1-07-2048.webp"
+    ]
+   },
+   {
+    "datum": "Aug. 2021",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0c97f9ccf52f5e52407_6a85efd59aefb808baedb16d_wilhelmshaven-bau-galerie-2-01.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0ca7f9ccf52f5e52414_6a85efd515d313c17c5a40a2_wilhelmshaven-bau-galerie-2-02.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0c97f9ccf52f5e5240c_6a85efd611c622fe7996e1c0_wilhelmshaven-bau-galerie-2-03.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0c97f9ccf52f5e52410_6a85efd633c8b69b00141dd1_wilhelmshaven-bau-galerie-2-04.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8df739221eb0ce39f5d_6a85f8093a2c03c20efd9ebe_wilhelmshaven-bg-2-01-2048.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0ca7f9ccf52f5e52425_6a85efd69aefb808baedb20d_wilhelmshaven-bau-galerie-2-06.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0ca7f9ccf52f5e52420_6a85efd68afdfc5d06b0a81c_wilhelmshaven-bau-galerie-2-07.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0ca7f9ccf52f5e52428_6a85efd7c6ba3927ebd77b50_wilhelmshaven-bau-galerie-2-08.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cb7f9ccf52f5e52430_6a85efd711c622fe7996e2e8_wilhelmshaven-bau-galerie-2-09.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cb7f9ccf52f5e52435_6a85efd87ba29ecb8110737d_wilhelmshaven-bau-galerie-2-10.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cb7f9ccf52f5e52439_6a85efd8ac701e07cd28b913_wilhelmshaven-bau-galerie-2-11.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cb7f9ccf52f5e5243f_6a85efd8bf833c5dbca6d2c6_wilhelmshaven-bau-galerie-2-12.webp"
+    ]
+   },
+   {
+    "datum": "Jan. 2021",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cb7f9ccf52f5e52446_6a85efd88afdfc5d06b0a95c_wilhelmshaven-bau-galerie-3-01.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cb7f9ccf52f5e52449_6a85efd88afdfc5d06b0a98e_wilhelmshaven-bau-galerie-3-02.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cd7f9ccf52f5e52470_6a85efd9ac701e07cd28b9a3_wilhelmshaven-bau-galerie-3-03.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cc7f9ccf52f5e52455_6a85efd9c6ba3927ebd77cb5_wilhelmshaven-bau-galerie-3-04.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cc7f9ccf52f5e5245b_6a85efda9c12ce05fc39d8cf_wilhelmshaven-bau-galerie-3-05.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cc7f9ccf52f5e52451_6a85efda6f1c4d8e1da38716_wilhelmshaven-bau-galerie-3-06.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cc7f9ccf52f5e52458_6a85efda9c12ce05fc39d924_wilhelmshaven-bau-galerie-3-07.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cd7f9ccf52f5e5246d_6a85efda9c12ce05fc39d970_wilhelmshaven-bau-galerie-3-08.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cd7f9ccf52f5e52469_6a85efdbdd052057aa7786a5_wilhelmshaven-bau-galerie-3-09.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cd7f9ccf52f5e52461_6a85efdb9c12ce05fc39da4e_wilhelmshaven-bau-galerie-3-10.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cd7f9ccf52f5e52473_6a85efdce6f8c258ef9d1050_wilhelmshaven-bau-galerie-3-11.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0cd7f9ccf52f5e52466_6a85efdc6f1c4d8e1da387c8_wilhelmshaven-bau-galerie-3-12.webp"
+    ]
+   },
+   {
+    "datum": "Okt. 2020",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e946b_6a85efdcbf833c5dbca6d486_wilhelmshaven-bau-galerie-4-01.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9462_6a85efdcf1c7c3cec1334724_wilhelmshaven-bau-galerie-4-02.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9474_6a85efdd0d19c0157e000418_wilhelmshaven-bau-galerie-4-03.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e946e_6a85efdd33c8b69b00142144_wilhelmshaven-bau-galerie-4-04.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9465_6a85efddd740698fde2e33a7_wilhelmshaven-bau-galerie-4-05.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e945f_6a85efde9aefb808baedb427_wilhelmshaven-bau-galerie-4-06.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9468_6a85efdeac701e07cd28bd0b_wilhelmshaven-bau-galerie-4-07.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0ff9c33ccb63f8e9449_6a85efdf91f2846c5b30fbf4_wilhelmshaven-bau-galerie-4-08.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e944f_6a85efdf46d216b9e83c3825_wilhelmshaven-bau-galerie-4-09.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e944c_6a85efdf33c8b69b0014232b_wilhelmshaven-bau-galerie-4-10.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0ff9c33ccb63f8e9445_6a85efe0f80d2692681cf35e_wilhelmshaven-bau-galerie-4-11.webp"
+    ]
+   },
+   {
+    "datum": "Mai 2020",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9471_6a85efe0e5e69d45bbadd0d3_wilhelmshaven-bau-galerie-5-01.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1029c33ccb63f8e9490_6a85efe0c6be4a820b4e3000_wilhelmshaven-bau-galerie-5-02.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1029c33ccb63f8e9489_6a85efe1c6ba3927ebd7816e_wilhelmshaven-bau-galerie-5-03.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1019c33ccb63f8e947e_6a85efe1dd1278a3230c24a9_wilhelmshaven-bau-galerie-5-04.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1029c33ccb63f8e948c_6a85efe1dd1278a3230c24d3_wilhelmshaven-bau-galerie-5-05.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1029c33ccb63f8e949a_6a85efe191f2846c5b30fe53_wilhelmshaven-bau-galerie-5-06.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1029c33ccb63f8e94a6_6a85efe1ab7f8aa3532c569f_wilhelmshaven-bau-galerie-5-07.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1029c33ccb63f8e949d_6a85efe19aefb808baedb5f9_wilhelmshaven-bau-galerie-5-08.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1029c33ccb63f8e9493_6a85efe1ab7f8aa3532c56c6_wilhelmshaven-bau-galerie-5-09.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1039c33ccb63f8e94ab_6a85efe246d216b9e83c39d1_wilhelmshaven-bau-galerie-5-10.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1029c33ccb63f8e94a1_6a85efe215d313c17c5a4303_wilhelmshaven-bau-galerie-5-11.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1029c33ccb63f8e9486_6a85efe211c622fe7996e946_wilhelmshaven-bau-galerie-5-12.webp"
+    ]
+   },
+   {
+    "datum": "April 2018",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1029c33ccb63f8e9497_6a85efe3e6f8c258ef9d146a_wilhelmshaven-bau-galerie-6-01.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1039c33ccb63f8e94c7_6a85efe3ab7f8aa3532c57be_wilhelmshaven-bau-galerie-6-02.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1039c33ccb63f8e94b5_6a85efe3ab7f8aa3532c57d5_wilhelmshaven-bau-galerie-6-03.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1039c33ccb63f8e94af_6a85efe3ac7204f6004c32c0_wilhelmshaven-bau-galerie-6-04.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1039c33ccb63f8e94c1_6a85efe3e5e69d45bbadd225_wilhelmshaven-bau-galerie-6-05.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1039c33ccb63f8e94b8_6a85efe39aefb808baedb708_wilhelmshaven-bau-galerie-6-06.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1039c33ccb63f8e94b2_6a85efe4ac701e07cd28be63_wilhelmshaven-bau-galerie-6-07.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1039c33ccb63f8e94c4_6a85efe4ae14e1f8b8c6825c_wilhelmshaven-bau-galerie-6-08.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1039c33ccb63f8e94bb_6a85efe4ab7f8aa3532c59b8_wilhelmshaven-bau-galerie-6-09.webp"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "emden",
+  "name": "Emden Türmchengebäude",
+  "heroHeadline": "Ein Wahrzeichen, neu belebt – das Türmchengebäude in Emden",
+  "heroSubline": "45 Wohnungen im Denkmal der ehemaligen Karl-von-Müller-Kaserne – in nur zwei Monaten vollständig verkauft.",
+  "heroBild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935a3_6a85efbfab7f8aa3532c4ae8_emden-hero-bild.webp",
+  "fakten": [
+   [
+    "Volumen",
+    "17.230.256 EUR"
+   ],
+   [
+    "Einheiten",
+    "45 Wohnungen"
+   ],
+   [
+    "Wohnungstypen",
+    "Etagenwohnungen, Maisonette-Wohnungen"
+   ],
+   [
+    "Lage",
+    "Emden, Ostfriesland – nahe Nordseeküste"
+   ],
+   [
+    "Vertriebszeit",
+    "Dez. 2021 – Jan. 2022"
+   ],
+   [
+    "Fertigstellung",
+    "2023"
+   ],
+   [
+    "Sonder-AfA",
+    "ca. 75 % nach § 7i EStG"
+   ],
+   [
+    "Förderung",
+    "KfW"
+   ],
+   [
+    "Ausstattung",
+    "Terrassen, großzügige Balkone, Aufzug, barrierefrei"
+   ]
+  ],
+  "introHeadline": "Die ehemalige Karl-von-Müller-Kaserne – Emdens neues Wohnviertel",
+  "introText": "<p>Aus der ehemaligen Karl-von-Müller-Kaserne von 1940 entstand nach aufwändiger Sanierung ein einmaliges Wohnviertel. Das markante Türmchengebäude – ein Wahrzeichen der Stadt – wurde mit viel Liebe zum Detail zu 45 Wohnungen umgebaut.</p><p>Es entstanden Wohnungen mit Terrassen und großzügigen Balkonen, per Aufzug barrierefrei erreichbar – historische Substanz kombiniert mit modernem Wohnkomfort. Der Verkauf war in nur zwei Monaten abgeschlossen.</p><p>Emden ist nicht nur beliebter Urlaubsort an der Nordsee: Mit einem der größten Automobilwerke Deutschlands und über 10.000 Beschäftigten bietet die Stadt einen starken Arbeitsmarkt – und damit verlässliche Nachfrage nach Wohnraum.</p>",
+  "infoNummer": "01",
+  "infoLabel": "IDEEN IM WANDEL",
+  "infoText": "Verfolgen Sie Schritt für Schritt, wie aus der historischen Kaserne ein einmaliges Wohnviertel wurde – dokumentiert in jeder Bauphase.",
+  "videoZitat": "Erleben Sie im Video das Türmchengebäude in Emden – ein Wahrzeichen mit neuem Leben.",
+  "videoLink": "https://youtube.com/watch?v=1aSjLM9EhVc",
+  "videoLabel": "EMDEN 2022",
+  "bauHeadline": "Der Baufortschritt in Bildern – von der Baustelle bis zur Übergabe",
+  "galerie": [
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935ac_6a85efbee5e69d45bbadb4b5_emden-galerie-bild-1.webp",
+    "text": "Das Türmchengebäude bei Nacht"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935a3_6a85efbfab7f8aa3532c4ae8_emden-hero-bild.webp",
+    "text": "Das Wahrzeichen bei Tag – frisch saniert"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935b4_6a85efbe46d216b9e83c2ea7_emden-galerie-bild-3.webp",
+    "text": "Das Wohnviertel aus der Vogelperspektive"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935a9_6a85efbe7f9ccf52f5e4cc8e_emden-galerie-bild-4.webp",
+    "text": "Wohnen im Dachgeschoss – mit Charakter"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935a0_6a85efbebf833c5dbca6c372_emden-galerie-bild-5.webp",
+    "text": "Maisonette – die obere Ebene"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d53209359d_6a85efbfac701e07cd28ac90_emden-galerie-bild-6.webp",
+    "text": "Maisonette – die untere Ebene"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935af_6a85efbf46d216b9e83c302a_emden-galerie-bild-7.webp",
+    "text": "Ruhiges Schlafzimmer im Denkmal"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935c7_6a85efbfe6f8c258ef9d0650_emden-galerie-bild-8.webp",
+    "text": "Offener Wohn- und Essbereich"
+   }
+  ],
+  "bau": [
+   {
+    "datum": "Dez. 2022",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254c726873975d774aa2_65e5e5da992d83ffa2a13da8_PXL_20221201_100207884-1536x864.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a54_65e5e5da93c041d6be9e155f_PXL_20221201_100736920-1-1536x864.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e2549726873975d7749fd_65e5e5dafa0f3741ffbd53ac_PXL_20221201_100938479-1-1536x864.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254b726873975d774a82_65e5e5da0ad44e1e37d47c5c_PXL_20221201_101140760-1536x864.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8db739221eb0ce39f01_6a85f80945e822b6139cb1a1_emden-bg-1-01-2048.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254b726873975d774a6d_65e5e5d9f87444bbdb323f42_PXL_20221201_101558972.NIGHT_-1536x864.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c229fc8176aedfb281e_65e5e5d9384f9fccbb4e09d7_PXL_20221201_101726920.NIGHT_-1536x864.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb2813_65e5e5d819b78365b78ed1b9_PXL_20221201_102220248.NIGHT_-1536x864.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c229fc8176aedfb2818_65e5e5d8f1a053af3cdb3cf4_PXL_20221201_102231893.NIGHT_-1536x864.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb27e5_65e5e5d8b5667f86bcc6485d_PXL_20221201_102327768.NIGHT_-1536x864.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8dc739221eb0ce39f1f_6a85f809837d22381e99c057_emden-bg-1-02-2048.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb2810_65e5e5d87a18875231b0be01_PXL_20221201_102355289.NIGHT_-1536x864.webp"
+    ]
+   },
+   {
+    "datum": "Mai 2022",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a2a_65e5e663384f9fccbb4e8859_IMG_5979.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a3f_65e5e6625cbc6a167c61e80f_IMG_5980-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a33_65e5e6620675d089e7ff7dfe_IMG_5981-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254b726873975d774a76_65e5e662d7e46ac838e75273_IMG_5982-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a51_65e5e6629905db754ab7ce18_IMG_5983-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a27_65e5e6626b32e8a82394d576_IMG_5984-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb27e8_65e5e662e5a8ee70a757d668_IMG_5985-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb2809_65e5e662cd5454a705427d14_IMG_5986-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb27de_65e5e662c64177170af9d3ae_IMG_5987-1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb27db_65e5e662f39a347429c39e61_IMG_5988_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c1f9fc8176aedfb27c9_65e5e6624e7c9609000bbe23_IMG_5989_0.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c1f9fc8176aedfb27cd_65e5e662679b75d0f9f0eb09_IMG_5990_0.webp"
+    ]
+   },
+   {
+    "datum": "Dez. 2021",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a1f_65e5e683e0d1a5863274ea87_IMG_3600.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254b726873975d774a6a_65e5e683b246731d78f14ac0_IMG_3628_V1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a57_65e5e6839e8fa3d1ec1dba9b_IMG_3671.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254b726873975d774a64_65e5e683d13fa96083494d66_IMG_3682.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a42_65e5e683d7576fed4aba45b2_IMG_3688.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a39_65e5e683b80de70d08fa39cb_IMG_3471.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb27eb_65e5e683805e181bcc193e8c_IMG_3474.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb27f1_65e5e682e45707d2aba7f05b_IMG_3491.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb27f7_65e5e682e2c75d7a5840a5bb_IMG_3527.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c209fc8176aedfb27d5_65e5e6822274578dd28e0815_IMG_3537.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb27e2_65e5e682d7576fed4aba456f_IMG_3574.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb27fa_65e5e682ad84274938dcab64_IMG_3575.webp"
+    ]
+   },
+   {
+    "datum": "Sep. 2021",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a3c_65e5e6999e8fa3d1ec1dc685_IMG_4179.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a4b_65e5e6999b8474a929857984_IMG_4180.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254b726873975d774a70_65e5e6992274578dd28e1349_IMG_4181.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254b726873975d774a8d_65e5e698e67d5a0f0dba0a09_IMG_4182.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254a726873975d774a2d_65e5e698ea4c6a98e69c51ea_IMG_4183.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254b726873975d774a79_65e5e6987ad717b5438ba2d9_IMG_4184.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb2803_65e5e6996d89f3cb52867bf9_IMG_4185.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb280c_65e5e698266b39f0b8aa06d4_IMG_4186.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb2806_65e5e698b5667f86bcc6c0c0_IMG_4187.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb27ee_65e5e69848f624f9afa9876d_IMG_4188.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb27fd_65e5e6987960c20e8b628484_IMG_4189.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6c219fc8176aedfb2800_65e5e698bcc6f54a662e9bff_IMG_4190.webp"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "koblenz",
+  "name": "Koblenz Palais 3-Klang",
+  "heroHeadline": "Neorenaissance am Rhein – das Palais 3-Klang in Koblenz-Oberwerth",
+  "heroSubline": "62 Wohnungen im ehemaligen Königlich Preußischen Lehrerinnenseminar – in nur drei Monaten verkauft und notariell beurkundet.",
+  "heroBild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e190b1627e2ff6bb43af4_65e6a8b2c5c6cb03268be808_Image_02_210531.webp",
+  "fakten": [
+   [
+    "Volumen",
+    "42.987.164 EUR"
+   ],
+   [
+    "Einheiten",
+    "62 Wohnungen"
+   ],
+   [
+    "Wohnungstypen",
+    "Gründerzeitwohnungen"
+   ],
+   [
+    "Lage",
+    "Villenviertel Koblenz-Oberwerth, direkt am Rhein"
+   ],
+   [
+    "Vertriebszeit",
+    "Sep. – Nov. 2021"
+   ],
+   [
+    "Fertigstellung",
+    "2024"
+   ],
+   [
+    "Sonder-AfA",
+    "ca. 70 % nach § 7i EStG"
+   ],
+   [
+    "Förderung",
+    "KfW"
+   ],
+   [
+    "Ausstattung",
+    "hochwertig, denkmalgerecht saniert"
+   ]
+  ],
+  "introHeadline": "Das Preußische Lehrerinnenseminar erwacht zu neuem Glanz",
+  "introText": "<p>Das 1907/08 im Neorenaissance-Stil erbaute Königlich Preußische Lehrerinnenseminar gehört zu den repräsentativsten Baudenkmälern von Koblenz – gelegen im Villenviertel Oberwerth, direkt am Rhein.</p><p>Das historische Ensemble wurde behutsam zu hochwertigem Wohnraum umgebaut: 62 Wohnungen, die herrschaftliche Architektur mit modernem Komfort verbinden.</p><p>Die Nachfrage sprach für sich: Innerhalb von nur drei Monaten – von September bis November 2021 – waren alle Wohnungen verkauft und notariell beurkundet. Eines unserer schnellsten Projekte.</p>",
+  "infoNummer": "01",
+  "infoLabel": "IDEEN IM WANDEL",
+  "infoText": "Verfolgen Sie Schritt für Schritt, wie das Lehrerinnenseminar zu neuem Glanz kam – dokumentiert in jeder Bauphase.",
+  "videoZitat": "\"Erleben Sie im Video das Palais 3-Klang in Koblenz – Neorenaissance-Architektur in Bestlage am Rhein.\"",
+  "videoLink": "https://youtube.com/watch?v=XLf84OSeUrQ",
+  "videoLabel": "KOBLENZ 2021",
+  "bauHeadline": "Der Baufortschritt in Bildern – von der Baustelle bis zur Übergabe",
+  "galerie": [
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e190b1627e2ff6bb43af4_65e6a8b2c5c6cb03268be808_Image_02_210531.webp",
+    "text": "Das Palais 3-Klang – Neorenaissance von 1907/08"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7888_65e6a8bbad29e9e2bb590b69_Image_03_210601.webp",
+    "text": "Die restaurierte Fassade im Villenviertel"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc786b_65e6a9b9660cc894894df5b6_210617_Exterior3_AN_Wasser_2.webp",
+    "text": "Blick vom Wasser auf das Ensemble"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7865_65e6e90d2d1a65bfd69102eb_210609_Interior_02_EGpsd.webp",
+    "text": "Herrschaftliches Wohnen im Erdgeschoss"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7861_65e6e90deda6156c617391bc_210610_Interior%25203.webp",
+    "text": "Lichtdurchflutete Wohnräume mit hohen Decken"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7880_65e6e90df95bc4bec7f0f41c_210611_Interior01_Orgelsaal.webp",
+    "text": "Der Orgelsaal – ein Wohntraum mit Geschichte"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7868_65e6e90dfeb2f9d0c8714842_210611_Interior01_Orgelsaal_Cam02%2520copy.webp",
+    "text": "Der Orgelsaal aus zweiter Perspektive"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb459bed22a54cc785a_65e6e90c7b10fbcb7242303d_Bad.webp",
+    "text": "Hochwertige Bäder im Denkmal"
+   }
+  ],
+  "bau": [
+   {
+    "datum": "Nov. 2025",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08c6f56e4d532093512_6a85efc2bf833c5dbca6c6cc_koblenz-bau-galerie-1-01.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d53209354a_6a85efc233c8b69b001413cd_koblenz-bau-galerie-1-02.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d53209354d_6a85efc3dd052057aa778025_koblenz-bau-galerie-1-03.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08f6f56e4d53209356b_6a85efc32249f082632a619b_koblenz-bau-galerie-1-04.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0906f56e4d532093584_6a85efc3ae14e1f8b8c66e85_koblenz-bau-galerie-1-05.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0906f56e4d532093581_6a85efc4280d4b376757bb2c_koblenz-bau-galerie-1-06.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0906f56e4d532093577_6a85efc4280d4b376757bb4b_koblenz-bau-galerie-1-07.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0906f56e4d532093574_6a85efc4ac7204f6004c2706_koblenz-bau-galerie-1-08.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0906f56e4d53209358a_6a85efc47ba29ecb8110688c_koblenz-bau-galerie-1-09.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0906f56e4d53209357a_6a85efc5dd052057aa7780df_koblenz-bau-galerie-1-10.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0906f56e4d53209357e_6a85efc611c622fe7996dbb0_koblenz-bau-galerie-1-11.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0906f56e4d532093587_6a85efc8c6ba3927ebd771ea_koblenz-bau-galerie-1-12.webp"
+    ]
+   },
+   {
+    "datum": "Aug. 2023",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e07cd411910ad3270f_65e6e59c76bd0ee91cbc1bae_image00001.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e07cd411910ad32703_65e6e59c972e0a1d93a20cbc_image00002.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e07cd411910ad3271b_65e6e59cddfcbad009a48823_image00003.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e07cd411910ad32709_65e6e59c7057f0cfc07348d3_image00004.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e17cd411910ad32723_65e6e59cc7fbe6a1cf242bfa_image00005.webp"
+    ]
+   },
+   {
+    "datum": "Apr. 2023",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24df7cd411910ad326fc_65e6e5d1296d9608bfed77e1_image00001.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e17cd411910ad32738_65e6e5d1e57ed4f5759a7278_image00002.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e07cd411910ad32706_65e6e5d1510c7d22cf9a763f_image00002-V1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e17cd411910ad32726_65e6e5d0b01997da24b99861_image00003.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e17cd411910ad3273d_65e6e5d1f3fe038485dc5e54_image00003-V2.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e07cd411910ad3270c_65e6e5cea0e9eda68e943ad9_image00004.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6bab33b3abf64ac23b75_65e6e5d11d80baf1426c0f99_image00005.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6bab33b3abf64ac23b62_65e6e5cfc5dfdc48eef37481_image00005-V1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6bab33b3abf64ac23b5c_65e6e5cd40c0f4c908314a19_image00006.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6bab33b3abf64ac23b71_65e6e5cd2cb9219fd23685ff_image00007.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6baa33b3abf64ac23b53_65e6e5ce0363733fe3302fbf_image00007-V1.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6bab33b3abf64ac23b65_65e6e5cd9a35afe6e156cb82_image00008.webp"
+    ]
+   },
+   {
+    "datum": "Nov. 2022",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e17cd411910ad32735_65e6e616bb57e4cd127b61c1_image00001.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e17cd411910ad32740_65e6e61640c0f4c908316809_image00002.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e07cd411910ad32712_65e6e6165619ced63ab2e814_image00004.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e07cd411910ad32715_65e6e6162e5de3808773eddf_image00005.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e07cd411910ad32718_65e6e616af39c088fe69bd11_image00006.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e17cd411910ad32746_65e6e616240559e039e02a73_image00007.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6bab33b3abf64ac23b7c_65e6e6163d7a6a3d46f88eb1_image00008.webp"
+    ]
+   },
+   {
+    "datum": "Aug. 2022",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e17cd411910ad3272c_65e6e643f3fe038485dca1f2_image00001.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e17cd411910ad32729_65e6e6421d80baf1426c4c1f_image00003.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e17cd411910ad3272f_65e6e6424945ad3c2279b98d_image00004.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e17cd411910ad32732_65e6e6435a4dca51cb2ffd79_image00005.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24df7cd411910ad326f8_65e6e642ebf46c331d6ce264_image00006.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e17cd411910ad32743_65e6e64840c0f4c908317c8e_image00007.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6bab33b3abf64ac23b6e_65e6e642ef78f72a9034797d_image00008.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6bab33b3abf64ac23b68_65e6e6429081a1a368363f4d_image00009.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6bab33b3abf64ac23b58_65e6e6428408a57acd0cd01f_image00010.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6bab33b3abf64ac23b6b_65e6e642c424bf52d134b524_image00011.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6bab33b3abf64ac23b78_65e6e642b2a1c7a4a53dd652_image00012.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5f6bab33b3abf64ac23b5f_65e6e642ef78f72a90347967_image00013.webp"
+    ]
+   },
+   {
+    "datum": "Feb. 2022",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0906f56e4d53209358d_6a85efc80d19c0157efffa93_koblenz-bau-galerie-6-01.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0906f56e4d532093590_6a85efc97ba29ecb81106bd1_koblenz-bau-galerie-6-02.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0906f56e4d532093593_6a85efc9e5e69d45bbadbc3d_koblenz-bau-galerie-6-03.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935a6_6a85efca85c86549ebc57e02_koblenz-bau-galerie-6-04.webp"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "pfungstadt-fabrik",
+  "name": "Pfungstadt Seidelsche Fabrik",
+  "heroHeadline": "Vom Fabrikgelände zum Wohnquartier – die Seidelsche Fabrik in Pfungstadt",
+  "heroSubline": "26 Denkmalwohnungen in der ehemaligen Seiden- und Wäschereifabrik – in unter sechs Monaten vollständig verkauft, derzeit im Bau.",
+  "heroBild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08b6f56e4d532093506_6a85efd1f1c7c3cec1334219_pfungstadt-fabrik-hero-bild.webp",
+  "fakten": [
+   [
+    "Volumen",
+    "16.147.000 EUR"
+   ],
+   [
+    "Einheiten",
+    "26 Denkmalwohnungen"
+   ],
+   [
+    "Wohnungstypen",
+    "Loftwohnungen"
+   ],
+   [
+    "Lage",
+    "Pfungstadt, wenige Minuten von Darmstadt"
+   ],
+   [
+    "Vertriebszeit",
+    "Juli – Dez. 2024"
+   ],
+   [
+    "Fertigstellung",
+    "im Bau (GU Züblin)"
+   ],
+   [
+    "Sonder-AfA",
+    "75 % nach § 7i EStG"
+   ],
+   [
+    "Förderung",
+    "KfW"
+   ],
+   [
+    "Ausstattung",
+    "Fußbodenheizung, Echtholzparkett, etc."
+   ]
+  ],
+  "introHeadline": "Erfolgreicher Vertrieb in der ehemaligen Seidelschen Fabrik",
+  "introText": "<p>Die ehemalige Seidelsche Seiden- und Wäschereifabrik in Pfungstadt bekommt eine zweite Zukunft: In den denkmalgeschützten Gebäuden entstehen 26 großzügige Wohnungen mit hoher Sonderabschreibung.</p><p>In der Vertriebszeit von Juli bis Dezember 2024 war das Projekt vollständig verkauft – in unter sechs Monaten. Derzeit läuft der Bau, ausgeführt vom Generalunternehmer Züblin, planmäßig und in klar strukturierten Abläufen.</p><p>Auf dem Areal entsteht zugleich ein modernes Quartier: Wo nicht geschützte Gebäudeteile wichen, ergänzt ein hochwertiger QNG-Neubau mit 39 Wohnungen das Ensemble – zentral gelegen, nur wenige Minuten von Darmstadt.</p>",
+  "infoNummer": "01",
+  "infoLabel": "IDEEN IM WANDEL",
+  "infoText": "Verfolgen Sie Schritt für Schritt, wie aus der historischen Fabrik hochwertiger Wohnraum entsteht – dokumentiert in jeder Bauphase.",
+  "videoZitat": "Erleben Sie im Video die Seidelsche Fabrik in Pfungstadt – Denkmal und modernes Quartier in einem.",
+  "videoLink": "https://youtube.com/shorts/6DwKkprKB9A",
+  "videoLabel": "PFUNGSTADT 2024",
+  "bauHeadline": "Ein Blick auf die Baustelle – der Fortschritt in Bildern",
+  "galerie": [
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e27cd411910ad3275f_68ca8b84fe01c79b90d17985_pfungstadt_bird_cam01_001.webp",
+    "text": "Das Quartier aus der Vogelperspektive"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e27cd411910ad32762_68ca8b84d45d9a0f75b855c0_pfungstadt_bird_cam02_001.webp",
+    "text": "Denkmal und Neubau im Zusammenspiel"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e27cd411910ad3275c_68ca8b84c8ad99d2eb846483_pfungstadt_bird_cam03_001.webp",
+    "text": "Der Blick über die Seidelschen Höfe"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e27cd411910ad32769_68ca8b8449433ac506f88f53_pfungstadt_bird_cam04_001.webp",
+    "text": "Grüne Innenhöfe statt Autoverkehr"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d532093547_6a85efd111c622fe7996df8a_pfungstadt-fabrik-galerie-bild-5.webp",
+    "text": "Die sanierte Fabrikfassade"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08b6f56e4d532093506_6a85efd1f1c7c3cec1334219_pfungstadt-fabrik-hero-bild.webp",
+    "text": "Historische Backstein-Architektur, neu belebt"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d53209353b_6a85efd1e5e69d45bbadc038_pfungstadt-fabrik-galerie-bild-7.webp",
+    "text": "Moderne Fassaden am historischen Ort"
+   },
+   {
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d532093541_6a85efd1ae14e1f8b8c676b3_pfungstadt-fabrik-galerie-bild-8.webp",
+    "text": "Das Ensemble von Süden"
+   }
+  ],
+  "bau": [
+   {
+    "datum": "Mai 2025",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d532093529_6a85efcc0d19c0157efffcf6_pfungstadt-fabrik-bau-galerie-1-01.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d532093538_6a85efcdd740698fde2e2c01_pfungstadt-fabrik-bau-galerie-1-02.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08c6f56e4d532093521_6a85efcd6f1c4d8e1da384c4_pfungstadt-fabrik-bau-galerie-1-03.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d532093532_6a85efcd9c12ce05fc39d34a_pfungstadt-fabrik-bau-galerie-1-04.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d53209352c_6a85efcd6b2a14699ce2eaab_pfungstadt-fabrik-bau-galerie-1-05.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d53209353e_6a85efcf0d19c0157efffe2c_pfungstadt-fabrik-bau-galerie-1-06.webp"
+    ]
+   },
+   {
+    "datum": "Mär. 2025",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d532093544_6a85efcfe5e69d45bbadbefa_pfungstadt-fabrik-bau-galerie-2-01.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08c6f56e4d532093518_6a85efcfdd1278a3230c1cf1_pfungstadt-fabrik-bau-galerie-2-02.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d532093535_6a85efcf8afdfc5d06b0a262_pfungstadt-fabrik-bau-galerie-2-03.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08c6f56e4d53209351b_6a85efd0f1c7c3cec1334072_pfungstadt-fabrik-bau-galerie-2-04.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08c6f56e4d53209351e_6a85efd015d313c17c5a3d71_pfungstadt-fabrik-bau-galerie-2-05.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d532093550_6a85efd0c6ba3927ebd777a0_pfungstadt-fabrik-bau-galerie-2-06.webp"
+    ]
+   },
+   {
+    "datum": "Feb. 2025",
+    "bilder": [
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e27cd411910ad3277a_68ca94bb9c3314c47147e786_IMG-20250303-WA0017.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e27cd411910ad32765_68ca94bb65bdc8092c09d6da_IMG-20250303-WA0014.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e27cd411910ad32771_68ca94bb73057b40f6ff6ee5_IMG-20250303-WA0015.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e27cd411910ad3276c_68ca94bb6f68fb40564b8e25_IMG-20250303-WA0016.webp",
+     "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e27cd411910ad32774_68ca94bbfeb656001aae43ef_IMG-20250303-WA0013.webp"
+    ]
+   }
+  ]
+ }
+]

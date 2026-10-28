@@ -1,0 +1,38 @@
+---
+// Teamkarte – 1:1 nach Webflow (team4_item / Card)
+interface Props { bild: string; rolle: string; nummer: string; jahr: string; name: string; text: string }
+const { bild, rolle, nummer, jahr, name, text } = Astro.props;
+---
+<div class="karte">
+  <div class="bild-abstand">
+    <div class="bild">
+      <div class="innen"><img src={bild} alt={name} loading="lazy" /></div>
+      <span class="badge">{rolle}</span>
+      <span class="ecke ol" aria-hidden="true"></span>
+      <span class="ecke ur" aria-hidden="true"></span>
+    </div>
+  </div>
+  <div class="zeile-abstand"><div class="zeile"><span class="mini">{nummer}</span><span class="mini">{jahr}</span></div></div>
+  <div class="zeile-abstand"><h3 class="h4">{name}</h3></div>
+  <div class="text-abstand"><p class="text-small">{text}</p></div>
+  <div class="pfeil-abstand">
+    <span class="pfeil" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2 10 10 2M3.5 2H10v6.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span>
+  </div>
+</div>
+<style>
+  .karte{display:flex;flex-direction:column;align-items:center;width:100%;max-width:250px}
+  .bild-abstand{display:flex;flex-direction:column;align-items:flex-start;width:100%;max-width:295.8px;padding-bottom:18px}
+  .bild{position:relative;display:flex;overflow:hidden;width:100%;border-radius:5px;box-shadow:0 30px 60px 0 rgba(21,20,15,.18)}
+  .innen{width:100%;padding:.5rem}
+  .innen img{display:block;width:100%;aspect-ratio:1/1.3;object-fit:cover;object-position:61% 50%;box-shadow:var(--shadow-kennzahl);background:var(--paper-tief)}
+  .badge{position:absolute;left:3%;top:3%;margin:2% 0 0 2%;padding:3px 7px;border-radius:4px;background:hsla(43.45,47.54%,88.04%,.39);font-family:var(--font-mono);font-size:10px;line-height:14.73px;font-weight:600;letter-spacing:1.33px;text-transform:uppercase;color:var(--ink-tinte-button)}
+  .ecke{position:absolute;width:10px;height:10px;border-color:var(--ink-weich);border-style:solid}
+  .ol{left:6px;top:3px;border-width:1px 0 0 1px}
+  .ur{right:4px;bottom:1px;border-width:0 1px 1px 0}
+  .zeile-abstand{display:flex;flex-direction:column;width:100%;max-width:295.8px;padding-bottom:8px}
+  .zeile{display:flex;justify-content:space-between;align-items:flex-start}
+  .mini{font-size:11px;line-height:16.27px;letter-spacing:1.47px;text-transform:uppercase;color:var(--ink-mono-grau)}
+  .text-abstand{width:100%;max-width:295.8px;padding-bottom:14px}
+  .pfeil-abstand{display:flex;width:100%;padding-top:.5rem}
+  .pfeil{display:flex;width:28px;height:28px;justify-content:center;align-items:center;border:1px solid rgba(21,20,15,.16);border-radius:14px;color:var(--ink-stumpf)}
+</style>

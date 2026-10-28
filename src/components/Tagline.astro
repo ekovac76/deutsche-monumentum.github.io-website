@@ -1,0 +1,20 @@
+---
+// „— KAPITEL · Nº 03“ über den Überschriften
+interface Props { wort?: string; nummer: string; hell?: boolean }
+const { wort = 'Kapitel', nummer, hell = false } = Astro.props;
+---
+<div class:list={['tagline', { hell }]}>
+  <span class="strich" aria-hidden="true"></span>
+  <span class="wort">{wort}</span>
+  <span class="nr">· Nº {nummer}</span>
+</div>
+<style>
+  .tagline{display:flex;align-items:center;gap:10px;padding-bottom:1.5rem}
+  .strich{width:18px;height:1px;}
+  .wort{font-size:11px;line-height:17px;font-weight:600;letter-spacing:2.42px;text-transform:uppercase;color:var(--ink-stumpf)}
+  .nr{font-family:var(--font-mono);font-size:11px;line-height:17px;font-weight:500;letter-spacing:2.42px;text-transform:uppercase;color:var(--ink-stumpf)}
+  .strich{background:var(--ink-stumpf)}
+  .hell .strich{background:#fff}
+  .hell .wort{color:#fff}
+  .hell .nr{color:var(--paper-bone)}
+</style>

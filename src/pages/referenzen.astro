@@ -1,0 +1,17 @@
+---
+// Seite „Referenzen“ – aus Webflow nachgebaut (Stand 28.10.2026)
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/abschnitte/Seitenkopf.astro';
+import Laufband from '../components/start/Laufband.astro';
+import Zeitstrahl from '../components/referenzen/Zeitstrahl.astro';
+import VorherNachherListe from '../components/referenzen/VorherNachherListe.astro';
+import Aufruf from '../components/start/Aufruf.astro';
+import { bilder } from '../data/bilder';
+---
+<Basis titel="Referenzprojekte: saniert & übergeben | Deutsche Monumentum" beschreibung="Erfolgreich sanierte Denkmäler: unsere größten Referenzobjekte im Überblick – vom Ankauf über die Sanierung bis zur Übergabe an die Käufer.">
+  <Seitenkopf bild={bilder.heroReferenzen} wort="Referenzen" titel="Unsere großen Referenzprojekte – erfolgreich saniert, verkauft und übergeben" text="Hier sehen Sie nur unsere größten Projekte – die vielen kleineren, die wir zusätzlich realisiert haben, präsentieren wir Ihnen gern persönlich." />
+  <Laufband />
+  <Zeitstrahl />
+  <VorherNachherListe />
+  <Aufruf />
+</Basis>

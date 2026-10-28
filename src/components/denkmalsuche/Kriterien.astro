@@ -1,0 +1,89 @@
+---
+// Denkmalsuche · Abschnitt III „Kriterien“ (Webflow: section_layout436 + layout16_item-list)
+import Button from '../Button.astro';
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import { bilder } from '../../data/bilder';
+const kriterien = [
+  { icon: bilder.iconEinzeldenkmal, text: 'Einzeldenkmal – sanierungsbedürftige Baudenkmäler nach § 7i EStG.' },
+  { icon: bilder.iconSanierungsgebiet, text: 'Sanierungsgebiet – auch Objekte nach § 7h EStG in solchen Zonen.' },
+  { icon: bilder.iconEntmietet, text: 'Entmietet – das Gebäude steht leer und ist bezugsfrei.' },
+  { icon: bilder.iconSanierungsbeduerftig, text: 'Sanierungsbedürftig – schlechter baulicher Zustand ist willkommen.' },
+  { icon: bilder.iconFlaeche, text: 'Ab 1.000 m² – mindestens 1.000 m² Bruttogeschossfläche.' },
+  { icon: bilder.iconObjekttypen, text: 'Mit Baurecht – idealerweise mit Projektierung oder Baugenehmigung.' },
+  // In Webflow steht hier dasselbe Symbol wie bei „Sanierungsgebiet“ – 1:1 übernommen
+  { icon: bilder.iconSanierungsgebiet, text: 'Objekttypen – Kasernen, Industriedenkmäler, Kliniken, Verwaltungsbauten.' },
+  { icon: bilder.iconStandort, text: 'Standort – Städte ab 25.000 Einwohnern mit Zukunftsperspektive.' },
+];
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer="III." thema="Referenz / Projektvideo" zaehler="03 / 06" />
+    <div class="inhalt">
+      <div class="links">
+        <div class="rahmen r1">
+          <img class="bild" src={bilder.dsBild1} alt="" loading="lazy" />
+          <img class="ecke ul" src={bilder.eckeUntenLinks} alt="" />
+          <img class="ecke ol" src={bilder.eckeObenLinks} alt="" />
+          <img class="ecke ur" src={bilder.eckeUntenRechts} alt="" />
+        </div>
+        <div class="rahmen r2">
+          <img class="bild" src={bilder.heroDenkmalsuche} alt="" loading="lazy" />
+          <img class="ecke ul" src={bilder.eckeUntenLinks} alt="" />
+          <img class="ecke ur" src={bilder.eckeUntenRechts} alt="" />
+          <img class="ecke ol" src={bilder.eckeObenLinks} alt="" />
+        </div>
+        <div class="rahmen r3">
+          <img class="bild" src={bilder.dsBild3} alt="" loading="lazy" />
+          <img class="ecke ur" src={bilder.eckeUntenRechts} alt="" />
+          <img class="ecke ol" src={bilder.eckeObenLinks} alt="" />
+          <img class="ecke ul" src={bilder.eckeUntenLinks} alt="" />
+        </div>
+      </div>
+      <div class="rechts">
+        <div class="rahmen r4">
+          <img class="bild" src={bilder.dsBild4} alt="" loading="lazy" />
+          <img class="ecke ul" src={bilder.eckeUntenLinks} alt="" />
+          <img class="ecke ur" src={bilder.eckeUntenRechts} alt="" />
+          <img class="ecke ol" src={bilder.eckeObenLinks} alt="" />
+        </div>
+        <div class="text">
+          <Tagline wort="Denkmalsuche" nummer="03" />
+          <h2 class="h1 abstand-header">Welche Baudenkmäler wir ankaufen – die wichtigsten Kriterien im Überblick</h2>
+          <p class="text-normal abstand-text">Wir sind ständig auf der Suche nach leerstehenden Baudenkmälern mit Sanierungsbedarf, aus denen wir hochwertigen Wohnraum schaffen. Kennen oder besitzen Sie ein passendes Objekt? Idealerweise erfüllt es diese Kriterien:</p>
+          <ul class="liste abstand-text">
+            {kriterien.map((k) => (
+              <li class="item">
+                <img class="icon" src={k.icon} alt="" loading="lazy" />
+                <p class="text-normal">{k.text}</p>
+              </li>
+            ))}
+          </ul>
+          <div class="button-zeile"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+        </div>
+      </div>
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .inhalt{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+  .links{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start}
+  .rechts{display:flex;flex-direction:column;align-items:flex-end}
+  .rahmen{position:relative;overflow:hidden;width:100%;padding:.25rem;box-shadow:0 30px 60px 0 rgba(0,0,0,.2)}
+  .r2{max-width:13.8rem}
+  .r3{max-width:22.1rem}
+  .r4{max-width:20rem}
+  .bild{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;box-shadow:0 30px 60px 0 rgba(0,0,0,.2);background:var(--paper-tief)}
+  .ecke{position:absolute;max-width:none}
+  .ul{left:0;bottom:0}
+  .ur{right:0;bottom:0}
+  .ol{left:2px;top:2px;z-index:2}
+  .text{margin-top:5rem}
+  .liste{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-top:0;padding:.5rem 0;list-style:none}
+  .item{display:flex;gap:1rem}
+  .icon{flex:none;align-self:flex-start}
+  @media (max-width:991px){.text{margin-top:4.5rem}}
+  @media (max-width:767px){.inhalt{grid-template-columns:1fr;gap:3rem}.text{margin-top:3rem}}
+</style>

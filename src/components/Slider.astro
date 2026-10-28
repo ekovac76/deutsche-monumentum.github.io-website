@@ -1,0 +1,39 @@
+---
+// Einfacher Slider ohne Fremdbibliothek: Wischen/Scrollen + Pfeile unten
+interface Props { breite?: string; breiteTablet?: string; breiteMobil?: string; label: string }
+const { breite = '25%', breiteTablet = '50%', breiteMobil = '85%', label } = Astro.props;
+---
+<div class="slider" style={`--b:${breite};--bt:${breiteTablet};--bm:${breiteMobil}`} aria-label={label} role="region">
+  <div class="spur" tabindex="0"><slot /></div>
+  <div class="steuerung">
+    <button class="pfeil zurueck" type="button" aria-label="Zurück"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    <button class="pfeil vor" type="button" aria-label="Weiter"><svg width="16" height="16" viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+  </div>
+</div>
+<style>
+  .slider{position:relative}
+  .spur{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-right:-5vw;padding:0 5vw 1.5rem 0}
+  .spur::-webkit-scrollbar{display:none}
+  .spur > :global(*){flex:0 0 var(--b);scroll-snap-align:start;padding-right:2rem;box-sizing:border-box}
+  .steuerung{display:flex;justify-content:flex-end;gap:1rem;padding-top:2.5rem}
+  .pfeil{display:flex;width:3rem;height:3rem;justify-content:center;align-items:center;border:1px solid var(--outline-dunkel);border-radius:50%;background:var(--paper-bone);color:var(--ink-weich);cursor:pointer}
+  .pfeil:disabled{opacity:.35;cursor:default}
+  @media (max-width:991px){.spur > :global(*){flex-basis:var(--bt)}}
+  @media (max-width:600px){.spur > :global(*){flex-basis:var(--bm);padding-right:1.25rem}}
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('.slider').forEach((s) => {
+    const spur = s.querySelector<HTMLElement>('.spur')!;
+    const zurueck = s.querySelector<HTMLButtonElement>('.zurueck')!;
+    const vor = s.querySelector<HTMLButtonElement>('.vor')!;
+    const schritt = () => (spur.firstElementChild as HTMLElement)?.offsetWidth || spur.clientWidth;
+    const pruefe = () => {
+      zurueck.disabled = spur.scrollLeft <= 2;
+      vor.disabled = spur.scrollLeft + spur.clientWidth >= spur.scrollWidth - 2;
+    };
+    zurueck.addEventListener('click', () => spur.scrollBy({ left: -schritt(), behavior: 'smooth' }));
+    vor.addEventListener('click', () => spur.scrollBy({ left: schritt(), behavior: 'smooth' }));
+    spur.addEventListener('scroll', pruefe, { passive: true });
+    pruefe();
+  });
+</script>

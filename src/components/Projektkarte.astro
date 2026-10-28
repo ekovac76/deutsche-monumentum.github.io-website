@@ -1,0 +1,54 @@
+---
+// Baustein „Projektkarte“ – 1:1 nach Webflow (card_projekt / karte-link)
+interface Props {
+  slug: string; nummer: string; kategorie: string; status: string; caption: string; titel: string;
+  einheiten: string; flaechen: string; preise: string; afa: string; kfw: string; standort: string; bild?: string | null;
+  dunkel?: boolean;
+}
+const p = Astro.props;
+const werte = [['Einheiten', p.einheiten], ['Flächen', p.flaechen], ['Preise', p.preise], ['Afa', p.afa], ['KfW', p.kfw]];
+---
+<a class="karte-link" href={`/projekte-cms/${p.slug}`}>
+  <div class="karte">
+    <div class="inhalt">
+      <div class="zeile">
+        <span class="kategorie">{p.kategorie}</span>
+        <span class="nummer">{p.nummer}</span>
+      </div>
+      <div class="bildrahmen">
+        {p.bild && <img src={p.bild} alt={p.titel} loading="lazy" />}
+        <span class="caption">{p.caption}</span>
+      </div>
+      <div>
+        <div class="titel-abstand"><h3 class="titel">{p.titel}</h3></div>
+        <div class="werte">
+          {werte.map(([k, v]) => (<><span class="wert-label">{k}</span><span class="wert">{v}</span></>))}
+        </div>
+      </div>
+      <div class="meta">
+        <span class="status">{p.status}</span>
+        <span class="ort">{p.standort}</span>
+      </div>
+    </div>
+  </div>
+</a>
+<style>
+  .karte-link{display:grid;width:100%;height:100%;max-width:17.5rem;margin:0 auto;color:inherit;text-decoration:none}
+  .karte{display:flex;flex-direction:column;max-width:20rem;padding:1rem;border:1px solid hsl(0 0% 62%);border-radius:10px;background:var(--paper-tief);box-shadow:var(--shadow-karte)}
+  .inhalt{display:flex;flex-direction:column;flex-grow:1;gap:.9rem}
+  .zeile{display:flex;width:100%;justify-content:space-between;align-items:center}
+  .kategorie{font-family:var(--font-sans);color:var(--karte-orange);font-size:10px;line-height:16.27px;font-weight:600;letter-spacing:1.89px;text-transform:uppercase}
+  .nummer{font-family:var(--font-mono);color:var(--ink-mono-grau);font-size:11px;line-height:17px;font-weight:400;letter-spacing:.44px}
+  .bildrahmen{position:relative;border:1px solid var(--ink-blass);overflow:hidden}
+  .bildrahmen img{position:relative;display:block;width:100%;aspect-ratio:5/3.5;object-fit:cover;background:var(--paper-tief)}
+  .caption{position:absolute;left:5%;right:5%;bottom:10%;z-index:2;font-family:var(--font-mono);color:#fff;font-size:12px;line-height:19px}
+  .titel-abstand{padding-bottom:.5rem}
+  .titel{margin:0;font-family:var(--font-sans);color:#333;font-size:1.3rem;line-height:1.3;font-weight:700}
+  .werte{display:grid;width:100%;grid-template-columns:.45fr 1fr}
+  .wert-label,.wert{font-family:var(--font-daten);color:var(--ink-stumpf);font-size:.9rem;line-height:1.5}
+  .wert{text-align:right}
+  .meta{display:flex;width:100%;margin-top:auto;padding-top:14px;justify-content:space-between;align-items:flex-start;border-top:1px solid rgba(21,20,15,.16)}
+  .status{font-family:var(--font-sans);color:var(--karte-orange);font-size:11px;line-height:17px;font-weight:600;letter-spacing:1.76px;text-transform:uppercase}
+  .ort{font-family:var(--font-sans);color:var(--ink-mono-grau);font-size:11px;line-height:17px;font-weight:400;letter-spacing:1.76px;text-transform:uppercase}
+  @media (max-width:479px){.wert-label,.wert{font-size:1rem}}
+</style>

@@ -1,0 +1,16 @@
+---
+// Baustein „Kapitelzeilen“ oben: Ziffer · Thema · Seitenzähler
+interface Props { ziffer: string; thema: string; zaehler: string; hell?: boolean }
+const { ziffer, thema, zaehler, hell = false } = Astro.props;
+---
+<div class:list={['kopf', { hell }]}>
+  <span class="ziffer">{ziffer}</span>
+  <span class="label">{thema}</span>
+  <span class="label">{zaehler}</span>
+</div>
+<style>
+  .kopf{display:flex;justify-content:space-between;align-items:center;width:100%;padding-top:18px;border-top:1px solid var(--karte-linie)}
+  .label{font-size:.6rem;line-height:1;letter-spacing:1.98px;text-transform:uppercase;color:var(--ink-blass)}
+  .ziffer{font-family:var(--font-playfair);font-style:italic;font-size:1.1rem;color:var(--signal-orange)}
+  .hell{border-color:rgba(247,241,222,.16)}
+</style>

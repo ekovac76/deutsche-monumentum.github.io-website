@@ -1,0 +1,34 @@
+---
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import Randhinweis from '../Randhinweis.astro';
+import Projektkarte from '../Projektkarte.astro';
+import projekte from '../../data/projekte.json';
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer="III." thema="Projekte / Denkmal & Neubau" zaehler="03 / 10" />
+    <div class="kopfraster">
+      <div>
+        <Tagline nummer="03" />
+        <h2 class="h1 abstand-header">Aktuelle Projekte, mit denen Sie Steuern sparen und Vermögen aufbauen</h2>
+        <p class="text-normal">Ob Industriedenkmal, Traditionsgut oder nachhaltiger QNG-Neubau – jedes unserer Projekte hat seine eigene Geschichte. Gemeinsam haben sie unsere Maßstäbe: solvente Bauträger, geprüfte Qualität und hohe Abschreibung samt Förderung.</p>
+      </div>
+      <div class="rechts">
+        <Randhinweis nummer="01" titel="STRENG AUSGEWÄHLT" text="Nur wenige Objekte eignen sich für hohe Abschreibungen und beste Förderung – ob Denkmal-AfA oder Sonder-AfA mit KfW-Programm beim Neubau. Unsere Projekte bestehen die Prüfung: nach Lage, Bauträger und Steuerkonzept." />
+      </div>
+    </div>
+    <div class="karten">
+      {projekte.map((p) => <Projektkarte {...p} />)}
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .kopfraster{display:grid;grid-template-columns:1fr .55fr;gap:5rem;align-items:start}
+  .rechts{display:flex;justify-content:flex-end}
+  .karten{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  @media (max-width:991px){.kopfraster{grid-template-columns:1fr;gap:2rem}.rechts{justify-content:flex-start}.karten{grid-template-columns:1fr 1fr}}
+  @media (max-width:600px){.karten{grid-template-columns:1fr}}
+</style>

@@ -1,0 +1,13 @@
+---
+interface Props { name: string; rolle: string; bild: string }
+const { name, rolle, bild } = Astro.props;
+---
+<div class="kunde">
+  <img src={bild} alt={name} width="56" height="56" loading="lazy" />
+  <p class="text-small"><strong>{name}</strong><br />{rolle}</p>
+</div>
+<style>
+  .kunde{display:flex;align-items:center;gap:1rem}
+  img{flex:none;width:3.5rem;height:3.5rem;border-radius:50%;object-fit:cover;object-position:50% -15%;border:1px solid #c2c2c2;box-shadow:0 10px 20px rgba(0,0,0,.2);background:var(--paper-tief)}
+  strong{font-weight:600}
+</style>

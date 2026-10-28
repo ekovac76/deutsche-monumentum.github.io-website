@@ -1,0 +1,20 @@
+{
+  "name": "deutsche-monumentum",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "bilder": "node scripts/bilder-holen.mjs"
+  },
+  "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.2.0",
+    "@fontsource/inconsolata": "^5.3.0",
+    "@fontsource/inter-tight": "^5.2.0",
+    "@fontsource/jetbrains-mono": "^5.2.0",
+    "@fontsource/playfair-display": "^5.2.0",
+    "@fontsource/poppins": "^5.2.0",
+    "astro": "^6.4.8"
+  }
+}

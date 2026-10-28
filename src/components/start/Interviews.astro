@@ -1,0 +1,50 @@
+---
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import Randhinweis from '../Randhinweis.astro';
+import Videovorschau from '../Videovorschau.astro';
+import Kunde from '../Kunde.astro';
+import Sterne from '../Sterne.astro';
+import { bilder } from '../../data/bilder';
+const interviews = [
+  { bild: bilder.interview1, zitat: '„Die Übergabe kam ein halbes Jahr früher als geplant – und die Abschreibung war höher als im Exposé."', name: 'Michael Dorn', rolle: 'Geschäftsführer', foto: bilder.kundeDorn },
+  { bild: bilder.interview2, zitat: '„Meine Wohnung ist seit über acht Jahren durchgehend vermietet – das Investment hat sich mehr als gelohnt."', name: 'Volker Bollinger', rolle: 'Geschäftsführer', foto: bilder.kundeBollinger },
+  { bild: bilder.interview3, zitat: '„Von der ersten Beratung bis zur Übergabe lief alles genau so, wie es besprochen war."', name: 'Steffen Hermann', rolle: 'Heilpraktiker', foto: bilder.kundeHermann },
+];
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer="VI." thema="Kundenstimmen / Im Interview" zaehler="06 / 10" />
+    <div class="kopfraster">
+      <div>
+        <Tagline nummer="06" />
+        <h2 class="h1 abstand-header">Drei Kunden, drei Geschichten: Warum sie bei uns gekauft haben?</h2>
+        <p class="text-normal">Niemand erzählt unsere Geschichte besser als die, die investiert haben. Drei Kunden berichten im Video, wie sie zu ihrer Immobilie kamen – und was aus Kauf, Vermietung und Abschreibung geworden ist.</p>
+      </div>
+      <div class="rechts"><Randhinweis text="Sie haben Fragen an unsere Kunden? Viele Antworten finden Sie in den Interviews – oder Sie sprechen uns direkt an." /></div>
+    </div>
+    <div class="karten">
+      {interviews.map((i) => (
+        <article class="karte">
+          <Videovorschau bild={i.bild} alt={`Interview mit ${i.name}`} quadrat />
+          <div class="inhalt">
+            <Sterne />
+            <p class="text-small zitat">{i.zitat}</p>
+            <Kunde name={i.name} rolle={i.rolle} bild={i.foto} />
+          </div>
+        </article>
+      ))}
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .kopfraster{display:grid;grid-template-columns:1fr .8fr;gap:4rem;align-items:start}
+  .rechts{display:flex;justify-content:flex-end}
+  .karten{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  .inhalt{padding:2rem 0;display:flex;flex-direction:column;gap:1.25rem}
+  .zitat{padding-bottom:.5rem}
+  @media (max-width:991px){.karten{grid-template-columns:1fr 1fr}}
+  @media (max-width:767px){.kopfraster{grid-template-columns:1fr;gap:2rem}.rechts{justify-content:flex-start}.karten{grid-template-columns:1fr}}
+</style>

@@ -1,0 +1,105 @@
+---
+// „Denkmal & QNG erklärt“ · Videothek (Webflow: section_blog1 + CMS „Mediathek“)
+// Reihenfolge nach Feld „Nummer“; Filter-Reiter wie im Webflow-Skript (Abgleich über das Thema-Abzeichen)
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import videos from '../../data/mediathek.json';
+import { bilder } from '../../data/bilder';
+const liste = [...videos].sort((a, b) => a.nummer.localeCompare(b.nummer));
+const monate = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const datum = (d: string) => { const [j, m, t] = d.split('-'); return `${t} ${monate[+m - 1]} ${j}`; };
+const reiter = ['Alle Videos', 'Denkmal', 'QNG-Neubau'];
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer="I" thema="Mediathek / Kurz erklärt" zaehler="02 / 03" />
+    <div class="kopf">
+      <div class="kopf-innen">
+        <Tagline wort="Videothek" nummer="02" />
+        <h2 class="h1 abstand-header">Was Käufer wissen sollten: Abschreibung, Förderung, Risiken und Kaufablauf</h2>
+        <p class="einleitung">Wählen Sie ein Thema oder schauen Sie der Reihe nach. Die Videos bauen aufeinander auf und führen vom Grundprinzip der Abschreibung bis zum Ablauf des Kaufs.</p>
+      </div>
+    </div>
+    <div class="inhalt">
+      <div class="reiter" data-reiter>
+        {reiter.map((r, i) => <button type="button" class:list={['reiter-link', { aktiv: i === 0 }]} aria-pressed={i === 0 ? 'true' : 'false'}>{r}</button>)}
+      </div>
+      <div class="liste">
+        {liste.map((v) => (
+          <div class="item" data-thema={v.thema}>
+            <div class="bild-abstand">
+              <div class="bildrahmen">
+                <button type="button" class="leuchte" data-video={v.video} aria-label={`Video abspielen: ${v.name}`}>
+                  {v.coverbild && <img src={v.coverbild} alt="" loading="lazy" />}
+                  <span class="schleier"></span>
+                  <span class="play" aria-hidden="true">
+                    <svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="26" fill="none" stroke="#fff" stroke-width="1.2"/><path d="m22 18 14 9-14 9Z" fill="#fff"/></svg>
+                    <span>Video</span>
+                  </span>
+                  <span class="badge"><span class="badge-text">{v.thema}</span></span>
+                </button>
+              </div>
+            </div>
+            <p class="kategorie">{v.kategorie}</p>
+            <h3 class="titel">{v.name}</h3>
+            <p class="text-small kurz">{v.kurztext}</p>
+            <div class="fuss">
+              <div class="autor">
+                <span class="avatar"><img src={bilder.eduardPortrait} alt="" loading="lazy" /></span>
+                <div>
+                  <p class="text-small">{v.autor}</p>
+                  <p class="text-small datum">{datum(v.datum)}<span class="trenner">•</span>{v.dauer}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<script>
+  const norm = (t: string | null) => (t || '').toLowerCase().replace(/[^a-zäöüß]/g, '');
+  document.querySelectorAll<HTMLElement>('[data-reiter]').forEach((menue) => {
+    const links = [...menue.querySelectorAll<HTMLButtonElement>('.reiter-link')];
+    const items = [...(menue.parentElement?.querySelectorAll<HTMLElement>('.item') || [])];
+    const waehle = (l: HTMLButtonElement) => {
+      const w = norm(l.textContent); const alle = w.startsWith('alle');
+      links.forEach((x) => { x.classList.toggle('aktiv', x === l); x.setAttribute('aria-pressed', x === l ? 'true' : 'false'); });
+      items.forEach((it) => { it.style.display = alle || norm(it.dataset.thema!) === w ? '' : 'none'; });
+    };
+    links.forEach((l) => l.addEventListener('click', () => waehle(l)));
+  });
+</script>
+<style>
+  .kopf{display:flex;flex-direction:column;align-items:flex-start}
+  .kopf-innen{max-width:48rem;margin:0 auto;text-align:center}
+  .einleitung{margin:0}
+  .inhalt{display:flex;flex-direction:column}
+  .reiter{display:grid;grid-template-columns:auto auto auto 1fr;align-self:flex-start;gap:1rem .25rem;align-items:center;margin-bottom:4rem;padding:.25rem;border-bottom:1px solid #000;background:#fff;overflow:auto}
+  .reiter-link{padding:.5rem 1.25rem;border:1px solid #000;border-radius:10px 10px 0 0;background:transparent;font:inherit;color:inherit;cursor:pointer}
+  .reiter-link.aktiv{background:#c8c8c8}
+  .liste{display:grid;grid-template-columns:repeat(3,1fr);gap:4rem 2rem}
+  .bild-abstand{padding-bottom:1rem}
+  .bildrahmen{overflow:hidden;width:100%;box-shadow:0 30px 60px 0 rgba(0,0,0,.2)}
+  .leuchte{position:relative;display:flex;width:100%;aspect-ratio:16/9;justify-content:center;align-items:center;overflow:hidden;padding:0;border:0;background:var(--paper-tief);cursor:pointer}
+  .leuchte img{width:100%;object-fit:contain}
+  .schleier{position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.4)}
+  .play{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.3rem;font-family:var(--font-mono);font-size:28px;color:#fafafa}
+  .badge{position:absolute;left:3%;top:3%;z-index:3;margin:2% 0 0 2%;padding:3px 7px;border-radius:4px;background:hsla(43.4,47.54%,88.04%,.39)}
+  .badge-text{font-family:var(--font-mono);font-size:10px;line-height:14.73px;font-weight:600;letter-spacing:1.33px;text-transform:uppercase;color:rgb(21,20,15)}
+  .kategorie{margin:0;padding-bottom:.5rem;font-family:var(--font-mono);font-size:10px;line-height:14.73px;font-weight:500;letter-spacing:1.71px;text-transform:uppercase;color:var(--ink-stumpf)}
+  .titel{margin:0;padding-bottom:1rem;font-family:var(--font-sans);font-weight:700;font-size:1.1rem;line-height:1.4;color:var(--ink-weich)}
+  .kurz{padding-bottom:1rem}
+  .fuss{padding-bottom:3rem}
+  .autor{display:flex;gap:.8rem;margin-top:2rem}
+  .avatar{flex:none;overflow:hidden;width:3.5rem;height:3.5rem;border:1px solid hsl(0 0% 76%);border-radius:100%;box-shadow:0 10px 20px 0 rgba(0,0,0,.2)}
+  .avatar img{width:100%;height:100%;object-fit:cover;object-position:50% -15%}
+  .datum{display:flex;align-items:center}
+  .trenner{margin:0 .5rem}
+  @media (max-width:991px){.liste{grid-template-columns:1fr 1fr}.titel{font-size:1.2rem}}
+  @media (max-width:767px){.liste{grid-template-columns:1fr;gap:3rem 2rem}.reiter{max-width:100%}}
+  @media (max-width:479px){.liste{gap:3.25rem 2rem}.reiter{grid-template-columns:auto auto 1fr}}
+</style>

@@ -1,0 +1,36 @@
+---
+// Öffnet YouTube-Videos aus [data-video] in einem Fenster (youtube-nocookie, erst beim Klick geladen – DSGVO)
+---
+<dialog id="video-fenster" class="fenster" aria-label="Video">
+  <button class="zu" type="button" aria-label="Schließen"><i></i><i></i></button>
+  <div class="rahmen"></div>
+</dialog>
+<style>
+  .fenster{width:min(64rem,94vw);padding:0;border:0;background:#000;overflow:visible}
+  .fenster::backdrop{background:rgba(22,21,19,.85)}
+  .rahmen{position:relative;aspect-ratio:16/9}
+  .rahmen.hoch{aspect-ratio:9/16;max-height:85vh;margin:0 auto}
+  .rahmen :global(iframe){position:absolute;inset:0;width:100%;height:100%;border:0}
+  .zu{position:absolute;top:-44px;right:0;width:36px;height:36px;border:0;background:none;cursor:pointer}
+  .zu i{position:absolute;left:6px;right:6px;top:50%;height:1.5px;background:#fff}
+  .zu i:first-child{transform:rotate(45deg)}.zu i:last-child{transform:rotate(-45deg)}
+</style>
+<script>
+  const f = document.getElementById('video-fenster') as HTMLDialogElement;
+  const rahmen = f.querySelector('.rahmen') as HTMLElement;
+  const id = (u: string) => (u.match(/(?:v=|youtu\.be\/|shorts\/|embed\/)([\w-]{11})/) || [])[1];
+  document.addEventListener('click', (e) => {
+    const el = (e.target as HTMLElement).closest<HTMLElement>('[data-video]');
+    if (!el || !el.dataset.video) return;
+    const v = id(el.dataset.video);
+    if (!v) return;
+    e.preventDefault();
+    rahmen.classList.toggle('hoch', el.dataset.video.includes('/shorts/'));
+    rahmen.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${v}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="Video"></iframe>`;
+    f.showModal();
+  });
+  const schliessen = () => { f.close(); };
+  f.querySelector('.zu')!.addEventListener('click', schliessen);
+  f.addEventListener('click', (e) => { if (e.target === f) schliessen(); });
+  f.addEventListener('close', () => { rahmen.innerHTML = ''; });
+</script>

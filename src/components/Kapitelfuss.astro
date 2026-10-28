@@ -1,0 +1,14 @@
+---
+// Baustein „Kapitelzeilen“ unten: Ring · Domain · Jahr
+---
+<div class="fuss">
+  <span class="ring" aria-hidden="true"></span>
+  <span class="label">deutsche-monumentum.de</span>
+  <span class="label">© {new Date().getFullYear()}</span>
+</div>
+<style>
+  .fuss{display:flex;justify-content:space-between;align-items:center;width:100%;padding-top:24px;border-top:1px solid var(--karte-linie)}
+  .label{font-size:.6rem;line-height:1;letter-spacing:1.98px;text-transform:uppercase;color:var(--ink-blass)}
+  .ring{width:20px;height:20px;border:1px solid var(--ink-mono-grau);border-radius:50%;position:relative}
+  .ring::after{content:'';position:absolute;inset:5px;border-radius:50%;background:var(--ink-mono-grau)}
+</style>

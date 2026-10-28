@@ -1,0 +1,26 @@
+---
+// Laufband „Das sagen unsere Kunden über uns“ → ProvenExpert
+const eintraege = Array.from({ length: 8 });
+---
+<a class="band" href="https://www.provenexpert.com/de-de/deutsche-monumentum/" target="_blank" rel="noopener">
+  <div class="spur">
+    {[0, 1].map(() => (
+      <div class="gruppe" aria-hidden="true">
+        {eintraege.map(() => (
+          <span class="eintrag"><span class="sterne">★★★★★</span> Das sagen unsere Kunden über uns</span>
+        ))}
+      </div>
+    ))}
+  </div>
+  <span class="visually-hidden">Das sagen unsere Kunden über uns – Bewertungen auf ProvenExpert</span>
+</a>
+<style>
+  .band{display:block;overflow:hidden;background:var(--paper-bone);border-block:1px solid var(--karte-linie);padding:1rem 0;text-decoration:none;color:var(--ink-weich)}
+  .spur{display:flex;width:max-content;animation:lauf 40s linear infinite}
+  .band:hover .spur{animation-play-state:paused}
+  .gruppe{display:flex}
+  .eintrag{display:flex;align-items:center;gap:.6rem;padding:0 2.5rem;font-size:.9rem;white-space:nowrap}
+  .sterne{color:var(--gold);letter-spacing:2px}
+  @keyframes lauf{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion: reduce){.spur{animation:none}}
+</style>

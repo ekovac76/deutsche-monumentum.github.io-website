@@ -1,0 +1,160 @@
+---
+// Referenz-Detailseite – Vorlage für alle Referenzen (Daten: src/data/referenzen.json, später CMS)
+import Basis from '../../layouts/Basis.astro';
+import Seitenkopf from '../../components/abschnitte/Seitenkopf.astro';
+import Erklaervideo from '../../components/abschnitte/Erklaervideo.astro';
+import Aufruf from '../../components/start/Aufruf.astro';
+import Tagline from '../../components/Tagline.astro';
+import Kapitelkopf from '../../components/Kapitelkopf.astro';
+import Kapitelfuss from '../../components/Kapitelfuss.astro';
+import Randhinweis from '../../components/Randhinweis.astro';
+import Slider from '../../components/Slider.astro';
+import VorherNachher from '../../components/VorherNachher.astro';
+import referenzen from '../../data/referenzen.json';
+import { bilder } from '../../data/bilder';
+
+export function getStaticPaths() {
+  return referenzen.map((r) => ({ params: { slug: r.slug }, props: { r } }));
+}
+const { r } = Astro.props;
+---
+<Basis titel="Referenz – Deutsche Monumentum" beschreibung="Erfolgreich sanierte Denkmalprojekte der Deutschen Monumentum – vom Verkauf bis zur Übergabe dokumentiert.">
+  <Seitenkopf bild={r.heroBild} wort="Referenz" titel={r.heroHeadline} text={r.heroSubline} fett />
+
+  <!-- II. Überblick -->
+  <section class="sektion">
+    <div class="sektion-innen">
+      <Kapitelkopf ziffer="II." thema="Überblick / Daten & Fakten" zaehler="02 / 05" />
+      <div class="ueberblick">
+        <ul class="fakten">
+          {r.fakten.map(([k, v]) => (<li><span>{k}</span><span class="wert">{v}</span></li>))}
+        </ul>
+        <div>
+          <Tagline wort="Referenz" nummer="02" />
+          <h2 class="h2 abstand-header">{r.introHeadline}</h2>
+          <div class="richtext" set:html={r.introText} />
+        </div>
+      </div>
+      <Kapitelfuss />
+    </div>
+  </section>
+
+  <!-- III. Galerie -->
+  <section class="sektion ueberlauf">
+    <div class="sektion-innen">
+      <Kapitelkopf ziffer="III." thema="Galerie / Impressionen" zaehler="03 / 05" />
+      <Randhinweis nummer={r.infoNummer} titel={r.infoLabel} text={r.infoText} />
+      <Slider label="Galerie" breite="33.333%" breiteTablet="50%" breiteMobil="50%">
+        {r.galerie.map((g, i) => (
+          <div>
+            <a class="galerie-bild" href={g.bild} data-bild={g.bild} data-gruppe="galerie" data-titel={g.text}>
+              <img src={g.bild} alt={g.text} loading="lazy" />
+              <span class="ecke ol" aria-hidden="true"></span><span class="ecke ur" aria-hidden="true"></span>
+              <span class="unter">{g.text}</span>
+            </a>
+          </div>
+        ))}
+      </Slider>
+      <Kapitelfuss />
+    </div>
+  </section>
+
+  <!-- IV. Vorher – Nachher (in Webflow auf allen Referenzen dieselben Wilhelmshaven-Bilder) -->
+  <section class="sektion">
+    <div class="sektion-innen">
+      <Kapitelkopf ziffer="IV." thema="Vorher – Nachher / Im Vergleich" zaehler="04 / 06" />
+      <div class="kopf-zwei">
+        <div class="kopf-links">
+          <Tagline wort="Referenz" nummer="04" />
+          <h2 class="h2">Vom Rohzustand zum fertigen Denkmal</h2>
+        </div>
+        <Randhinweis nummer="02" titel="IM VERGLEICH" text="Ziehen Sie den Regler, um beide Zustände zu vergleichen — von außen und von innen. Ohne Zutun wandert er von selbst." />
+      </div>
+      <div class="ba-raster">
+        <div>
+          <VorherNachher vorher={bilder.baWhvAussenVorher} nachher={bilder.baWhvAussenNachher} links="Rohzustand" rechts="Fertig" alt="Außenansicht" />
+          <p class="ba-titel">Außenansicht</p><p class="text-xs">Die Fassade vor und nach der Denkmalsanierung.</p>
+        </div>
+        <div>
+          <VorherNachher vorher={bilder.baWhvInnenVorher} nachher={bilder.baWhvInnenNachher} links="Rohzustand" rechts="Fertig" alt="Innenansicht" />
+          <p class="ba-titel">Innenansicht</p><p class="text-xs">Wohnraum im Rohbau und nach dem Ausbau.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IV. Projektvideo -->
+  <Erklaervideo ziffer="IV." thema="Projektvideo / Das Projekt" zaehler="04 / 05" wort="Referenz" nummer="05" projekteButton={false}
+    zitat={r.videoZitat} video={r.videoLink} bild={r.heroBild} label={r.videoLabel} />
+
+  <!-- V. Baufortschritt -->
+  {r.bau.length > 0 && (
+    <section class="sektion">
+      <div class="sektion-innen">
+        <Kapitelkopf ziffer="V." thema="Baufortschritt / In Bildern" zaehler="05 / 05" />
+        <div class="kopf-zwei">
+          <div class="kopf-links">
+            <Tagline wort="Referenz" nummer="06" />
+            <h2 class="h2">{r.bauHeadline}</h2>
+          </div>
+          <Randhinweis nummer={r.infoNummer} titel={r.infoLabel} text={r.infoText} />
+        </div>
+        <div class="bau" data-bau>
+          <div class="reiter" role="tablist">
+            {r.bau.map((b, i) => (
+              <button class:list={['reiter-knopf', { aktiv: i === 0 }]} role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-reiter={i}>{b.datum}</button>
+            ))}
+          </div>
+          {r.bau.map((b, i) => (
+            <div class="bau-bilder" role="tabpanel" data-flaeche={i} hidden={i !== 0}>
+              {b.bilder.map((bild) => (
+                <a class="bau-bild" href={bild} data-bild={bild} data-gruppe={`bau-${i}`} data-titel={b.datum}><img src={bild} alt={`Baufortschritt ${b.datum}`} loading="lazy" /></a>
+              ))}
+            </div>
+          ))}
+        </div>
+        <Kapitelfuss />
+      </div>
+    </section>
+  )}
+
+  <Aufruf />
+</Basis>
+
+<style>
+  .ueberlauf{overflow:hidden}
+  .ueberblick{display:grid;grid-template-columns:1fr 1fr;gap:5rem}
+  .fakten{display:flex;flex-direction:column;margin:0;padding:2rem 0 4rem;list-style:none}
+  .fakten li{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:20px 0;border-top:1px solid rgba(139,134,118,1);font-family:var(--font-mono);font-size:13px;line-height:1.5;letter-spacing:1.76px;color:var(--ink-stumpf)}
+  .fakten .wert{text-align:right}
+  .richtext{padding-bottom:3rem;font-size:1rem;line-height:1.5;color:var(--ink-stumpf)}
+  .richtext :global(p){margin:0 0 1rem}
+  .galerie-bild{position:relative;display:block;padding:.25rem}
+  .galerie-bild img{position:relative;z-index:1;display:block;width:100%;aspect-ratio:1/1;object-fit:cover;box-shadow:var(--shadow-kennzahl);background:var(--paper-tief)}
+  .galerie-bild .ecke{position:absolute;z-index:2;width:16px;height:16px;border-color:#fff;border-style:solid}
+  .galerie-bild .ol{top:14px;left:14px;border-width:1px 0 0 1px}
+  .galerie-bild .ur{bottom:14px;right:14px;border-width:0 1px 1px 0}
+  .galerie-bild .unter{position:absolute;left:5%;right:5%;bottom:10%;z-index:2;font-family:var(--font-mono);font-size:12px;line-height:19px;color:#fff}
+  .kopf-zwei{display:grid;grid-template-columns:1fr .5fr;gap:4rem;padding-bottom:2rem}
+  .kopf-links{padding-right:25%}
+  .ba-raster{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+  .ba-titel{margin:1rem 0 .25rem;font-size:.8rem;line-height:1.5;font-weight:700;text-transform:uppercase;color:var(--ink-weich)}
+  .reiter{display:flex;flex-wrap:wrap;gap:.25rem;margin-bottom:4rem;padding:.25rem .25rem 0;border-bottom:1px solid var(--ink-weich)}
+  .reiter-knopf{padding:.5rem 1.25rem;border:1px solid #000;border-bottom:0;border-radius:10px 10px 0 0;background:transparent;font:inherit;font-size:.9rem;color:var(--ink-stumpf);cursor:pointer}
+  .reiter-knopf.aktiv{background:var(--ink-weich);color:var(--paper-bone)}
+  .bau-bilder{column-count:3;column-gap:2rem}
+  .bau-bild{display:block;margin-bottom:2rem;break-inside:avoid;overflow:hidden;border-radius:var(--radius-md);box-shadow:var(--shadow-kennzahl)}
+  .bau-bild img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--paper-tief)}
+  @media (max-width:991px){.ueberblick{grid-template-columns:1fr;gap:2rem}.kopf-zwei{grid-template-columns:1fr;gap:2rem}.kopf-links{padding-right:0}}
+  @media (max-width:767px){.ba-raster{grid-template-columns:1fr;gap:32px}.bau-bilder{column-count:1;column-gap:1.5rem}.bau-bild{margin-bottom:1.5rem}}
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-bau]').forEach((box) => {
+    const knoepfe = box.querySelectorAll<HTMLElement>('[data-reiter]');
+    const flaechen = box.querySelectorAll<HTMLElement>('[data-flaeche]');
+    knoepfe.forEach((k) => k.addEventListener('click', () => {
+      knoepfe.forEach((x) => { x.classList.toggle('aktiv', x === k); x.setAttribute('aria-selected', String(x === k)); });
+      flaechen.forEach((f) => { f.hidden = f.dataset.flaeche !== k.dataset.reiter; });
+    }));
+  });
+</script>

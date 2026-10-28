@@ -1,0 +1,20 @@
+---
+// Seite „Denkmalsuche“ – aus Webflow nachgebaut (Stand 28.10.2026)
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/abschnitte/Seitenkopf.astro';
+import Laufband from '../components/start/Laufband.astro';
+import Kriterien from '../components/denkmalsuche/Kriterien.astro';
+import VorherNachherListe from '../components/referenzen/VorherNachherListe.astro';
+import Erklaervideo from '../components/abschnitte/Erklaervideo.astro';
+import Aufruf from '../components/start/Aufruf.astro';
+import { bilder } from '../data/bilder';
+---
+<Basis titel="Denkmalsuche: Wir kaufen Baudenkmäler | Deutsche Monumentum" beschreibung="Haben Sie ein leerstehendes Denkmal? Wir verwandeln es in Wohnraum. Welche Baudenkmäler wir ankaufen – die Kriterien im Überblick.">
+  <Seitenkopf bild={bilder.heroDenkmalsuche} wort="Referenz · Wilhelmshaven" nummer="02" titel="Haben Sie ein leerstehendes Denkmal? Wir verwandeln es in Wohnraum" text="75 % Sonderabschreibung, hochwertige Sanierung und eine Lage nur 350 m vom Hafen – sichern Sie sich Ihr Stück maritime Geschichte als Kapitalanlage." />
+  <Laufband />
+  <Kriterien />
+  <VorherNachherListe />
+  <Erklaervideo ziffer="IV." thema="So funktioniert's / Erklärvideo" zaehler="04 / 10" nummer="04"
+    zitat={'„Ich erkläre Ihnen persönlich, welche Denkmalgebäude wir suchen – und worauf es ankommt, damit ein Objekt für unseren Bauträger infrage kommt.“'} />
+  <Aufruf />
+</Basis>

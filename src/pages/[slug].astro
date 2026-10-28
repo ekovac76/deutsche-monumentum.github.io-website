@@ -1,0 +1,17 @@
+---
+// Platzhalter für Unterseiten, die noch nachgebaut werden.
+// Sobald eine echte Seite (z. B. pages/team.astro) existiert, hat sie Vorrang.
+import Basis from '../layouts/Basis.astro';
+import { platzhalter } from '../data/navigation';
+export function getStaticPaths() {
+  return platzhalter.map((p) => ({ params: { slug: p.slug }, props: { titel: p.titel } }));
+}
+const { titel } = Astro.props;
+---
+<Basis titel={`${titel} | Deutsche Monumentum`}>
+  <section class="container" style="padding:var(--section-y-medium) var(--page-gutter)">
+    <p class="mono-label">In Arbeit</p>
+    <h1 class="display" style="font-size:clamp(2rem,5vw,3.5rem);margin:.5rem 0">{titel}</h1>
+    <p>Diese Seite wird noch nachgebaut.</p>
+  </section>
+</Basis>

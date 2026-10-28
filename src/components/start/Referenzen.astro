@@ -1,0 +1,41 @@
+---
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import Randhinweis from '../Randhinweis.astro';
+import Slider from '../Slider.astro';
+import Referenzkachel from '../Referenzkachel.astro';
+import { bilder } from '../../data/bilder';
+const referenzen = [
+  { jahr: '2017', titel: 'Ehm. Joffre Areal in Rastatt', text: 'Ehemaliges Kasernenareal: Alle 112 Einheiten waren innerhalb von sechs Monaten verkauft, Fertigstellung 2019.', bild: bilder.refRastatt, zeile: 'Vom Kasernenareal zum Wohnquartier' },
+  { jahr: '2018', titel: 'Kaiserlofts in Wilhelmshaven', text: 'Aus dem historischen Marineamt wurden 77 Loftwohnungen – vollständig verkauft bis April 2020, fertiggestellt Ende 2022.', bild: bilder.refWilhelmshaven, zeile: 'Das alte Marineamt – heute Kaiserlofts' },
+  { jahr: '2020', titel: 'Türmchengebäude in Emden', text: 'Das Wahrzeichen mit dem Türmchen: Alle 45 Wohnungen waren in nur sechs Monaten verkauft.', bild: bilder.refEmden, zeile: 'Ein Wahrzeichen, neu belebt' },
+  { jahr: '2021', titel: 'Palais 3-Klang in Koblenz Oberwerth', text: '62 Wohnungen in nur drei Monaten verkauft und notariell beurkundet – eines unserer schnellsten Projekte.', bild: bilder.refKoblenz, zeile: 'Drei Häuser, ein Ensemble' },
+  { jahr: '2024', titel: 'Seidelsche Fabrik in Darmstadt', text: 'Die alte Papierfabrik: in sechs Monaten vollständig verkauft, derzeit im Bau durch den Generalunternehmer Züblin.', bild: bilder.refDarmstadt, zeile: 'Aus der Papierfabrik wird Zuhause' },
+];
+---
+<section class="sektion ueberlauf">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer="V." thema="Referenzen / Seit 2017" zaehler="05 / 10" />
+    <div class="kopfraster">
+      <div>
+        <Tagline nummer="05" />
+        <h2 class="h1 abstand-header">Geschichten, die wir bereits zu Ende erzählt haben: Unsere Referenzprojekte</h2>
+        <p class="text-normal">Jedes dieser Häuser stand einmal leer – heute sind es gefragte Wohnungen und solide Kapitalanlagen. Seit 2017 zeigt unsere Bilanz: vollständig verkauft, termingerecht fertiggestellt und mit Abschreibungen, die die Prognosen oft übertroffen haben.</p>
+      </div>
+      <div class="rechts">
+        <Randhinweis nummer="02" titel="IDEEN IM WANDEL" text="Verfolgen Sie Schritt für Schritt, wie aus historischen Gebäuden hochwertiger Wohnraum entsteht – jede Sanierung dokumentieren wir lückenlos in Bildern, Bauphase für Bauphase" />
+      </div>
+    </div>
+    <Slider label="Referenzprojekte" breite="25%" breiteTablet="45%" breiteMobil="80%">
+      {referenzen.map((r) => <div><Referenzkachel {...r} /></div>)}
+    </Slider>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .ueberlauf{overflow:hidden}
+  .kopfraster{display:grid;grid-template-columns:1fr .55fr;gap:5rem;align-items:start}
+  .rechts{display:flex;justify-content:flex-end}
+  @media (max-width:991px){.kopfraster{grid-template-columns:1fr;gap:2rem}.rechts{justify-content:flex-start}}
+</style>

@@ -1,0 +1,42 @@
+---
+// Vorher/Nachher-Vergleich: Regler ziehen; ohne Zutun wandert er langsam von selbst
+interface Props { vorher: string; nachher: string; links?: string; rechts?: string; format?: string; badge?: boolean; alt?: string }
+const { vorher, nachher, links = 'Vorher', rechts = 'Nachher', format = '3/2', badge = false, alt = '' } = Astro.props;
+---
+<div class:list={['ba', { badge }]} style={`--format:${format}`} data-ba>
+  <img class="bild" src={nachher} alt={alt ? `${alt} – ${rechts}` : ''} loading="lazy" draggable="false" />
+  <div class="clip"><img class="bild" src={vorher} alt={alt ? `${alt} – ${links}` : ''} loading="lazy" draggable="false" /></div>
+  <span class="tag l">{links}</span>
+  <span class="tag r">{rechts}</span>
+  <span class="bar" aria-hidden="true"></span>
+  <span class="knopf" role="slider" tabindex="0" aria-label="Vergleich verschieben" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+    <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M8 6 3 11l5 5M14 6l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+  </span>
+</div>
+<style>
+  .ba{--p:50%;position:relative;overflow:hidden;width:100%;aspect-ratio:var(--format);user-select:none;touch-action:pan-y;cursor:ew-resize;background:var(--paper-tief)}
+  .bild{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+  .clip{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--p)) 0 0)}
+  .bar{position:absolute;top:0;bottom:0;left:var(--p);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 8px rgba(0,0,0,.35)}
+  .knopf{position:absolute;top:50%;left:var(--p);display:flex;width:44px;height:44px;margin:-22px 0 0 -22px;justify-content:center;align-items:center;border-radius:50%;background:var(--paper-bone);color:var(--ink-weich);box-shadow:0 6px 18px rgba(0,0,0,.3)}
+  .tag{position:absolute;top:12px;padding:3px 8px;border-radius:4px;background:rgba(22,21,19,.55);font-family:var(--font-mono);font-size:10px;line-height:14.73px;font-weight:600;letter-spacing:1.33px;text-transform:uppercase;color:#fff}
+  .tag.l{left:12px}.tag.r{right:12px}
+  .badge .tag{top:3%;margin-top:2%;padding:3px 7px;background:hsla(43.45,47.54%,88.04%,.39);color:var(--ink-tinte-button)}
+  .badge .tag.l{left:3%;margin-left:2%}.badge .tag.r{right:3%;margin-right:2%}
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ba]').forEach((ba) => {
+    const knopf = ba.querySelector<HTMLElement>('.knopf')!;
+    let p = 50, aktiv = false, beruehrt = false, t0 = performance.now(), sichtbar = false;
+    const setze = (wert: number) => { p = Math.max(0, Math.min(100, wert)); ba.style.setProperty('--p', p + '%'); knopf.setAttribute('aria-valuenow', String(Math.round(p))); };
+    const ausEvent = (e: PointerEvent) => { const r = ba.getBoundingClientRect(); setze(((e.clientX - r.left) / r.width) * 100); };
+    ba.addEventListener('pointerdown', (e) => { aktiv = beruehrt = true; ba.setPointerCapture(e.pointerId); ausEvent(e); });
+    ba.addEventListener('pointermove', (e) => { if (aktiv) ausEvent(e); });
+    ba.addEventListener('pointerup', () => { aktiv = false; });
+    knopf.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') { beruehrt = true; setze(p - 5); } if (e.key === 'ArrowRight') { beruehrt = true; setze(p + 5); } });
+    new IntersectionObserver((x) => { sichtbar = x[0].isIntersecting; }).observe(ba);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const wandern = (t: number) => { if (!beruehrt && sichtbar) setze(50 + Math.sin((t - t0) / 2200) * 28); requestAnimationFrame(wandern); };
+    requestAnimationFrame(wandern);
+  });
+</script>

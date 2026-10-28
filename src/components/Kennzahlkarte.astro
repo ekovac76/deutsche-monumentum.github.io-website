@@ -1,0 +1,25 @@
+---
+// Baustein „Kennzahlkarte“: Zahl oben links, Icon, Titel, Text, Pfeil-Kreis
+interface Props { zahl: string; neben?: string; titel: string; text: string; href?: string }
+const { zahl, neben, titel, text, href } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+<Tag class="karte" href={href}>
+  <div class="oben">
+    <span class="zahl">{zahl}</span>
+    {neben && <span class="neben">{neben}</span>}
+  </div>
+  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 21.5 12 12 21.5 2.5 12Z" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/></svg>
+  <h3 class="h4">{titel}</h3>
+  <p class="text-small">{text}</p>
+  <span class="pfeil" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2 10 10 2M3.5 2H10v6.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span>
+</Tag>
+<style>
+  .karte{position:relative;display:flex;flex-direction:column;justify-content:flex-start;gap:.7rem;height:100%;padding:2rem 1rem 3.5rem;border:1px solid var(--kennzahl-rahmen);border-radius:var(--radius-kennzahl);background:var(--paper-tief);box-shadow:var(--shadow-kennzahl);text-decoration:none;color:inherit}
+  .oben{display:flex;justify-content:space-between;align-items:flex-start}
+  .zahl{font-style:italic;font-size:22px;line-height:34.1px;letter-spacing:.88px;color:var(--kennzahl-rot)}
+  .neben{font-family:var(--font-mono);font-size:10px;line-height:14.73px;font-weight:500;letter-spacing:1.71px;text-transform:uppercase;color:var(--ink-stumpf)}
+  .icon{width:1.5rem;height:1.5rem;color:var(--ink-stumpf)}
+  .text-small{max-width:200px}
+  .pfeil{position:absolute;right:1rem;bottom:1rem;display:flex;width:28px;height:28px;justify-content:center;align-items:center;border:1px solid var(--karte-linie);border-radius:14px;color:var(--ink-stumpf)}
+</style>

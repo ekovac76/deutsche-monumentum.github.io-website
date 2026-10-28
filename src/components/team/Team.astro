@@ -1,0 +1,38 @@
+---
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import Randhinweis from '../Randhinweis.astro';
+import Teamkarte from './Teamkarte.astro';
+import { bilder } from '../../data/bilder';
+const team = [
+  { bild: bilder.teamPeters, rolle: 'Berater', nummer: 'Nº 01', name: 'Michael Peters', text: 'Ausgebildeter Ingenieur, seit über 30 Jahren im Vertrieb von Denkmalimmobilien – zuvor viele Jahre als Wealth Manager bei einer deutschen Großbank.' },
+  { bild: bilder.teamKovac, rolle: 'Berater', nummer: 'Nº 02', name: 'Eduard Kovac', text: 'Studierter Betriebswirt, seit 2004 erfolgreich im Immobilienvertrieb. Zuvor leitete er viele Jahre die Kapitalanlageabteilung einer deutschen Großbank.' },
+  { bild: bilder.teamAnjela, rolle: 'Maklerin', nummer: 'Nº 03', name: 'Anjela Peters', text: 'Sie absolvierte ihr Studium der Rechtswissenschaften in der Ukraine und verstärkt unser Team seit sechs Jahren mit wertvoller juristischer Expertise.' },
+  { bild: bilder.teamKail, rolle: 'Maklerin', nummer: 'Nº 04', name: 'Bettina Kail', text: 'Ausgebildete Immobilienmaklerin mit rund 10 Jahren Erfahrung in der Immobilienbranche und einem feinen Gespür für die passenden Objekte und Käufer.' },
+];
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer="II." thema="Unser Team / Ihre Ansprechpartner" zaehler="02 / 05" />
+    <div class="kopfraster">
+      <div>
+        <Tagline wort="Team" nummer="02" />
+        <h2 class="h1 abstand-header">Deutsche Monumentum – Ihr erfahrener Spezialist für Denkmalimmobilien und echte Steuervorteile</h2>
+      </div>
+      <div class="rechts"><Randhinweis nummer="01" titel="SEIT DER BANKZEIT" text="Michael Peters und Eduard Kovac verantworteten Kapitalanlage-Immobilien schon gemeinsam bei einer deutschen Großbank. Diese Erfahrung führen sie heute bei Deutsche Monumentum fort – unabhängig und persönlich." /></div>
+    </div>
+    <div class="liste">
+      {team.map((m) => <Teamkarte {...m} jahr="2026" />)}
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .kopfraster{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .rechts{display:flex;flex-direction:column;align-items:flex-end}
+  .liste{display:grid;grid-template-columns:repeat(4,1fr);gap:4rem 2rem}
+  @media (max-width:991px){.liste{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:767px){.kopfraster{grid-template-columns:1fr}.rechts{align-items:flex-start}.liste{gap:3rem 2rem}}
+  @media (max-width:479px){.liste{grid-template-columns:1fr 1fr}}
+</style>

@@ -1,0 +1,25 @@
+---
+// Kalkulator-Seiten /berechnungstool/denkmal und /berechnungstool/qng
+// In Webflow: CMS-Vorlage „Berechnungstool“ – die Seite bindet den Rechner von GitHub Pages ein (Feld „Rechner-URL“).
+// Der genaue Einbettungscode in Webflow war über die Schnittstelle nicht lesbar; hier als ganzseitiges iframe umgesetzt.
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'denkmal' }, props: { name: 'Denkmal Kalkulator', url: 'https://deutsche-monumentum.github.io/berechnungstool/denkmal/' } },
+    { params: { slug: 'qng' }, props: { name: 'QNG Kalkulator', url: 'https://deutsche-monumentum.github.io/berechnungstool/qng/' } },
+  ];
+}
+const { name, url } = Astro.props;
+---
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{name} | Deutsche Monumentum</title>
+  <meta name="description" content="Musterberechnung für Ihre Investition: Steuervorteil, Finanzierung und Überschuss Jahr für Jahr – interaktiv berechnet." />
+  <style>html,body{margin:0;height:100%;background:#fcfaf3}iframe{display:block;width:100%;height:100vh;height:100dvh;border:0}</style>
+</head>
+<body>
+  <iframe src={url} title={name}></iframe>
+</body>
+</html>

@@ -1,0 +1,41 @@
+---
+import Button from '../Button.astro';
+import Tagline from '../Tagline.astro';
+import Projektkarte from '../Projektkarte.astro';
+import projekte from '../../data/projekte.json';
+import { bilder } from '../../data/bilder';
+const nuernberg = { ...projekte.find((p) => p.slug === 'nurnberg')!, bild: bilder.ctaNuernberg };
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <div class="dunkel">
+      <div class="regel">
+        <span class="ziffer">VIII.</span>
+        <span class="gold">Kontakt / Jetzt handeln</span>
+      </div>
+      <div class="raster">
+        <div>
+          <Tagline wort="Ihr Kapitel" nummer="08" hell />
+          <p class="h3 weiss abstand-header">„Zahlen Sie zu viel Steuern? Dann lassen Sie uns sprechen – unverbindlich, persönlich und mit konkreten Zahlen für Ihre Situation."</p>
+          <div class="button-zeile"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+        </div>
+        <div class="karte"><Projektkarte {...nuernberg} dunkel /></div>
+      </div>
+      <div class="regel unten">
+        <span class="gold">Ihr Steuervorteil</span>
+        <span class="gold">deutsche-monumentum.de</span>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .dunkel{display:flex;flex-direction:column;gap:2rem;padding:2rem 4rem;border-radius:18px;background:var(--ink-stumpf)}
+  .regel{display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid rgba(247,241,222,.16)}
+  .regel.unten{padding:1rem 0 0;border-bottom:0;border-top:1px solid rgba(247,241,222,.16)}
+  .ziffer{font-family:var(--font-playfair);font-style:italic;font-size:1.1rem;letter-spacing:.56px;color:var(--signal-orange)}
+  .gold{font-size:.7rem;line-height:16.27px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+  .raster{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:1rem 0}
+  .karte{max-width:24rem;justify-self:center;width:100%}
+  @media (max-width:991px){.dunkel{padding:2rem}.raster{grid-template-columns:1fr;gap:3rem}}
+  @media (max-width:479px){.dunkel{padding:1.5rem 1.25rem}}
+</style>

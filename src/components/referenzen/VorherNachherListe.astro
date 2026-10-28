@@ -1,0 +1,38 @@
+---
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import VorherNachher from '../VorherNachher.astro';
+import { bilder } from '../../data/bilder';
+const paare = [
+  { vorher: bilder.baHomeAussenVorher, nachher: bilder.baHomeAussenNachher, titel: 'So wird aus einer historischen Hülle modernes Wohnen', text: 'Erhalten bleibt die historische Hülle. Dach, Fenster und Haustechnik sind neu, die Balkone kommen dazu – für Wohnraum auf heutigem Niveau. Die Fassade wird nach dem historischen Vorbild wiederhergestellt.' },
+  { vorher: bilder.baHomeInnenVorher, nachher: bilder.baHomeInnenNachher, titel: 'Wohnen im Neubau – mit der Luft eines Industriedenkmals', text: 'Innen entsteht Neubauqualität: Fußbodenheizung, Innendämmung, neue Fenster, neue Grundrisse. Was kein Neubau bieten kann, bringt das Industriedenkmal mit – vier Meter Deckenhöhe.' },
+];
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer="II." thema="Über uns / In Zahlen" zaehler="02 / 10" />
+    <div class="kopf">
+      <Tagline wort="Vorher · Nachher" nummer="06" />
+      <h2 class="h1 abstand-header">So sieht ein Denkmal aus, wenn wir es kaufen – und so, wenn Sie den Schlüssel bekommen</h2>
+      <p class="text-normal">Erworben wird historische Substanz: ein Haus, das seine besten Jahre noch vor sich hat. Was daraus entsteht, ist Wohnraum auf Neubauniveau – außen denkmalgerecht, innen komplett neu. Beide Zustände sehen Sie hier direkt nebeneinander.</p>
+    </div>
+    <div class="liste">
+      {paare.map((p) => (
+        <div class="item">
+          <div class="bildrahmen"><VorherNachher vorher={p.vorher} nachher={p.nachher} badge alt={p.titel} /></div>
+          <h3 class="titel">{p.titel}</h3>
+          <p class="text-normal">{p.text}</p>
+        </div>
+      ))}
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  .kopf{max-width:48rem}
+  .liste{display:grid;grid-template-columns:1fr 1fr;gap:4rem 3rem}
+  .bildrahmen{overflow:hidden;margin-bottom:1rem;border-radius:var(--radius-md);box-shadow:var(--shadow-kennzahl)}
+  .titel{margin:0 0 .5rem;font-family:var(--font-sans);color:#333;font-size:1.3rem;line-height:1.3;font-weight:700}
+  @media (max-width:767px){.liste{grid-template-columns:1fr;gap:3rem}}
+</style>
