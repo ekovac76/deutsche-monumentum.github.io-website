@@ -62,5 +62,8 @@ export const bilder = {
   iconKalkulatorNeubau: 'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6aa1466894fc26adfb49fbbe_kalkulator-neubau.svg',
   rechnerVideo: 'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6ab18fd4790185be9e78c0a5_eduard-kovac-steady.webp',
   provenExpertLogo: 'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a922392978cdea86097c385_provenexpert-logo-claim.svg',
+  taglineStrich: 'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2182aaf17b5d0bf9810c16_%3A%3Abefore.svg',
+  kennzahlIcon: 'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2185b64996ea5040ab83b5_Component-2.svg',
+  kennzahlPfeil: 'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a218452fa2e57c17ee30f41_Component-2.svg',
 } as const;
 export type BildName = keyof typeof bilder;

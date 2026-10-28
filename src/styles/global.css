@@ -48,6 +48,8 @@ a { color: inherit; }
 .text-small { margin: 0; font-size: .9rem; line-height: 1.5; color: var(--ink-stumpf); }
 .text-xs { margin: 0; font-size: .8rem; line-height: 1.5; color: var(--ink-tinte); }
 .weiss { color: #fff !important; }
+/* Webflow-Breakpoint „large“ (ab 1280 px): Heading_1 mit Zeilenhöhe 1.3 */
+@media (min-width: 1280px) { .h1 { line-height: 1.3; } }
 @media (max-width: 767px) {
   .h1 { font-size: 2.2rem; }
   .h2 { font-size: 2rem; }

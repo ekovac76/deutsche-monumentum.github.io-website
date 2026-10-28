@@ -12,6 +12,15 @@ const vorteile = [
   ['05', 'SACHWERT', 'Inflationsgeschützt', 'Immobilien sind Sachwerte und ein bewährter Inflationsschutz – historisch zeigen sie eine stabile, verlässliche Wertentwicklung über lange Zeiträume.'],
   ['06', 'HEBEL', 'Bankenfinanziert', 'Ein großer Teil des Kaufpreises lässt sich finanzieren – der Kredithebel steigert bei vermieteten Immobilien Ihre Eigenkapitalrendite zusätzlich.'],
 ];
+// Symbole je Karte wie in Webflow
+const icons = [
+  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c0998b62b49d0f9dec3de_restore.svg',
+  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c09982d72b691e62c6b25_compass.svg',
+  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3bd89f05f7d3f14048a1dd_foerderung.svg',
+  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c09984f53b0e66f8aaeab_key.svg',
+  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c0999405e8970e57e3af4_acquire.svg',
+  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3bd89fe5206dbb19785e00_hebel.svg',
+];
 ---
 <section class="sektion">
   <div class="sektion-innen">
@@ -27,7 +36,7 @@ const vorteile = [
       </div>
     </div>
     <div class="karten">
-      {vorteile.map(([zahl, neben, titel, text]) => <Kennzahlkarte zahl={zahl} neben={neben} titel={titel} text={text} />)}
+      {vorteile.map(([zahl, neben, titel, text], i) => <Kennzahlkarte zahl={zahl} neben={neben} titel={titel} text={text} icon={icons[i]} />)}
     </div>
     <Kapitelfuss />
   </div>
