@@ -44,7 +44,7 @@ const { r } = Astro.props;
     <div class="sektion-innen">
       <Kapitelkopf ziffer="III." thema="Galerie / Impressionen" zaehler="03 / 05" />
       <Randhinweis nummer={r.infoNummer} titel={r.infoLabel} text={r.infoText} />
-      <Slider label="Galerie" breite="33.333%" breiteTablet="50%" breiteMobil="50%">
+      <Slider label="Galerie" breite="33.333%" breiteTablet="50%" breiteMobil="50%" schatten punkte>
         {r.galerie.map((g, i) => (
           <div>
             <a class="galerie-bild" href={g.bild} data-bild={g.bild} data-gruppe="galerie" data-titel={g.text}>
@@ -131,9 +131,10 @@ const { r } = Astro.props;
   .richtext :global(p){margin:0 0 1rem}
   .galerie-bild{position:relative;display:block;padding:.25rem}
   .galerie-bild img{position:relative;z-index:1;display:block;width:100%;aspect-ratio:1/1;object-fit:cover;box-shadow:var(--shadow-kennzahl);background:var(--paper-tief)}
-  .galerie-bild .ecke{position:absolute;z-index:2;width:16px;height:16px;border-color:#fff;border-style:solid}
-  .galerie-bild .ol{top:14px;left:14px;border-width:1px 0 0 1px}
-  .galerie-bild .ur{bottom:14px;right:14px;border-width:0 1px 1px 0}
+  /* wie Projekt-Galerie: filigrane dunkle Eckwinkel knapp außerhalb des Bildes */
+  .galerie-bild .ecke{position:absolute;z-index:2;width:26px;height:26px;border-color:#6f6a60;border-style:solid}
+  .galerie-bild .ol{top:-2px;left:-2px;border-width:1px 0 0 1px}
+  .galerie-bild .ur{bottom:-2px;right:-2px;border-width:0 1px 1px 0}
   .galerie-bild .unter{position:absolute;left:5%;right:5%;bottom:10%;z-index:2;font-family:var(--font-mono);font-size:12px;line-height:19px;color:#fff}
   .kopf-zwei{display:grid;grid-template-columns:1fr .5fr;gap:4rem;padding-bottom:2rem}
   .kopf-links{padding-right:25%}
