@@ -76,10 +76,9 @@ const telIcon = '<path d="M3.6 1.5 5.7 1l1.2 3-1.6 1.2a8.4 8.4 0 0 0 4.5 4.5l1.2
   footer{background:var(--paper-warm);padding:2rem 0 1rem;color:var(--ink-stumpf)}
   .rahmen{padding:2rem 2rem 0}
   .global{padding:0 max(5%, calc((100% - 80rem) / 2))}
-  .vertikal{padding:5rem 0}
+  /* Webflow: padding-xxlarge/-large/-medium existieren nur als Kombi ohne Höhenwerte → kein Innenabstand */
   .stapel{display:flex;flex-direction:column;gap:1.5rem}
-  .oben-abstand{padding:1rem 0 3rem}
-  .unten-abstand{padding-top:2rem}
+  .oben-abstand{padding-top:1rem}
   .s{margin:0;font-size:.9rem;line-height:1.5;color:var(--ink-stumpf)}
   .s b{font-weight:700}
   .top{display:grid;grid-template-columns:.75fr 1fr;column-gap:8vw;row-gap:1rem;align-items:start}
@@ -105,14 +104,9 @@ const telIcon = '<path d="M3.6 1.5 5.7 1l1.2 3-1.6 1.2a8.4 8.4 0 0 0 4.5 4.5l1.2
   .legal{display:flex;justify-content:center;gap:1.5rem}
   .legal a{font-size:.875rem;text-decoration:underline;text-underline-offset:2px}
   @media (max-width:991px){
-    .vertikal{padding:4rem 0}
-    .oben-abstand{padding-bottom:2.5rem}
     .top{grid-template-columns:1fr;row-gap:4rem}
   }
   @media (max-width:767px){
-    .vertikal{padding:3rem 0}
-    .oben-abstand{padding-bottom:2rem}
-    .unten-abstand{padding-top:1.5rem}
     .top{row-gap:3rem}
     .menu{column-gap:1.5rem}
     .unten{flex-wrap:nowrap;align-items:flex-start}
