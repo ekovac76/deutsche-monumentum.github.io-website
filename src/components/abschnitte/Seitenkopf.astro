@@ -2,8 +2,8 @@
 // Großer Seitenkopf mit Bild (später Video), Tagline, H1, Text, Button
 import Button from '../Button.astro';
 import Tagline from '../Tagline.astro';
-interface Props { bild: string; wort?: string; nummer?: string; titel: string; text: string; button?: string; fett?: boolean }
-const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt aufnehmen', fett = false } = Astro.props;
+interface Props { bild: string; wort?: string; nummer?: string; titel: string; text: string; button?: string; fett?: boolean; kontur?: boolean }
+const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt aufnehmen', fett = false, kontur = false } = Astro.props;
 ---
 <header class="hero">
   <img class="bild" src={bild} alt="" fetchpriority="high" />
@@ -11,7 +11,7 @@ const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt au
   <div class="inhalt">
     <div class="box">
       <Tagline wort={wort} nummer={nummer} hell />
-      <h1 class:list={['h1 weiss abstand-header', { fett }]}>{titel}</h1>
+      <h1 class:list={['h1 weiss abstand-header', { fett, kontur }]}>{titel}</h1>
       <p class="text-normal weiss abstand-text">{text}</p>
       <div class="button-zeile"><Button href="#kontakt" data-kontakt>{button}</Button></div>
     </div>
@@ -25,4 +25,6 @@ const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt au
   .box{max-width:29.8rem}
   @media (min-width:1280px){.box{max-width:39rem}}  /* max-width-medium ab 1280 px */
   .fett{font-weight:700}
+  /* Webflow text-fett (Projekt-Detailseiten): zusätzlich 0,6px Kontur */
+  .kontur{-webkit-text-stroke:.6px currentColor}
 </style>

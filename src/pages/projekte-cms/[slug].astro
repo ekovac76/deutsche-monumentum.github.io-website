@@ -1,0 +1,247 @@
+---
+// Projekt-Detailseite – 1:1 nach Webflow-Vorlage „Projekte Template“ (Daten: src/data/projekt-details.json, aus dem Webflow-CMS „Projekte“)
+import Basis from '../../layouts/Basis.astro';
+import Seitenkopf from '../../components/abschnitte/Seitenkopf.astro';
+import Laufband from '../../components/start/Laufband.astro';
+import Erklaervideo from '../../components/abschnitte/Erklaervideo.astro';
+import Aufruf from '../../components/start/Aufruf.astro';
+import Button from '../../components/Button.astro';
+import Tagline from '../../components/Tagline.astro';
+import Kapitelkopf from '../../components/Kapitelkopf.astro';
+import Kapitelfuss from '../../components/Kapitelfuss.astro';
+import Randhinweis from '../../components/Randhinweis.astro';
+import Slider from '../../components/Slider.astro';
+import details from '../../data/projekt-details.json';
+import projekte from '../../data/projekte.json';
+import { bilder } from '../../data/bilder';
+
+export function getStaticPaths() {
+  // Entwürfe sind in Webflow nicht veröffentlicht → keine Seite
+  return details.filter((p) => !p.entwurf).map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+const ort = p.standort.toUpperCase();
+// SEO-Titel wie Webflow: „{Projekt-Subtitle} | Deutsche Monumentum“
+const subtitle = projekte.find((x) => x.slug === p.slug)?.titel ?? p.name;
+// Symbole der drei Vorteile wie in Webflow (layout65_item-icon-wrapper)
+const vorteilIcons = [
+  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3bd89fcf948c79802e22f5_abschreibung.svg',
+  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3bd89f364bd2b8ac5a23a0_foerderung-ink.svg',
+  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3bd89fe5206dbb19785e00_hebel.svg',
+];
+const beraterBilder = [bilder.teamKovac, bilder.teamPeters];
+---
+<Basis titel={`${subtitle} | Deutsche Monumentum`} beschreibung={p.heroSubline}>
+  <Seitenkopf bild={p.heroBild} wort="Projekt" nummer="01" titel={p.heroHeadline} text={p.heroSubline} fett kontur />
+  <Laufband />
+
+  <!-- II. Überblick (content23) -->
+  <section class="sektion">
+    <div class="sektion-innen">
+      <Kapitelkopf ziffer="II." thema="Überblick / Daten & Fakten" zaehler="02 / 07" />
+      <div class="ueberblick">
+        <ul class="fakten">
+          {p.fakten.map(([k, v]) => (<li><span>{k}</span><span class="wert">{v}</span></li>))}
+        </ul>
+        <div>
+          <Tagline wort="Projekt" nummer="02" />
+          <div class="abstand-header"><h2 class="h1 kontur intro-titel">{p.introHeadline}</h2></div>
+          <div class="richtext" set:html={p.introText} />
+        </div>
+      </div>
+      <Kapitelfuss />
+    </div>
+  </section>
+
+  <!-- III. Galerie (gallery23) -->
+  <section class="sektion ueberlauf">
+    <div class="sektion-innen">
+      <Kapitelkopf ziffer="III." thema="Galerie / Bauphasen" zaehler="03 / 07" />
+      <Randhinweis nummer="01" titel={p.infoLabel} text={p.infoText} />
+      <Slider label="Galerie" breite="33.333%" breiteTablet="50%" breiteMobil="50%">
+        {p.slider.filter((s) => s.bild).map((s) => (
+          <div>
+            <a class="galerie-bild" href={s.bild} data-bild={s.bild} data-gruppe="galerie" data-titel={s.text}>
+              <img src={s.bild} alt={s.text} loading="lazy" />
+              <span class="ecke ol" aria-hidden="true"></span><span class="ecke ur" aria-hidden="true"></span>
+              <span class="unter">{s.text}</span>
+            </a>
+          </div>
+        ))}
+      </Slider>
+      <Kapitelfuss />
+    </div>
+  </section>
+
+  <!-- IV. Erklärvideo (layout2) -->
+  <Erklaervideo ziffer="IV." thema="Erklärvideo / Das Projekt" zaehler="04 / 07" wort="Projekt" nummer="04" projekteButton={false}
+    zitat={p.videoZitat} video={p.videoLink} bild={p.videoCover || p.heroBild} label={ort} />
+
+  <!-- V. Ihre Vorteile (layout65) -->
+  <section class="sektion">
+    <div class="sektion-innen">
+      <Kapitelkopf ziffer="V." thema="Ihre Vorteile / Drei Hebel" zaehler="05 / 07" />
+      <div class="zwei">
+        <div>
+          <Tagline wort="Projekt" nummer="05" />
+          <div class="abstand-header"><div class="schmal"><h2 class="h1 kontur">{p.vorteileHeadline}</h2></div></div>
+        </div>
+        <div>
+          <div class="abstand-text"><div class="schmal"><p class="text-normal">{p.vorteileIntro}</p></div></div>
+          <div class="abstand-text"><div class="schmal">
+            <div class="vorteile">
+              {p.vorteile.map(([titel, text], i) => (
+                <div class="vorteil">
+                  <img class="vorteil-icon" src={vorteilIcons[i]} alt="" loading="lazy" />
+                  <div class="vorteil-text"><p class="h4">{titel}</p><p class="text-normal">{text}</p></div>
+                </div>
+              ))}
+            </div>
+          </div></div>
+          <div class="button-zeile knopf-abstand"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+        </div>
+      </div>
+      <Kapitelfuss />
+    </div>
+  </section>
+
+  <!-- VI. Standort (layout436) -->
+  <section class="sektion">
+    <div class="sektion-innen">
+      <Kapitelkopf ziffer="VI." thema={`Standort / ${p.standort}`} zaehler="06 / 07" />
+      <div class="standort">
+        <div class="st-links">
+          <div class="rahmen">
+            <img class="bild" src={p.standortBilder[0]} alt="" loading="lazy" />
+            <img class="ecke-bild ul" src={bilder.eckeUntenLinks} alt="" />
+            <img class="ecke-bild ol" src={bilder.eckeObenLinks} alt="" />
+            <img class="ecke-bild ur" src={bilder.eckeUntenRechts} alt="" />
+          </div>
+          <div class="rahmen r-klein">
+            <img class="bild" src={p.standortBilder[1]} alt="" loading="lazy" />
+            <img class="ecke-bild ul" src={bilder.eckeUntenLinks} alt="" />
+            <img class="ecke-bild ur" src={bilder.eckeUntenRechts} alt="" />
+            <img class="ecke-bild ol" src={bilder.eckeObenLinks} alt="" />
+          </div>
+        </div>
+        <div class="st-rechts">
+          <div class="rahmen r-mittel">
+            <img class="bild" src={p.standortBilder[2]} alt="" loading="lazy" />
+            <img class="ecke-bild ul" src={bilder.eckeUntenLinks} alt="" />
+            <img class="ecke-bild ur" src={bilder.eckeUntenRechts} alt="" />
+            <img class="ecke-bild ol" src={bilder.eckeObenLinks} alt="" />
+          </div>
+          <div class="st-text">
+            <Tagline wort="Projekt" nummer="06" />
+            <div class="abstand-header"><div class="schmal"><h2 class="h1 kontur">{p.standortHeadline}</h2></div></div>
+            <div class="abstand-text"><div class="schmal"><p class="text-normal">{p.standortText}</p></div></div>
+            <div class="button-zeile knopf-abstand"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+          </div>
+        </div>
+      </div>
+      <Kapitelfuss />
+    </div>
+  </section>
+
+  <!-- VII. Ihre Berater (layout463) -->
+  <section class="sektion">
+    <div class="sektion-innen">
+      <Kapitelkopf ziffer="VII." thema="Ihre Berater / Deutsche Monumentum" zaehler="07 / 07" />
+      <div class="berater-raster">
+        <div class="berater-links">
+          <Tagline wort="Projekt" nummer="07" />
+          <div class="abstand-header"><div class="schmal"><h2 class="h2 kontur">{p.beraterHeadline}</h2></div></div>
+          <div class="abstand-text"><div class="schmal"><p class="text-normal">{p.beraterText}</p></div></div>
+          <div class="button-zeile knopf-abstand"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+        </div>
+        <div class="berater-rechts">
+          <div class="berater-liste">
+            {p.berater.map(([name, text], i) => (
+              <div class="berater">
+                <img class="berater-bild" src={beraterBilder[i]} alt={name} loading="lazy" />
+                <h3 class="h4">{name}</h3>
+                <p class="text-small berater-text">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <Kapitelfuss />
+    </div>
+  </section>
+
+  <Aufruf />
+</Basis>
+
+<style>
+  /* text-fett (Webflow): fett + 0,6px Kontur */
+  .kontur{font-weight:700;-webkit-text-stroke:.6px currentColor}
+  .ueberlauf{overflow:hidden}
+  .knopf-abstand{padding-bottom:3rem}
+
+  /* II. content23 */
+  .ueberblick{display:grid;grid-template-columns:1fr 1fr;gap:5rem}
+  .fakten{display:flex;flex-direction:column;margin:0;padding:2rem 0 4rem;list-style:none}
+  .fakten li{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:20px 0;border-top:1px solid rgba(139,134,118,1);font-family:var(--font-mono);font-size:13px;line-height:1.5;letter-spacing:1.76px;color:var(--ink-stumpf)}
+  .fakten .wert{text-align:right}
+  .richtext{padding-bottom:3rem;font-size:1rem;line-height:1.5;color:var(--ink-stumpf)}
+  .richtext :global(p){margin:0 0 1rem}
+
+  /* III. gallery23 */
+  .galerie-bild{position:relative;display:block;padding:.25rem}
+  .galerie-bild img{position:relative;z-index:1;display:block;width:100%;aspect-ratio:1/1;object-fit:cover;box-shadow:var(--shadow-kennzahl);background:var(--paper-tief)}
+  .galerie-bild .ecke{position:absolute;z-index:2;width:16px;height:16px;border-color:#fff;border-style:solid}
+  .galerie-bild .ol{top:14px;left:14px;border-width:1px 0 0 1px}
+  .galerie-bild .ur{bottom:14px;right:14px;border-width:0 1px 1px 0}
+  .galerie-bild .unter{position:absolute;left:5%;right:5%;bottom:10%;z-index:2;font-family:var(--font-mono);font-size:12px;line-height:19px;color:#fff}
+
+  /* V. layout65 */
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:3rem 5rem;align-items:start}
+  .vorteile{display:grid;grid-template-columns:1fr;gap:1rem;padding:.5rem 0}
+  .vorteil{display:flex;gap:1rem}
+  .vorteil-icon{flex:none;align-self:flex-start}
+  .vorteil-text{display:flex;flex-direction:column;gap:.25rem}
+  .vorteil-text .h4{margin:0}
+
+  /* VI. layout436 */
+  .standort{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+  .st-links{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start}
+  .st-rechts{display:flex;flex-direction:column;align-items:flex-end}
+  .rahmen{position:relative;overflow:hidden;width:100%;padding:.25rem;box-shadow:0 30px 60px 0 rgba(0,0,0,.2)}
+  .r-klein{max-width:13.8rem}
+  .r-mittel{max-width:20rem}
+  .bild{display:block;width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;box-shadow:0 30px 60px 0 rgba(0,0,0,.2);background:var(--paper-tief)}
+  .ecke-bild{position:absolute;max-width:none}
+  .ecke-bild.ul{left:0;bottom:0}
+  .ecke-bild.ur{right:0;bottom:0}
+  .ecke-bild.ol{left:2px;top:2px;z-index:2}
+  .st-text{align-self:stretch;margin-top:5rem}
+
+  /* VII. layout463 */
+  .berater-raster{display:grid;grid-template-columns:1fr 1fr;gap:4rem 5rem;align-items:start}
+  .berater-links{display:flex;flex-direction:column;height:100%}
+  .berater-rechts{display:flex;flex-direction:column;justify-content:flex-end;margin-top:25rem}
+  .berater-liste{display:grid;grid-template-columns:1fr 1fr;gap:2rem 1.5rem}
+  .berater{display:flex;flex-direction:column;gap:1.2rem}
+  .berater-bild{width:50%;aspect-ratio:1/1;border-radius:999px;object-fit:cover;object-position:50% 2%;box-shadow:0 30px 60px 0 rgba(0,0,0,.2);background:var(--paper-tief)}
+  .berater .h4{margin:0}
+  .berater-text{max-width:200px}
+
+  @media (min-width:1280px){
+    .intro-titel{max-width:30.3rem}
+    .schmal{max-width:29.5rem}
+  }
+  @media (max-width:991px){
+    .ueberblick{grid-template-columns:1fr;gap:3rem}
+    .zwei,.berater-raster{gap:2rem 3rem}
+    .st-text{margin-top:4.5rem}
+  }
+  @media (max-width:767px){
+    .ueberblick{gap:1.25rem}
+    .zwei,.berater-raster{grid-template-columns:1fr;gap:1.25rem}
+    .standort{grid-template-columns:1fr;gap:3rem}
+    .st-text{margin-top:3rem}
+    .berater-rechts{margin-top:0}
+  }
+  @media (max-width:479px){.fakten{gap:0}}
+</style>
