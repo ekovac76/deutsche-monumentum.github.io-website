@@ -75,10 +75,14 @@ const reiter = ['Alle Videos', 'Denkmal', 'QNG-Neubau'];
 </script>
 <style>
   .kopf{display:flex;flex-direction:column;align-items:flex-start}
-  .kopf-innen{max-width:48rem;margin:0 auto;text-align:center}
+  /* Webflow blog1: Abschnittsabstand 3rem, Kopf linksbündig in max-width-large (48rem) */
+  .sektion-innen{gap:3rem}
+  .kopf-innen{max-width:48rem;text-align:left}
+  .einleitung{padding-bottom:3rem}
   .einleitung{margin:0}
+  .h1{text-align:left}
   .inhalt{display:flex;flex-direction:column}
-  .reiter{display:grid;grid-template-columns:auto auto auto 1fr;align-self:flex-start;gap:1rem .25rem;align-items:center;margin-bottom:4rem;padding:.25rem;border-bottom:1px solid #000;background:#fff;overflow:auto}
+  .reiter{display:grid;grid-template-columns:auto auto auto 1fr;align-self:flex-start;gap:1rem .25rem;align-items:center;margin-bottom:4rem;padding:.25rem;border-bottom:1px solid #000;background:transparent;overflow:auto}
   .reiter-link{padding:.5rem 1.25rem;border:1px solid #000;border-radius:10px 10px 0 0;background:transparent;font:inherit;color:inherit;cursor:pointer}
   .reiter-link.aktiv{background:#c8c8c8}
   .liste{display:grid;grid-template-columns:repeat(3,1fr);gap:4rem 2rem}
