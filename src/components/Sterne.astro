@@ -1,6 +1,6 @@
 ---
-// 5 Sterne – Original-Grafik „Stars.svg“ aus Webflow (überall gleich)
+// 5 Sterne – Original-Grafik „Stars.svg“ aus Webflow (überall gleich, 116 px breit wie dort dargestellt)
 import { bilder } from '../data/bilder';
 ---
-<img class="sterne" src={bilder.sterne} alt="5 von 5 Sternen" />
-<style>.sterne{display:flex;overflow:hidden;object-fit:cover;max-width:none}</style>
+<img class="sterne" src={bilder.sterne} alt="5 von 5 Sternen" width="116" height="20" />
+<style>.sterne{display:flex;width:116px;height:auto;max-width:none;object-fit:cover}</style>

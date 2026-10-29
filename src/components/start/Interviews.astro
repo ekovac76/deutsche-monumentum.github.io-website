@@ -4,7 +4,6 @@ import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
 import Randhinweis from '../Randhinweis.astro';
 import Videovorschau from '../Videovorschau.astro';
-import Kunde from '../Kunde.astro';
 import Sterne from '../Sterne.astro';
 import { bilder } from '../../data/bilder';
 const interviews = [
@@ -29,9 +28,17 @@ const interviews = [
         <article class="karte">
           <Videovorschau bild={i.bild} alt={`Interview mit ${i.name}`} rahmen />
           <div class="inhalt">
-            <Sterne />
-            <p class="text-small zitat">{i.zitat}</p>
-            <Kunde name={i.name} rolle={i.rolle} bild={i.foto} />
+            <div class="sterne-zeile"><Sterne /></div>
+            <div class="zitat"><p class="text-small">{i.zitat}</p></div>
+            <div class="kunde-abstand">
+              <div class="kunde">
+                <span class="foto"><img src={i.foto} alt={i.name} loading="lazy" /></span>
+                <div>
+                  <p class="text-small name">{i.name}</p>
+                  <p class="text-small">{i.rolle}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </article>
       ))}
@@ -48,9 +55,17 @@ const interviews = [
   .rechts{display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;width:100%;height:100%}
   @media (min-width:1280px){.kopfraster{grid-template-columns:1fr .6fr}.schmal{max-width:35rem}}
   .karten{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
-  .inhalt{padding:2rem 0;display:flex;flex-direction:column;gap:1.25rem}
-  .zitat{padding-bottom:.5rem}
+  /* testimonial53_card-content + testimonial12_rating-wrapper, margin_text_botton, margin-top.margin-small, testimonial12_client */
+  .inhalt{padding:2rem 0}
+  .sterne-zeile{display:flex;padding-bottom:2rem}
+  .zitat{padding-bottom:3rem}
+  .kunde-abstand{padding-bottom:3rem}
+  .kunde{display:flex;align-items:center;gap:.8rem;text-align:left}
+  .foto{flex:none;overflow:hidden;width:3.5rem;height:3.5rem;border:1px solid hsl(0 0% 76%);border-radius:100%;box-shadow:0 10px 20px 0 rgba(0,0,0,.2)}
+  .foto img{width:100%;height:100%;object-fit:cover;object-position:50% -15%;background:var(--paper-tief)}
+  .name{font-weight:700}
   @media (max-width:991px){.karten{grid-template-columns:1fr 1fr}}
   @media (max-width:767px){.kopfraster{grid-template-columns:1fr}.karten{grid-template-columns:1fr}}
   @media (max-width:479px){.kopfraster{gap:2rem}}
+  @media (max-width:767px){.inhalt{padding:1.5rem}.kunde{flex-direction:column;align-items:flex-start;gap:0}.foto{margin-bottom:1rem}}
 </style>
