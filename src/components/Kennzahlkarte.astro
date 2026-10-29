@@ -1,11 +1,11 @@
 ---
 // Baustein „Kennzahlkarte“: Zahl oben links, Icon, Titel, Text, Pfeil-Kreis
-interface Props { zahl: string; neben?: string; titel: string; text: string; href?: string; icon?: string; zahlen?: boolean; vorteil?: boolean }
+interface Props { zahl: string; neben?: string; titel: string; text: string; href?: string; icon?: string; zahlen?: boolean; vorteil?: boolean; schmalerTitel?: boolean }
 import { bilder } from '../data/bilder';
-const { zahl, neben, titel, text, href, icon = bilder.kennzahlIcon, zahlen = false, vorteil = false } = Astro.props;
+const { zahl, neben, titel, text, href, icon = bilder.kennzahlIcon, zahlen = false, vorteil = false, schmalerTitel = false } = Astro.props;
 const Tag = href ? 'a' : 'div';
 ---
-<Tag class:list={['karte', { zahlen, vorteil }]} href={href}>
+<Tag class:list={['karte', { zahlen, vorteil, 'schmaler-titel': schmalerTitel }]} href={href}>
   <div class="oben">
     <span class="zahl">{zahl}</span>
     {neben && <span class="neben">{neben}</span>}
@@ -26,6 +26,8 @@ const Tag = href ? 'a' : 'div';
   /* Div Block 47 ab 1280 px; Zahlen-Karten (is-zahlen-karte) bleiben oben bündig */
   /* Vorteil-Karten (Projekte, Div Block 47 + capabilitiespng 4): Inhalt immer über die Kartenhöhe verteilt, Symbol in Originalgröße */
   .karte.vorteil{justify-content:space-between}
+  /* Team: Titel steckt in Webflow in margin_text_small_right (max. 200px) */
+  .karte.schmaler-titel .h4{max-width:200px}
   .karte.vorteil .icon{align-self:flex-start;width:auto;height:auto;max-width:2.5rem;max-height:2.5rem;object-fit:cover}
   @media (min-width:1280px){.karte{justify-content:space-between;border-color:hsl(0 0% 59.33%)}.karte.zahlen{justify-content:flex-start}}
 </style>

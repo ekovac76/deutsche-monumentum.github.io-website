@@ -28,22 +28,32 @@ const icons = [
     <div class="raster">
       <div>
         <Tagline wort="Team" nummer="03" />
-        <h2 class="h1 abstand-header">Alles aus einer Hand: von der Objektauswahl über Steuer und Förderung bis zur Übergabe</h2>
+        <div class="abstand-header"><h2 class="h1 schmal">Alles aus einer Hand: von der Objektauswahl über Steuer und Förderung bis zur Übergabe</h2></div>
       </div>
-      <div>
+      <div class="rechts">
         <p class="text-normal abstand-text">Von der Auswahl des richtigen Objekts bis zur Vermietung begleiten wir Sie persönlich durch jeden Schritt. Sie profitieren von geprüften Bauträgern, klaren Steuerberechnungen und einem echten Rundum-Service – damit Ihr Investment sicher gelingt und Sie sich um nichts kümmern müssen.</p>
-        <div class="button-zeile"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+        <div class="button-zeile knopf-abstand"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
       </div>
     </div>
     <div class="karten">
-      {leistungen.map(([zahl, neben, titel, text], i) => <Kennzahlkarte zahl={zahl} neben={neben} titel={titel} text={text} icon={icons[i]} />)}
+      {leistungen.map(([zahl, neben, titel, text], i) => <Kennzahlkarte zahl={zahl} neben={neben} titel={titel} text={text} icon={icons[i]} vorteil schmalerTitel />)}
     </div>
     <Kapitelfuss />
   </div>
 </section>
 <style>
+  /* 1:1 nach Webflow layout245 + Div Block 46 (wie Projekte-Vorteile): 4/3/2/1 Kacheln */
+  .sektion-innen{gap:2rem}
   .raster{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+  .rechts{width:80%}
+  .knopf-abstand{padding-bottom:3rem}
   .karten{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  /* Bold Text 15: 2,8rem / 3,6rem, #333. Div Block 56 = 29,5rem; auf dem Mac läuft die Schrift minimal breiter, daher 28,5rem für denselben Umbruch */
+  .schmal{line-height:3.6rem;color:#333}
+  @media (min-width:1280px){.raster{grid-template-columns:1fr .75fr}.schmal{max-width:28.5rem}.karten{grid-template-columns:repeat(4,1fr)}}
   @media (max-width:991px){.raster{grid-template-columns:1fr;gap:2rem}.karten{grid-template-columns:1fr 1fr}}
-  @media (max-width:479px){.karten{grid-template-columns:1fr}}
+  @media (max-width:767px){.raster{gap:1.25rem}}
+  @media (max-width:991px){.schmal{font-size:2.9rem;line-height:3.4rem}}
+  @media (max-width:767px){.schmal{font-size:2.5rem;line-height:2.8rem}}
+  @media (max-width:479px){.schmal{font-size:2rem;line-height:2.4rem}.sektion-innen{gap:3rem}.karten{grid-template-columns:1fr}}
 </style>
