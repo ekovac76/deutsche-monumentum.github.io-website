@@ -1,14 +1,15 @@
 ---
 // Einfacher Slider ohne Fremdbibliothek: Wischen/Scrollen + Pfeile unten
-interface Props { breite?: string; breiteTablet?: string; breiteMobil?: string; label: string; schatten?: boolean }
-const { breite = '25%', breiteTablet = '50%', breiteMobil = '85%', label, schatten = false } = Astro.props;
+interface Props { breite?: string; breiteTablet?: string; breiteMobil?: string; label: string; schatten?: boolean; punkte?: boolean }
+const { breite = '25%', breiteTablet = '50%', breiteMobil = '85%', label, schatten = false, punkte = false } = Astro.props;
 ---
 <div class:list={['slider', { 'mit-schatten': schatten }]} style={`--b:${breite};--bt:${breiteTablet};--bm:${breiteMobil}`} aria-label={label} role="region">
   <div class="spur" tabindex="0"><slot /></div>
+  {punkte ? <div class="punkte" role="tablist" aria-label={`${label}: Bild wählen`}></div> : (
   <div class="steuerung">
     <button class="pfeil zurueck" type="button" aria-label="Zurück"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
     <button class="pfeil vor" type="button" aria-label="Weiter"><svg width="16" height="16" viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-  </div>
+  </div>)}
 </div>
 <style>
   .slider{position:relative}
@@ -19,6 +20,9 @@ const { breite = '25%', breiteTablet = '50%', breiteMobil = '85%', label, schatt
   /* Platz für Schatten: die Spur schneidet sonst den Bildschatten ab (wie in Webflow: Polster + negativer Rand) */
   .mit-schatten .spur{padding-top:40px;margin-top:-40px;padding-bottom:140px;margin-bottom:-140px;padding-left:min(90px,4.5vw);margin-left:calc(min(90px,4.5vw) * -1);scroll-padding-left:min(90px,4.5vw)}
   .mit-schatten .steuerung{position:relative;z-index:1}
+  .punkte{display:flex;gap:10px;padding-top:3.5rem;position:relative;z-index:1}
+  .punkte :global(button){width:9px;height:9px;padding:0;border:0;border-radius:50%;background:var(--ink-blass);cursor:pointer;transition:background-color .3s}
+  .punkte :global(button.aktiv){background:var(--ink-weich)}
   .pfeil{display:flex;width:3rem;height:3rem;justify-content:center;align-items:center;border:1px solid var(--outline-dunkel);border-radius:50%;background:var(--paper-bone);color:var(--ink-weich);cursor:pointer}
   .pfeil:disabled{opacity:.35;cursor:default}
   @media (max-width:991px){.spur > :global(*){flex-basis:var(--bt)}}
@@ -27,6 +31,25 @@ const { breite = '25%', breiteTablet = '50%', breiteMobil = '85%', label, schatt
 <script>
   document.querySelectorAll<HTMLElement>('.slider').forEach((s) => {
     const spur = s.querySelector<HTMLElement>('.spur')!;
+    const punkte = s.querySelector<HTMLElement>('.punkte');
+    if (punkte) {
+      const kinder = Array.from(spur.children) as HTMLElement[];
+      const ziel = (i: number) => kinder[i].offsetLeft - kinder[0].offsetLeft;
+      const knoepfe = kinder.map((_, i) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.setAttribute('aria-label', `Bild ${i + 1} von ${kinder.length}`);
+        b.addEventListener('click', () => spur.scrollTo({ left: ziel(i), behavior: 'smooth' }));
+        punkte.appendChild(b); return b;
+      });
+      const markiere = () => {
+        const max = spur.scrollWidth - spur.clientWidth;
+        const i = max > 0 ? Math.round((spur.scrollLeft / max) * (kinder.length - 1)) : 0;
+        knoepfe.forEach((b, j) => b.classList.toggle('aktiv', j === i));
+      };
+      spur.addEventListener('scroll', markiere, { passive: true });
+      markiere();
+      return;
+    }
     const zurueck = s.querySelector<HTMLButtonElement>('.zurueck')!;
     const vor = s.querySelector<HTMLButtonElement>('.vor')!;
     const schritt = () => (spur.firstElementChild as HTMLElement)?.offsetWidth || spur.clientWidth;
