@@ -3,7 +3,7 @@
 interface Props { nummer?: string; titel?: string; text: string }
 const { nummer, titel, text } = Astro.props;
 ---
-<div class="hinweis">
+<div class:list={['hinweis', { plusform: !nummer }]}>
   {nummer ? <span class="ring">{nummer}</span> : <span class="plus" aria-hidden="true">+</span>}
   <p class="text-xs">{titel && <strong>{titel} </strong>}{text}</p>
 </div>
@@ -12,4 +12,7 @@ const { nummer, titel, text } = Astro.props;
   .ring{display:flex;flex:none;width:38px;height:38px;justify-content:center;align-items:center;border:1px solid var(--ink-tinte-button);border-radius:19px;font-size:.7rem;font-weight:700}
   .plus{color:var(--kennzahl-rot);font-size:24px;line-height:24px}
   strong{font-weight:600}
+  /* „+“-Variante = Webflow Div Block 49 + margin_exstrasmall_text: 0,5rem Abstand, Text max. 11rem */
+  .plusform{gap:.5rem;max-width:none}
+  .plusform .text-xs{max-width:11rem}
 </style>
