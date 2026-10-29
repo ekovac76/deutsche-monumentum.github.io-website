@@ -28,22 +28,28 @@ const icons = [
     <div class="raster">
       <div>
         <Tagline wort="Projekte" nummer="04" />
-        <h2 class="h1">Wie ein Denkmal Ihre Steuerlast senkt, Förderung sichert und stabiles Vermögen schafft</h2>
+        <div class="abstand-header"><h2 class="h1">Wie ein Denkmal Ihre Steuerlast senkt, Förderung sichert und stabiles Vermögen schafft</h2></div>
       </div>
-      <div>
+      <div class="rechts">
         <p class="text-normal abstand-text">Denkmalimmobilien verbinden gleich mehrere Vorteile: eine hohe Sonderabschreibung, attraktive KfW-Förderung und einen wertbeständigen, inflationsgeschützten Sachwert. So senken Sie Ihre Steuerlast spürbar und bauen zugleich planbar privates Vermögen auf.</p>
-        <div class="button-zeile"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+        <div class="button-zeile knopf-abstand"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
       </div>
     </div>
     <div class="karten">
-      {vorteile.map(([zahl, neben, titel, text], i) => <Kennzahlkarte zahl={zahl} neben={neben} titel={titel} text={text} icon={icons[i]} />)}
+      {vorteile.map(([zahl, neben, titel, text], i) => <Kennzahlkarte zahl={zahl} neben={neben} titel={titel} text={text} icon={icons[i]} vorteil />)}
     </div>
     <Kapitelfuss />
   </div>
 </section>
 <style>
+  /* 1:1 nach Webflow layout245 + Div Block 46: Kacheln 4 je Zeile ab 1280 px, sonst 3, Tablet 2, Handy 1 */
+  .sektion-innen{gap:2rem}
   .raster{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+  .rechts{width:80%}
+  .knopf-abstand{padding-bottom:3rem}
   .karten{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  @media (min-width:1280px){.raster{grid-template-columns:1fr .75fr}.karten{grid-template-columns:repeat(4,1fr)}}
   @media (max-width:991px){.raster{grid-template-columns:1fr;gap:2rem}.karten{grid-template-columns:1fr 1fr}}
-  @media (max-width:479px){.karten{grid-template-columns:1fr}}
+  @media (max-width:767px){.raster{gap:1.25rem}}
+  @media (max-width:479px){.sektion-innen{gap:3rem}.karten{grid-template-columns:1fr}}
 </style>
