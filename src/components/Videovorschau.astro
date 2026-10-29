@@ -15,9 +15,9 @@ const { bild, alt = '', video = '', rahmen = false, quadrat = false, label = 'DE
     <span class="play-text">Video</span>
   </span>
   <span class="schleier" aria-hidden="true"></span>
-  <img class="ecke ol" src={bilder.eckeObenLinks} alt="" aria-hidden="true" />
+  <span class="ecke ol" aria-hidden="true"></span>
   <span class="marke" aria-hidden="true"><span>{label}</span></span>
-  <img class="ecke ur" src={bilder.eckeUntenRechts} alt="" aria-hidden="true" />
+  <span class="ecke ur" aria-hidden="true"></span>
 </button>
 <style>
   .vorschau{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:100%;padding:0;border:0;background:none;overflow:visible;cursor:pointer;box-shadow:0 30px 60px 0 rgba(0,0,0,.2);font:inherit}
@@ -25,13 +25,14 @@ const { bild, alt = '', video = '', rahmen = false, quadrat = false, label = 'DE
   .play{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.3rem;overflow:hidden}
   .play-text{font-family:var(--font-mono);font-size:28px;font-weight:400;color:hsl(0 0% 98%)}
   .schleier{position:absolute;inset:0;z-index:1;overflow:hidden}
-  .ecke{position:absolute;max-width:none}
-  .ol{left:0;top:1%;padding:4px 0 0 7px}
-  .ur{right:0;bottom:0;padding:0 11px 8px 0}
+  /* Eckwinkel wie auf der Live-Seite: dünne dunkle Linien, ca. 5px außerhalb des Bildes, Schenkel ca. 26px */
+  .ecke{position:absolute;z-index:3;width:26px;height:26px;border-color:#6f6a60;border-style:solid;pointer-events:none}
+  .ol{left:-6px;top:-6px;border-width:1px 0 0 1px}
+  .ur{right:-6px;bottom:-6px;border-width:0 1px 1px 0}
   .marke{position:absolute;right:10px;bottom:10px;z-index:1;transform:rotate(180deg);transform-origin:50% 50%;font-size:10px;white-space:nowrap;writing-mode:vertical-rl}
   .marke span{font-family:var(--font-mono);color:#fff;line-height:1;font-weight:400;white-space:nowrap}
   /* testimonial53_lightbox */
-  .rahmen{overflow:hidden;padding:.25rem}
+  .rahmen{overflow:visible;padding:.25rem}
   .rahmen .bild{box-shadow:0 30px 60px 0 rgba(0,0,0,.2)}
   @media (max-width:991px){.bild{height:100%}}
 </style>
