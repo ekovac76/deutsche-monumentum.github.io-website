@@ -190,9 +190,10 @@ const beraterBilder = [bilder.teamKovac, bilder.teamPeters];
   /* III. gallery23 */
   .galerie-bild{position:relative;display:block;padding:.25rem}
   .galerie-bild img{position:relative;z-index:1;display:block;width:100%;aspect-ratio:1/1;object-fit:cover;box-shadow:var(--shadow-kennzahl);background:var(--paper-tief)}
-  .galerie-bild .ecke{position:absolute;z-index:2;width:36px;height:36px;border-color:var(--ink-stumpf);border-style:solid}
-  .galerie-bild .ol{top:-12px;left:-12px;border-width:2px 0 0 2px}
-  .galerie-bild .ur{bottom:-12px;right:-12px;border-width:0 2px 2px 0}
+  /* Eckwinkel filigran wie bei der Videovorschau: 1px, Schenkel 26px, ca. 6px außerhalb des Bildes (Bild sitzt 0,25rem eingerückt) */
+  .galerie-bild .ecke{position:absolute;z-index:2;width:26px;height:26px;border-color:#6f6a60;border-style:solid}
+  .galerie-bild .ol{top:-2px;left:-2px;border-width:1px 0 0 1px}
+  .galerie-bild .ur{bottom:-2px;right:-2px;border-width:0 1px 1px 0}
   .galerie-bild .unter{position:absolute;left:5%;right:5%;bottom:10%;z-index:2;font-family:var(--font-mono);font-size:12px;line-height:19px;color:#fff}
 
   /* V. layout65 */
