@@ -4,7 +4,7 @@ import Tagline from '../Tagline.astro';
 import Projektkarte from '../Projektkarte.astro';
 import projekte from '../../data/projekte.json';
 import { bilder } from '../../data/bilder';
-const nuernberg = { ...projekte.find((p) => p.slug === 'nurnberg')!, bild: bilder.ctaNuernberg };
+const nuernberg = { ...projekte.find((p) => p.slug === 'nurnberg')!, bild: bilder.ctaNuernberg, nummer: '03 / 08' };
 ---
 <section class="sektion">
   <div class="sektion-innen">
@@ -17,12 +17,13 @@ const nuernberg = { ...projekte.find((p) => p.slug === 'nurnberg')!, bild: bilde
         <div>
           <Tagline wort="Ihr Kapitel" nummer="08" hell />
           <p class="h3 weiss abstand-header">„Zahlen Sie zu viel Steuern? Dann lassen Sie uns sprechen – unverbindlich, persönlich und mit konkreten Zahlen für Ihre Situation."</p>
-          <div class="button-zeile"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+          <div class="abstand-header"></div>
+          <div class="button-zeile knopf-abstand"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
         </div>
-        <div class="karte"><Projektkarte {...nuernberg} dunkel /></div>
+        <div class="kartenspalte"><Projektkarte {...nuernberg} dunkel /></div>
       </div>
       <div class="regel unten">
-        <span class="gold">Ihr Steuervorteil</span>
+        <span class="links"><span class="punkt"></span><span class="gold">Ihr Steuervorteil</span></span>
         <span class="gold">deutsche-monumentum.de</span>
       </div>
     </div>
@@ -34,8 +35,15 @@ const nuernberg = { ...projekte.find((p) => p.slug === 'nurnberg')!, bild: bilde
   .regel.unten{padding:1rem 0 0;border-bottom:0;border-top:1px solid rgba(247,241,222,.16)}
   .ziffer{font-family:var(--font-playfair);font-style:italic;font-size:1.1rem;letter-spacing:.56px;color:var(--signal-orange)}
   .gold{font-size:.7rem;line-height:16.27px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
-  .raster{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:1rem 0}
-  .karte{max-width:24rem;justify-self:center;width:100%}
-  @media (max-width:991px){.dunkel{padding:2rem}.raster{grid-template-columns:1fr;gap:3rem}}
-  @media (max-width:479px){.dunkel{padding:1.5rem 1.25rem}}
+  .raster{display:grid;grid-template-columns:1fr 1fr;gap:4rem;padding:1rem 0}
+  .knopf-abstand{padding-bottom:3rem}
+  .kartenspalte{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center}
+  /* Webflow: Link Block 16 ohne Breitenbegrenzung, card_projekt max. 20rem */
+  .kartenspalte :global(.karte-link){width:20rem;max-width:100%;height:auto}
+  .kartenspalte :global(.karte){max-width:20rem}
+  .links{display:flex;align-items:center;gap:12px}
+  .punkt{width:1rem;height:1rem;border-radius:999px;background:#db5f5f;flex:none}
+  @media (min-width:1280px){.dunkel{gap:1rem}}
+  @media (max-width:767px){.dunkel{padding:2rem}.raster{grid-template-columns:1fr}}
+  @media (max-width:479px){.dunkel{padding:2rem 1rem;gap:2rem}.raster{gap:1rem}}
 </style>
