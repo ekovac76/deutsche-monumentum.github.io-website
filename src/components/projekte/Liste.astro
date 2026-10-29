@@ -12,7 +12,7 @@ import projekte from '../../data/projekte.json';
     <div class="raster">
       <div class="links">
         <Tagline wort="Projekte" nummer="02" />
-        <h2 class="h2 abstand-header">Aktuelle Projekte – ausgewählt für Steuervorteil und Wertbeständigkeit</h2>
+        <div class="abstand-header"><h2 class="h2 schmal">Aktuelle Projekte – ausgewählt für Steuervorteil und Wertbeständigkeit</h2></div>
         <p class="text-normal abstand-text">Ob Industriedenkmal, Traditionsgut oder QNG-Neubau: Jedes dieser Häuser erzählt seine eigene Geschichte. Gemeinsam haben sie das geprüfte Konzept – solventer Bauträger, hohe Abschreibung, starke Förderung.</p>
         <div class="button-zeile"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
       </div>
@@ -24,9 +24,12 @@ import projekte from '../../data/projekte.json';
   </div>
 </section>
 <style>
+  /* 1:1 nach Webflow layout253 (content .5fr 1fr, ab 1280 px .8fr 1fr; Liste is-liste-cms max. 38rem, 3rem Abstand) */
   .raster{display:grid;grid-template-columns:.5fr 1fr;gap:2rem;align-items:start}
   .links{position:sticky;top:6rem}
-  .karten{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-  @media (max-width:991px){.raster{grid-template-columns:1fr;gap:3rem}.links{position:static}}
-  @media (max-width:600px){.karten{grid-template-columns:1fr}}
+  .karten{display:grid;grid-template-columns:1fr 1fr;gap:3rem;justify-items:center;align-items:stretch;width:100%;max-width:38rem;margin-left:auto}
+  @media (min-width:1280px){.raster{grid-template-columns:.8fr 1fr}.schmal{max-width:29.5rem}}
+  @media (max-width:991px){.raster{grid-template-columns:.5fr 1fr;gap:3rem}}
+  @media (max-width:767px){.raster{grid-template-columns:1fr}.links{position:static}}
+  @media (max-width:479px){.karten{grid-template-columns:1fr;padding:0 5%}}
 </style>
