@@ -11,30 +11,26 @@ import { kontakt } from '../data/navigation';
     <div class="raster">
       <form class="formular" name="Kontaktformular" data-danke="/danke" novalidate>
         <div class="zwei">
-          <label>Anrede*<select name="Anrede" required><option value="">Bitte wählen</option><option>Herr</option><option>Frau</option><option>Divers</option></select></label>
-          <label>Vorname*<input name="Vorname" type="text" autocomplete="given-name" required /></label>
+          <select name="Anrede" aria-label="Anrede" required><option value="" disabled selected hidden>Anrede</option><option>Herr</option><option>Frau</option><option>Divers</option></select>
+          <input name="Vorname" type="text" placeholder="Vorname" aria-label="Vorname" autocomplete="given-name" required />
         </div>
-        <div class="zwei">
-          <label>Nachname*<input name="Nachname" type="text" autocomplete="family-name" required /></label>
-          <label>E-Mail*<input name="E-Mail" type="email" autocomplete="email" required /></label>
+        <div class="zwei mobil-eins">
+          <input name="Nachname" type="text" placeholder="Nachname" aria-label="Nachname" autocomplete="family-name" required />
+          <input name="E-Mail" type="email" placeholder="Email" aria-label="E-Mail" autocomplete="email" required />
         </div>
-        <div class="zwei">
-          <label>Telefonnummer*<input name="Telefonnummer" type="tel" autocomplete="tel" required /></label>
-          <label>PLZ*<input name="PLZ" type="text" autocomplete="postal-code" inputmode="numeric" required /></label>
+        <div class="zwei mobil-eins">
+          <input name="Telefonnummer" type="tel" placeholder="Telefonnummer" aria-label="Telefonnummer" autocomplete="tel" required />
+          <input name="PLZ" type="text" placeholder="Postleitzahl" aria-label="Postleitzahl" autocomplete="postal-code" inputmode="numeric" required />
         </div>
-        <label>Wie sind Sie auf uns aufmerksam geworden?*
-          <select name="Wie sind Sie auf uns aufmerksam geworden" required>
-            <option value="">Bitte wählen</option><option>Google</option><option>LinkedIn</option><option>Instagram</option><option>YouTube</option><option>Empfehlung</option><option>Sonstiges</option>
-          </select>
-        </label>
-        <label>Für welches Projekt interessieren Sie sich?*
-          <select name="Für welches Projekt interessieren Sie sich" required>
-            <option value="">Bitte wählen</option>
-            {projekte.map((p) => <option>{p.name}</option>)}
-            <option>Noch offen – bitte beraten Sie mich</option>
-          </select>
-        </label>
-        <label>Nachricht*<textarea name="Nachricht" rows="4" required></textarea></label>
+        <select name="Wie sind Sie auf uns aufmerksam geworden" aria-label="Wie sind Sie auf uns aufmerksam geworden?" required>
+          <option value="" disabled selected hidden>Wie sind Sie auf uns aufmerksam geworden?</option><option>Google</option><option>LinkedIn</option><option>Instagram</option><option>YouTube</option><option>Empfehlung</option><option>Sonstiges</option>
+        </select>
+        <select name="Für welches Projekt interessieren Sie sich" aria-label="Für welches Projekt interessieren Sie sich?" required>
+          <option value="" disabled selected hidden>Für welches Projekt interessieren Sie sich?</option>
+          {projekte.map((p) => <option>{p.name}</option>)}
+          <option>Noch offen – bitte beraten Sie mich</option>
+        </select>
+        <textarea name="Nachricht" rows="6" placeholder="Nachricht" aria-label="Nachricht" required></textarea>
         <label class="haken"><input type="checkbox" name="Einwilligung Newsletter" required /> <span>Ich bin damit einverstanden, per E-Mail Informationen über neue Immobilienprojekte zu erhalten.</span></label>
         <button class="senden" type="submit">Absenden</button>
         <p class="meldung" role="status" hidden></p>
@@ -51,27 +47,42 @@ import { kontakt } from '../data/navigation';
   </div>
 </dialog>
 <style>
-  .modal{width:min(60rem,94vw);max-height:92vh;padding:0;border:0;border-radius:var(--radius-md);background:var(--paper-bone);color:var(--ink-weich);box-shadow:var(--shadow-karte)}
+  /* Fenster (Hintergrund abgedunkelt, scrollbar) – Inhalt 1:1 nach Webflow contact-modal6 */
+  .modal{width:min(60rem,94vw);max-height:92vh;padding:0;border:0;border-radius:var(--radius-md);background:var(--paper-warm);color:var(--ink-weich);box-shadow:var(--shadow-karte)}
+  .modal:focus,.modal:focus-visible{outline:none}
   .modal::backdrop{background:rgba(22,21,19,.6)}
-  .innen{padding:3rem clamp(1.25rem,4vw,3.5rem)}
-  .titel{text-align:center;max-width:48rem;margin:0 auto 1.5rem}
-  .einleitung{text-align:center;max-width:36rem;margin:0 auto 2.5rem}
-  .raster{display:grid;grid-template-columns:1fr 14rem;gap:3rem;align-items:start}
-  .formular{display:flex;flex-direction:column;gap:1rem}
-  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-  label{display:flex;flex-direction:column;gap:.35rem;font-size:.85rem;color:var(--ink-stumpf)}
-  input,select,textarea{width:100%;padding:.7rem .8rem;border:1px solid var(--karte-rahmen);border-radius:var(--radius-sm);background:#fff;font:inherit;font-size:1rem;color:var(--ink-tinte)}
-  input:focus,select:focus,textarea:focus{outline:2px solid var(--signal-orange);outline-offset:1px}
-  .haken{flex-direction:row;align-items:flex-start;gap:.6rem}
-  .haken input{width:auto;margin-top:.2rem}
-  .senden{align-self:flex-start;padding:14px 28px;border:0;border-radius:var(--radius-pill);background:var(--signal-orange-alt);color:var(--paper-bone);font:500 14px var(--font-sans);box-shadow:var(--shadow-primary);cursor:pointer}
+  /* container-small: Inhalt 48rem breit (+ Innenabstand des Fensters) */
+  .innen{max-width:calc(48rem + 2 * clamp(1.25rem,4vw,3.5rem));margin:0 auto;padding:4rem clamp(1.25rem,4vw,3.5rem)}
+  /* Heading_2.kontakt-titel-fett: Gambarino fett, Zeilenhöhe 1,3, linksbündig */
+  .titel{margin:0;padding-bottom:2rem;text-align:left;font-weight:700;line-height:1.3}
+  .einleitung{margin:0;padding-bottom:4.5rem;text-align:left}
+  /* Div Block 62: Formular | Kontakt = 1fr .5fr, 2rem Abstand */
+  .raster{display:grid;grid-template-columns:1fr .5fr;gap:2rem;align-items:start}
+  /* contact-modal6_form / form_field-2col: 1,5rem Abstand */
+  .formular{display:grid;grid-template-columns:1fr;gap:1.5rem}
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  /* form_input: Inconsolata 1rem/1,6, 1px Rahmen, keine Rundung, heller Grund */
+  input,select,textarea{width:100%;min-height:2.75rem;margin:0;padding:.5rem .75rem;border:1px solid var(--ink-blass);border-radius:0;background:var(--paper-bone);font-family:var(--font-daten);font-size:1rem;line-height:1.6;color:var(--ink-stumpf)}
+  input::placeholder,textarea::placeholder{color:var(--ink-blass);opacity:1}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink-stumpf)}
+  select{appearance:none;-webkit-appearance:none;padding-right:2.5rem;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 16 16'%3E%3Cpath d='m3 6 5 5 5-5' fill='none' stroke='%232d2924' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - .9rem) 50%;cursor:pointer}
+  select:invalid{color:var(--ink-blass)}
+  select option{color:var(--ink-stumpf)}
+  textarea{min-height:11.25rem;padding:.75rem;resize:vertical}
+  /* form_checkbox */
+  .haken{display:flex;align-items:flex-start;gap:.5rem;font-size:.875rem;line-height:1.5;color:var(--ink-stumpf);cursor:pointer}
+  .haken input{appearance:none;-webkit-appearance:none;flex:none;width:1.125rem;height:1.125rem;min-height:0;margin-top:1px;padding:0;border:1px solid #000;background:var(--paper-bone);cursor:pointer}
+  .haken input:checked{background:var(--ink-weich) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m3.5 8.5 3 3 6-7' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E") center/80% no-repeat}
+  .senden{justify-self:start;padding:14px 28px;border:0;border-radius:var(--radius-pill);background:var(--signal-orange-alt);color:var(--paper-bone);font:500 14px var(--font-sans);box-shadow:var(--shadow-primary);cursor:pointer}
   .meldung{margin:0;font-size:.9rem;color:var(--kennzahl-rot)}
   .kontakt{display:flex;flex-direction:column;gap:.4rem}
-  .kontakt img{height:44px;width:auto;margin-bottom:1.5rem}
-  .schliessen{position:absolute;top:1rem;right:1rem;width:36px;height:36px;border:0;background:none;cursor:pointer}
-  .schliessen i{position:absolute;left:6px;right:6px;top:50%;height:1.5px;background:var(--ink-tinte)}
+  .kontakt img{height:44px;width:auto;margin-bottom:2rem;align-self:flex-start}
+  .schliessen{position:absolute;top:1.5rem;right:1.5rem;width:36px;height:36px;border:0;background:none;cursor:pointer}
+  .schliessen i{position:absolute;left:6px;right:6px;top:50%;height:1.5px;background:var(--ink-weich)}
   .schliessen i:first-child{transform:rotate(45deg)}.schliessen i:last-child{transform:rotate(-45deg)}
-  @media (max-width:767px){.raster{grid-template-columns:1fr}.zwei{grid-template-columns:1fr}}
+  @media (max-width:991px){.innen{padding-top:4rem;padding-bottom:4rem}}
+  @media (max-width:767px){.zwei.mobil-eins{grid-template-columns:1fr}.innen{padding-bottom:7rem}}
+  @media (max-width:479px){.raster{grid-template-columns:1fr}}
 </style>
 <script>
   const modal = document.getElementById('kontakt') as HTMLDialogElement | null;
