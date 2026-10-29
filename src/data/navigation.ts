@@ -23,11 +23,11 @@ export const footerMehr = [
   { name: 'Renditerechner', href: '/berechnungstool' },
 ];
 
-// TODO: echte Profil-Adressen eintragen (offene Punkte)
+// Profil-Adressen 1:1 aus dem Webflow-Footer
 export const social = [
-  { name: 'Instagram', href: '#' },
-  { name: 'LinkedIn', href: '#' },
-  { name: 'Youtube', href: '#' },
+  { name: 'Instagram', href: 'https://www.instagram.com/deutschemonumentum/' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/michael-peters-5033a4173/' },
+  { name: 'Youtube', href: 'https://www.youtube.com/@DeutscheMonumentum' },
 ];
 
 export const kontakt = {
