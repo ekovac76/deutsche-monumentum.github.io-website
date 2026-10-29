@@ -26,7 +26,7 @@ const interviews = [
     <div class="karten">
       {interviews.map((i) => (
         <article class="karte">
-          <Videovorschau bild={i.bild} alt={`Interview mit ${i.name}`} rahmen />
+          <Videovorschau bild={i.bild} alt={`Interview mit ${i.name}`} />
           <div class="inhalt">
             <div class="sterne-zeile"><Sterne /></div>
             <div class="zitat"><p class="text-small">{i.zitat}</p></div>
