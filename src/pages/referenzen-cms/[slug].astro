@@ -108,7 +108,7 @@ const { r } = Astro.props;
           {r.bau.map((b, i) => (
             <div class="bau-bilder" role="tabpanel" data-flaeche={i} hidden={i !== 0}>
               {b.bilder.map((bild) => (
-                <a class="bau-bild" href={bild} data-bild={bild} data-gruppe={`bau-${i}`} data-titel={b.datum}><img src={bild} alt={`Baufortschritt ${b.datum}`} loading="lazy" /></a>
+                <a class="bau-bild" href={bild} data-bild={bild} data-gruppe={`bau-${i}`} data-titel={b.datum}><img src={bild} alt={`Baufortschritt ${b.datum}`} loading="lazy" /><span class="ecke ol" aria-hidden="true"></span><span class="ecke ur" aria-hidden="true"></span></a>
               ))}
             </div>
           ))}
@@ -144,8 +144,12 @@ const { r } = Astro.props;
   .reiter-knopf{padding:.5rem 1.25rem;border:1px solid #000;border-bottom:0;border-radius:10px 10px 0 0;background:transparent;font:inherit;font-size:.9rem;color:var(--ink-stumpf);cursor:pointer}
   .reiter-knopf.aktiv{background:var(--ink-weich);color:var(--paper-bone)}
   .bau-bilder{column-count:3;column-gap:2rem}
-  .bau-bild{display:block;margin-bottom:2rem;break-inside:avoid;overflow:hidden;border-radius:var(--radius-md);box-shadow:var(--shadow-kennzahl)}
-  .bau-bild img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--paper-tief)}
+  /* Gestaltung wie die Galerie: eckig, Schatten am Bild, filigrane dunkle Eckwinkel knapp außerhalb */
+  .bau-bild{position:relative;display:block;margin-bottom:2rem;padding:.25rem;break-inside:avoid}
+  .bau-bild img{position:relative;z-index:1;display:block;width:100%;aspect-ratio:1/1;object-fit:cover;box-shadow:var(--shadow-kennzahl);background:var(--paper-tief)}
+  .bau-bild .ecke{position:absolute;z-index:2;width:26px;height:26px;border-color:#6f6a60;border-style:solid}
+  .bau-bild .ol{top:-2px;left:-2px;border-width:1px 0 0 1px}
+  .bau-bild .ur{bottom:-2px;right:-2px;border-width:0 1px 1px 0}
   @media (max-width:991px){.ueberblick{grid-template-columns:1fr;gap:2rem}.kopf-zwei{grid-template-columns:1fr;gap:2rem}.kopf-links{padding-right:0}}
   @media (max-width:767px){.ba-raster{grid-template-columns:1fr;gap:32px}.bau-bilder{column-count:1;column-gap:1.5rem}.bau-bild{margin-bottom:1.5rem}}
 </style>
