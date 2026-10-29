@@ -19,8 +19,8 @@ const themen = [
     <div class="kopfraster">
       <div>
         <Tagline nummer="10" />
-        <h2 class="h1 abstand-header">Alles, was Sie über Denkmalimmobilien wissen sollten – kurz erklärt im Video</h2>
-        <p class="text-normal">Kurz und verständlich erklärt: Denkmalimmobilien, Ihre Steuervorteile und wie die Zusammenarbeit mit Deutsche Monumentum abläuft.</p>
+        <div class="abstand-header"><h2 class="h1 schmal">Alles, was Sie über Denkmalimmobilien wissen sollten – kurz erklärt im Video</h2></div>
+        <p class="text-normal schmal">Kurz und verständlich erklärt: Denkmalimmobilien, Ihre Steuervorteile und wie die Zusammenarbeit mit Deutsche Monumentum abläuft.</p>
       </div>
       <div class="rechts"><Randhinweis text="Sie wollen tiefer einsteigen? Im persönlichen Gespräch rechnen wir Ihr Beispiel konkret durch." /></div>
     </div>
@@ -28,15 +28,15 @@ const themen = [
       <div class="menue" role="tablist">
         {themen.map(([titel, text], i) => (
           <button class:list={['tab', { aktiv: i === 0 }]} role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-tab={i}>
-            <span class="kopf"><span class="nr">{String(i + 1).padStart(2, '0')}</span><span class="h4">{titel}</span></span>
-            <span class="text-small">{text}</span>
+            <span class="kopf"><span class="nr">{String(i + 1).padStart(2, '0')}</span><span class="titel">{titel}</span></span>
+            <span class="beschreibung">{text}</span>
           </button>
         ))}
       </div>
       <div class="inhalt">
         {themen.map(([titel], i) => (
           <div class="pane" role="tabpanel" data-pane={i} hidden={i !== 0}>
-            <Videovorschau bild={bilder.eduardVideo} alt={titel} />
+            <div class="pane-innen"><Videovorschau bild={bilder.eduardVideo} alt={titel} /></div>
           </div>
         ))}
       </div>
@@ -45,17 +45,36 @@ const themen = [
   </div>
 </section>
 <style>
-  .kopfraster{display:grid;grid-template-columns:1fr .8fr;gap:4rem;align-items:start}
-  .rechts{display:flex;justify-content:flex-end}
-  .tabs{display:grid;grid-template-columns:1fr 1.25fr;gap:4rem;align-items:start}
-  .menue{display:flex;flex-direction:column}
-  .tab{display:flex;flex-direction:column;gap:.5rem;padding:1.25rem 0 1.25rem 1.5rem;border:0;border-left:2px solid var(--karte-linie);background:none;text-align:left;cursor:pointer;opacity:.55;transition:opacity .3s,border-color .3s;font:inherit}
-  .tab.aktiv,.tab:hover{opacity:1}
-  .tab.aktiv{border-left-color:var(--signal-orange)}
-  .kopf{display:flex;gap:1rem;align-items:baseline}
-  .nr{font-family:var(--font-mono);color:var(--signal-orange)}
-  @media (max-width:991px){.tabs{grid-template-columns:1fr;gap:2rem}}
-  @media (max-width:767px){.kopfraster{grid-template-columns:1fr;gap:2rem}.rechts{justify-content:flex-start}}
+  /* 1:1 nach Webflow layout505 (Kopf wie Div Block 54/58, Tabs 1fr 1fr, Menü über Videohöhe verteilt) */
+  .kopfraster{display:grid;grid-template-columns:1fr .8fr;gap:4rem}
+  .rechts{display:flex;flex-direction:column;align-items:flex-start}
+  .tabs{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
+  .menue{display:grid;grid-template-columns:1fr;grid-auto-rows:1fr;justify-items:start;height:100%;padding:1rem 0}
+  .tab{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0;border:0;background:none;text-align:left;cursor:pointer;font:inherit;color:hsl(0 0% 62.67%)}
+  .tab.aktiv{color:var(--ink-tinte)}
+  .kopf{display:flex;justify-content:center;align-items:center;gap:1rem}
+  .nr{font-family:var(--font-mono);font-size:1.3rem;font-weight:400}
+  .titel{font-family:var(--font-display);font-size:1.3rem;line-height:1.4;font-weight:700}
+  .beschreibung{padding-left:2.6rem;font-family:var(--font-sans);font-size:1rem;line-height:1.5}
+  .pane{height:100%}
+  .pane-innen{display:flex;flex-direction:column;justify-content:center;height:100%;padding:0 4rem}
+  @media (min-width:1280px){
+    .kopfraster{grid-template-columns:1fr .6fr}
+    .schmal{max-width:35rem}
+    .menue{padding:2rem 0 2rem 4rem}
+    .tab{max-width:30rem}
+  }
+  @media (max-width:991px){.titel{font-size:1rem}.beschreibung{font-size:.8rem}.pane-innen{padding:2rem}}
+  @media (max-width:767px){
+    .kopfraster{grid-template-columns:1fr}
+    .tabs{grid-template-columns:1fr}
+    .menue{grid-auto-rows:auto}
+    .tab{padding:0 1.5rem}
+    .titel{font-size:1.25rem}
+    .beschreibung{font-size:.9rem}
+    .pane-innen{padding:1.5rem}
+  }
+  @media (max-width:479px){.sektion-innen{gap:2rem}.kopfraster{gap:2rem}.tab{padding-bottom:1rem}.titel{font-size:1rem}.beschreibung{font-size:.8rem}}
 </style>
 <script>
   document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((box) => {
