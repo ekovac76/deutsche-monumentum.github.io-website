@@ -3,8 +3,7 @@ import Tagline from '../Tagline.astro';
 import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
 import Randhinweis from '../Randhinweis.astro';
-import Slider from '../Slider.astro';
-import Kunde from '../Kunde.astro';
+import Karussell from '../Karussell.astro';
 import Sterne from '../Sterne.astro';
 import { bilder } from '../../data/bilder';
 interface Props { ziffer?: string; thema?: string; zaehler?: string; titel?: string; hinweisTitel?: string; hinweisText?: string }
@@ -39,16 +38,26 @@ const stimmen = [
       </div>
       <div class="rechts"><Randhinweis nummer="03" titel={hinweisTitel} text={hinweisText} /></div>
     </div>
-    <Slider label="Kundenstimmen" breite="33.333%" breiteTablet="50%" breiteMobil="88%">
+    <Karussell label="Kundenstimmen">
       {stimmen.map((s) => (
-        <article class="stimme">
-          <Sterne />
-          <h3 class="h4">{s.titel}</h3>
-          <p class:list={['text-small', { kursiv: s.kursiv }]}>{s.text}</p>
-          <Kunde name={s.name} rolle={s.rolle} bild={s.bild} />
-        </article>
+        <div class="slide">
+          <article class="stimme">
+            <div class="oben">
+              <div class="sterne-zeile"><Sterne /></div>
+              <h3 class="h4">{s.titel}</h3>
+            </div>
+            <div class="zitat"><p class="text-small">{s.text}</p></div>
+            <div class="kunde">
+              <span class="foto"><img src={s.bild} alt={s.name} loading="lazy" /></span>
+              <div>
+                <p class="text-small name">{s.name}</p>
+                <p class="text-small">{s.rolle}</p>
+              </div>
+            </div>
+          </article>
+        </div>
       ))}
-    </Slider>
+    </Karussell>
     <Kapitelfuss />
   </div>
 </section>
@@ -56,8 +65,17 @@ const stimmen = [
   .ueberlauf{overflow:hidden}
   .kopfraster{display:grid;grid-template-columns:1fr .8fr;gap:4rem;align-items:start}
   .rechts{display:flex;justify-content:flex-end}
-  .stimme{display:flex;flex-direction:column;gap:1.25rem}
-  .stimme .text-small{flex:1}
-  .kursiv{font-style:italic}
+  /* 1:1 nach Webflow testimonial12: Slide 3rem rechts (Tablet 0 + 2,5rem Außenabstand), Inhalt Spalte mit 2rem Abstand,
+     Sterne-Zeile 2rem unten, Kunde: Foto 3,5rem (Rand, Schatten) + Name halbfett, 0,8rem Abstand */
+  .slide{padding-right:3rem}
+  .stimme{display:flex;width:100%;flex-direction:column;gap:2rem}
+  .sterne-zeile{display:flex;padding-bottom:2rem}
+  .zitat{display:flex;flex-direction:column;align-items:flex-start}
+  .kunde{display:flex;align-items:center;gap:.8rem;text-align:left}
+  .foto{flex:none;overflow:hidden;width:3.5rem;height:3.5rem;border:1px solid hsl(0 0% 76%);border-radius:100%;box-shadow:0 10px 20px 0 rgba(0,0,0,.2)}
+  .foto img{width:100%;height:100%;object-fit:cover;object-position:50% -15%;background:var(--paper-tief)}
+  .name{font-weight:600}
+  @media (max-width:991px){.slide{padding-right:0;margin-right:2.5rem}}
+  @media (max-width:767px){.kunde{flex-direction:column;align-items:flex-start;gap:0}.foto{margin-bottom:1rem}}
   @media (max-width:767px){.kopfraster{grid-template-columns:1fr;gap:2rem}.rechts{justify-content:flex-start}}
 </style>
