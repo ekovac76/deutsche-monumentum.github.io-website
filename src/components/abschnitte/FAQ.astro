@@ -30,9 +30,9 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, titel, text, hinweis, 
       ))}
     </div>
     <div class="nachfrage">
-      <p class="h2 abstand-header">Noch Fragen offen?</p>
-      <p class="text-normal abstand-text">Manche Antworten passen nicht in fünf Zeilen – zum Beispiel die, was ein Investment für Ihre persönliche Steuersituation bedeutet. Genau dafür gibt es das Gespräch mit uns.</p>
-      <div class="button-zeile">
+      <div class="nachfrage-kopf"><h3 class="nachfrage-titel">Noch Fragen offen?</h3></div>
+      <div class="abstand-text"><p class="text-normal">Manche Antworten passen nicht in fünf Zeilen – zum Beispiel die, was ein Investment für Ihre persönliche Steuersituation bedeutet. Genau dafür gibt es das Gespräch mit uns.</p></div>
+      <div class="button-zeile knopf-abstand">
         <Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button>
         {projekteButton && <Button href="/projekte" variante="sekundaer">aktuelle Projekte</Button>}
       </div>
@@ -56,8 +56,12 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, titel, text, hinweis, 
   details[open] .icon svg{transform:rotate(180deg)}
   .antwort{padding-bottom:2rem}
   .antwort p{max-width:48rem}
-  .nachfrage{max-width:29.8rem}
-  @media (min-width:1280px){.kopfraster{grid-template-columns:1fr .6fr}.schmal{max-width:35rem}}
+  /* Div Block 59: max-width-medium (29,8rem, ab 1280 px 39rem), header_3 mit Standard-h3-Abstand 20px/10px, margin_header_botton.small 1rem */
+  .nachfrage{width:100%;max-width:29.8rem}
+  .nachfrage-kopf{padding-bottom:1rem}
+  .nachfrage-titel{margin:20px 0 10px;font-family:var(--font-sans);font-size:1.3rem;line-height:1.3;font-weight:700;color:#333}
+  .knopf-abstand{padding-bottom:3rem}
+  @media (min-width:1280px){.kopfraster{grid-template-columns:1fr .6fr}.schmal{max-width:35rem}.nachfrage{max-width:39rem}}
   @media (max-width:767px){.kopfraster{grid-template-columns:1fr}summary{padding:1rem 0}.icon,.icon svg{width:1.75rem;height:1.75rem}}
   @media (max-width:479px){.kopfraster{gap:2rem}.text{font-size:1.2rem}}
 </style>
