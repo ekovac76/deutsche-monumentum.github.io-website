@@ -58,7 +58,7 @@ const beraterBilder = [bilder.teamKovac, bilder.teamPeters];
     <div class="sektion-innen">
       <Kapitelkopf ziffer="III." thema="Galerie / Bauphasen" zaehler="03 / 07" />
       <Randhinweis nummer="01" titel={p.infoLabel} text={p.infoText} />
-      <Slider label="Galerie" breite="33.333%" breiteTablet="50%" breiteMobil="50%">
+      <Slider label="Galerie" breite="33.333%" breiteTablet="50%" breiteMobil="50%" schatten>
         {p.slider.filter((s) => s.bild).map((s) => (
           <div>
             <a class="galerie-bild" href={s.bild} data-bild={s.bild} data-gruppe="galerie" data-titel={s.text}>

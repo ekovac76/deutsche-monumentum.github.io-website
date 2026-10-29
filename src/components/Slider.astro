@@ -1,9 +1,9 @@
 ---
 // Einfacher Slider ohne Fremdbibliothek: Wischen/Scrollen + Pfeile unten
-interface Props { breite?: string; breiteTablet?: string; breiteMobil?: string; label: string }
-const { breite = '25%', breiteTablet = '50%', breiteMobil = '85%', label } = Astro.props;
+interface Props { breite?: string; breiteTablet?: string; breiteMobil?: string; label: string; schatten?: boolean }
+const { breite = '25%', breiteTablet = '50%', breiteMobil = '85%', label, schatten = false } = Astro.props;
 ---
-<div class="slider" style={`--b:${breite};--bt:${breiteTablet};--bm:${breiteMobil}`} aria-label={label} role="region">
+<div class:list={['slider', { 'mit-schatten': schatten }]} style={`--b:${breite};--bt:${breiteTablet};--bm:${breiteMobil}`} aria-label={label} role="region">
   <div class="spur" tabindex="0"><slot /></div>
   <div class="steuerung">
     <button class="pfeil zurueck" type="button" aria-label="Zurück"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
@@ -16,6 +16,9 @@ const { breite = '25%', breiteTablet = '50%', breiteMobil = '85%', label } = Ast
   .spur::-webkit-scrollbar{display:none}
   .spur > :global(*){flex:0 0 var(--b);scroll-snap-align:start;padding-right:2rem;box-sizing:border-box}
   .steuerung{display:flex;justify-content:flex-end;gap:1rem;padding-top:2.5rem}
+  /* Platz für Schatten: die Spur schneidet sonst den Bildschatten ab (wie in Webflow: Polster + negativer Rand) */
+  .mit-schatten .spur{padding-top:40px;margin-top:-40px;padding-bottom:140px;margin-bottom:-140px;padding-left:min(90px,4.5vw);margin-left:calc(min(90px,4.5vw) * -1);scroll-padding-left:min(90px,4.5vw)}
+  .mit-schatten .steuerung{position:relative;z-index:1}
   .pfeil{display:flex;width:3rem;height:3rem;justify-content:center;align-items:center;border:1px solid var(--outline-dunkel);border-radius:50%;background:var(--paper-bone);color:var(--ink-weich);cursor:pointer}
   .pfeil:disabled{opacity:.35;cursor:default}
   @media (max-width:991px){.spur > :global(*){flex-basis:var(--bt)}}
