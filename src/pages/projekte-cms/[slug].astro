@@ -11,8 +11,8 @@ import Kapitelkopf from '../../components/Kapitelkopf.astro';
 import Kapitelfuss from '../../components/Kapitelfuss.astro';
 import Randhinweis from '../../components/Randhinweis.astro';
 import Slider from '../../components/Slider.astro';
-import details from '../../data/projekt-details.json';
-import projekte from '../../data/projekte.json';
+import { projektDetails as details } from '../../data/cms';
+import { projekte } from '../../data/cms';
 import { bilder } from '../../data/bilder';
 
 export function getStaticPaths() {

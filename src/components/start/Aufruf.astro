@@ -2,7 +2,7 @@
 import Button from '../Button.astro';
 import Tagline from '../Tagline.astro';
 import Projektkarte from '../Projektkarte.astro';
-import projekte from '../../data/projekte.json';
+import { projekte } from '../../data/cms';
 import { bilder } from '../../data/bilder';
 const nuernberg = { ...projekte.find((p) => p.slug === 'nurnberg')!, bild: bilder.ctaNuernberg, nummer: '03 / 08' };
 ---

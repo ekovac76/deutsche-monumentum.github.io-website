@@ -1,3 +1,5 @@
+import { einstellungen } from './cms';
+
 // Seiten und Adressen wie auf der Webflow-Seite – gleiche Adressen = keine Weiterleitungen nötig.
 export const menue = [
   { ziffer: 'II.', name: 'Aktuelle Projekte', href: '/projekte' },
@@ -24,17 +26,17 @@ export const footerMehr = [
 ];
 
 // Profil-Adressen 1:1 aus dem Webflow-Footer
-export const social = [
+export const social = einstellungen?.social?.length ? einstellungen.social.map(({ name, href }) => ({ name, href })) : [
   { name: 'Instagram', href: 'https://www.instagram.com/deutschemonumentum/' },
   { name: 'LinkedIn', href: 'https://www.linkedin.com/in/michael-peters-5033a4173/' },
   { name: 'Youtube', href: 'https://www.youtube.com/@DeutscheMonumentum' },
 ];
 
 export const kontakt = {
-  mobil: '+49 176 61947860',
-  festnetz: '+49 721 98614532',
-  email: 'info@deutsche-monumentum.de',
-  domain: 'deutsche-monumentum.de',
+  mobil: einstellungen?.mobil || '+49 176 61947860',
+  festnetz: einstellungen?.festnetz || '+49 721 98614532',
+  email: einstellungen?.email || 'info@deutsche-monumentum.de',
+  domain: einstellungen?.domain || 'deutsche-monumentum.de',
 };
 
 // Unterseiten, die noch nachgebaut werden (Platzhalter)

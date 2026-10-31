@@ -4,7 +4,7 @@
 import Tagline from '../Tagline.astro';
 import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
-import videos from '../../data/mediathek.json';
+import { mediathek as videos } from '../../data/cms';
 import { bilder } from '../../data/bilder';
 const liste = [...videos].sort((a, b) => a.nummer.localeCompare(b.nummer));
 const monate = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

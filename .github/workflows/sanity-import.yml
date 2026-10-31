@@ -1,0 +1,24 @@
+# Einmaliger Import der Inhalte und Bilder nach Sanity.
+# Startet, wenn sich sanity/import-start.txt ändert, oder per Hand ("Run workflow").
+name: Inhalte nach Sanity importieren
+
+on:
+  push:
+    branches: [main]
+    paths: [sanity/import-start.txt]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/sanity-import.mjs
+        env:
+          SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
