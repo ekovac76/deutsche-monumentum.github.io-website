@@ -4,30 +4,26 @@ import Tagline from '../Tagline.astro';
 import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
 import Kennzahlkarte from '../Kennzahlkarte.astro';
-const zahlen = [
-  { zahl: '+ 1.5K', titel: 'Verkaufte Wohnungen', text: 'Profitieren Sie von unserer langjährigen Erfahrung im Immobilienverkauf als Kapitalanlage. Zufriedene Kunden garantieren Qualität.' },
-  { zahl: '+ 8K', titel: 'Bestandskunden', text: 'Mehr als 8000 zufriedene Kunden - Qualität für Kapitalanleger und Vorteil für Bauträger. Schneller Verkauf großer Denkmalprojekte.' },
-  { zahl: '+ 140M €', titel: 'Gesparte Steuern', text: 'In den letzten 30 Jahren haben wir über 140 Mio. Euro Steuern für unsere Kunden gespart und in ihr Privatvermögen überführt.' },
-  { zahl: '100%', titel: 'Nachhaltigkeit', text: 'Unsere Tätigkeit revitalisiert alte Industriebrachen, Kasernen und leerstehende Häuser zu neuem, attraktivem Wohnraum. Sanierung als nachhaltiger Weg zur Schaffung von Wohnraum.' },
-];
+import { seite } from '../../data/cms';
+const z = seite('startseite').zahlen;
 ---
 <section class="sektion">
   <div class="sektion-innen">
-    <Kapitelkopf ziffer="II." thema="Über uns / In Zahlen" zaehler="02 / 10" />
+    <Kapitelkopf ziffer="II." thema={z.thema} zaehler="02 / 10" />
     <div class="komponente">
       <div class="kopfraster">
         <div>
-          <Tagline nummer="02" />
-          <h2 class="h1 abstand-header">Steuern sparen, Vermögen aufbauen: Deutsche Monumentum macht’s möglich!</h2>
+          <Tagline wort={z.tagline} nummer="02" />
+          <h2 class="h1 abstand-header">{z.ueberschrift}</h2>
         </div>
       </div>
       <div class="raster">
         <div>
-          <p class="text-normal abstand-text">Mit den hochwertigen Denkmalimmobilien der Marke „Deutsche Monumentum“ erhalten Sie herausragende Kapitalanlagen an vielversprechenden Wachstumsstandorten. Als erfahrene Experten für exklusive Immobilien sind wir seit über 30 Jahren die führende Marke in Deutschland.</p>
-          <div class="button-zeile"><Button href="/team">Mehr Erfahren!</Button></div>
+          <p class="text-normal abstand-text">{z.text}</p>
+          <div class="button-zeile"><Button href={z.knopf.link}>{z.knopf.text}</Button></div>
         </div>
         <div class="kacheln">
-          {zahlen.map((z) => <Kennzahlkarte {...z} zahlen />)}
+          {z.kacheln.map((k) => <Kennzahlkarte zahl={k.zahl} titel={k.titel} text={k.text} zahlen />)}
         </div>
       </div>
     </div>

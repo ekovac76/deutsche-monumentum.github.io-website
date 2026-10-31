@@ -12,8 +12,10 @@ import Interviews from '../components/start/Interviews.astro';
 import Stimmen from '../components/start/Stimmen.astro';
 import Aufruf from '../components/start/Aufruf.astro';
 import Fragen from '../components/start/Fragen.astro';
+import { seite } from '../data/cms';
+const s = seite('startseite');
 ---
-<Basis titel="Denkmalimmobilien für Kapitalanleger | Deutsche Monumentum" beschreibung="Der führende Anbieter von Denkmälern für den Kapitalanleger: qualitätsgeprüfte Denkmalimmobilien in Top-Lagen, über 30 Jahre Erfahrung." transparent>
+<Basis titel={s.seoTitel} beschreibung={s.seoBeschreibung} transparent>
   <Hero />
   <Laufband />
   <Zahlen />

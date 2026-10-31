@@ -1,19 +1,21 @@
 ---
 // Banner „Das sagen unsere Kunden über uns“ mit ProvenExpert-Logo – 1:1 nach Webflow (section_banner15 / banner15_*)
 import { bilder } from '../../data/bilder';
+import { seite } from '../../data/cms';
+const l = seite('startseite').laufband;
 const paare = [
   { klasse: '' }, { klasse: '' }, { klasse: 'ohne-tablet' }, { klasse: 'ohne-mobil' },
 ];
 ---
 <section class="banner">
-  <a class="link" href="https://www.provenexpert.com/de-de/deutsche-monumentum/" target="_blank" rel="noopener" aria-label="Das sagen unsere Kunden über uns – Bewertungen auf ProvenExpert">
+  <a class="link" href={l.link} target="_blank" rel="noopener" aria-label={`${l.text} – Bewertungen auf ProvenExpert`}>
     <div class="komponente">
       <div class="innen" aria-hidden="true">
         {[0, 1].map(() => (
           <div class="laufband">
             {paare.map((p) => (
               <>
-                <div class:list={['text', p.klasse]}><span class="titel">Das sagen unsere Kunden über uns</span></div>
+                <div class:list={['text', p.klasse]}><span class="titel">{l.text}</span></div>
                 <div class:list={['bild', p.klasse]}><img src={bilder.provenExpertLogo} alt="" width="162" height="48" loading="lazy" /></div>
               </>
             ))}

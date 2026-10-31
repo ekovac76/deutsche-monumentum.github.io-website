@@ -1,5 +1,6 @@
 ---
 import Seitenkopf from '../abschnitte/Seitenkopf.astro';
-import { bilder } from '../../data/bilder';
+import { seite } from '../../data/cms';
+const h = seite('startseite').hero;
 ---
-<Seitenkopf bild={bilder.heroEmden} titel="Deutsche Monumentum - Wir sind der führende Anbieter von Denkmälern für den Kapitalanleger" text="Alte Fabriken, Kasernen und Villen bekommen bei uns eine zweite Zukunft – als geprüfte Denkmalimmobilien, die Ihre Steuerlast in Privatvermögen verwandeln." />
+<Seitenkopf bild={h.bild} wort={h.tagline} titel={h.ueberschrift} text={h.text} button={h.knopf} />

@@ -4,8 +4,12 @@ import Tagline from '../Tagline.astro';
 import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
 import Randhinweis from '../Randhinweis.astro';
-interface Props { ziffer: string; thema: string; zaehler: string; wort?: string; nummer: string; titel: string; text: string; hinweis: string; fragen: [string, string][]; projekteButton?: boolean }
-const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, titel, text, hinweis, fragen, projekteButton = true } = Astro.props;
+interface Props { ziffer: string; thema: string; zaehler: string; wort?: string; nummer: string; titel: string; text: string; hinweis: string; fragen: [string, string][]; projekteButton?: boolean; nachfrageTitel?: string; nachfrageText?: string }
+const {
+  ziffer, thema, zaehler, wort = 'Kapitel', nummer, titel, text, hinweis, fragen, projekteButton = true,
+  nachfrageTitel = 'Noch Fragen offen?',
+  nachfrageText = 'Manche Antworten passen nicht in fünf Zeilen – zum Beispiel die, was ein Investment für Ihre persönliche Steuersituation bedeutet. Genau dafür gibt es das Gespräch mit uns.',
+} = Astro.props;
 ---
 <section class="sektion">
   <div class="sektion-innen">
@@ -30,8 +34,8 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, titel, text, hinweis, 
       ))}
     </div>
     <div class="nachfrage">
-      <div class="nachfrage-kopf"><h3 class="nachfrage-titel">Noch Fragen offen?</h3></div>
-      <div class="abstand-text"><p class="text-normal">Manche Antworten passen nicht in fünf Zeilen – zum Beispiel die, was ein Investment für Ihre persönliche Steuersituation bedeutet. Genau dafür gibt es das Gespräch mit uns.</p></div>
+      <div class="nachfrage-kopf"><h3 class="nachfrage-titel">{nachfrageTitel}</h3></div>
+      <div class="abstand-text"><p class="text-normal">{nachfrageText}</p></div>
       <div class="button-zeile knopf-abstand">
         <Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button>
         {projekteButton && <Button href="/projekte" variante="sekundaer">aktuelle Projekte</Button>}

@@ -26,7 +26,7 @@ jobs:
     steps:
       - id: stand
         run: |
-          Q='{"query":"{\"n\": count(*[_type in [\"projekt\",\"referenz\",\"video\",\"einstellungen\"]]), \"t\": (*[_type in [\"projekt\",\"referenz\",\"video\",\"einstellungen\"]] | order(_updatedAt desc))[0]._updatedAt}","perspective":"published"}'
+          Q='{"query":"{\"n\": count(*[!(_id in path(\"_.**\")) && !(_type match \"sanity.*\") && !(_type match \"system.*\")]), \"t\": (*[!(_id in path(\"_.**\")) && !(_type match \"sanity.*\") && !(_type match \"system.*\")] | order(_updatedAt desc))[0]._updatedAt}","perspective":"published"}'
           NEU=$(curl -sf -X POST -H 'Content-Type: application/json' -d "$Q" https://kgw2l752.api.sanity.io/v2025-02-19/data/query/production | jq -r '.result | "\(.n)|\(.t)"' || echo "fehler")
           ALT=$(curl -sf "https://ekovac76.github.io/${{ github.event.repository.name }}/cms-stand.txt" || echo "keiner")
           echo "Sanity: $NEU / Website: $ALT"

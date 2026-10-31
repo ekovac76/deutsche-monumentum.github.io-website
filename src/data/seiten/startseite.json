@@ -1,0 +1,253 @@
+{
+ "_id": "startseite",
+ "_type": "startseite",
+ "seoTitel": "Denkmalimmobilien für Kapitalanleger | Deutsche Monumentum",
+ "seoBeschreibung": "Der führende Anbieter von Denkmälern für den Kapitalanleger: qualitätsgeprüfte Denkmalimmobilien in Top-Lagen, über 30 Jahre Erfahrung.",
+ "hero": {
+  "_type": "abschnittHero",
+  "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a42667a6a0949fa8f5baada_Emden%20aussen%20bei%20tag.webp",
+  "tagline": "Kapitel",
+  "ueberschrift": "Deutsche Monumentum - Wir sind der führende Anbieter von Denkmälern für den Kapitalanleger",
+  "text": "Alte Fabriken, Kasernen und Villen bekommen bei uns eine zweite Zukunft – als geprüfte Denkmalimmobilien, die Ihre Steuerlast in Privatvermögen verwandeln.",
+  "knopf": "Kontakt aufnehmen"
+ },
+ "laufband": {
+  "_type": "abschnittLaufband",
+  "text": "Das sagen unsere Kunden über uns",
+  "link": "https://www.provenexpert.com/de-de/deutsche-monumentum/"
+ },
+ "zahlen": {
+  "_type": "abschnittZahlen",
+  "thema": "Über uns / In Zahlen",
+  "tagline": "Kapitel",
+  "ueberschrift": "Steuern sparen, Vermögen aufbauen: Deutsche Monumentum macht’s möglich!",
+  "text": "Mit den hochwertigen Denkmalimmobilien der Marke „Deutsche Monumentum“ erhalten Sie herausragende Kapitalanlagen an vielversprechenden Wachstumsstandorten. Als erfahrene Experten für exklusive Immobilien sind wir seit über 30 Jahren die führende Marke in Deutschland.",
+  "knopf": {
+   "_type": "knopf",
+   "text": "Mehr Erfahren!",
+   "link": "/team"
+  },
+  "kacheln": [
+   {
+    "_type": "kennzahl",
+    "zahl": "+ 1.5K",
+    "titel": "Verkaufte Wohnungen",
+    "text": "Profitieren Sie von unserer langjährigen Erfahrung im Immobilienverkauf als Kapitalanlage. Zufriedene Kunden garantieren Qualität."
+   },
+   {
+    "_type": "kennzahl",
+    "zahl": "+ 8K",
+    "titel": "Bestandskunden",
+    "text": "Mehr als 8000 zufriedene Kunden - Qualität für Kapitalanleger und Vorteil für Bauträger. Schneller Verkauf großer Denkmalprojekte."
+   },
+   {
+    "_type": "kennzahl",
+    "zahl": "+ 140M €",
+    "titel": "Gesparte Steuern",
+    "text": "In den letzten 30 Jahren haben wir über 140 Mio. Euro Steuern für unsere Kunden gespart und in ihr Privatvermögen überführt."
+   },
+   {
+    "_type": "kennzahl",
+    "zahl": "100%",
+    "titel": "Nachhaltigkeit",
+    "text": "Unsere Tätigkeit revitalisiert alte Industriebrachen, Kasernen und leerstehende Häuser zu neuem, attraktivem Wohnraum. Sanierung als nachhaltiger Weg zur Schaffung von Wohnraum."
+   }
+  ]
+ },
+ "leistungen": {
+  "_type": "abschnittLeistungen",
+  "tagline": "Fähigkeiten",
+  "ueberschrift": "Steuern sparen, Vermögen aufbauen: Deutsche Monumentum  macht's möglich!",
+  "text": "Mit den Denkmalimmobilien der Deutsche Monumentum sichern Sie sich herausragende Kapitalanlagen an vielversprechenden Wachstumsstandorten – seit über 30 Jahren Deutschlands führende Marke für exklusive Immobilien.",
+  "knopf": {
+   "_type": "knopf",
+   "text": "Mehr Erfahren",
+   "link": "/team"
+  },
+  "knopf2": {
+   "_type": "knopf",
+   "text": "Issue öffnen",
+   "link": "#"
+  },
+  "kacheln": [
+   {
+    "_type": "titelText",
+    "titel": "STEUER & FÖRDERUNG",
+    "text": "Wir erstellen Ihre Steuer- und Wirtschaftlichkeitsberechnung, stimmen uns mit Ihrem Steuerberater ab und sichern alle passenden Fördermittel."
+   },
+   {
+    "_type": "titelText",
+    "titel": "TÜV-BAUBEGLEITUNG",
+    "text": "Für maximale Sicherheit werden unsere Projekte über die gesamte Bauphase von unabhängigen TÜV-Gutachtern begleitet und engmaschig geprüft."
+   },
+   {
+    "_type": "titelText",
+    "titel": "FULL-SERVICE-PAKET",
+    "text": "Verwaltung und Vermietung übernehmen erfahrene Profis für Sie – so genießen Sie alle Vorteile Ihrer Kapitalanlage ganz ohne eigenen Aufwand."
+   },
+   {
+    "_type": "titelText",
+    "titel": "PERSÖNLICHE BERATUNG",
+    "text": "Klare Informationen statt Fachchinesisch: Wir erklären Ihnen jedes Objekt bis ins Detail und begleiten Sie persönlich."
+   }
+  ]
+ },
+ "projekte": {
+  "_type": "abschnittProjekte",
+  "thema": "Projekte / Denkmal & Neubau",
+  "tagline": "Kapitel",
+  "ueberschrift": "Aktuelle Projekte, mit denen Sie Steuern sparen und Vermögen aufbauen",
+  "text": "Ob Industriedenkmal, Traditionsgut oder nachhaltiger QNG-Neubau – jedes unserer Projekte hat seine eigene Geschichte. Gemeinsam haben sie unsere Maßstäbe: solvente Bauträger, geprüfte Qualität und hohe Abschreibung samt Förderung.",
+  "hinweisTitel": "STRENG AUSGEWÄHLT",
+  "hinweisText": "Nur wenige Objekte eignen sich für hohe Abschreibungen und beste Förderung – ob Denkmal-AfA oder Sonder-AfA mit KfW-Programm beim Neubau. Unsere Projekte bestehen die Prüfung: nach Lage, Bauträger und Steuerkonzept."
+ },
+ "video": {
+  "_type": "abschnittVideo",
+  "thema": "So funktioniert's / Erklärvideo",
+  "tagline": "Kapitel",
+  "zitat": "„Ich erkläre Ihnen persönlich, wie Deutsche Monumentum funktioniert – vom ersten Gespräch über die Objektauswahl bis zu Ihrem Steuervorteil.\"",
+  "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a451b36d6e7edc9a4cc0634_Bild%20edi.png",
+  "videoLink": ""
+ },
+ "referenzen": {
+  "_type": "abschnittReferenzen",
+  "thema": "Referenzen / Seit 2017",
+  "tagline": "Kapitel",
+  "ueberschrift": "Geschichten, die wir bereits zu Ende erzählt haben: Unsere Referenzprojekte",
+  "text": "Jedes dieser Häuser stand einmal leer – heute sind es gefragte Wohnungen und solide Kapitalanlagen. Seit 2017 zeigt unsere Bilanz: vollständig verkauft, termingerecht fertiggestellt und mit Abschreibungen, die die Prognosen oft übertroffen haben.",
+  "hinweisTitel": "IDEEN IM WANDEL",
+  "hinweisText": "Verfolgen Sie Schritt für Schritt, wie aus historischen Gebäuden hochwertiger Wohnraum entsteht – jede Sanierung dokumentieren wir lückenlos in Bildern, Bauphase für Bauphase",
+  "kacheln": [
+   {
+    "_type": "referenzkachel",
+    "jahr": "2017",
+    "titel": "Ehm. Joffre Areal in Rastatt",
+    "text": "Ehemaliges Kasernenareal: Alle 112 Einheiten waren innerhalb von sechs Monaten verkauft, Fertigstellung 2019.",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a4265b0b0fed1f934561806_ENDE-VIS-Uebersicht-RA-Joffre-Kaserne.webp",
+    "zeile": "Vom Kasernenareal zum Wohnquartier",
+    "link": "/referenzen-cms/rastatt"
+   },
+   {
+    "_type": "referenzkachel",
+    "jahr": "2018",
+    "titel": "Kaiserlofts in Wilhelmshaven",
+    "text": "Aus dem historischen Marineamt wurden 77 Loftwohnungen – vollständig verkauft bis April 2020, fertiggestellt Ende 2022.",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a4265f2c2079b034bad863b_ENDE-VIS-Ansicht-3-Wilhelmshaven.webp",
+    "zeile": "Das alte Marineamt – heute Kaiserlofts",
+    "link": "/referenzen-cms/wilhelmshaven"
+   },
+   {
+    "_type": "referenzkachel",
+    "jahr": "2020",
+    "titel": "Türmchengebäude in Emden",
+    "text": "Das Wahrzeichen mit dem Türmchen: Alle 45 Wohnungen waren in nur sechs Monaten verkauft.",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a42667a6a0949fa8f5baada_Emden%20aussen%20bei%20tag.webp",
+    "zeile": "Ein Wahrzeichen, neu belebt",
+    "link": "/referenzen-cms/emden"
+   },
+   {
+    "_type": "referenzkachel",
+    "jahr": "2021",
+    "titel": "Palais 3-Klang in Koblenz Oberwerth",
+    "text": "62 Wohnungen in nur drei Monaten verkauft und notariell beurkundet – eines unserer schnellsten Projekte.",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a4267a40baec9ca413a4d56_Image_02_210531.avif",
+    "zeile": "Drei Häuser, ein Ensemble",
+    "link": "/referenzen-cms/koblenz"
+   },
+   {
+    "_type": "referenzkachel",
+    "jahr": "2024",
+    "titel": "Seidelsche Fabrik in Darmstadt",
+    "text": "Die alte Papierfabrik: in sechs Monaten vollständig verkauft, derzeit im Bau durch den Generalunternehmer Züblin.",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a426876f9bf4c41f3a61234_pfungstadt_cam02_0040010.webp",
+    "zeile": "Aus der Papierfabrik wird Zuhause",
+    "link": "/referenzen-cms/pfungstadt-fabrik"
+   }
+  ]
+ },
+ "interviews": {
+  "_type": "abschnittInterviews",
+  "thema": "Kundenstimmen / Im Interview",
+  "tagline": "Kapitel",
+  "ueberschrift": "Drei Kunden, drei Geschichten: Warum sie bei uns gekauft haben?",
+  "text": "Niemand erzählt unsere Geschichte besser als die, die investiert haben. Drei Kunden berichten im Video, wie sie zu ihrer Immobilie kamen – und was aus Kauf, Vermietung und Abschreibung geworden ist.",
+  "hinweisText": "Sie haben Fragen an unsere Kunden? Viele Antworten finden Sie in den Interviews – oder Sie sprechen uns direkt an.",
+  "karten": [
+   {
+    "_type": "interview",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6aa0032ebbba8629f8ea9fc4_Gro%C3%9F%20(Bild2).jpeg",
+    "zitat": "„Die Übergabe kam ein halbes Jahr früher als geplant – und die Abschreibung war höher als im Exposé.\"",
+    "name": "Michael Dorn",
+    "rolle": "Geschäftsführer",
+    "foto": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a451e5268ced4eff5f63997_65d34c6f36bfe6485e62dbc5_eichenauer_gf_michael_dorn_2.webp"
+   },
+   {
+    "_type": "interview",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6aa0032e62bce152dde4f422_Gro%C3%9F%20(Bild1).jpeg",
+    "zitat": "„Meine Wohnung ist seit über acht Jahren durchgehend vermietet – das Investment hat sich mehr als gelohnt.\"",
+    "name": "Volker Bollinger",
+    "rolle": "Geschäftsführer",
+    "foto": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a451e528240c0a5fb3b8b8d_65d34d4c2731617e92f4af4d_eichenauer_gf_volker_bollinger.webp"
+   },
+   {
+    "_type": "interview",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6aa0032e92ccd0ad0c5c7dc3_Gro%C3%9F%20(Bild).jpeg",
+    "zitat": "„Von der ersten Beratung bis zur Übergabe lief alles genau so, wie es besprochen war.\"",
+    "name": "Steffen Hermann",
+    "rolle": "Heilpraktiker",
+    "foto": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a577157ac5e6cfe9a7f47eb_steffen-herrmann-heilpraktiker-bruchsal.png"
+   }
+  ]
+ },
+ "stimmen": {
+  "_type": "abschnittStimmen",
+  "thema": "Kundenstimmen / Bewertungen",
+  "tagline": "Kapitel",
+  "ueberschrift": "Aus Erfahrung überzeugt: Das sagen Kunden über ihr Investment bei uns",
+  "text": "Steuerberater, Ärzte und Unternehmer vertrauen uns – viele investieren ein zweites und drittes Mal. Lesen Sie, was unsere Kunden über Kauf, Betreuung und Abschreibung berichten: ungekürzt und aus erster Hand.",
+  "hinweisTitel": "AUS ERSTER HAND",
+  "hinweisText": "Alle Stimmen stammen von echten Käufern unserer Projekte. Weitere Bewertungen finden Sie jederzeit auf unserem ProvenExpert-Profil."
+ },
+ "fragen": {
+  "_type": "abschnittFragen",
+  "thema": "Fragen & Antworten / FAQ",
+  "tagline": "Kapitel",
+  "ueberschrift": "Hier finden Sie Antworten auf die wichtigsten Fragen rund um Deutsche Monumentum",
+  "text": "Kurz und klar erklärt: Das Wichtigste rund um Denkmalimmobilien, Ihre Steuervorteile und die Zusammenarbeit mit Deutsche Monumentum.",
+  "hinweisText": "Ihre Frage ist nicht dabei? Sprechen Sie uns an – wir beraten Sie gern persönlich und unverbindlich.",
+  "fragen": [
+   {
+    "_type": "frage",
+    "frage": "Wer ist Deutsche Monumentum – und was machen Sie genau?",
+    "antwort": "Wir sind ein spezialisierter Vertrieb für steueroptimierte Kapitalanlagen: Denkmalimmobilien und QNG-Neubauten. Seit über 30 Jahren suchen wir geeignete Objekte, begleiten die Projektentwicklung und stehen Anlegern vom ersten Gespräch bis zur Schlüsselübergabe zur Seite – über 1.500 verkaufte Wohnungen sprechen für diesen Weg."
+   },
+   {
+    "_type": "frage",
+    "frage": "Was ist eine Denkmalimmobilie – und warum lohnt sie sich als Kapitalanlage?",
+    "antwort": "Eine denkmalgeschützte Immobilie, die hochwertig saniert wird. Den Sanierungsanteil schreiben Sie über die Denkmal-AfA in zwölf Jahren steuerlich ab – oft 70 % und mehr des Kaufpreises. So verbinden Sie einen wertbeständigen Sachwert mit hohen Steuervorteilen und zinsgünstiger KfW-Förderung."
+   },
+   {
+    "_type": "frage",
+    "frage": "Warum sind Denkmalimmobilien so selten?",
+    "antwort": "Denkmäler gibt es viele – aber nur wenige eignen sich als Kapitalanlage: Es braucht einen hohen Sanierungsanteil, eine starke Lage und einen Bauträger, der Denkmalsanierung beherrscht. Über unsere eigene Denkmalsuche und ein über Jahrzehnte gewachsenes Netzwerk erhalten Sie Zugang zu genau diesen raren Objekten."
+   },
+   {
+    "_type": "frage",
+    "frage": "Wie stellen Sie Qualität und Sicherheit sicher?",
+    "antwort": "Wir arbeiten ausschließlich mit erfahrenen, finanzstarken Bauträgern. Jedes Projekt wird während der Bauphase von unabhängigen TÜV-Gutachtern begleitet, jeder Schritt dokumentiert. Und bevor wir ein Objekt anbieten, hat es unsere eigene Prüfung bestanden – nach Lage, Bauträger und Steuerkonzept."
+   },
+   {
+    "_type": "frage",
+    "frage": "Muss ich mich um Vermietung und Verwaltung kümmern?",
+    "antwort": "Nein. Auf Wunsch übernehmen erfahrene Partner vor Ort die Erstvermietung und die laufende Verwaltung Ihrer Wohnung. So bleibt Ihre Kapitalanlage das, was sie sein soll: ein Investment, das für Sie arbeitet – nicht umgekehrt."
+   },
+   {
+    "_type": "frage",
+    "frage": "Was macht die Zusammenarbeit mit Ihnen besonders?",
+    "antwort": "Sie bekommen bei uns keine Immobilie „von der Stange\", sondern ein durchgerechnetes Konzept: eine transparente Steuer- und Wirtschaftlichkeitsberechnung, auf Wunsch abgestimmt mit Ihrem Steuerberater. Dahinter steht ein eingespieltes Netzwerk aus Steuerexperten und Rechtsanwälten – von der ersten Analyse bis zum Notartermin."
+   }
+  ],
+  "nachfrageTitel": "Noch Fragen offen?",
+  "nachfrageText": "Manche Antworten passen nicht in fünf Zeilen – zum Beispiel die, was ein Investment für Ihre persönliche Steuersituation bedeutet. Genau dafür gibt es das Gespräch mit uns."
+ }
+}

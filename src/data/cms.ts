@@ -5,6 +5,12 @@ import projekteJson from './projekte.json';
 import detailsJson from './projekt-details.json';
 import referenzenJson from './referenzen.json';
 import mediathekJson from './mediathek.json';
+import kundenstimmenJson from './kundenstimmen.json';
+import startseiteJson from './seiten/startseite.json';
+import aufrufJson from './seiten/aufruf.json';
+
+// Seiten-Texte: je Seite ein Eintrag in Sanity (feste ID) + JSON-Datei als Sicherheitsnetz
+const SEITEN = { startseite: startseiteJson, aufruf: aufrufJson };
 
 const PROJEKT = 'kgw2l752';
 const DATASET = 'production';
@@ -21,7 +27,11 @@ const QUERY = `{
     "bau": bau[]{ datum, "bilder": bilder[].asset->url }
   },
   "videos": *[_type == "video" && !(_id in path("drafts.**"))] | order(nummer asc) { ..., "coverbild": coverbild.asset->url },
-  "einstellungen": *[_id == "einstellungen"][0]
+  "einstellungen": *[_id == "einstellungen"][0],
+  "seiten": *[_id in $seiten],
+  "kundenstimmen": *[_type == "kundenstimme" && !(_id in path("drafts.**"))] | order(reihenfolge asc),
+  "bilder": *[_type == "sanity.imageAsset"]{ _id, url },
+  "verweise": *[_type in ["projekt", "referenz", "video"] && !(_id in path("drafts.**"))]{ _id, "slug": slug.current }
 }`;
 
 async function laden(): Promise<any | null> {
@@ -30,7 +40,7 @@ async function laden(): Promise<any | null> {
     const res = await fetch(`https://${PROJEKT}.api.sanity.io/v2025-02-19/data/query/${DATASET}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: QUERY, perspective: 'published' }),
+      body: JSON.stringify({ query: QUERY, params: { seiten: Object.keys(SEITEN) }, perspective: 'published' }),
       signal: AbortSignal.timeout(20000),
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -105,3 +115,27 @@ export const mediathek: typeof mediathekJson = cms
 
 export const einstellungen: { mobil?: string; festnetz?: string; email?: string; domain?: string; social?: { name: string; href: string }[] } | null =
   cms?.einstellungen ?? null;
+
+// ---------- Seiten-Texte ----------
+// Sanity-Bilder → Bild-URL, Verweise (z. B. auf ein Projekt) → dessen Adresse (slug)
+const bildUrl = new Map<string, string>((cms?.bilder || []).map((b: any) => [b._id, b.url]));
+const slugVon = new Map<string, string>((cms?.verweise || []).map((v: any) => [v._id, v.slug]));
+function aufloesen(wert: any): any {
+  if (Array.isArray(wert)) return wert.map(aufloesen);
+  if (wert && typeof wert === 'object') {
+    if (wert._type === 'image' || wert.asset?._ref) return bild(bildUrl.get(wert.asset?._ref)) ?? '';
+    if (wert._type === 'reference') return slugVon.get(wert._ref) ?? '';
+    const o: any = {};
+    for (const [k, v] of Object.entries(wert)) if (!k.startsWith('_') || k === '_type') o[k] = aufloesen(v);
+    return o;
+  }
+  return wert;
+}
+
+type Seiten = typeof SEITEN;
+export function seite<K extends keyof Seiten>(id: K): Seiten[K] {
+  const doc = cms?.seiten?.find((d: any) => d._id === id);
+  return doc ? aufloesen(doc) : SEITEN[id];
+}
+
+export const kundenstimmen: typeof kundenstimmenJson = cms?.kundenstimmen?.length ? aufloesen(cms.kundenstimmen) : kundenstimmenJson;

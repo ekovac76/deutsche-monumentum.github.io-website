@@ -2,7 +2,7 @@
 // aus src/data/*.json nach Sanity und lädt alle Bilder von Webflow in Sanity hoch.
 // Läuft auf GitHub (Workflow "Inhalte nach Sanity importieren"), braucht SANITY_WRITE_TOKEN.
 // Vorhandene Dokumente werden NICHT überschrieben (außer ERSETZEN=1).
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 
 const PROJEKT = 'kgw2l752';
@@ -17,10 +17,13 @@ const projekte = lese('projekte');
 const details = lese('projekt-details');
 const referenzen = lese('referenzen');
 const mediathek = lese('mediathek');
+const kundenstimmen = lese('kundenstimmen');
+const seiten = readdirSync(new URL('../src/data/seiten/', import.meta.url)).filter((f) => f.endsWith('.json')).map((f) => lese(`seiten/${f.replace('.json', '')}`));
 const navi = readFileSync(new URL('../src/data/navigation.ts', import.meta.url), 'utf8');
 
 // ---------- Bilder ----------
 const cache = new Map();
+const quelle = (url) => createHash('sha1').update(url).digest('hex');
 async function ladeHoch(url) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Bild nicht ladbar (${res.status}): ${url}`);
@@ -28,7 +31,7 @@ async function ladeHoch(url) {
   const name = decodeURIComponent(url.split('/').pop().split('?')[0]);
   const typ = res.headers.get('content-type') || 'application/octet-stream';
   for (let versuch = 1; ; versuch++) {
-    const up = await fetch(`${API}/assets/images/${DATASET}?filename=${encodeURIComponent(name)}&sourceName=webflow&sourceId=${createHash('sha1').update(url).digest('hex')}&sourceUrl=${encodeURIComponent(url)}`, {
+    const up = await fetch(`${API}/assets/images/${DATASET}?filename=${encodeURIComponent(name)}&sourceName=webflow&sourceId=${quelle(url)}&sourceUrl=${encodeURIComponent(url)}`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': typ },
       body: daten,
@@ -141,8 +144,25 @@ docs.push({
   social: [...navi.matchAll(/\{ name: '([^']+)', href: '(https:[^']+)' \}/g)].map(([, name, href]) => ({ _type: 'profil', name, href })),
 });
 
+// Seiten-Texte und Kundenstimmen: Bild-Adressen → Bilder, "projekt" → Verweis auf das Projekt
+const IST_BILD = /^https:\/\/\S+\.(webp|png|jpe?g|avif|gif|svg)$/i;
+function seitenDoc(wert, feld = '') {
+  if (Array.isArray(wert)) return wert.map((x) => seitenDoc(x));
+  if (wert && typeof wert === 'object') return Object.fromEntries(Object.entries(wert).map(([k, v]) => [k, seitenDoc(v, k)]));
+  if (typeof wert === 'string' && IST_BILD.test(wert)) return bild(wert);
+  if (feld === 'projekt' && typeof wert === 'string' && wert) return { _type: 'reference', _ref: `projekt-${wert}` };
+  return wert;
+}
+for (const d of [...seiten, ...kundenstimmen]) docs.push(seitenDoc(d));
+
 console.log(`${docs.length} Dokumente, ${cache.size} Bilder`);
-await alleHochladen(new Set(cache.keys()));
+// Bereits hochgeladene Bilder (von früheren Läufen) nicht noch einmal laden
+const vorhanden = await (await fetch(`${API}/data/query/${DATASET}?query=${encodeURIComponent('*[_type=="sanity.imageAsset" && source.name=="webflow"]{_id, "q": source.id}')}`, { headers: { Authorization: `Bearer ${TOKEN}` } })).json();
+const nachQuelle = new Map((vorhanden.result || []).map((a) => [a.q, a._id]));
+for (const u of cache.keys()) if (nachQuelle.has(quelle(u))) cache.set(u, nachQuelle.get(quelle(u)));
+const fehlend = new Set([...cache.keys()].filter((u) => !cache.get(u)));
+console.log(`${cache.size - fehlend.size} Bilder schon in Sanity, ${fehlend.size} neu`);
+await alleHochladen(fehlend);
 console.log('Bilder fertig');
 
 const fertig = docs.map((d) => einsetzen(d));

@@ -1,4 +1,6 @@
 ---
 import Erklaervideo from '../abschnitte/Erklaervideo.astro';
+import { seite } from '../../data/cms';
+const v = seite('startseite').video;
 ---
-<Erklaervideo ziffer="IV." thema="So funktioniert's / Erklärvideo" zaehler="04 / 10" nummer="04" zitat={'„Ich erkläre Ihnen persönlich, wie Deutsche Monumentum funktioniert – vom ersten Gespräch über die Objektauswahl bis zu Ihrem Steuervorteil."'} />
+<Erklaervideo ziffer="IV." thema={v.thema} zaehler="04 / 10" wort={v.tagline} nummer="04" zitat={v.zitat} bild={v.bild} video={v.videoLink} />

@@ -5,19 +5,20 @@ import Kapitelfuss from '../Kapitelfuss.astro';
 import Randhinweis from '../Randhinweis.astro';
 import Projektkarte from '../Projektkarte.astro';
 import Karussell from '../Karussell.astro';
-import { projekte } from '../../data/cms';
+import { projekte, seite } from '../../data/cms';
+const s = seite('startseite').projekte;
 ---
 <section class="sektion">
   <div class="sektion-innen">
-    <Kapitelkopf ziffer="III." thema="Projekte / Denkmal & Neubau" zaehler="03 / 10" />
+    <Kapitelkopf ziffer="III." thema={s.thema} zaehler="03 / 10" />
     <div class="kopfraster">
       <div>
-        <Tagline nummer="03" />
-        <h2 class="h1 abstand-header">Aktuelle Projekte, mit denen Sie Steuern sparen und Vermögen aufbauen</h2>
-        <p class="text-normal">Ob Industriedenkmal, Traditionsgut oder nachhaltiger QNG-Neubau – jedes unserer Projekte hat seine eigene Geschichte. Gemeinsam haben sie unsere Maßstäbe: solvente Bauträger, geprüfte Qualität und hohe Abschreibung samt Förderung.</p>
+        <Tagline wort={s.tagline} nummer="03" />
+        <h2 class="h1 abstand-header">{s.ueberschrift}</h2>
+        <p class="text-normal">{s.text}</p>
       </div>
       <div class="rechts">
-        <Randhinweis nummer="01" titel="STRENG AUSGEWÄHLT" text="Nur wenige Objekte eignen sich für hohe Abschreibungen und beste Förderung – ob Denkmal-AfA oder Sonder-AfA mit KfW-Programm beim Neubau. Unsere Projekte bestehen die Prüfung: nach Lage, Bauträger und Steuerkonzept." />
+        <Randhinweis nummer="01" titel={s.hinweisTitel} text={s.hinweisText} />
       </div>
     </div>
     <Karussell label="Aktuelle Projekte">

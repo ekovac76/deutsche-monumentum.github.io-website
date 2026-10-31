@@ -2,28 +2,28 @@
 import Button from '../Button.astro';
 import Tagline from '../Tagline.astro';
 import Projektkarte from '../Projektkarte.astro';
-import { projekte } from '../../data/cms';
-import { bilder } from '../../data/bilder';
-const nuernberg = { ...projekte.find((p) => p.slug === 'nurnberg')!, bild: bilder.ctaNuernberg, nummer: '03 / 08' };
+import { projekte, seite } from '../../data/cms';
+const a = seite('aufruf');
+const karte = { ...projekte.find((p) => p.slug === a.projekt)!, bild: a.kartenbild, nummer: a.kartenNummer };
 ---
 <section class="sektion">
   <div class="sektion-innen">
     <div class="dunkel">
       <div class="regel">
         <span class="ziffer">VIII.</span>
-        <span class="gold">Kontakt / Jetzt handeln</span>
+        <span class="gold">{a.thema}</span>
       </div>
       <div class="raster">
         <div>
-          <Tagline wort="Ihr Kapitel" nummer="08" hell />
-          <p class="h3 weiss abstand-header">„Zahlen Sie zu viel Steuern? Dann lassen Sie uns sprechen – unverbindlich, persönlich und mit konkreten Zahlen für Ihre Situation."</p>
+          <Tagline wort={a.tagline} nummer="08" hell />
+          <p class="h3 weiss abstand-header">{a.zitat}</p>
           <div class="abstand-header"></div>
-          <div class="button-zeile knopf-abstand"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+          <div class="button-zeile knopf-abstand"><Button href="#kontakt" data-kontakt>{a.knopf}</Button></div>
         </div>
-        <div class="kartenspalte"><Projektkarte {...nuernberg} dunkel /></div>
+        <div class="kartenspalte">{karte.slug && <Projektkarte {...karte} dunkel />}</div>
       </div>
       <div class="regel unten">
-        <span class="links"><span class="punkt"></span><span class="gold">Ihr Steuervorteil</span></span>
+        <span class="links"><span class="punkt"></span><span class="gold">{a.unterzeile}</span></span>
         <span class="gold">deutsche-monumentum.de</span>
       </div>
     </div>
