@@ -4,39 +4,24 @@ import Tagline from '../Tagline.astro';
 import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
 import Kennzahlkarte from '../Kennzahlkarte.astro';
-const vorteile = [
-  ['01', 'STEUER', 'Steuervorteile', 'Eine der letzten echten Steuersparmöglichkeiten in Deutschland: Die hohe Sonderabschreibung senkt Ihre Steuerlast und steigert Ihre Rendite spürbar.'],
-  ['02', 'FÖRDERUNG', 'Hohe KfW-Förderung', 'Zinsgünstige KfW-Darlehen und Tilgungszuschüsse senken Ihre Finanzierungskosten erheblich – Denkmalimmobilien profitieren von besonders starken Programmen.'],
-  ['03', 'WERTZUWACHS', 'Wertsteigerung', 'Jedes Baudenkmal ist ein Unikat und bleibt dauerhaft begehrt – meist mit stärkerer Wertentwicklung als bei konventionellen Neubauten.'],
-  ['04', 'RENDITE', 'Planbare Rendite', 'Aus hoher Abschreibung und KfW-Förderung entsteht eine attraktive, kalkulierbare Rendite, die wir Ihnen vor jedem Kauf transparent vorrechnen.'],
-  ['05', 'SACHWERT', 'Inflationsgeschützt', 'Immobilien sind Sachwerte und ein bewährter Inflationsschutz – historisch zeigen sie eine stabile, verlässliche Wertentwicklung über lange Zeiträume.'],
-  ['06', 'HEBEL', 'Bankenfinanziert', 'Ein großer Teil des Kaufpreises lässt sich finanzieren – der Kredithebel steigert bei vermieteten Immobilien Ihre Eigenkapitalrendite zusätzlich.'],
-];
-// Symbole je Karte wie in Webflow
-const icons = [
-  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c0998b62b49d0f9dec3de_restore.svg',
-  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c09982d72b691e62c6b25_compass.svg',
-  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3bd89f05f7d3f14048a1dd_foerderung.svg',
-  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c09984f53b0e66f8aaeab_key.svg',
-  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c0999405e8970e57e3af4_acquire.svg',
-  'https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3bd89fe5206dbb19785e00_hebel.svg',
-];
+import { seite } from '../../data/cms';
+const s = seite('projekteseite').vorteile;
 ---
 <section class="sektion">
   <div class="sektion-innen">
-    <Kapitelkopf ziffer="IV." thema="Ihre Vorteile / Sechs Gründe" zaehler="04 / 05" />
+    <Kapitelkopf ziffer="IV." thema={s.thema} zaehler="04 / 05" />
     <div class="raster">
       <div>
-        <Tagline wort="Projekte" nummer="04" />
-        <div class="abstand-header"><h2 class="h1">Wie ein Denkmal Ihre Steuerlast senkt, Förderung sichert und stabiles Vermögen schafft</h2></div>
+        <Tagline wort={s.tagline} nummer="04" />
+        <div class="abstand-header"><h2 class="h1">{s.ueberschrift}</h2></div>
       </div>
       <div class="rechts">
-        <p class="text-normal abstand-text">Denkmalimmobilien verbinden gleich mehrere Vorteile: eine hohe Sonderabschreibung, attraktive KfW-Förderung und einen wertbeständigen, inflationsgeschützten Sachwert. So senken Sie Ihre Steuerlast spürbar und bauen zugleich planbar privates Vermögen auf.</p>
-        <div class="button-zeile knopf-abstand"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+        <p class="text-normal abstand-text">{s.text}</p>
+        <div class="button-zeile knopf-abstand"><Button href="#kontakt" data-kontakt>{s.knopf}</Button></div>
       </div>
     </div>
     <div class="karten">
-      {vorteile.map(([zahl, neben, titel, text], i) => <Kennzahlkarte zahl={zahl} neben={neben} titel={titel} text={text} icon={icons[i]} vorteil />)}
+      {s.kacheln.map((k) => <Kennzahlkarte zahl={k.zahl} neben={k.label} titel={k.titel} text={k.text} icon={k.icon} vorteil />)}
     </div>
     <Kapitelfuss />
   </div>

@@ -150,7 +150,7 @@ function seitenDoc(wert, feld = '') {
   if (Array.isArray(wert)) return wert.map((x) => seitenDoc(x));
   if (wert && typeof wert === 'object') return Object.fromEntries(Object.entries(wert).map(([k, v]) => [k, seitenDoc(v, k)]));
   if (typeof wert === 'string' && IST_BILD.test(wert)) return bild(wert);
-  if (feld === 'projekt' && typeof wert === 'string' && wert) return { _type: 'reference', _ref: `projekt-${wert}` };
+  if ((feld === 'projekt' || feld === 'referenz') && typeof wert === 'string' && wert) return { _type: 'reference', _ref: `${feld}-${wert}` };
   return wert;
 }
 for (const d of [...seiten, ...kundenstimmen]) docs.push(seitenDoc(d));

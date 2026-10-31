@@ -1,0 +1,78 @@
+{
+ "_id": "denkmalsucheseite",
+ "_type": "denkmalsucheseite",
+ "seoTitel": "Denkmalsuche: Wir kaufen Baudenkmäler | Deutsche Monumentum",
+ "seoBeschreibung": "Haben Sie ein leerstehendes Denkmal? Wir verwandeln es in Wohnraum. Welche Baudenkmäler wir ankaufen – die Kriterien im Überblick.",
+ "hero": {
+  "_type": "abschnittHero",
+  "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3f8fc1e922541887cb0335_Immograph_20180421_5031%20Kopie%202.png",
+  "tagline": "Referenz · Wilhelmshaven",
+  "ueberschrift": "Haben Sie ein leerstehendes Denkmal? Wir verwandeln es in Wohnraum",
+  "text": "75 % Sonderabschreibung, hochwertige Sanierung und eine Lage nur 350 m vom Hafen – sichern Sie sich Ihr Stück maritime Geschichte als Kapitalanlage.",
+  "knopf": "Kontakt aufnehmen"
+ },
+ "kriterien": {
+  "_type": "abschnittKriterien",
+  "thema": "Referenz / Projektvideo",
+  "tagline": "Denkmalsuche",
+  "ueberschrift": "Welche Baudenkmäler wir ankaufen – die wichtigsten Kriterien im Überblick",
+  "text": "Wir sind ständig auf der Suche nach leerstehenden Baudenkmälern mit Sanierungsbedarf, aus denen wir hochwertigen Wohnraum schaffen. Kennen oder besitzen Sie ein passendes Objekt? Idealerweise erfüllt es diese Kriterien:",
+  "knopf": "Kontakt aufnehmen",
+  "bilder": [
+   "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3f936091fbad363d43b084_001_immograph_20180420_0045.webp",
+   "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3f8fc1e922541887cb0335_Immograph_20180421_5031%20Kopie%202.png",
+   "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3f9360c81044b0c3693a73_012_immograph_20180420_0718.webp",
+   "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3f9360b2a818879a161606_052_immograph_20180420_0159.webp"
+  ],
+  "kriterien": [
+   {
+    "_type": "kriterium",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3fb5e6c8bdeae08c4a3d24_einzeldenkmal.svg",
+    "text": "Einzeldenkmal – sanierungsbedürftige Baudenkmäler nach § 7i EStG."
+   },
+   {
+    "_type": "kriterium",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3fb5e6c8bdeae08c4a3d0d_sanierungsgebiet.svg",
+    "text": "Sanierungsgebiet – auch Objekte nach § 7h EStG in solchen Zonen."
+   },
+   {
+    "_type": "kriterium",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3fb5e695fb0b707c44a5af_entmietet.svg",
+    "text": "Entmietet – das Gebäude steht leer und ist bezugsfrei."
+   },
+   {
+    "_type": "kriterium",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3fb5e61d1f9c2bf42d8e37_sanierungsbeduerftig.svg",
+    "text": "Sanierungsbedürftig – schlechter baulicher Zustand ist willkommen."
+   },
+   {
+    "_type": "kriterium",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3fb5e6b2a818879a1bdd75_flaeche.svg",
+    "text": "Ab 1.000 m² – mindestens 1.000 m² Bruttogeschossfläche."
+   },
+   {
+    "_type": "kriterium",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3fb5e6e922541887d10f43_objekttypen.svg",
+    "text": "Mit Baurecht – idealerweise mit Projektierung oder Baugenehmigung."
+   },
+   {
+    "_type": "kriterium",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3fb5e6c8bdeae08c4a3d0d_sanierungsgebiet.svg",
+    "text": "Objekttypen – Kasernen, Industriedenkmäler, Kliniken, Verwaltungsbauten."
+   },
+   {
+    "_type": "kriterium",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3fb5e605da61ffad787e6e_standort.svg",
+    "text": "Standort – Städte ab 25.000 Einwohnern mit Zukunftsperspektive."
+   }
+  ]
+ },
+ "video": {
+  "_type": "abschnittVideo",
+  "thema": "So funktioniert's / Erklärvideo",
+  "tagline": "Kapitel",
+  "zitat": "„Ich erkläre Ihnen persönlich, welche Denkmalgebäude wir suchen – und worauf es ankommt, damit ein Objekt für unseren Bauträger infrage kommt.“",
+  "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a451b36d6e7edc9a4cc0634_Bild%20edi.png",
+  "videoLink": ""
+ }
+}

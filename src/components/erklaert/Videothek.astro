@@ -4,21 +4,21 @@
 import Tagline from '../Tagline.astro';
 import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
-import { mediathek as videos } from '../../data/cms';
-import { bilder } from '../../data/bilder';
+import { mediathek as videos, seite } from '../../data/cms';
+const s = seite('erklaertseite').videothek;
 const liste = [...videos].sort((a, b) => a.nummer.localeCompare(b.nummer));
 const monate = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const datum = (d: string) => { const [j, m, t] = d.split('-'); return `${t} ${monate[+m - 1]} ${j}`; };
-const reiter = ['Alle Videos', 'Denkmal', 'QNG-Neubau'];
+const reiter = s.reiter;
 ---
 <section class="sektion">
   <div class="sektion-innen">
-    <Kapitelkopf ziffer="I" thema="Mediathek / Kurz erklärt" zaehler="02 / 03" />
+    <Kapitelkopf ziffer="I" thema={s.thema} zaehler="02 / 03" />
     <div class="kopf">
       <div class="kopf-innen">
-        <Tagline wort="Videothek" nummer="02" />
-        <h2 class="h1 abstand-header">Was Käufer wissen sollten: Abschreibung, Förderung, Risiken und Kaufablauf</h2>
-        <p class="einleitung">Wählen Sie ein Thema oder schauen Sie der Reihe nach. Die Videos bauen aufeinander auf und führen vom Grundprinzip der Abschreibung bis zum Ablauf des Kaufs.</p>
+        <Tagline wort={s.tagline} nummer="02" />
+        <h2 class="h1 abstand-header">{s.ueberschrift}</h2>
+        <p class="einleitung">{s.text}</p>
       </div>
     </div>
     <div class="inhalt">
@@ -46,7 +46,7 @@ const reiter = ['Alle Videos', 'Denkmal', 'QNG-Neubau'];
             <p class="text-small kurz">{v.kurztext}</p>
             <div class="fuss">
               <div class="autor">
-                <span class="avatar"><img src={bilder.eduardPortrait} alt="" loading="lazy" /></span>
+                <span class="avatar"><img src={s.autorBild} alt="" loading="lazy" /></span>
                 <div>
                   <p class="text-small">{v.autor}</p>
                   <p class="text-small datum">{datum(v.datum)}<span class="trenner">•</span>{v.dauer}</p>

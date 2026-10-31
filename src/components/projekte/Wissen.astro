@@ -5,28 +5,23 @@ import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
 import Randhinweis from '../Randhinweis.astro';
 import Videovorschau from '../Videovorschau.astro';
-import { bilder } from '../../data/bilder';
-const themen = [
-  ['Wie die Denkmalabschreibung funktioniert', 'Zwölf Jahre, zwei Stufen: Wie Sie die Sanierungskosten über 8 Jahre mit je 9 % und 4 Jahre mit je 7 % steuerlich geltend machen.'],
-  ['Was das konkret für Sie bedeutet', 'Was die Abschreibung für Ihre persönliche Steuerlast bewirkt – anschaulich an einer Beispielrechnung erklärt.'],
-  ['Die KfW-Förderung', 'Zinsgünstige Kredite und Tilgungszuschüsse: Wie die KfW-Förderung Ihre Finanzierung zusätzlich entlastet.'],
-  ['Wie der Kauf abläuft', 'Vom ersten Gespräch bis zum Notartermin: die Schritte zum Kauf Ihrer Denkmalimmobilie im Überblick.'],
-];
+import { seite } from '../../data/cms';
+const s = seite('projekteseite').wissen;
 ---
 <section class="sektion">
   <div class="sektion-innen">
-    <Kapitelkopf ziffer="X." thema="Wissen / Im Video erklärt" zaehler="10 / 10" />
+    <Kapitelkopf ziffer="X." thema={s.thema} zaehler="10 / 10" />
     <div class="kopfraster">
       <div>
-        <Tagline nummer="10" />
-        <div class="abstand-header"><h2 class="h1 schmal">Alles, was Sie über Denkmalimmobilien wissen sollten – kurz erklärt im Video</h2></div>
-        <p class="text-normal schmal">Kurz und verständlich erklärt: Denkmalimmobilien, Ihre Steuervorteile und wie die Zusammenarbeit mit Deutsche Monumentum abläuft.</p>
+        <Tagline wort={s.tagline} nummer="10" />
+        <div class="abstand-header"><h2 class="h1 schmal">{s.ueberschrift}</h2></div>
+        <p class="text-normal schmal">{s.text}</p>
       </div>
-      <div class="rechts"><Randhinweis text="Sie wollen tiefer einsteigen? Im persönlichen Gespräch rechnen wir Ihr Beispiel konkret durch." /></div>
+      <div class="rechts"><Randhinweis text={s.hinweisText} /></div>
     </div>
     <div class="tabs" data-tabs>
       <div class="menue" role="tablist">
-        {themen.map(([titel, text], i) => (
+        {s.themen.map(({ titel, text }, i) => (
           <button class:list={['tab', { aktiv: i === 0 }]} role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-tab={i}>
             <span class="kopf"><span class="nr">{String(i + 1).padStart(2, '0')}</span><span class="titel">{titel}</span></span>
             <span class="beschreibung">{text}</span>
@@ -34,9 +29,9 @@ const themen = [
         ))}
       </div>
       <div class="inhalt">
-        {themen.map(([titel], i) => (
+        {s.themen.map(({ titel, bild, videoLink }, i) => (
           <div class="pane" role="tabpanel" data-pane={i} hidden={i !== 0}>
-            <div class="pane-innen"><Videovorschau bild={bilder.eduardVideo} alt={titel} /></div>
+            <div class="pane-innen"><Videovorschau bild={bild} video={videoLink} alt={titel} /></div>
           </div>
         ))}
       </div>

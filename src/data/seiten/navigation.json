@@ -1,0 +1,92 @@
+{
+ "_id": "navigation",
+ "_type": "navigation",
+ "menue": [
+  {
+   "_type": "menuepunkt",
+   "ziffer": "II.",
+   "name": "Aktuelle Projekte",
+   "href": "/projekte"
+  },
+  {
+   "_type": "menuepunkt",
+   "ziffer": "III.",
+   "name": "Unsere Referenzen",
+   "href": "/referenzen"
+  },
+  {
+   "_type": "menuepunkt",
+   "ziffer": "IV.",
+   "name": "Unser Team",
+   "href": "/team"
+  },
+  {
+   "_type": "menuepunkt",
+   "ziffer": "V.",
+   "name": "Denkmalsuche",
+   "href": "/denkmalsuche"
+  },
+  {
+   "_type": "menuepunkt",
+   "ziffer": "VI.",
+   "name": "Bauträger",
+   "href": "/bautrager"
+  },
+  {
+   "_type": "menuepunkt",
+   "ziffer": "VII.",
+   "name": "Denkmal & QNG erklärt",
+   "href": "/denkmal-und-qng-erklart"
+  },
+  {
+   "_type": "menuepunkt",
+   "ziffer": "VIII.",
+   "name": "Renditerechner",
+   "href": "/berechnungstool"
+  }
+ ],
+ "footerNavigation": [
+  {
+   "_type": "menuepunkt",
+   "name": "Start",
+   "href": "/"
+  },
+  {
+   "_type": "menuepunkt",
+   "name": "Referenzen",
+   "href": "/referenzen"
+  },
+  {
+   "_type": "menuepunkt",
+   "name": "Denkmalsuche",
+   "href": "/denkmalsuche"
+  },
+  {
+   "_type": "menuepunkt",
+   "name": "Denkmal & QNG erklärt",
+   "href": "/denkmal-und-qng-erklart"
+  }
+ ],
+ "footerMehr": [
+  {
+   "_type": "menuepunkt",
+   "name": "Projekte",
+   "href": "/projekte"
+  },
+  {
+   "_type": "menuepunkt",
+   "name": "Team",
+   "href": "/team"
+  },
+  {
+   "_type": "menuepunkt",
+   "name": "Für Bauträger",
+   "href": "/bautrager"
+  },
+  {
+   "_type": "menuepunkt",
+   "name": "Renditerechner",
+   "href": "/berechnungstool"
+  }
+ ]
+}

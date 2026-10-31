@@ -4,27 +4,24 @@ import Button from '../Button.astro';
 import Tagline from '../Tagline.astro';
 import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
-// „klein“: In Webflow hat nur der erste Titel die Klasse header_4, die anderen header_3 – 1:1 übernommen
-const schritte = [
-  { nr: '01', pfeil: true, klein: true, titel: 'Bauträgerprüfung & Aufbereitung', text: 'Unsere Käufer sind anspruchsvoll und sicherheitsorientiert – bei ihnen muss alles stimmen. Deshalb prüfen wir Bonität, Sicherheiten und Historie des Bauträgers genau und bereiten das Projekt so auf, dass der Kunde von Anfang an Vertrauen fasst.' },
-  { nr: '02', pfeil: true, klein: false, titel: 'Analyse & Realisierbarkeit', text: 'Wir bewerten ehrlich, was sich am Standort tatsächlich zu welchem Preis verkaufen lässt: Lage, Preis, Abschreibung, KfW-Förderung und Vermietungskonzept. Sie erhalten eine realistische Einschätzung statt Wunschzahlen.' },
-  { nr: '03', pfeil: true, klein: false, titel: 'Kundenbestand & Akquise', text: 'Wir verfügen über einen großen Bestand an kaufkräftigen Anlegern mit hohem zu versteuerndem Einkommen – genau die Zielgruppe, die von der Denkmal-AfA profitiert. Ergänzt durch hochspezialisierte Neukundengewinnung, damit die Nachfrage nie ausgeht.' },
-  { nr: '04', pfeil: false, klein: false, titel: 'Abwicklung & Dokumentation', text: 'Wir dokumentieren jeden Schritt lückenlos, sichern die Finanzierungen der Käufer ab und sorgen dafür, dass jeder Kunde vollständig aufgeklärt und informiert ist. So wird aus dem Verkauf eine saubere, rechtssichere Abwicklung.' },
-];
+import { seite } from '../../data/cms';
+const a = seite('bautraegerseite').ablauf;
+// Nummer und Pfeil ergeben sich aus der Reihenfolge. „klein“: In Webflow hat nur der erste Titel die Klasse header_4, die anderen header_3 – 1:1 übernommen
+const schritte = a.schritte.map((s, i) => ({ ...s, nr: String(i + 1).padStart(2, '0'), pfeil: i < a.schritte.length - 1, klein: i === 0 }));
 ---
 <section class="sektion">
   <div class="sektion-innen">
-    <Kapitelkopf ziffer="II." thema="Für Bauträger / So arbeiten wir" zaehler="02 / 04" />
+    <Kapitelkopf ziffer="II." thema={a.thema} zaehler="02 / 04" />
     <div class="kopf">
       <div class="kopf-text">
-        <Tagline wort="Bauträger" nummer="02" />
-        <h2 class="h1 abstand-header">Wir bringen Ihr Projekt vollständig zum Käufer – schnell, planbar, dokumentiert</h2>
-        <p class="einleitung">Ob denkmalgeschütztes Objekt oder QNG-Neubau: Bauträger wünschen sich einen Vertriebspartner, der zuverlässig und planbar bis zur letzten Wohnung verkauft. Genau dafür stehen wir – bewiesen in zahlreichen Referenzprojekten. Vier Schritte sorgen dafür, dass Ihr Projekt zügig und vollständig seine Käufer findet:</p>
+        <Tagline wort={a.tagline} nummer="02" />
+        <h2 class="h1 abstand-header">{a.ueberschrift}</h2>
+        <p class="einleitung">{a.text}</p>
       </div>
       <div class="hinweis-spalte">
         <div class="hinweis">
           <span class="plus" aria-hidden="true">+</span>
-          <p class="text-xs">Wie das konkret aussieht? Unsere Referenzen zeigen jeden Abverkauf seit 2017 – transparent bis zur letzten Wohnung.</p>
+          <p class="text-xs">{a.hinweisText}</p>
         </div>
       </div>
     </div>
@@ -42,7 +39,7 @@ const schritte = [
         </div>
       ))}
     </div>
-    <div class="button-zeile"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+    <div class="button-zeile"><Button href="#kontakt" data-kontakt>{a.knopf}</Button></div>
     <Kapitelfuss />
   </div>
 </section>

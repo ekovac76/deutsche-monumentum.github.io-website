@@ -4,17 +4,18 @@ import Tagline from '../Tagline.astro';
 import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
 import Projektkarte from '../Projektkarte.astro';
-import { projekte } from '../../data/cms';
+import { projekte, seite } from '../../data/cms';
+const s = seite('projekteseite').liste;
 ---
 <section class="sektion">
   <div class="sektion-innen">
-    <Kapitelkopf ziffer="II." thema="Aktuelle Projekte / Verfügbar" zaehler="02 / 05" />
+    <Kapitelkopf ziffer="II." thema={s.thema} zaehler="02 / 05" />
     <div class="raster">
       <div class="links">
-        <Tagline wort="Projekte" nummer="02" />
-        <div class="abstand-header"><h2 class="h2 schmal">Aktuelle Projekte – ausgewählt für Steuervorteil und Wertbeständigkeit</h2></div>
-        <p class="text-normal abstand-text">Ob Industriedenkmal, Traditionsgut oder QNG-Neubau: Jedes dieser Häuser erzählt seine eigene Geschichte. Gemeinsam haben sie das geprüfte Konzept – solventer Bauträger, hohe Abschreibung, starke Förderung.</p>
-        <div class="button-zeile"><Button href="#kontakt" data-kontakt>Kontakt aufnehmen</Button></div>
+        <Tagline wort={s.tagline} nummer="02" />
+        <div class="abstand-header"><h2 class="h2 schmal">{s.ueberschrift}</h2></div>
+        <p class="text-normal abstand-text">{s.text}</p>
+        <div class="button-zeile"><Button href="#kontakt" data-kontakt>{s.knopf}</Button></div>
       </div>
       <div class="karten">
         {projekte.map((p) => <Projektkarte {...p} />)}

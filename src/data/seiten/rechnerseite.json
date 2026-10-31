@@ -1,0 +1,39 @@
+{
+ "_id": "rechnerseite",
+ "_type": "rechnerseite",
+ "seoTitel": "Berechnungstool für Ihre Investition | Deutsche Monumentum",
+ "seoBeschreibung": "Ihre Investition auf Jahre gerechnet: Steuer, Zins, Tilgung und Überschuss in einer Übersicht – mit dem Denkmal- und dem QNG-Kalkulator.",
+ "hero": {
+  "_type": "abschnittHero",
+  "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6aacfe9def9322d53f364f03_Bild.png",
+  "tagline": "Berechnungstool",
+  "ueberschrift": "Ihre Investition auf Jahre gerechnet – Steuer, Zins, Tilgung und Überschuss in einer Übersicht",
+  "text": "Mit unseren Kalkulatoren sehen Sie schon vor dem Kauf, was eine Denkmalimmobilie oder ein QNG-Neubau für Sie bedeutet – Jahr für Jahr, mit Ihren eigenen Zahlen.",
+  "knopf": "Kontakt aufnehmen"
+ },
+ "rechner": {
+  "_type": "abschnittRechner",
+  "thema": "Berechnungstools / Kostenlos",
+  "tagline": "Kapitel",
+  "zitat": "„Rechnen Sie selbst nach, was aus Ihrer Steuerlast eine eigene Immobilie machen kann – Schritt für Schritt mit Ihren Zahlen.\"",
+  "text": "Wählen Sie den passenden Rechner und sehen Sie in wenigen Minuten Ihren Steuervorteil, Ihren Eigenkapitaleinsatz und Ihre monatliche Belastung.",
+  "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6ab18fd4790185be9e78c0a5_eduard-kovac-steady.webp",
+  "videoLink": "",
+  "rechner": [
+   {
+    "_type": "rechnerKachel",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6aa14669c7515e092bf20353_kalkulator-denkmal.svg",
+    "titel": "Denkmal Kalkulator",
+    "text": "Für denkmalgeschützte Objekte mit erhöhter Abschreibung nach §7i.",
+    "link": "/berechnungstool/denkmal"
+   },
+   {
+    "_type": "rechnerKachel",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6aa1466894fc26adfb49fbbe_kalkulator-neubau.svg",
+    "titel": "QNG Kalkulator",
+    "text": "Für zertifizierte Neubauten mit KfW-Förderung und Sonderabschreibung nach §7b.",
+    "link": "/berechnungstool/qng"
+   }
+  ]
+ }
+}

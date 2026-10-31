@@ -1,0 +1,123 @@
+{
+ "_id": "teamseite",
+ "_type": "teamseite",
+ "seoTitel": "Team & Unternehmen | Deutsche Monumentum",
+ "seoBeschreibung": "Erfahrung, Netzwerk und Leidenschaft: Ihr Spezialist für Denkmalimmobilien. Alles aus einer Hand – von der Objektauswahl bis zur Übergabe.",
+ "hero": {
+  "_type": "abschnittHero",
+  "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a85e70e2249f0826327286f_team-poster.webp",
+  "tagline": "Team",
+  "ueberschrift": "Erfahrung, Netzwerk und Leidenschaft: ein eingespieltes Team für außergewöhnliche Denkmäler",
+  "text": "Unsere Leidenschaft sind Denkmalimmobilien: außergewöhnliche Objekte, die begeistern – und sich als Kapitalanlage rechnen.",
+  "knopf": "Kontakt aufnehmen"
+ },
+ "team": {
+  "_type": "abschnittTeam",
+  "thema": "Unser Team / Ihre Ansprechpartner",
+  "tagline": "Team",
+  "ueberschrift": "Deutsche Monumentum – Ihr erfahrener Spezialist für Denkmalimmobilien und echte Steuervorteile",
+  "hinweisTitel": "SEIT DER BANKZEIT",
+  "hinweisText": "Michael Peters und Eduard Kovac verantworteten Kapitalanlage-Immobilien schon gemeinsam bei einer deutschen Großbank. Diese Erfahrung führen sie heute bei Deutsche Monumentum fort – unabhängig und persönlich.",
+  "jahr": "2026",
+  "mitglieder": [
+   {
+    "_type": "teammitglied",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a439ad3c6f506fbaeee7c6d_michael_peters-e1647938553719.jpg",
+    "rolle": "Berater",
+    "nummer": "Nº 01",
+    "name": "Michael Peters",
+    "text": "Ausgebildeter Ingenieur, seit über 30 Jahren im Vertrieb von Denkmalimmobilien – zuvor viele Jahre als Wealth Manager bei einer deutschen Großbank."
+   },
+   {
+    "_type": "teammitglied",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a293cafeaa865b0ae2948de_kovac_foto-e1647938661453.webp",
+    "rolle": "Berater",
+    "nummer": "Nº 02",
+    "name": "Eduard Kovac",
+    "text": "Studierter Betriebswirt, seit 2004 erfolgreich im Immobilienvertrieb. Zuvor leitete er viele Jahre die Kapitalanlageabteilung einer deutschen Großbank."
+   },
+   {
+    "_type": "teammitglied",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a439af1f058226a21c43d80_deutsche-monumentum-anjela-peters.webp",
+    "rolle": "Maklerin",
+    "nummer": "Nº 03",
+    "name": "Anjela Peters",
+    "text": "Sie absolvierte ihr Studium der Rechtswissenschaften in der Ukraine und verstärkt unser Team seit sechs Jahren mit wertvoller juristischer Expertise."
+   },
+   {
+    "_type": "teammitglied",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a439c0f2ef9e603ddefa46f_final--15.webp",
+    "rolle": "Maklerin",
+    "nummer": "Nº 04",
+    "name": "Bettina Kail",
+    "text": "Ausgebildete Immobilienmaklerin mit rund 10 Jahren Erfahrung in der Immobilienbranche und einem feinen Gespür für die passenden Objekte und Käufer."
+   }
+  ]
+ },
+ "leistungen": {
+  "_type": "abschnittVorteile",
+  "thema": "Leistungen / Alles aus einer Hand",
+  "tagline": "Team",
+  "ueberschrift": "Alles aus einer Hand: von der Objektauswahl über Steuer und Förderung bis zur Übergabe",
+  "text": "Von der Auswahl des richtigen Objekts bis zur Vermietung begleiten wir Sie persönlich durch jeden Schritt. Sie profitieren von geprüften Bauträgern, klaren Steuerberechnungen und einem echten Rundum-Service – damit Ihr Investment sicher gelingt und Sie sich um nichts kümmern müssen.",
+  "knopf": "Kontakt aufnehmen",
+  "kacheln": [
+   {
+    "_type": "vorteil",
+    "zahl": "01",
+    "label": "NETZWERK",
+    "titel": "EXKLUSIVE OBJEKTE",
+    "text": "Über unser Netzwerk erhalten Sie exklusiven Zugang zu seltenen Denkmalimmobilien – echte Raritäten, die andere am freien Markt nicht bekommen.",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c0999405e8970e57e3af4_acquire.svg"
+   },
+   {
+    "_type": "vorteil",
+    "zahl": "02",
+    "label": "QUALITÄT",
+    "titel": "BAUTRÄGER-SICHERHEIT",
+    "text": "Wir arbeiten ausschließlich mit erfahrenen, finanzstarken Bauträgern. So ist die höchste Qualität Ihres Baudenkmals von Beginn an gesichert.",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c09add4e6fcd11cba5e84_hold.svg"
+   },
+   {
+    "_type": "vorteil",
+    "zahl": "03",
+    "label": "BERATUNG",
+    "titel": "PERSÖNLICHE BERATUNG",
+    "text": "Klare Informationen statt Fachchinesisch: Wir erklären Ihnen jedes Objekt bis ins Detail und begleiten Sie persönlich.",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c0998f9dc4e3e0aeaa90e_crown.svg"
+   },
+   {
+    "_type": "vorteil",
+    "zahl": "04",
+    "label": "FINANZEN",
+    "titel": "STEUER & FÖRDERUNG",
+    "text": "Wir erstellen Ihre Steuer- und Wirtschaftlichkeitsberechnung, stimmen uns mit Ihrem Steuerberater ab und sichern alle passenden Fördermittel.",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3bd89fcf948c79802e22f5_abschreibung.svg"
+   },
+   {
+    "_type": "vorteil",
+    "zahl": "05",
+    "label": "KONTROLLE",
+    "titel": "TÜV-BAUBEGLEITUNG",
+    "text": "Für maximale Sicherheit werden unsere Projekte über die gesamte Bauphase von unabhängigen TÜV-Gutachtern begleitet und engmaschig geprüft.",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3bd89f364bd2b8ac5a23a0_foerderung-ink.svg"
+   },
+   {
+    "_type": "vorteil",
+    "zahl": "06",
+    "label": "RUNDUM-SERVICE",
+    "titel": "FULL-SERVICE-PAKET",
+    "text": "Verwaltung und Vermietung übernehmen erfahrene Profis für Sie – so genießen Sie alle Vorteile Ihrer Kapitalanlage ganz ohne eigenen Aufwand.",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c09997210f143d4e6161b_bookmark.svg"
+   }
+  ]
+ },
+ "video": {
+  "_type": "abschnittVideo",
+  "thema": "Wer wir sind / Im Video",
+  "tagline": "Team",
+  "zitat": "„In diesem Video stellen wir uns persönlich vor und zeigen Ihnen, wer hinter Deutsche Monumentum steht und wofür wir stehen.\"",
+  "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a451b36d6e7edc9a4cc0634_Bild%20edi.png",
+  "videoLink": ""
+ }
+}

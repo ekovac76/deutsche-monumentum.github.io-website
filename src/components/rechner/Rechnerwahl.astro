@@ -5,32 +5,29 @@ import Tagline from '../Tagline.astro';
 import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
 import Videovorschau from '../Videovorschau.astro';
-import { bilder } from '../../data/bilder';
-const rechner = [
-  { icon: bilder.iconKalkulatorDenkmal, titel: 'Denkmal Kalkulator', text: 'Für denkmalgeschützte Objekte mit erhöhter Abschreibung nach §7i.', href: '/berechnungstool/denkmal' },
-  { icon: bilder.iconKalkulatorNeubau, titel: 'QNG Kalkulator', text: 'Für zertifizierte Neubauten mit KfW-Förderung und Sonderabschreibung nach §7b.', href: '/berechnungstool/qng' },
-];
+import { seite } from '../../data/cms';
+const s = seite('rechnerseite').rechner;
 ---
 <section class="sektion">
   <div class="sektion-innen">
-    <Kapitelkopf ziffer="V." thema="Berechnungstools / Kostenlos" zaehler="05 / 10" />
+    <Kapitelkopf ziffer="V." thema={s.thema} zaehler="05 / 10" />
     <div class="inhalt">
       <div>
-        <Tagline nummer="04" />
-        <p class="h3 abstand-header">„Rechnen Sie selbst nach, was aus Ihrer Steuerlast eine eigene Immobilie machen kann – Schritt für Schritt mit Ihren Zahlen."</p>
-        <p class="text-normal abstand-text">Wählen Sie den passenden Rechner und sehen Sie in wenigen Minuten Ihren Steuervorteil, Ihren Eigenkapitaleinsatz und Ihre monatliche Belastung.</p>
+        <Tagline wort={s.tagline} nummer="04" />
+        <p class="h3 abstand-header">{s.zitat}</p>
+        <p class="text-normal abstand-text">{s.text}</p>
         <div class="liste">
-          {rechner.map((r) => (
+          {s.rechner.map((r) => (
             <div>
               <div class="klein"><img class="icon" src={r.icon} alt="" width="48" height="48" loading="lazy" /></div>
               <div class="klein"><h3 class="h4">{r.titel}</h3></div>
               <div class="klein"><p class="text-small">{r.text}</p></div>
-              <div class="button-zeile"><Button href={r.href} variante="sekundaer">{r.titel}</Button></div>
+              <div class="button-zeile"><Button href={r.link} variante="sekundaer">{r.titel}</Button></div>
             </div>
           ))}
         </div>
       </div>
-      <Videovorschau bild={bilder.rechnerVideo} alt="Video" />
+      <Videovorschau bild={s.bild} video={s.videoLink} alt="Video" />
     </div>
     <Kapitelfuss />
   </div>

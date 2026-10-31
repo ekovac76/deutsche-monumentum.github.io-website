@@ -6,10 +6,11 @@ import Laufband from '../components/start/Laufband.astro';
 import Zeitstrahl from '../components/referenzen/Zeitstrahl.astro';
 import VorherNachherListe from '../components/referenzen/VorherNachherListe.astro';
 import Aufruf from '../components/start/Aufruf.astro';
-import { bilder } from '../data/bilder';
+import { seite } from '../data/cms';
+const s = seite('referenzenseite');
 ---
-<Basis titel="Referenzprojekte: saniert & übergeben | Deutsche Monumentum" beschreibung="Erfolgreich sanierte Denkmäler: unsere größten Referenzobjekte im Überblick – vom Ankauf über die Sanierung bis zur Übergabe an die Käufer.">
-  <Seitenkopf bild={bilder.heroReferenzen} wort="Referenzen" titel="Unsere großen Referenzprojekte – erfolgreich saniert, verkauft und übergeben" text="Hier sehen Sie nur unsere größten Projekte – die vielen kleineren, die wir zusätzlich realisiert haben, präsentieren wir Ihnen gern persönlich." />
+<Basis titel={s.seoTitel} beschreibung={s.seoBeschreibung}>
+  <Seitenkopf bild={s.hero.bild} wort={s.hero.tagline} titel={s.hero.ueberschrift} text={s.hero.text} button={s.hero.knopf} />
   <Laufband />
   <Zeitstrahl />
   <VorherNachherListe />

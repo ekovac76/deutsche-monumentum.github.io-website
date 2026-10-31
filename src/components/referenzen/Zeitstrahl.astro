@@ -6,38 +6,27 @@ import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
 import Randhinweis from '../Randhinweis.astro';
 import Referenzkarte from './Referenzkarte.astro';
-import { bilder } from '../../data/bilder';
-const eintraege = [
-  { slug: 'rastatt', jahr: '2017', titel: 'Revitalisierung des Joffre-Areals in Rastatt', text: 'Aus den ehemaligen Mannschaftsunterkünften der „Bastion 30" wurde ein lebendiges Wohnquartier. Alle 112 Einheiten waren in nur sechs Monaten verkauft, 2019 fertiggestellt – ausgezeichnet für beispielhaftes Bauen in Baden.',
-    karte: { titel: 'Joffre-Areal in Rastatt', text: 'Drei sanierte Denkmalhäuser, verbunden durch moderne Bauteile, mit Balkonblick ins Grüne – ein Quartier, das Historie und modernen Komfort vereint.', bild: bilder.refRastatt, ort: 'Rastatt' } },
-  { slug: 'wilhelmshaven', jahr: '2018', titel: 'Revitalisierung des Marinebekleidungsamtes in Wilhelmshaven', text: 'Das ehemalige Kaiserliche Marinebekleidungsamt wurde in vier „Häuser" gegliedert und zu einem hochwertigen Wohnquartier saniert. Es entstanden 77 Wohnungen – vom 1-Zimmer-Apartment bis zur Maisonette. Der Vertrieb lief von Dezember 2018 bis April 2020, Ende 2022 war das Projekt fertiggestellt.',
-    karte: { titel: 'Kaiserlofts in Wilhelmshaven', text: 'Nur 350 m vom Hafen und 3 km vom Südstrand entfernt, mitten in einem gewachsenen Wohngebiet – maritimes Flair trifft auf denkmalgeschützte Architektur.', bild: bilder.refWilhelmshaven, ort: 'Wilhelmshaven' } },
-  { slug: 'emden', jahr: '2020', titel: 'Revitalisierung der Karl-von-Müller-Kaserne in Emden', text: 'Das Türmchengebäude der ehemaligen Karl-von-Müller-Kaserne von 1940 wurde mit viel Liebe zum Detail saniert. Es entstanden 45 Wohnungen mit Terrassen, großzügigen Balkonen und barrierefreiem Zugang per Aufzug. Der Verkauf erfolgte von Dezember 2021 bis Januar 2022.',
-    karte: { titel: 'Das Türmchengebäude in Emden', text: 'Emden ist nicht nur Urlaubsort, sondern auch Standort eines der größten Automobilwerke Deutschlands – ein starker Arbeitsmarkt sichert die Nachfrage nach Wohnraum.', bild: bilder.refEmden, ort: 'Emden' } },
-  { slug: 'koblenz', jahr: '2021', titel: 'Revitalisierung des Preußischen Lehrerinnenseminars in Koblenz', text: 'Das 1907/08 im Neorenaissance-Stil erbaute Königlich Preußische Lehrerinnenseminar wurde behutsam zu hochwertigem Wohnraum umgebaut. 62 Wohnungen wurden von September bis November 2021 verkauft und notariell beurkundet.',
-    karte: { titel: 'Palais 3-Klang in Koblenz', text: 'Im Villenviertel Koblenz-Oberwerth direkt am Rhein gelegen – ein repräsentatives Baudenkmal mit Geschichte und erstklassiger Lage.', bild: bilder.refKoblenz, ort: 'Koblenz' } },
-  { slug: 'pfungstadt-fabrik', jahr: '2024', titel: 'Revitalisierung der Seidelschen Fabrik in Pfungstadt', text: 'In der historischen Seidelschen Fabrik entstehen 26 großzügige Denkmalwohnungen. In unter sechs Monaten – von Juli bis Dezember 2024 – war das Projekt vollständig verkauft und befindet sich derzeit im Bau.',
-    karte: { titel: 'Seidelsche Fabrik in Pfungstadt', text: 'Zentral im Rhein-Main-Gebiet, nur wenige Minuten von Darmstadt – mit Bahnhof und Einkauf vor der Tür und besonders großzügigen Wohnungen bis 170 m².', bild: bilder.refDarmstadt, ort: 'Pfungstadt' } },
-];
+import { seite } from '../../data/cms';
+const s = seite('referenzenseite').zeitstrahl;
 ---
 <section class="sektion">
   <div class="sektion-innen">
-    <Kapitelkopf ziffer="II." thema="Referenzen / Seit 2017" zaehler="02 / 02" />
+    <Kapitelkopf ziffer="II." thema={s.thema} zaehler="02 / 02" />
     <div class="kopfraster">
       <div>
-        <Tagline wort="Referenzen" nummer="02" />
-        <h2 class="h1 abstand-header">Erfolgreich sanierte Denkmäler: unsere größten Referenzobjekte im Überblick</h2>
-        <p class="text-normal">Kasernen, Ämter, Fabriken – viele unserer Häuser hatten ihr erstes Leben längst hinter sich. Hier sehen Sie, was daraus wurde: vollständig verkaufte, hochwertig sanierte Wohnquartiere, übergeben an zufriedene Eigentümer und Mieter.</p>
+        <Tagline wort={s.tagline} nummer="02" />
+        <h2 class="h1 abstand-header">{s.ueberschrift}</h2>
+        <p class="text-normal">{s.text}</p>
       </div>
-      <div class="rechts"><Randhinweis nummer="01" titel="VERSPROCHEN & GEHALTEN" text="Jedes dieser Projekte wurde vollständig verkauft und fertiggestellt. Die Sanierungen haben wir in allen Bauphasen dokumentiert – überzeugen Sie sich selbst." /></div>
+      <div class="rechts"><Randhinweis nummer="01" titel={s.hinweisTitel} text={s.hinweisText} /></div>
     </div>
     <div class="zeitstrahl" data-zeitstrahl>
       <div class="linie" aria-hidden="true"><span class="fortschritt"></span></div>
       <div class="liste">
-        {eintraege.map((e, i) => (
+        {s.eintraege.map((e, i) => (
           <div class:list={['reihe', { gespiegelt: i % 2 === 1 }]}>
             <div class="bild-spalte">
-              <Referenzkarte href={`/referenzen-cms/${e.slug}`} nummer={`0${i + 1} / 05`} drehung={i % 2 === 1 ? '4deg' : '-3deg'} {...e.karte} />
+              <Referenzkarte href={`/referenzen-cms/${e.referenz}`} nummer={`0${i + 1} / 05`} drehung={i % 2 === 1 ? '4deg' : '-3deg'} titel={e.karteTitel} text={e.karteText} bild={e.karteBild} ort={e.ort} />
             </div>
             <div class="punkt-spalte"><span class="punkt"></span></div>
             <div class="text-spalte">
@@ -45,7 +34,7 @@ const eintraege = [
                 <p class="jahr">{e.jahr}</p>
                 <h3 class="titel">{e.titel}</h3>
                 <p class="text-normal text">{e.text}</p>
-                <Button href={`/referenzen-cms/${e.slug}`} variante="sekundaer">Zum Referenzprojekt</Button>
+                <Button href={`/referenzen-cms/${e.referenz}`} variante="sekundaer">{s.knopf}</Button>
               </div>
             </div>
           </div>

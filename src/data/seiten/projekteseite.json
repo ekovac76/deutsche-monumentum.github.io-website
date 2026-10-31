@@ -1,0 +1,168 @@
+{
+ "_id": "projekteseite",
+ "_type": "projekteseite",
+ "seoTitel": "Aktuelle Denkmal- & QNG-Projekte | Deutsche Monumentum",
+ "seoBeschreibung": "Geprüfte Kapitalanlagen vom Denkmal bis zum QNG-Neubau – ausgewählt für Steuervorteil und Wertbeständigkeit. Alle aktuellen Projekte im Überblick.",
+ "hero": {
+  "_type": "abschnittHero",
+  "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a85bf341b64b88969af9aa3_pfungstadt-2-2048.webp",
+  "tagline": "Projekte",
+  "ueberschrift": "Unsere aktuellen Projekte – geprüfte Kapitalanlagen vom Denkmal bis zum QNG-Neubau",
+  "text": "Jedes Objekt in diesem Schaufenster hat unsere Prüfung bestanden – nach Lage, Bauträger und Steuerkonzept. Entdecken Sie, was gerade verfügbar ist, und finden Sie das Projekt, das zu Ihrer Anlagestrategie passt.",
+  "knopf": "Kontakt aufnehmen"
+ },
+ "liste": {
+  "_type": "abschnittListe",
+  "thema": "Aktuelle Projekte / Verfügbar",
+  "tagline": "Projekte",
+  "ueberschrift": "Aktuelle Projekte – ausgewählt für Steuervorteil und Wertbeständigkeit",
+  "text": "Ob Industriedenkmal, Traditionsgut oder QNG-Neubau: Jedes dieser Häuser erzählt seine eigene Geschichte. Gemeinsam haben sie das geprüfte Konzept – solventer Bauträger, hohe Abschreibung, starke Förderung.",
+  "knopf": "Kontakt aufnehmen"
+ },
+ "video": {
+  "_type": "abschnittVideo",
+  "thema": "Chancen & Risiken / Im Video",
+  "tagline": "Projekte",
+  "zitat": "„Chancen, Risiken und die entscheidenden Punkte beim Kauf: In diesem Video sage ich Ihnen offen, worauf es bei einem Denkmalinvestment wirklich ankommt.\"",
+  "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a451b36d6e7edc9a4cc0634_Bild%20edi.png",
+  "videoLink": ""
+ },
+ "vorteile": {
+  "_type": "abschnittVorteile",
+  "thema": "Ihre Vorteile / Sechs Gründe",
+  "tagline": "Projekte",
+  "ueberschrift": "Wie ein Denkmal Ihre Steuerlast senkt, Förderung sichert und stabiles Vermögen schafft",
+  "text": "Denkmalimmobilien verbinden gleich mehrere Vorteile: eine hohe Sonderabschreibung, attraktive KfW-Förderung und einen wertbeständigen, inflationsgeschützten Sachwert. So senken Sie Ihre Steuerlast spürbar und bauen zugleich planbar privates Vermögen auf.",
+  "knopf": "Kontakt aufnehmen",
+  "kacheln": [
+   {
+    "_type": "vorteil",
+    "zahl": "01",
+    "label": "STEUER",
+    "titel": "Steuervorteile",
+    "text": "Eine der letzten echten Steuersparmöglichkeiten in Deutschland: Die hohe Sonderabschreibung senkt Ihre Steuerlast und steigert Ihre Rendite spürbar.",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c0998b62b49d0f9dec3de_restore.svg"
+   },
+   {
+    "_type": "vorteil",
+    "zahl": "02",
+    "label": "FÖRDERUNG",
+    "titel": "Hohe KfW-Förderung",
+    "text": "Zinsgünstige KfW-Darlehen und Tilgungszuschüsse senken Ihre Finanzierungskosten erheblich – Denkmalimmobilien profitieren von besonders starken Programmen.",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c09982d72b691e62c6b25_compass.svg"
+   },
+   {
+    "_type": "vorteil",
+    "zahl": "03",
+    "label": "WERTZUWACHS",
+    "titel": "Wertsteigerung",
+    "text": "Jedes Baudenkmal ist ein Unikat und bleibt dauerhaft begehrt – meist mit stärkerer Wertentwicklung als bei konventionellen Neubauten.",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3bd89f05f7d3f14048a1dd_foerderung.svg"
+   },
+   {
+    "_type": "vorteil",
+    "zahl": "04",
+    "label": "RENDITE",
+    "titel": "Planbare Rendite",
+    "text": "Aus hoher Abschreibung und KfW-Förderung entsteht eine attraktive, kalkulierbare Rendite, die wir Ihnen vor jedem Kauf transparent vorrechnen.",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c09984f53b0e66f8aaeab_key.svg"
+   },
+   {
+    "_type": "vorteil",
+    "zahl": "05",
+    "label": "SACHWERT",
+    "titel": "Inflationsgeschützt",
+    "text": "Immobilien sind Sachwerte und ein bewährter Inflationsschutz – historisch zeigen sie eine stabile, verlässliche Wertentwicklung über lange Zeiträume.",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a2c0999405e8970e57e3af4_acquire.svg"
+   },
+   {
+    "_type": "vorteil",
+    "zahl": "06",
+    "label": "HEBEL",
+    "titel": "Bankenfinanziert",
+    "text": "Ein großer Teil des Kaufpreises lässt sich finanzieren – der Kredithebel steigert bei vermieteten Immobilien Ihre Eigenkapitalrendite zusätzlich.",
+    "icon": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a3bd89fe5206dbb19785e00_hebel.svg"
+   }
+  ]
+ },
+ "wissen": {
+  "_type": "abschnittWissen",
+  "thema": "Wissen / Im Video erklärt",
+  "tagline": "Kapitel",
+  "ueberschrift": "Alles, was Sie über Denkmalimmobilien wissen sollten – kurz erklärt im Video",
+  "text": "Kurz und verständlich erklärt: Denkmalimmobilien, Ihre Steuervorteile und wie die Zusammenarbeit mit Deutsche Monumentum abläuft.",
+  "hinweisText": "Sie wollen tiefer einsteigen? Im persönlichen Gespräch rechnen wir Ihr Beispiel konkret durch.",
+  "themen": [
+   {
+    "_type": "wissensthema",
+    "titel": "Wie die Denkmalabschreibung funktioniert",
+    "text": "Zwölf Jahre, zwei Stufen: Wie Sie die Sanierungskosten über 8 Jahre mit je 9 % und 4 Jahre mit je 7 % steuerlich geltend machen.",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a451b36d6e7edc9a4cc0634_Bild%20edi.png",
+    "videoLink": ""
+   },
+   {
+    "_type": "wissensthema",
+    "titel": "Was das konkret für Sie bedeutet",
+    "text": "Was die Abschreibung für Ihre persönliche Steuerlast bewirkt – anschaulich an einer Beispielrechnung erklärt.",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a451b36d6e7edc9a4cc0634_Bild%20edi.png",
+    "videoLink": ""
+   },
+   {
+    "_type": "wissensthema",
+    "titel": "Die KfW-Förderung",
+    "text": "Zinsgünstige Kredite und Tilgungszuschüsse: Wie die KfW-Förderung Ihre Finanzierung zusätzlich entlastet.",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a451b36d6e7edc9a4cc0634_Bild%20edi.png",
+    "videoLink": ""
+   },
+   {
+    "_type": "wissensthema",
+    "titel": "Wie der Kauf abläuft",
+    "text": "Vom ersten Gespräch bis zum Notartermin: die Schritte zum Kauf Ihrer Denkmalimmobilie im Überblick.",
+    "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a451b36d6e7edc9a4cc0634_Bild%20edi.png",
+    "videoLink": ""
+   }
+  ]
+ },
+ "fragen": {
+  "_type": "abschnittFragen",
+  "thema": "Fragen & Antworten / Denkmalwissen",
+  "tagline": "Projekte",
+  "ueberschrift": "Hier finden Sie Antworten auf die wichtigsten Fragen rund um Denkmalimmobilien",
+  "text": "Kurz und klar erklärt: Abschreibung, Kaufzeitpunkt, Sicherheit und Lage – was Anleger vor dem Kauf einer Denkmalimmobilie wissen sollten.",
+  "hinweisText": "Jede Anlage ist individuell. Was die Antworten für Ihre Steuersituation bedeuten, rechnen wir Ihnen gern konkret vor.",
+  "fragen": [
+   {
+    "_type": "frage",
+    "frage": "Wie funktioniert die Denkmal-Abschreibung genau?",
+    "antwort": "Den kompletten Sanierungsanteil schreiben Sie nach § 7i EStG über zwölf Jahre ab: acht Jahre mit je 9 %, danach vier Jahre mit je 7 % – zusammen 100 %. Da der Sanierungsanteil bei unseren Projekten meist 70 % und mehr des Kaufpreises ausmacht, entsteht so Jahr für Jahr eine spürbare Steuerentlastung. Die genaue Berechnung für Ihre Situation erstellen wir Ihnen vor dem Kauf."
+   },
+   {
+    "_type": "frage",
+    "frage": "Warum muss ich vor Sanierungsbeginn kaufen?",
+    "antwort": "Steuerlich begünstigt sind nur die Sanierungskosten, die nach Ihrem Kaufvertrag anfallen. Wer erst nach Fertigstellung kauft, verschenkt die Sonderabschreibung. Deshalb bieten wir unsere Objekte konsequent vor Sanierungsbeginn an – das ist der ganze „Trick\" hinter dem Steuervorteil."
+   },
+   {
+    "_type": "frage",
+    "frage": "Ist die Wohnung nach der Sanierung nicht praktisch ein Neubau?",
+    "antwort": "Technisch ja: Durch den hohen Sanierungsanteil erhalten Sie neuwertige Haustechnik, Bäder und Energiestandards – aber hinter einer historischen Fassade mit Charakter, den kein Neubau bieten kann. Sie verbinden also Neubau-Komfort mit Denkmal-Abschreibung."
+   },
+   {
+    "_type": "frage",
+    "frage": "Wie sicher ist der Bauträger?",
+    "antwort": "Die wichtigste Frage überhaupt – denn Sie kaufen ein Versprechen auf Fertigstellung. Wir arbeiten ausschließlich mit erfahrenen, finanzstarken Bauträgern, prüfen jedes Projekt vorab und lassen die Bauphase von unabhängigen TÜV-Gutachtern begleiten. Ihre Zahlungen erfolgen zudem nach Makler- und Bauträgerverordnung nur nach Baufortschritt."
+   },
+   {
+    "_type": "frage",
+    "frage": "Wer kümmert sich um Vermietung und Verwaltung?",
+    "antwort": "Auf Wunsch übernehmen erfahrene Partner vor Ort die Erstvermietung und die laufende Verwaltung. Sie müssen sich weder um Mietersuche noch um Nebenkostenabrechnungen kümmern – Ihre Kapitalanlage bleibt ein Investment, kein zweiter Job."
+   },
+   {
+    "_type": "frage",
+    "frage": "Wie wichtig ist die Lage – und wie prüfen Sie sie?",
+    "antwort": "Entscheidend. Wir wählen ausschließlich Standorte mit nachweisbarem Wachstumspotenzial – geprüft unter anderem mit der Wohnwetterkarte von bulwiengesa, einem der führenden unabhängigen Immobilien-Analysehäuser Deutschlands. So investieren Sie dort, wo Wohnraum auch morgen gefragt ist."
+   }
+  ],
+  "nachfrageTitel": "Noch Fragen offen?",
+  "nachfrageText": "Manche Antworten passen nicht in fünf Zeilen – zum Beispiel die, was ein Investment für Ihre persönliche Steuersituation bedeutet. Genau dafür gibt es das Gespräch mit uns."
+ }
+}

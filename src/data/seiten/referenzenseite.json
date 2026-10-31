@@ -1,0 +1,104 @@
+{
+ "_id": "referenzenseite",
+ "_type": "referenzenseite",
+ "seoTitel": "Referenzprojekte: saniert & übergeben | Deutsche Monumentum",
+ "seoBeschreibung": "Erfolgreich sanierte Denkmäler: unsere größten Referenzobjekte im Überblick – vom Ankauf über die Sanierung bis zur Übergabe an die Käufer.",
+ "hero": {
+  "_type": "abschnittHero",
+  "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a4267a40baec9ca413a4d56_Image_02_210531.avif",
+  "tagline": "Referenzen",
+  "ueberschrift": "Unsere großen Referenzprojekte – erfolgreich saniert, verkauft und übergeben",
+  "text": "Hier sehen Sie nur unsere größten Projekte – die vielen kleineren, die wir zusätzlich realisiert haben, präsentieren wir Ihnen gern persönlich.",
+  "knopf": "Kontakt aufnehmen"
+ },
+ "zeitstrahl": {
+  "_type": "abschnittZeitstrahl",
+  "thema": "Referenzen / Seit 2017",
+  "tagline": "Referenzen",
+  "ueberschrift": "Erfolgreich sanierte Denkmäler: unsere größten Referenzobjekte im Überblick",
+  "text": "Kasernen, Ämter, Fabriken – viele unserer Häuser hatten ihr erstes Leben längst hinter sich. Hier sehen Sie, was daraus wurde: vollständig verkaufte, hochwertig sanierte Wohnquartiere, übergeben an zufriedene Eigentümer und Mieter.",
+  "hinweisTitel": "VERSPROCHEN & GEHALTEN",
+  "hinweisText": "Jedes dieser Projekte wurde vollständig verkauft und fertiggestellt. Die Sanierungen haben wir in allen Bauphasen dokumentiert – überzeugen Sie sich selbst.",
+  "knopf": "Zum Referenzprojekt",
+  "eintraege": [
+   {
+    "_type": "zeitstrahlEintrag",
+    "referenz": "rastatt",
+    "jahr": "2017",
+    "titel": "Revitalisierung des Joffre-Areals in Rastatt",
+    "text": "Aus den ehemaligen Mannschaftsunterkünften der „Bastion 30\" wurde ein lebendiges Wohnquartier. Alle 112 Einheiten waren in nur sechs Monaten verkauft, 2019 fertiggestellt – ausgezeichnet für beispielhaftes Bauen in Baden.",
+    "karteTitel": "Joffre-Areal in Rastatt",
+    "karteText": "Drei sanierte Denkmalhäuser, verbunden durch moderne Bauteile, mit Balkonblick ins Grüne – ein Quartier, das Historie und modernen Komfort vereint.",
+    "karteBild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a4265b0b0fed1f934561806_ENDE-VIS-Uebersicht-RA-Joffre-Kaserne.webp",
+    "ort": "Rastatt"
+   },
+   {
+    "_type": "zeitstrahlEintrag",
+    "referenz": "wilhelmshaven",
+    "jahr": "2018",
+    "titel": "Revitalisierung des Marinebekleidungsamtes in Wilhelmshaven",
+    "text": "Das ehemalige Kaiserliche Marinebekleidungsamt wurde in vier „Häuser\" gegliedert und zu einem hochwertigen Wohnquartier saniert. Es entstanden 77 Wohnungen – vom 1-Zimmer-Apartment bis zur Maisonette. Der Vertrieb lief von Dezember 2018 bis April 2020, Ende 2022 war das Projekt fertiggestellt.",
+    "karteTitel": "Kaiserlofts in Wilhelmshaven",
+    "karteText": "Nur 350 m vom Hafen und 3 km vom Südstrand entfernt, mitten in einem gewachsenen Wohngebiet – maritimes Flair trifft auf denkmalgeschützte Architektur.",
+    "karteBild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a4265f2c2079b034bad863b_ENDE-VIS-Ansicht-3-Wilhelmshaven.webp",
+    "ort": "Wilhelmshaven"
+   },
+   {
+    "_type": "zeitstrahlEintrag",
+    "referenz": "emden",
+    "jahr": "2020",
+    "titel": "Revitalisierung der Karl-von-Müller-Kaserne in Emden",
+    "text": "Das Türmchengebäude der ehemaligen Karl-von-Müller-Kaserne von 1940 wurde mit viel Liebe zum Detail saniert. Es entstanden 45 Wohnungen mit Terrassen, großzügigen Balkonen und barrierefreiem Zugang per Aufzug. Der Verkauf erfolgte von Dezember 2021 bis Januar 2022.",
+    "karteTitel": "Das Türmchengebäude in Emden",
+    "karteText": "Emden ist nicht nur Urlaubsort, sondern auch Standort eines der größten Automobilwerke Deutschlands – ein starker Arbeitsmarkt sichert die Nachfrage nach Wohnraum.",
+    "karteBild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a42667a6a0949fa8f5baada_Emden%20aussen%20bei%20tag.webp",
+    "ort": "Emden"
+   },
+   {
+    "_type": "zeitstrahlEintrag",
+    "referenz": "koblenz",
+    "jahr": "2021",
+    "titel": "Revitalisierung des Preußischen Lehrerinnenseminars in Koblenz",
+    "text": "Das 1907/08 im Neorenaissance-Stil erbaute Königlich Preußische Lehrerinnenseminar wurde behutsam zu hochwertigem Wohnraum umgebaut. 62 Wohnungen wurden von September bis November 2021 verkauft und notariell beurkundet.",
+    "karteTitel": "Palais 3-Klang in Koblenz",
+    "karteText": "Im Villenviertel Koblenz-Oberwerth direkt am Rhein gelegen – ein repräsentatives Baudenkmal mit Geschichte und erstklassiger Lage.",
+    "karteBild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a4267a40baec9ca413a4d56_Image_02_210531.avif",
+    "ort": "Koblenz"
+   },
+   {
+    "_type": "zeitstrahlEintrag",
+    "referenz": "pfungstadt-fabrik",
+    "jahr": "2024",
+    "titel": "Revitalisierung der Seidelschen Fabrik in Pfungstadt",
+    "text": "In der historischen Seidelschen Fabrik entstehen 26 großzügige Denkmalwohnungen. In unter sechs Monaten – von Juli bis Dezember 2024 – war das Projekt vollständig verkauft und befindet sich derzeit im Bau.",
+    "karteTitel": "Seidelsche Fabrik in Pfungstadt",
+    "karteText": "Zentral im Rhein-Main-Gebiet, nur wenige Minuten von Darmstadt – mit Bahnhof und Einkauf vor der Tür und besonders großzügigen Wohnungen bis 170 m².",
+    "karteBild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a426876f9bf4c41f3a61234_pfungstadt_cam02_0040010.webp",
+    "ort": "Pfungstadt"
+   }
+  ]
+ },
+ "vorherNachher": {
+  "_type": "abschnittVorherNachher",
+  "thema": "Über uns / In Zahlen",
+  "tagline": "Vorher · Nachher",
+  "ueberschrift": "So sieht ein Denkmal aus, wenn wir es kaufen – und so, wenn Sie den Schlüssel bekommen",
+  "text": "Erworben wird historische Substanz: ein Haus, das seine besten Jahre noch vor sich hat. Was daraus entsteht, ist Wohnraum auf Neubauniveau – außen denkmalgerecht, innen komplett neu. Beide Zustände sehen Sie hier direkt nebeneinander.",
+  "paare": [
+   {
+    "_type": "vorherNachherPaar",
+    "vorher": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a98cfec60dff4dbe30d03ba_home-ba-aussen-vorher.webp",
+    "nachher": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a98cfec7fec65dfa9e2bb87_home-ba-aussen-nachher.webp",
+    "titel": "So wird aus einer historischen Hülle modernes Wohnen",
+    "text": "Erhalten bleibt die historische Hülle. Dach, Fenster und Haustechnik sind neu, die Balkone kommen dazu – für Wohnraum auf heutigem Niveau. Die Fassade wird nach dem historischen Vorbild wiederhergestellt."
+   },
+   {
+    "_type": "vorherNachherPaar",
+    "vorher": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a98cfed8e93de031dc48083_home-ba-innen-vorher.webp",
+    "nachher": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a98cfeddeb7b3a209d9939f_home-ba-innen-nachher.webp",
+    "titel": "Wohnen im Neubau – mit der Luft eines Industriedenkmals",
+    "text": "Innen entsteht Neubauqualität: Fußbodenheizung, Innendämmung, neue Fenster, neue Grundrisse. Was kein Neubau bieten kann, bringt das Industriedenkmal mit – vier Meter Deckenhöhe."
+   }
+  ]
+ }
+}

@@ -1,29 +1,14 @@
-import { einstellungen } from './cms';
+import { einstellungen, seite } from './cms';
+
+// Menü und Footer-Links: in Sanity unter „Navigation“ pflegbar
+const nav = seite('navigation');
 
 // Seiten und Adressen wie auf der Webflow-Seite – gleiche Adressen = keine Weiterleitungen nötig.
-export const menue = [
-  { ziffer: 'II.', name: 'Aktuelle Projekte', href: '/projekte' },
-  { ziffer: 'III.', name: 'Unsere Referenzen', href: '/referenzen' },
-  { ziffer: 'IV.', name: 'Unser Team', href: '/team' },
-  { ziffer: 'V.', name: 'Denkmalsuche', href: '/denkmalsuche' },
-  { ziffer: 'VI.', name: 'Bauträger', href: '/bautrager' },
-  { ziffer: 'VII.', name: 'Denkmal & QNG erklärt', href: '/denkmal-und-qng-erklart' },
-  { ziffer: 'VIII.', name: 'Renditerechner', href: '/berechnungstool' },
-];
+export const menue = nav.menue.map(({ ziffer, name, href }) => ({ ziffer, name, href }));
 
-export const footerNavigation = [
-  { name: 'Start', href: '/' },
-  { name: 'Referenzen', href: '/referenzen' },
-  { name: 'Denkmalsuche', href: '/denkmalsuche' },
-  { name: 'Denkmal & QNG erklärt', href: '/denkmal-und-qng-erklart' },
-];
+export const footerNavigation = nav.footerNavigation.map(({ name, href }) => ({ name, href }));
 
-export const footerMehr = [
-  { name: 'Projekte', href: '/projekte' },
-  { name: 'Team', href: '/team' },
-  { name: 'Für Bauträger', href: '/bautrager' },
-  { name: 'Renditerechner', href: '/berechnungstool' },
-];
+export const footerMehr = nav.footerMehr.map(({ name, href }) => ({ name, href }));
 
 // Profil-Adressen 1:1 aus dem Webflow-Footer
 export const social = einstellungen?.social?.length ? einstellungen.social.map(({ name, href }) => ({ name, href })) : [

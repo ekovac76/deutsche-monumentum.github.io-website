@@ -8,9 +8,19 @@ import mediathekJson from './mediathek.json';
 import kundenstimmenJson from './kundenstimmen.json';
 import startseiteJson from './seiten/startseite.json';
 import aufrufJson from './seiten/aufruf.json';
+import projekteseiteJson from './seiten/projekteseite.json';
+import referenzenseiteJson from './seiten/referenzenseite.json';
+import teamseiteJson from './seiten/teamseite.json';
+import bautraegerseiteJson from './seiten/bautraegerseite.json';
+import denkmalsucheseiteJson from './seiten/denkmalsucheseite.json';
+import erklaertseiteJson from './seiten/erklaertseite.json';
+import rechnerseiteJson from './seiten/rechnerseite.json';
+import navigationJson from './seiten/navigation.json';
 
 // Seiten-Texte: je Seite ein Eintrag in Sanity (feste ID) + JSON-Datei als Sicherheitsnetz
-const SEITEN = { startseite: startseiteJson, aufruf: aufrufJson };
+const SEITEN = { startseite: startseiteJson, aufruf: aufrufJson, projekteseite: projekteseiteJson, referenzenseite: referenzenseiteJson, teamseite: teamseiteJson,
+  bautraegerseite: bautraegerseiteJson, denkmalsucheseite: denkmalsucheseiteJson,
+  erklaertseite: erklaertseiteJson, rechnerseite: rechnerseiteJson, navigation: navigationJson };
 
 const PROJEKT = 'kgw2l752';
 const DATASET = 'production';

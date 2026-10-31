@@ -1,0 +1,53 @@
+{
+ "_id": "bautraegerseite",
+ "_type": "bautraegerseite",
+ "seoTitel": "Für Bauträger: Projekte verkaufen | Deutsche Monumentum",
+ "seoBeschreibung": "Haben Sie ein Denkmal- oder QNG-Projekt? Wir bringen Ihr Projekt vollständig zum Käufer – schnell, planbar und dokumentiert.",
+ "hero": {
+  "_type": "abschnittHero",
+  "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a424b8ae288421ad44bbb50_Weingut_Brenner_outdoor_outdoor_3.webp",
+  "tagline": "Bauträger",
+  "ueberschrift": "Haben Sie ein Denkmal- oder QNG-Projekt? Wir sorgen für den schnellen Verkauf!",
+  "text": "Wir vermarkten Ihr Projekt bis zur letzten Wohnung – mit geprüftem Ablauf, bonitätsstarken Käufern und über 30 Jahren Erfahrung im Denkmalvertrieb.",
+  "knopf": "Kontakt aufnehmen"
+ },
+ "ablauf": {
+  "_type": "abschnittAblauf",
+  "thema": "Für Bauträger / So arbeiten wir",
+  "tagline": "Bauträger",
+  "ueberschrift": "Wir bringen Ihr Projekt vollständig zum Käufer – schnell, planbar, dokumentiert",
+  "text": "Ob denkmalgeschütztes Objekt oder QNG-Neubau: Bauträger wünschen sich einen Vertriebspartner, der zuverlässig und planbar bis zur letzten Wohnung verkauft. Genau dafür stehen wir – bewiesen in zahlreichen Referenzprojekten. Vier Schritte sorgen dafür, dass Ihr Projekt zügig und vollständig seine Käufer findet:",
+  "hinweisText": "Wie das konkret aussieht? Unsere Referenzen zeigen jeden Abverkauf seit 2017 – transparent bis zur letzten Wohnung.",
+  "knopf": "Kontakt aufnehmen",
+  "schritte": [
+   {
+    "_type": "titelText",
+    "titel": "Bauträgerprüfung & Aufbereitung",
+    "text": "Unsere Käufer sind anspruchsvoll und sicherheitsorientiert – bei ihnen muss alles stimmen. Deshalb prüfen wir Bonität, Sicherheiten und Historie des Bauträgers genau und bereiten das Projekt so auf, dass der Kunde von Anfang an Vertrauen fasst."
+   },
+   {
+    "_type": "titelText",
+    "titel": "Analyse & Realisierbarkeit",
+    "text": "Wir bewerten ehrlich, was sich am Standort tatsächlich zu welchem Preis verkaufen lässt: Lage, Preis, Abschreibung, KfW-Förderung und Vermietungskonzept. Sie erhalten eine realistische Einschätzung statt Wunschzahlen."
+   },
+   {
+    "_type": "titelText",
+    "titel": "Kundenbestand & Akquise",
+    "text": "Wir verfügen über einen großen Bestand an kaufkräftigen Anlegern mit hohem zu versteuerndem Einkommen – genau die Zielgruppe, die von der Denkmal-AfA profitiert. Ergänzt durch hochspezialisierte Neukundengewinnung, damit die Nachfrage nie ausgeht."
+   },
+   {
+    "_type": "titelText",
+    "titel": "Abwicklung & Dokumentation",
+    "text": "Wir dokumentieren jeden Schritt lückenlos, sichern die Finanzierungen der Käufer ab und sorgen dafür, dass jeder Kunde vollständig aufgeklärt und informiert ist. So wird aus dem Verkauf eine saubere, rechtssichere Abwicklung."
+   }
+  ]
+ },
+ "video": {
+  "_type": "abschnittVideo",
+  "thema": "Erklärvideo / Ihre Vorteile",
+  "tagline": "Bauträger",
+  "zitat": "„In diesem Video zeigen wir Ihnen, welche Vorteile eine Zusammenarbeit mit uns für Sie als Bauträger ganz konkret bedeutet.“",
+  "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a451b36d6e7edc9a4cc0634_Bild%20edi.png",
+  "videoLink": ""
+ }
+}

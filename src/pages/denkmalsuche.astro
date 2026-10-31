@@ -7,14 +7,15 @@ import Kriterien from '../components/denkmalsuche/Kriterien.astro';
 import VorherNachherListe from '../components/referenzen/VorherNachherListe.astro';
 import Erklaervideo from '../components/abschnitte/Erklaervideo.astro';
 import Aufruf from '../components/start/Aufruf.astro';
-import { bilder } from '../data/bilder';
+import { seite } from '../data/cms';
+const s = seite('denkmalsucheseite');
 ---
-<Basis titel="Denkmalsuche: Wir kaufen Baudenkmäler | Deutsche Monumentum" beschreibung="Haben Sie ein leerstehendes Denkmal? Wir verwandeln es in Wohnraum. Welche Baudenkmäler wir ankaufen – die Kriterien im Überblick.">
-  <Seitenkopf bild={bilder.heroDenkmalsuche} wort="Referenz · Wilhelmshaven" nummer="02" titel="Haben Sie ein leerstehendes Denkmal? Wir verwandeln es in Wohnraum" text="75 % Sonderabschreibung, hochwertige Sanierung und eine Lage nur 350 m vom Hafen – sichern Sie sich Ihr Stück maritime Geschichte als Kapitalanlage." />
+<Basis titel={s.seoTitel} beschreibung={s.seoBeschreibung}>
+  <Seitenkopf bild={s.hero.bild} wort={s.hero.tagline} nummer="02" titel={s.hero.ueberschrift} text={s.hero.text} button={s.hero.knopf} />
   <Laufband />
   <Kriterien />
   <VorherNachherListe />
-  <Erklaervideo ziffer="IV." thema="So funktioniert's / Erklärvideo" zaehler="04 / 10" nummer="04"
-    zitat={'„Ich erkläre Ihnen persönlich, welche Denkmalgebäude wir suchen – und worauf es ankommt, damit ein Objekt für unseren Bauträger infrage kommt.“'} />
+  <Erklaervideo ziffer="IV." thema={s.video.thema} zaehler="04 / 10" wort={s.video.tagline} nummer="04"
+    zitat={s.video.zitat} bild={s.video.bild} video={s.video.videoLink} />
   <Aufruf />
 </Basis>
