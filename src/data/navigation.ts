@@ -24,9 +24,5 @@ export const kontakt = {
   domain: einstellungen?.domain || 'deutsche-monumentum.de',
 };
 
-// Unterseiten, die noch nachgebaut werden (Platzhalter)
-export const platzhalter = [
-  { slug: 'impressum', titel: 'Impressum' },
-  { slug: 'datenschutzerklarung', titel: 'Datenschutzerklärung' },
-  { slug: 'danke', titel: 'Vielen Dank für Ihre Anfrage' },
-];
+// Unterseiten, die noch nachgebaut werden (Platzhalter) – derzeit keine
+export const platzhalter: { slug: string; titel: string }[] = [];

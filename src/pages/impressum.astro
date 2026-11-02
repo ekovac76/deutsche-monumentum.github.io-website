@@ -1,0 +1,8 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Rechtstext from '../components/rechtliches/Rechtstext.astro';
+import text from '../data/rechtliches/impressum.html?raw';
+---
+<Basis titel="Impressum | Deutsche Monumentum">
+  <Rechtstext html={text} />
+</Basis>

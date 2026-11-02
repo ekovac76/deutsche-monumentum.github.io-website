@@ -1,0 +1,21 @@
+---
+// Danke-Seite nach dem Absenden des Kontaktformulars – Ziel für Conversion-Messung (Google Ads, LinkedIn, Meta)
+import Basis from '../layouts/Basis.astro';
+import Button from '../components/Button.astro';
+---
+<Basis titel="Vielen Dank für Ihre Anfrage | Deutsche Monumentum" noindex>
+  <section class="sektion">
+    <div class="sektion-innen oben">
+      <div class="box">
+        <h1 class="h1 fett">Vielen Dank für Ihre Anfrage</h1>
+        <p class="text-normal">Bald werden wir uns bei Ihnen melden, um Ihnen weitere Informationen zukommen zu lassen.</p>
+        <div class="button-zeile"><Button href="/">Zurück zur Startseite</Button></div>
+      </div>
+    </div>
+  </section>
+</Basis>
+<style>
+  .oben{padding-top:calc(var(--nav-height) + 4rem);min-height:70vh;justify-content:center}
+  .box{max-width:29.8rem;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+  .fett{-webkit-text-stroke:.6px currentColor}
+</style>

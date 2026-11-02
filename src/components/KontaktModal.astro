@@ -2,6 +2,7 @@
 // Kontaktformular als Fenster – öffnet sich bei allen Links mit data-kontakt oder #kontakt
 import { projekte } from '../data/cms';
 import { kontakt } from '../data/navigation';
+import { formular } from '../data/formular';
 ---
 <dialog id="kontakt" class="modal" aria-labelledby="kontakt-titel">
   <button class="schliessen" type="button" aria-label="Schließen"><i></i><i></i></button>
@@ -9,7 +10,8 @@ import { kontakt } from '../data/navigation';
     <h2 id="kontakt-titel" class="h2 titel">Lassen Sie uns in einem persönlichen Gespräch klären, welche steuerlichen Vorteile diese Steuerimmobilie für Sie bereithält.</h2>
     <p class="text-normal einleitung">Füllen Sie das Formular aus – wir melden uns zeitnah mit passenden Projekten und beantworten alle Ihre Fragen. Unverbindlich und ohne Verpflichtung.</p>
     <div class="raster">
-      <form class="formular" name="Kontaktformular" data-danke="/danke" novalidate>
+      <form class="formular" name="Kontaktformular" action="/danke" method="post" data-schluessel={formular.schluessel} data-betreff={formular.betreff} data-absender={formular.absenderName} novalidate>
+        <input type="checkbox" name="botcheck" class="falle" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <div class="zwei">
           <select name="Anrede" aria-label="Anrede" required><option value="" disabled selected hidden>Anrede</option><option>Herr</option><option>Frau</option><option>Divers</option></select>
           <input name="Vorname" type="text" placeholder="Vorname" aria-label="Vorname" autocomplete="given-name" required />
@@ -47,6 +49,7 @@ import { kontakt } from '../data/navigation';
   </div>
 </dialog>
 <style>
+  .falle{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
   /* Fenster (Hintergrund abgedunkelt, scrollbar) – Inhalt 1:1 nach Webflow contact-modal6 */
   .modal{width:min(60rem,94vw);max-height:92vh;padding:0;border:0;border-radius:var(--radius-md);background:var(--paper-warm);color:var(--ink-weich);box-shadow:var(--shadow-karte)}
   .modal:focus,.modal:focus-visible{outline:none}
@@ -94,12 +97,41 @@ import { kontakt } from '../data/navigation';
     if (location.hash === '#kontakt') modal.showModal();
     const form = modal.querySelector('form')!;
     const meldung = form.querySelector('.meldung') as HTMLElement;
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      // TODO: Versand anbinden (Zoho / E-Mail) – siehe „Offene Punkte“
-      meldung.hidden = false;
-      meldung.textContent = 'Testversion: Das Formular ist noch nicht angebunden. Bitte schreiben Sie an info@deutsche-monumentum.de.';
+      const schluessel = form.dataset.schluessel;
+      if (!schluessel) {
+        meldung.hidden = false;
+        meldung.textContent = 'Testversion: Das Formular ist noch nicht angebunden. Bitte schreiben Sie an info@deutsche-monumentum.de.';
+        return;
+      }
+      // Zusatzangaben wie in Webflow (dmFormMeta): Seiten-URL, UTM (nur mit Marketing-Einwilligung), Projekt der Seite
+      const w = window as any;
+      const marketing = w.DMCONSENT === 'all' || w.DMCONSENT === 'm';
+      const utmJetzt = location.search.replace(/^\?/, '').split('&').filter((p) => /^utm_[a-z]+=/i.test(p)).join('&');
+      let utm = '';
+      try { if (utmJetzt && marketing) sessionStorage.setItem('dm-utm', utmJetzt); utm = utmJetzt || (marketing ? sessionStorage.getItem('dm-utm') || '' : ''); } catch { utm = utmJetzt; }
+      const projektSeite = document.getElementById('dm-lp-projekt')?.textContent?.trim() || '';
+      const daten: Record<string, unknown> = Object.fromEntries(new FormData(form).entries());
+      daten['Einwilligung Newsletter'] = (form.elements.namedItem('Einwilligung Newsletter') as HTMLInputElement).checked ? 'Ja' : 'Nein';
+      Object.assign(daten, {
+        'Seiten-URL': location.href, UTM: utm, 'Projekt der Seite': projektSeite,
+        access_key: schluessel, subject: form.dataset.betreff, from_name: form.dataset.absender,
+        replyto: daten['E-Mail'], botcheck: (form.elements.namedItem('botcheck') as HTMLInputElement).checked,
+      });
+      const knopf = form.querySelector('.senden') as HTMLButtonElement;
+      knopf.disabled = true; knopf.textContent = 'Wird gesendet …';
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(daten) });
+        const antwort = await res.json();
+        if (!res.ok || !antwort.success) throw new Error(antwort.message || res.status);
+        location.href = form.action; // weiter zur Danke-Seite
+      } catch {
+        knopf.disabled = false; knopf.textContent = 'Absenden';
+        meldung.hidden = false;
+        meldung.textContent = 'Das hat leider nicht geklappt. Bitte versuchen Sie es erneut oder schreiben Sie an info@deutsche-monumentum.de.';
+      }
     });
   }
 </script>
