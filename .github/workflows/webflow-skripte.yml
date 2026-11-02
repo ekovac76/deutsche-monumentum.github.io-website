@@ -15,18 +15,26 @@ jobs:
       - run: |
           mkdir -p alt/webflow
           B="https://cdn.prod.website-files.com/662bdbeb1e60c91c67269307%2F689e5ba67671442434f3ca35"
-          curl -sfL "$B%2F6ada399df5eb930a9b7e0701%2Fdmtracking-2.0.0.js" -o alt/webflow/dmtracking-2.0.0.js
-          curl -sfL "$B%2F6ada399db21906a92e0bb5f1%2Fdmcookies-2.0.0.js" -o alt/webflow/dmcookies-2.0.0.js
-          curl -sfL "$B%2F6ada399cfb64598369af1233%2Fdmcookiecss-1.0.0.js" -o alt/webflow/dmcookiecss-1.0.0.js
-          curl -sfL "$B%2F6ae524b043ed0919fd974f35%2Fdmformmeta-1.1.0.js" -o alt/webflow/dmformmeta-1.1.0.js
-          curl -sfL "https://www.deutsche-monumentum.de/" -o alt/webflow/startseite.html
-          curl -sfL "https://www.deutsche-monumentum.de/impressum" -o alt/webflow/impressum.html || true
-          curl -sfL "https://www.deutsche-monumentum.de/datenschutzerklarung" -o alt/webflow/datenschutzerklarung.html || true
-          curl -sfL "https://www.deutsche-monumentum.de/danke" -o alt/webflow/danke.html || true
+          curl -sL --max-time 30 "$B%2F6ada399df5eb930a9b7e0701%2Fdmtracking-2.0.0.js" -o alt/webflow/dmtracking-2.0.0.js
+          curl -sL --max-time 30 "$B%2F6ada399db21906a92e0bb5f1%2Fdmcookies-2.0.0.js" -o alt/webflow/dmcookies-2.0.0.js
+          curl -sL --max-time 30 "$B%2F6ada399cfb64598369af1233%2Fdmcookiecss-1.0.0.js" -o alt/webflow/dmcookiecss-1.0.0.js
+          curl -sL --max-time 30 "$B%2F6ae524b043ed0919fd974f35%2Fdmformmeta-1.1.0.js" -o alt/webflow/dmformmeta-1.1.0.js
+          curl -sL --max-time 30 "https://www.deutsche-monumentum.de/" -o alt/webflow/startseite.html
+          curl -sL --max-time 30 "https://www.deutsche-monumentum.de/impressum" -o alt/webflow/impressum.html
+          curl -sL --max-time 30 "https://www.deutsche-monumentum.de/datenschutzerklarung" -o alt/webflow/datenschutzerklarung.html
+          curl -sL --max-time 30 "https://www.deutsche-monumentum.de/danke" -o alt/webflow/danke.html
           ls -la alt/webflow
+      - name: In Sanity ablegen (Notlösung, falls Push nicht geht)
+        env:
+          SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+        run: |
+          node -e '
+          const fs=require("fs");const d={_id:"alt-webflow",_type:"altWebflow"};
+          for (const f of fs.readdirSync("alt/webflow")) d[f.replace(/[^a-z0-9]/gi,"_")]=fs.readFileSync("alt/webflow/"+f,"utf8").slice(0,400000);
+          fetch("https://kgw2l752.api.sanity.io/v2025-02-19/data/mutate/production",{method:"POST",headers:{Authorization:"Bearer "+process.env.SANITY_WRITE_TOKEN,"Content-Type":"application/json"},body:JSON.stringify({mutations:[{createOrReplace:d}]})}).then(r=>r.text()).then(console.log)'
       - run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git add alt/webflow
           git commit -m "Webflow-Skripte und Rechtsseiten als Vorlage gesichert" || exit 0
-          git push
+          git push || echo PUSH FEHLGESCHLAGEN
