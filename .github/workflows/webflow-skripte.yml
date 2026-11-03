@@ -1,0 +1,26 @@
+# Einmalig: lädt Seiten der alten Webflow-Seite als Vorlage ins Repo.
+name: Webflow-Seiten sichern
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/webflow-skripte.yml]
+permissions:
+  contents: write
+jobs:
+  sichern:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p alt/webflow/landingpages
+          for s in nuernberg pfungstadt edesheim leipzig-leutzscher-hof wuppertal-fabric wuppertal-jugendstilvilla; do
+            curl -sL --max-time 30 "https://www.deutsche-monumentum.de/projekt-landingpages/$s" -o "alt/webflow/landingpages/$s.html"
+          done
+          curl -sL --max-time 30 "https://www.deutsche-monumentum.de/projekte-cms/nurnberg" -o alt/webflow/projekt-nurnberg.html
+          ls -la alt/webflow/landingpages
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add alt/webflow
+          git commit -m "Webflow-Landingpages als Vorlage gesichert" || exit 0
+          git pull --rebase -q && git push
