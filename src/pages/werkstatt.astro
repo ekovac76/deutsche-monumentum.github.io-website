@@ -1,0 +1,21 @@
+---
+// Testseite für neue Sektionen (nicht im Menü, nicht bei Google). Was gefällt, wandert danach an die richtige Stelle.
+import Basis from '../layouts/Basis.astro';
+import Layout5 from '../components/sektionen/Layout5.astro';
+import { bilder } from '../data/bilder';
+---
+<Basis titel="Werkstatt – Testseite | Deutsche Monumentum" noindex>
+  <div style="height:var(--nav-height);background:var(--paper-warm)"></div>
+  <Layout5
+    ziffer="I." thema="Werkstatt / Relume Layout 5" zaehler="01 / 01" tagline="Denkmal-AfA" nummer="01"
+    ueberschrift="Warum ein Denkmal Ihre Steuerlast so stark senkt wie kaum eine andere Kapitalanlage"
+    text="Beim Kauf eines Baudenkmals schreiben Sie den Sanierungsanteil über zwölf Jahre steuerlich ab – oft 70 % und mehr des Kaufpreises. So verwandeln Sie Steuerlast Schritt für Schritt in eigenes Vermögen."
+    punkte={[
+      { titel: 'Acht Jahre je 9 %', text: 'In den ersten acht Jahren setzen Sie jährlich 9 % der Sanierungskosten steuerlich an.' },
+      { titel: 'Vier Jahre je 7 %', text: 'Danach folgen vier Jahre mit je 7 % – zusammen 100 % des Sanierungsanteils.' },
+    ]}
+    knopf={{ text: 'Kontakt aufnehmen', link: '#kontakt' }}
+    knopf2={{ text: 'aktuelle Projekte', link: '/projekte' }}
+    bild={bilder.eduardVideo}
+  />
+</Basis>

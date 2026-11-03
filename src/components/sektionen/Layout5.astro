@@ -1,0 +1,54 @@
+---
+// Relume „Layout 5“ (feature-sections-left-1-2-col / section_layout5) im Designsystem:
+// links Tagline, Überschrift, Text, zwei Unterpunkte nebeneinander, zwei Knöpfe – rechts Videovorschau.
+import Button from '../Button.astro';
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+import Videovorschau from '../Videovorschau.astro';
+interface Punkt { titel: string; text: string }
+interface Knopf { text: string; link: string }
+interface Props {
+  ziffer: string; thema: string; zaehler: string; tagline?: string; nummer: string;
+  ueberschrift: string; text: string; punkte: Punkt[];
+  knopf?: Knopf; knopf2?: Knopf; bild: string; video?: string;
+}
+const { ziffer, thema, zaehler, tagline = 'Kapitel', nummer, ueberschrift, text, punkte, knopf, knopf2, bild, video = '' } = Astro.props;
+const istKontakt = (l?: string) => l === '#kontakt';
+---
+<section class="sektion">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer={ziffer} thema={thema} zaehler={zaehler} />
+    <div class="raster">
+      <div>
+        <Tagline wort={tagline} nummer={nummer} />
+        <h2 class="h1 abstand-header">{ueberschrift}</h2>
+        <p class="text-normal abstand-text">{text}</p>
+        <div class="punkte abstand-text">
+          {punkte.map((p) => (
+            <div>
+              <h3 class="h4 punkt-titel">{p.titel}</h3>
+              <p class="text-normal">{p.text}</p>
+            </div>
+          ))}
+        </div>
+        {(knopf || knopf2) && (
+          <div class="button-zeile">
+            {knopf && <Button href={knopf.link} {...(istKontakt(knopf.link) ? { 'data-kontakt': true } : {})}>{knopf.text}</Button>}
+            {knopf2 && <Button href={knopf2.link} variante="sekundaer" {...(istKontakt(knopf2.link) ? { 'data-kontakt': true } : {})}>{knopf2.text}</Button>}
+          </div>
+        )}
+      </div>
+      <Videovorschau bild={bild} video={video} alt="Video" />
+    </div>
+    <Kapitelfuss />
+  </div>
+</section>
+<style>
+  /* Relume layout5: zwei Spalten 1fr 1fr, Abstand 5rem, mittig; Unterpunkte 2 Spalten, Abstand 1.5rem */
+  .raster{display:grid;grid-template-columns:1fr 1fr;gap:4rem 5rem;align-items:center}
+  .punkte{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding-top:.5rem}
+  .punkt-titel{margin-bottom:1rem}
+  @media (max-width:991px){.raster{gap:4rem 3rem}}
+  @media (max-width:767px){.raster{grid-template-columns:1fr;gap:3rem}.punkte{grid-template-columns:1fr}}
+</style>
