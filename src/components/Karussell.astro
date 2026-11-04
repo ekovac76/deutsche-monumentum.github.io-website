@@ -96,8 +96,8 @@ const { label = 'Karussell' } = Astro.props;
   .fenster.greift{cursor:grabbing}
   .fenster.greift *{user-select:none}
   .fenster::before,.fenster::after{content:"";position:absolute;top:0;bottom:0;width:4%;z-index:2;pointer-events:none}
-  .fenster::before{left:0;background:linear-gradient(to right,#ece3cc,#ece3cc00);opacity:var(--fl,0)}
-  .fenster::after{right:0;background:linear-gradient(to left,#ece3cc,#ece3cc00);opacity:var(--fr,1)}
+  .fenster::before{left:0;background:linear-gradient(to right,var(--paper-warm),transparent);opacity:var(--fl,0)}
+  .fenster::after{right:0;background:linear-gradient(to left,var(--paper-warm),transparent);opacity:var(--fr,1)}
   .spur{display:flex;flex-wrap:nowrap;width:max-content;gap:24px;will-change:transform}
   .spur > :global(*){flex:0 0 var(--karte-breite,302px);display:flex}
   .spur :global(img){-webkit-user-drag:none;user-select:none}
