@@ -18,7 +18,7 @@ const { titel, beschreibung = '', transparent = false, noindex = false, landingp
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
-<html lang="de">
+<html lang="de" class:list={[{ "hintergrund-bone": !!landingpage }]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,6 +27,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="preload" href="/fonts/Gambarino-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    {/* Test (Eduard, 04.11.): auf den Landingpages Hintergrund Paper Bone statt Paper Warm */}
+    <style is:global>html.hintergrund-bone{--paper-warm:#fcfaf3}</style>
   </head>
   <body>
     <Header transparent={transparent} />
