@@ -28,7 +28,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="preload" href="/fonts/Gambarino-Regular.woff2" as="font" type="font/woff2" crossorigin />
     {/* Test (Eduard, 04.11.): auf den Landingpages Hintergrund Paper Bone statt Paper Warm */}
-    <style is:global>html.hintergrund-bone{--paper-warm:#fcfaf3}</style>
+    <style is:global>
+      html.hintergrund-bone{--paper-warm:#fcfaf3}
+      /* Test (Eduard, 04.11.): Überschriften Tinte #161513, Fließtext und Tabelle warmes Braungrau #2D2924 */
+      html.hintergrund-bone :is(.h1,.h2,.h3,.h4,h1,h2,h3,h4):not(.weiss){color:#161513}
+      html.hintergrund-bone :is(.text-normal,.text-small,.richtext,.richtext p,.fakten li):not(.weiss){color:#2d2924}
+    </style>
   </head>
   <body>
     <Header transparent={transparent} />
