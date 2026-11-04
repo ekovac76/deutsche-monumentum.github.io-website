@@ -5,7 +5,7 @@ import { bilder } from '../data/bilder';
 const { zahl, neben, titel, text, href, icon = bilder.kennzahlIcon, zahlen = false, vorteil = false, schmalerTitel = false } = Astro.props;
 const Tag = href ? 'a' : 'div';
 ---
-<Tag class:list={['karte', { zahlen, vorteil, 'schmaler-titel': schmalerTitel }]} href={href}>
+<Tag class:list={['karte', 'kennzahlkarte', { zahlen, vorteil, 'schmaler-titel': schmalerTitel }]} href={href}>
   <div class="oben">
     <span class="zahl">{zahl}</span>
     {neben && <span class="neben">{neben}</span>}
