@@ -6,6 +6,7 @@ import detailsJson from './projekt-details.json';
 import referenzenJson from './referenzen.json';
 import mediathekJson from './mediathek.json';
 import kundenstimmenJson from './kundenstimmen.json';
+import landingpagesJson from './landingpages.json';
 import startseiteJson from './seiten/startseite.json';
 import aufrufJson from './seiten/aufruf.json';
 import projekteseiteJson from './seiten/projekteseite.json';
@@ -39,6 +40,7 @@ const QUERY = `{
   "videos": *[_type == "video" && !(_id in path("drafts.**"))] | order(nummer asc) { ..., "coverbild": coverbild.asset->url },
   "einstellungen": *[_id == "einstellungen"][0],
   "seiten": *[_id in $seiten],
+  "landingpages": *[_type == "landingpage" && !(_id in path("drafts.**"))]{ _id, _type, name, crmProjekt, kampagnenHeadline, kampagnenText, "slug": slug.current, "projekt": projekt->slug.current },
   "kundenstimmen": *[_type == "kundenstimme" && !(_id in path("drafts.**"))] | order(reihenfolge asc),
   "bilder": *[_type == "sanity.imageAsset"]{ _id, url },
   "verweise": *[_type in ["projekt", "referenz", "video"] && !(_id in path("drafts.**"))]{ _id, "slug": slug.current }
@@ -149,3 +151,8 @@ export function seite<K extends keyof Seiten>(id: K): Seiten[K] {
 }
 
 export const kundenstimmen: typeof kundenstimmenJson = cms?.kundenstimmen?.length ? aufloesen(cms.kundenstimmen) : kundenstimmenJson;
+
+// Projekt-Landingpages (Werbung): Projekt-Inhalt + eigene Überschrift/Text + CRM-Projektname
+export const landingpages: typeof landingpagesJson = cms?.landingpages?.length
+  ? cms.landingpages.map((l: any) => ({ ...l, kampagnenHeadline: l.kampagnenHeadline ?? '', kampagnenText: l.kampagnenText ?? '' }))
+  : landingpagesJson;

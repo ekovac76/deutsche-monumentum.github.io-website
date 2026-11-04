@@ -1,0 +1,19 @@
+---
+// Projekt-Landingpages für Werbung – 1:1 nach Webflow „Projekt-Landingpages Template“:
+// Inhalt wie die Projektseite, schlichter Footer, eigenes Formular (Einkommen/Investition), CRM-Projektname als verstecktes Feld.
+import Basis from '../../layouts/Basis.astro';
+import ProjektInhalt from '../../components/projekt/ProjektInhalt.astro';
+import { projektDetails as details, projekte, landingpages } from '../../data/cms';
+
+export function getStaticPaths() {
+  return landingpages
+    .map((l) => ({ l, p: details.find((d) => d.slug === l.projekt) }))
+    .filter((x) => x.p)
+    .map(({ l, p }) => ({ params: { slug: l.slug }, props: { l, p } }));
+}
+const { l, p } = Astro.props;
+const subtitle = projekte.find((x) => x.slug === p!.slug)?.titel ?? p!.name;
+---
+<Basis titel={`${subtitle} | Deutsche Monumentum`} beschreibung={p!.heroSubline} landingpage={l.crmProjekt}>
+  <ProjektInhalt p={p} landingpage headline={l.kampagnenHeadline} text={l.kampagnenText} />
+</Basis>

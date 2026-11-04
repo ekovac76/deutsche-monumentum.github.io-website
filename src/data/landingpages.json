@@ -1,0 +1,62 @@
+[
+ {
+  "_id": "landingpage-wuppertal-jugendstilvilla",
+  "_type": "landingpage",
+  "name": "Jugendstilvilla Wuppertal Landingpage",
+  "slug": "wuppertal-jugendstilvilla",
+  "projekt": "jugendstilvilla-wuppertal",
+  "crmProjekt": "Wuppertal Gründerzeit",
+  "kampagnenHeadline": "",
+  "kampagnenText": ""
+ },
+ {
+  "_id": "landingpage-edesheim",
+  "_type": "landingpage",
+  "name": "Weingut Renner Edesheim Landingpage",
+  "slug": "edesheim",
+  "projekt": "edesheim",
+  "crmProjekt": "Edesheim",
+  "kampagnenHeadline": "",
+  "kampagnenText": ""
+ },
+ {
+  "_id": "landingpage-leipzig-leutzscher-hof",
+  "_type": "landingpage",
+  "name": "Leutzscher Hof Leipzig Landingpage",
+  "slug": "leipzig-leutzscher-hof",
+  "projekt": "leutscher-hof-leipzig",
+  "crmProjekt": "Leipzig",
+  "kampagnenHeadline": "",
+  "kampagnenText": ""
+ },
+ {
+  "_id": "landingpage-wuppertal-fabric",
+  "_type": "landingpage",
+  "name": "The Fabric Wuppertal Landingpage",
+  "slug": "wuppertal-fabric",
+  "projekt": "wuppertal-lofts",
+  "crmProjekt": "Wuppertal Fabrik",
+  "kampagnenHeadline": "",
+  "kampagnenText": ""
+ },
+ {
+  "_id": "landingpage-pfungstadt",
+  "_type": "landingpage",
+  "name": "Pfungstadt QNG Landingpage",
+  "slug": "pfungstadt",
+  "projekt": "pfungstadt",
+  "crmProjekt": "Pfungstadt QNG",
+  "kampagnenHeadline": "",
+  "kampagnenText": ""
+ },
+ {
+  "_id": "landingpage-nuernberg",
+  "_type": "landingpage",
+  "name": "Lofthöfe Nürnberg Landingpage",
+  "slug": "nuernberg",
+  "projekt": "nurnberg",
+  "crmProjekt": "Nürnberg",
+  "kampagnenHeadline": "",
+  "kampagnenText": ""
+ }
+]

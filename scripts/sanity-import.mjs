@@ -154,6 +154,7 @@ function seitenDoc(wert, feld = '') {
   return wert;
 }
 for (const d of [...seiten, ...kundenstimmen]) docs.push(seitenDoc(d));
+for (const l of lese('landingpages')) docs.push({ ...seitenDoc(l), slug: { _type: 'slug', current: l.slug } });
 
 console.log(`${docs.length} Dokumente, ${cache.size} Bilder`);
 // Bereits hochgeladene Bilder (von früheren Läufen) nicht noch einmal laden

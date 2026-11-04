@@ -1,0 +1,31 @@
+---
+// Schlichter Footer der Projekt-Landingpages – 1:1 nach Webflow (footer7_component):
+// Trennlinie, darunter links „© Jahr Deutsche Monumentum“, rechts Impressum · Datenschutz · Cookie-Einstellungen
+---
+<footer class="f7">
+  <div class="innen">
+    <div class="linie"></div>
+    <div class="unten">
+      <div class="credit">© {new Date().getFullYear()} Deutsche Monumentum</div>
+      <div class="legal">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutzerklarung">Datenschutzerklärung</a>
+        <a href="/datenschutzerklarung#cookie-einstellungen">Cookie-Einstellungen</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<style>
+  .f7{background:var(--paper-warm)}
+  .innen{padding:0 max(5%,calc((100% - 80rem)/2))}
+  .linie{width:100%;border-top:1px solid hsla(0,5.66%,57.6%,.5);border-bottom:1px solid hsla(0,5.66%,57.6%,.5)}
+  .unten{display:flex;justify-content:space-between;padding:1.5rem 0 2rem}
+  .credit,.legal a{font-family:var(--font-sans);font-size:.875rem;color:var(--ink-tinte);text-decoration:none}
+  .legal{display:flex;justify-content:center;gap:0 1.5rem}
+  @media (max-width:767px){
+    .unten{padding-bottom:1rem;flex-direction:column-reverse;align-items:center;text-align:center}
+    .credit{margin-top:2rem}
+    .legal{flex-direction:column;align-items:center;gap:1rem 0}
+  }
+  @media (max-width:479px){.credit{margin-top:1rem}.legal{gap:.2rem 0}}
+</style>

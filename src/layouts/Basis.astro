@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import FooterSchlicht from '../components/FooterSchlicht.astro';
 import KontaktModal from '../components/KontaktModal.astro';
 import VideoFenster from '../components/VideoFenster.astro';
 import BildFenster from '../components/BildFenster.astro';
@@ -11,8 +12,9 @@ import cookies from '../skripte/cookies.js?raw';
 import tracking from '../skripte/tracking.js?raw';
 import { trackingDomain } from '../data/formular';
 const trackingNurAufDomain = `if (location.hostname === '${trackingDomain}' || location.hostname.endsWith('.${trackingDomain}')) {${tracking}}`;
-interface Props { titel: string; beschreibung?: string; transparent?: boolean; noindex?: boolean }
-const { titel, beschreibung = '', transparent = false, noindex = false } = Astro.props;
+// landingpage: CRM-Projektname der Projekt-Landingpage → schlichter Footer, Landingpage-Formular, verstecktes Feld „Projekt der Seite“ (wie Webflow #dm-lp-projekt)
+interface Props { titel: string; beschreibung?: string; transparent?: boolean; noindex?: boolean; landingpage?: string }
+const { titel, beschreibung = '', transparent = false, noindex = false, landingpage } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -29,8 +31,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <body>
     <Header transparent={transparent} />
     <main><slot /></main>
-    <Footer />
-    <KontaktModal />
+    {landingpage ? <FooterSchlicht /> : <Footer />}
+    <KontaktModal variante={landingpage ? 'landingpage' : 'standard'} />
+    {landingpage && <div id="dm-lp-projekt" hidden>{landingpage}</div>}
     <VideoFenster />
     <BildFenster />
     <script is:inline set:html={cookieCss} />

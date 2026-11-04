@@ -3,6 +3,12 @@
 import { projekte } from '../data/cms';
 import { kontakt } from '../data/navigation';
 import { formular } from '../data/formular';
+// variante „landingpage“: wie Webflow „contact-modal6 Landingpage“ – fragt Jahreseinkommen und Investitionssumme statt Herkunft und Projekt
+interface Props { variante?: 'standard' | 'landingpage' }
+const { variante = 'standard' } = Astro.props;
+const lp = variante === 'landingpage';
+const einkommen = ['bis 70.000 €', '70.000 – 150.000 €', '150.000 – 250.000 €', '250.000 – 350.000 €', 'über 350.000 €'];
+const investition = ['200.000 – 350.000 €', '350.000 – 500.000 €', '500.000 – 750.000 €', 'über 750.000 €', 'noch offen'];
 ---
 <dialog id="kontakt" class="modal" aria-labelledby="kontakt-titel">
   <button class="schliessen" type="button" aria-label="Schließen"><i></i><i></i></button>
@@ -10,10 +16,10 @@ import { formular } from '../data/formular';
     <h2 id="kontakt-titel" class="h2 titel">Lassen Sie uns in einem persönlichen Gespräch klären, welche steuerlichen Vorteile diese Steuerimmobilie für Sie bereithält.</h2>
     <p class="text-normal einleitung">Füllen Sie das Formular aus – wir melden uns zeitnah mit passenden Projekten und beantworten alle Ihre Fragen. Unverbindlich und ohne Verpflichtung.</p>
     <div class="raster">
-      <form class="formular" name="Kontaktformular" action="/danke" method="post" data-schluessel={formular.schluessel} data-betreff={formular.betreff} data-absender={formular.absenderName} novalidate>
+      <form class="formular" name={lp ? 'LP Kontaktformular' : 'Kontaktformular'} action="/danke" method="post" data-schluessel={formular.schluessel} data-betreff={formular.betreff} data-absender={formular.absenderName} novalidate>
         <input type="checkbox" name="botcheck" class="falle" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <div class="zwei">
-          <select name="Anrede" aria-label="Anrede" required><option value="" disabled selected hidden>Anrede</option><option>Herr</option><option>Frau</option><option>Divers</option></select>
+          <select name="Anrede" aria-label="Anrede" required><option value="" disabled selected hidden>Anrede</option>{lp ? <><option>Frau</option><option>Herr</option></> : <><option>Herr</option><option>Frau</option></>}<option>Divers</option></select>
           <input name="Vorname" type="text" placeholder="Vorname" aria-label="Vorname" autocomplete="given-name" required />
         </div>
         <div class="zwei mobil-eins">
@@ -24,14 +30,27 @@ import { formular } from '../data/formular';
           <input name="Telefonnummer" type="tel" placeholder="Telefonnummer" aria-label="Telefonnummer" autocomplete="tel" required />
           <input name="PLZ" type="text" placeholder="Postleitzahl" aria-label="Postleitzahl" autocomplete="postal-code" inputmode="numeric" required />
         </div>
+        {lp ? (
+          <>
+            <select name="Wie hoch ist Ihr Jahreseinkommen?" aria-label="Wie hoch ist Ihr Jahreseinkommen?" required>
+              <option value="" disabled selected hidden>Wie hoch ist Ihr Jahreseinkommen?</option>{einkommen.map((o) => <option>{o}</option>)}
+            </select>
+            <select name="Wie viel möchten Sie investieren?" aria-label="Wie viel möchten Sie investieren?" required>
+              <option value="" disabled selected hidden>Wie viel möchten Sie investieren?</option>{investition.map((o) => <option>{o}</option>)}
+            </select>
+          </>
+        ) : (
+          <>
         <select name="Wie sind Sie auf uns aufmerksam geworden" aria-label="Wie sind Sie auf uns aufmerksam geworden?" required>
-          <option value="" disabled selected hidden>Wie sind Sie auf uns aufmerksam geworden?</option><option>Google</option><option>LinkedIn</option><option>Instagram</option><option>YouTube</option><option>Empfehlung</option><option>Sonstiges</option>
-        </select>
-        <select name="Für welches Projekt interessieren Sie sich" aria-label="Für welches Projekt interessieren Sie sich?" required>
-          <option value="" disabled selected hidden>Für welches Projekt interessieren Sie sich?</option>
-          {projekte.map((p) => <option>{p.name}</option>)}
-          <option>Noch offen – bitte beraten Sie mich</option>
-        </select>
+              <option value="" disabled selected hidden>Wie sind Sie auf uns aufmerksam geworden?</option><option>Google</option><option>LinkedIn</option><option>Instagram</option><option>YouTube</option><option>Empfehlung</option><option>Sonstiges</option>
+            </select>
+            <select name="Für welches Projekt interessieren Sie sich" aria-label="Für welches Projekt interessieren Sie sich?" required>
+              <option value="" disabled selected hidden>Für welches Projekt interessieren Sie sich?</option>
+              {projekte.map((p) => <option>{p.name}</option>)}
+              <option>Noch offen – bitte beraten Sie mich</option>
+            </select>
+          </>
+        )}
         <textarea name="Nachricht" rows="6" placeholder="Nachricht" aria-label="Nachricht" required></textarea>
         <label class="haken"><input type="checkbox" name="Einwilligung Newsletter" required /> <span>Ich bin damit einverstanden, per E-Mail Informationen über neue Immobilienprojekte zu erhalten.</span></label>
         <button class="senden" type="submit">Absenden</button>
