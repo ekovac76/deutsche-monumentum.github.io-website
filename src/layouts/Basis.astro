@@ -13,12 +13,12 @@ import tracking from '../skripte/tracking.js?raw';
 import { trackingDomain } from '../data/formular';
 const trackingNurAufDomain = `if (location.hostname === '${trackingDomain}' || location.hostname.endsWith('.${trackingDomain}')) {${tracking}}`;
 // landingpage: CRM-Projektname der Projekt-Landingpage → schlichter Footer, Landingpage-Formular, verstecktes Feld „Projekt der Seite“ (wie Webflow #dm-lp-projekt)
-interface Props { titel: string; beschreibung?: string; transparent?: boolean; noindex?: boolean; landingpage?: string }
-const { titel, beschreibung = '', transparent = false, noindex = false, landingpage } = Astro.props;
+interface Props { titel: string; beschreibung?: string; transparent?: boolean; noindex?: boolean; landingpage?: string; testfarben?: boolean }
+const { titel, beschreibung = '', transparent = false, noindex = false, landingpage, testfarben = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
-<html lang="de" class:list={[{ "hintergrund-bone": !!landingpage }]}>
+<html lang="de" class:list={[{ "hintergrund-bone": !!landingpage || testfarben }]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
