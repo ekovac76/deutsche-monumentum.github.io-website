@@ -40,6 +40,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       /* Test (Eduard, 05.11.): Kennzahl-Kacheln in Muschel #F7F2ED, Zahlen in Malve #8E5D6E */
       html.hintergrund-bone .karte.kennzahlkarte{background:#f7f2ed}
       html.hintergrund-bone .kennzahlkarte .zahl{color:#8e5d6e}
+      /* Test (Eduard, 05.11.): Kapitel-Kopf- und Fußzeilen (Schrift, Linie, Ring) in Opal #E3E2EA, römische Ziffer in Malve #8E5D6E – nicht auf dunklem Grund */
+      html.hintergrund-bone :is(.kopf:not(.hell),.fuss){border-top-color:#e3e2ea}
+      html.hintergrund-bone :is(.kopf:not(.hell),.fuss) .label{color:#e3e2ea}
+      html.hintergrund-bone .fuss .ring{border-color:#e3e2ea}
+      html.hintergrund-bone .fuss .ring::after{background:#e3e2ea}
+      html.hintergrund-bone .kopf:not(.hell) .ziffer{color:#8e5d6e}
       /* Test (Eduard, 05.11.): dunkle Knöpfe Pflaume #5E4F7A mit Schrift Wolke #FDFCFA; im Titelbild (Hero) und im dunklen Kontakt-Aufruf Hauchblau #E8ECEE mit Schrift Tiefblau */
       html.hintergrund-bone :is(.btn.primaer,.btn.klein,.senden){background:#5e4f7a;color:#fdfcfa}
       html.hintergrund-bone :is(.hero,.dunkel) .btn.primaer{background:#e8ecee;color:#2f4a63}
