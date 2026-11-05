@@ -34,8 +34,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       html.hintergrund-bone :is(.h1,.h2,.h3,.h4,h1,h2,h3,h4):not(.weiss){color:#2e2c3f}
       /* Test (Eduard, 05.11.): Projektkarten in Muschel #F7F2ED, Seitengrund Wolke #FDFCFA */
       html.hintergrund-bone .karte-link > .karte:not(.dunkel){background:#f7f2ed}
-      /* Test (Eduard, 04.11.): Kennzahl-/Leistungskacheln ebenfalls Paper Pergament */
-      html.hintergrund-bone .karte.kennzahlkarte{background:#f1ecdf}
+      /* Test (Eduard, 05.11.): Kennzahl-Kacheln in Muschel #F7F2ED, Zahlen in Malve #8E5D6E */
+      html.hintergrund-bone .karte.kennzahlkarte{background:#f7f2ed}
+      html.hintergrund-bone .kennzahlkarte .zahl{color:#8e5d6e}
       /* Test (Eduard, 04.11.): Knöpfe Bronze wie der Kontakt-Aufruf (Ink Stumpf #4F4A41) mit Schrift Paper Bone; im Titelbild (Hero) und im dunklen Kontakt-Aufruf Hauchblau #E8ECEE mit Schrift Tiefblau */
       html.hintergrund-bone :is(.btn.primaer,.btn.klein,.senden){background:#4f4a41;color:#fcfaf3}
       html.hintergrund-bone :is(.hero,.dunkel) .btn.primaer{background:#e8ecee;color:#2f4a63}
