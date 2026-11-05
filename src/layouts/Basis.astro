@@ -34,6 +34,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       html.hintergrund-bone :is(.h1,.h2,.h3,.h4,h1,h2,h3,h4):not(.weiss){color:#2e2c3f}
       /* Test (Eduard, 05.11.): Projektkarten in Muschel #F7F2ED, Seitengrund Wolke #FDFCFA */
       html.hintergrund-bone .karte-link > .karte:not(.dunkel){background:#f7f2ed}
+      /* Test (Eduard, 05.11.): Projektkarten – Tabelle, Nummer und Ort in Nebelgrau #706D80, Kategorie und Status in Malve #8E5D6E */
+      html.hintergrund-bone .karte-link :is(.wert-label,.wert,.nummer,.ort){color:#706d80}
+      html.hintergrund-bone .karte-link :is(.kategorie,.status){color:#8e5d6e}
       /* Test (Eduard, 05.11.): Kennzahl-Kacheln in Muschel #F7F2ED, Zahlen in Malve #8E5D6E */
       html.hintergrund-bone .karte.kennzahlkarte{background:#f7f2ed}
       html.hintergrund-bone .kennzahlkarte .zahl{color:#8e5d6e}
