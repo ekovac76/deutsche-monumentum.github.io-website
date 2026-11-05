@@ -29,11 +29,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="preload" href="/fonts/Gambarino-Regular.woff2" as="font" type="font/woff2" crossorigin />
     {/* Test (Eduard, 04.11.): auf den Landingpages Hintergrund Paper Bone statt Paper Warm */}
     <style is:global>
-      html.hintergrund-bone{--paper-warm:#fcfaf3}
+      html.hintergrund-bone{--paper-warm:#fdfcfa}
       /* Test (Eduard, 04.11.): Überschriften, Fließtext und Tabelle warmes Braungrau #2D2924 */
       html.hintergrund-bone :is(.h1,.h2,.h3,.h4,h1,h2,h3,h4):not(.weiss){color:#2d2924}
-      /* Test (Eduard, 04.11.): Projektkarten in Paper Pergament statt Paper Tief */
-      html.hintergrund-bone .karte-link > .karte:not(.dunkel){background:#f1ecdf}
+      /* Test (Eduard, 05.11.): Projektkarten in Muschel #F7F2ED, Seitengrund Wolke #FDFCFA */
+      html.hintergrund-bone .karte-link > .karte:not(.dunkel){background:#f7f2ed}
       /* Test (Eduard, 04.11.): Kennzahl-/Leistungskacheln ebenfalls Paper Pergament */
       html.hintergrund-bone .karte.kennzahlkarte{background:#f1ecdf}
       /* Test (Eduard, 04.11.): Knöpfe Bronze wie der Kontakt-Aufruf (Ink Stumpf #4F4A41) mit Schrift Paper Bone; im Titelbild (Hero) und im dunklen Kontakt-Aufruf Hauchblau #E8ECEE mit Schrift Tiefblau */
