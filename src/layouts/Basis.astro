@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/farben.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FooterSchlicht from '../components/FooterSchlicht.astro';
@@ -13,12 +14,12 @@ import tracking from '../skripte/tracking.js?raw';
 import { trackingDomain } from '../data/formular';
 const trackingNurAufDomain = `if (location.hostname === '${trackingDomain}' || location.hostname.endsWith('.${trackingDomain}')) {${tracking}}`;
 // landingpage: CRM-Projektname der Projekt-Landingpage → schlichter Footer, Landingpage-Formular, verstecktes Feld „Projekt der Seite“ (wie Webflow #dm-lp-projekt)
-interface Props { titel: string; beschreibung?: string; transparent?: boolean; noindex?: boolean; landingpage?: string; testfarben?: boolean }
-const { titel, beschreibung = '', transparent = false, noindex = false, landingpage, testfarben = false } = Astro.props;
+interface Props { titel: string; beschreibung?: string; transparent?: boolean; noindex?: boolean; landingpage?: string }
+const { titel, beschreibung = '', transparent = false, noindex = false, landingpage } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
-<html lang="de" class="hintergrund-bone">
+<html lang="de">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,70 +28,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="preload" href="/fonts/Gambarino-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    {/* Test (Eduard, 04.11.): auf den Landingpages Hintergrund Paper Bone statt Paper Warm */}
-    <style is:global>
-      html.hintergrund-bone{--paper-warm:#fdfcfa}
-      /* Test (Eduard, 06.11.): Bild-Platzhalter (vor dem Laden von Bildern/Videos) in der Seitenfarbe Wolke statt Paper Tief */
-      html.hintergrund-bone{--paper-tief:#fdfcfa}
-      /* Neue Palette (Eduard, 06.11.) auf die ganze Seite: alte Grundfarben auf die neuen Töne umgelegt */
-      html.hintergrund-bone{--paper-bone:#fdfcfa;--paper-pergament:#f7f2ed;--paper-section:#fdfcfa;--referenz-bildgrund:#fdfcfa;
-        --ink-tinte:#2e2c3f;--ink-tinte-button:#2e2c3f;--ink-weich:#2e2c3f;--karte-titel:#2e2c3f;--outline-dunkel:#4a4859;
-        --ink-stumpf:#4a4859;--ink-mono-dunkel:#4a4859;--ink-mono-grau:#706d80;--ink-blass:#bfbdcb}
-      /* Referenzkacheln wie Projektkacheln in Muschel; Plus-Zeichen (Bauträger) in Malve */
-      /* Schatten der hellen Knöpfe (Zweitknopf) neutral in Mitternacht statt gelblich */
-      html.hintergrund-bone{--shadow-secondary:0 10px 20px 0 rgba(46,44,63,.14)}
-      html.hintergrund-bone .plus{color:#8e5d6e}
-      html.hintergrund-bone a.link > .karte{background:#f7f2ed}
-      html.hintergrund-bone a.link > .karte .bildrahmen{background:#fdfcfa}
-      /* Test (Eduard, 05.11.): Überschriften Mitternacht #2E2C3F, Fließtext und Tabelle Tinte Weich #4A4859 */
-      html.hintergrund-bone :is(.h1,.h2,.h3,.h4,h1,h2,h3,h4):not(.weiss){color:#2e2c3f}
-      /* Test (Eduard, 05.11.): Projektkarten in Muschel #F7F2ED, Seitengrund Wolke #FDFCFA */
-      html.hintergrund-bone .karte-link > .karte:not(.dunkel){background:#f7f2ed}
-      /* Test (Eduard, 05.11.): Projektkarten – Tabelle, Nummer und Ort in Nebelgrau #706D80, Kategorie und Status in Malve #8E5D6E */
-      html.hintergrund-bone .karte-link :is(.wert-label,.wert,.nummer,.ort){color:#706d80}
-      html.hintergrund-bone .karte-link :is(.kategorie,.status){color:#8e5d6e}
-      /* Test (Eduard, 05.11.): Kennzahl-Kacheln in Muschel #F7F2ED, Zahlen in Malve #8E5D6E */
-      html.hintergrund-bone .karte.kennzahlkarte{background:#f7f2ed}
-      html.hintergrund-bone .kennzahlkarte .zahl{color:#8e5d6e}
-      /* Test (Eduard, 05.11.): Kapitel-Kopf- und Fußzeilen (Schrift, Linie, Ring) in Opal #E3E2EA, römische Ziffer in Malve #8E5D6E – nicht auf dunklem Grund */
-      html.hintergrund-bone :is(.kopf:not(.hell),.fuss){border-top-color:#e3e2ea}
-      html.hintergrund-bone :is(.kopf:not(.hell),.fuss) .label{color:#e3e2ea}
-      html.hintergrund-bone .fuss .ring{border-color:#e3e2ea}
-      html.hintergrund-bone .fuss .ring::after{background:#e3e2ea}
-      html.hintergrund-bone .kopf:not(.hell) .ziffer{color:#8e5d6e}
-      /* Test (Eduard, 06.11.): alles Orange/Rot in Malve #8E5D6E (Ziffern, Jahreszahlen, FAQ-Nummern, Kategorien, Punkte, Menü-Ziffern); Sterne siehe Sterne.astro */
-      html.hintergrund-bone{--signal-orange:#8e5d6e;--signal-orange-alt:#8e5d6e;--karte-orange:#8e5d6e;--kennzahl-rot:#8e5d6e}
-      html.hintergrund-bone .kopf .ziffer{color:#8e5d6e}
-      html.hintergrund-bone .punkt{background:#8e5d6e}
-      /* Strich vor „Kapitel“ ist eine orange Grafik: Grafik ausblenden, Strich als Fläche in Malve */
-      html.hintergrund-bone .tagline .strich{background:#8e5d6e;object-position:-100px 0}
-      /* Test (Eduard, 06.11.): Fußzeile wie die Seite – Überschriften und großer Schriftzug Mitternacht #2E2C3F, übrige Schrift Tinte Weich #4A4859 */
-      html.hintergrund-bone footer :is(.s,a,p,span){color:#4a4859}
-      html.hintergrund-bone footer :is(.s b,b,.gross p,.gross span){color:#2e2c3f}
-      html.hintergrund-bone footer .tel path{fill:#4a4859}
-      html.hintergrund-bone footer .social [fill="#111"]{fill:#2e2c3f}
-      html.hintergrund-bone .f7 :is(.credit,.legal a){color:#4a4859}
-      /* Test (Eduard, 06.11.): Hamburger-Menü Mitternacht */
-      html.hintergrund-bone .menu-btn i{background:#2e2c3f}
-      /* Test (Eduard, 06.11.): Linien der Fragen (FAQ) in Nebelgrau #706D80 */
-      html.hintergrund-bone .liste:has(> details){border-bottom-color:#706d80}
-      html.hintergrund-bone .liste summary{border-top-color:#706d80}
-      /* Test (Eduard, 05.11.): dunkle Knöpfe Malve #8E5D6E (06.11., vorher Pflaume) mit Schrift Wolke #FDFCFA; im Titelbild (Hero) und im dunklen Kontakt-Aufruf Hauchblau #E8ECEE mit Schrift Tiefblau */
-      html.hintergrund-bone :is(.btn.primaer,.btn.klein,.senden){background:#8e5d6e;color:#fdfcfa}
-      html.hintergrund-bone :is(.hero,.dunkel) .btn.primaer{background:#e8ecee;color:#2f4a63}
-      /* Test (Eduard, 06.11.): Knöpfe im Titelbild (Hero) und im dunklen Kontakt-Aufruf Rosenhauch #F3E4E6 */
-      html.hintergrund-bone :is(.hero,.dunkel) .btn.primaer{background:#f3e4e6}
-      /* Test (Eduard, 06.11.): ProvenExpert-Laufband in Gold #CEC29B */
-      html.hintergrund-bone .laufband{background:#cec29b}
-      html.hintergrund-bone .laufband .titel{color:#fff}
-      /* Test (Eduard, 06.11.): dunkler Kontakt-Aufruf (Kasten) in Tinte Weich #4A4859 */
-      html.hintergrund-bone div.dunkel:not(.karte){background:#4a4859}
-      /* Test (Eduard, 06.11.): Schriften im Kontakt-Aufruf (Kontakt / Jetzt handeln, Ihr Steuervorteil, deutsche-monumentum.de) in Flieder #E7E1F1 */
-      html.hintergrund-bone div.dunkel .gold{color:#e7e1f1}
-      /* Test (Eduard, 06.11.): Logo oben (Kopfzeile, Menü) und in der Fußzeile in Mitternacht #2E2C3F – Bild als Maske, Fläche in Mitternacht */
-      html.hintergrund-bone :is(header.kopf,.menue,footer) .logo{background:#2e2c3f;-webkit-mask:url(/bilder/logo-deutsche-monumentum.png) center/contain no-repeat;mask:url(/bilder/logo-deutsche-monumentum.png) center/contain no-repeat;object-position:-9999px 0}
-      html.hintergrund-bone :is(.text-normal,.text-small,.richtext,.richtext p,.fakten li):not(.weiss){color:#4a4859}
-    </style>
   </head>
   <body>
     <Header transparent={transparent} />

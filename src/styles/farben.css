@@ -1,0 +1,55 @@
+/* Farbzuordnung der Bausteine – Farbsystem „Luftig“ (Eduard, 05./06.11.2026)
+   Die Farben selbst stehen in tokens.css. Hier steht nur, welcher Baustein welche Farbe bekommt,
+   wo die ursprünglichen Webflow-Bausteine feste Farben hatten.
+   Das vorangestellte „html:root“ sorgt dafür, dass diese Regeln Vorrang vor den Baustein-Stilen haben. */
+
+/* Schrift: Überschriften Mitternacht, Fließtext und Tabellen Tinte Weich */
+html:root :is(.h1,.h2,.h3,.h4,h1,h2,h3,h4):not(.weiss){color:var(--mitternacht)}
+html:root :is(.text-normal,.text-small,.richtext,.richtext p,.fakten li):not(.weiss){color:var(--tinte-weich)}
+
+/* Knöpfe: Malve mit Schrift Wolke; im Titelbild und im dunklen Kontakt-Aufruf Rosenhauch */
+html:root :is(.btn.primaer,.btn.klein,.senden){background:var(--malve);color:var(--wolke)}
+html:root :is(.hero,.dunkel) .btn.primaer{background:var(--rosenhauch);color:var(--tiefblau)}
+
+/* Projekt- und Referenzkacheln: Muschel; Tabelle, Nummer, Ort Nebelgrau; Kategorie und Status Malve */
+html:root .karte-link > .karte:not(.dunkel){background:var(--muschel)}
+html:root .karte-link :is(.wert-label,.wert,.nummer,.ort){color:var(--nebelgrau)}
+html:root .karte-link :is(.kategorie,.status){color:var(--malve)}
+html:root a.link > .karte{background:var(--muschel)}
+html:root a.link > .karte .bildrahmen{background:var(--wolke)}
+
+/* Kennzahl-Kacheln: Muschel, Zahlen Malve */
+html:root .karte.kennzahlkarte{background:var(--muschel)}
+html:root .kennzahlkarte .zahl{color:var(--malve)}
+
+/* Kapitel-Kopf- und Fußzeilen: Schrift, Linie und Ring Opal, römische Ziffer Malve (nicht auf dunklem Grund) */
+html:root :is(.kopf:not(.hell),.fuss){border-top-color:var(--opal)}
+html:root :is(.kopf:not(.hell),.fuss) .label{color:var(--opal)}
+html:root .fuss .ring{border-color:var(--opal)}
+html:root .fuss .ring::after{background:var(--opal)}
+html:root .kopf .ziffer{color:var(--malve)}
+html:root .punkt{background:var(--malve)}
+html:root .plus{color:var(--malve)}
+
+/* Fragen (FAQ): Linien Nebelgrau */
+html:root .liste:has(> details){border-bottom-color:var(--nebelgrau)}
+html:root .liste summary{border-top-color:var(--nebelgrau)}
+
+/* Dunkler Kontakt-Aufruf: Kasten Tinte Weich, Schriften Flieder */
+html:root div.dunkel:not(.karte){background:var(--tinte-weich)}
+html:root div.dunkel .gold{color:var(--flieder)}
+
+/* ProvenExpert-Laufband: Gold mit weißer Schrift */
+html:root .laufband{background:var(--gold)}
+html:root .laufband .titel{color:#fff}
+
+/* Kopfzeile: Hamburger-Menü Mitternacht; Logo (Kopfzeile, Menü, Fußzeile) Mitternacht – Bild als Maske */
+html:root .menu-btn i{background:var(--mitternacht)}
+html:root :is(header.kopf,.menue,footer) .logo{background:var(--mitternacht);-webkit-mask:url(/bilder/logo-deutsche-monumentum.png) center/contain no-repeat;mask:url(/bilder/logo-deutsche-monumentum.png) center/contain no-repeat;object-position:-9999px 0}
+
+/* Fußzeile: Überschriften und großer Schriftzug Mitternacht, übrige Schrift Tinte Weich */
+html:root footer :is(.s,a,p,span){color:var(--tinte-weich)}
+html:root footer :is(.s b,b,.gross p,.gross span){color:var(--mitternacht)}
+html:root footer .tel path{fill:var(--tinte-weich)}
+html:root footer .social [fill="#111"]{fill:var(--mitternacht)}
+html:root .f7 :is(.credit,.legal a){color:var(--tinte-weich)}

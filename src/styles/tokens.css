@@ -1,31 +1,54 @@
-/* Deutsche Monumentum – aus tokens.json erzeugt */
+/* Deutsche Monumentum – Farbsystem „Luftig“ (Eduard, 06.11.2026)
+   Die neue Palette. Die alten Namen weiter unten zeigen auf diese Farben,
+   damit alle Bausteine automatisch die neuen Töne verwenden. */
 :root{
-  --paper-bone:#fcfaf3;
-  --paper-pergament:#f1ecdf;
-  --paper-section:#efe7d2;
-  --paper-warm:#ece3cc;
-  --paper-tief:#e2d8bc;
-  --ink-tinte:#161513;
-  --ink-weich:#2d2924;
-  --ink-stumpf:#4f4a41;
-  --ink-mono-dunkel:#5a5448;
-  --ink-mono-grau:#8b8676;
-  --ink-blass:#ada9a1;
-  --signal-orange:#dc6261;
-  --signal-orange-alt:#db5f5f;
-  --gold:#cec29b;
+  /* Hintergründe */
+  --wolke:#fdfcfa;          /* Seitengrund */
+  --muschel:#f7f2ed;        /* Karten, Kacheln */
+  --himmelhauch:#eef3f7;    /* Flächen */
+  --opal:#e3e2ea;           /* Rahmen, Kapitelzeilen */
+  /* Schrift */
+  --mitternacht:#2e2c3f;    /* Überschriften, Logo, Menü */
+  --tinte-weich:#4a4859;    /* Fließtext, dunkler Kontakt-Kasten */
+  --nebelgrau:#706d80;      /* Labels, Tabellen, Linien */
+  --wolkengrau:#bfbdcb;     /* feine Linien */
+  /* Akzente */
+  --pflaume:#5e4f7a;
+  --pflaume-dunkel:#4c3f66;
+  --flieder:#e7e1f1;        /* Schrift auf dunklem Grund */
+  --malve:#8e5d6e;          /* Knöpfe, Ziffern, Kategorien, Sterne (ersetzt Orange/Rot) */
+  --rosenhauch:#f3e4e6;     /* Knöpfe auf Bild und dunklem Grund */
+  --tiefblau:#2f4a63;       /* Schrift im Rosenhauch-Knopf */
+  --gold:#cec29b;           /* ProvenExpert-Laufband */
+}
+
+/* Ursprüngliche Namen aus Webflow (tokens.json) – zeigen jetzt auf die neue Palette */
+:root{
+  --paper-bone:var(--wolke);
+  --paper-pergament:var(--muschel);
+  --paper-section:var(--wolke);
+  --paper-warm:var(--wolke);
+  --paper-tief:var(--wolke);
+  --ink-tinte:var(--mitternacht);
+  --ink-weich:var(--mitternacht);
+  --ink-stumpf:var(--tinte-weich);
+  --ink-mono-dunkel:var(--tinte-weich);
+  --ink-mono-grau:var(--nebelgrau);
+  --ink-blass:var(--wolkengrau);
+  --signal-orange:var(--malve);
+  --signal-orange-alt:var(--malve);
   --linie-haar:hsla(45.71, 8.3%, 50.39%, 0.34);
-  --ink-tinte-button:#15140f;
+  --ink-tinte-button:var(--mitternacht);
   --video-abdunkelung:rgba(0, 0, 0, 0.18);
-  --outline-dunkel:#2c2b22;
-  --karte-orange:#ed6f5c;
-  --karte-titel:#333333;
+  --outline-dunkel:var(--tinte-weich);
+  --karte-orange:var(--malve);
+  --karte-titel:var(--mitternacht);
   --karte-rahmen:#9e9e9e;
   --karte-linie:rgba(21, 20, 15, 0.16);
-  --kennzahl-rot:#8a2c26;
+  --kennzahl-rot:var(--malve);
   --kennzahl-rahmen:#bbbbbb;
   --referenz-bildrahmen:#a1a1a1;
-  --referenz-bildgrund:#f7f1de;
+  --referenz-bildgrund:var(--wolke);
   --space-2xs:0.5rem;
   --space-xs:0.75rem;
   --space-sm:1rem;
@@ -49,7 +72,7 @@
   --shadow-primary:0 10px 20px 0 hsla(178.2, 59.01%, 18.45%, 0.25);
   --shadow-karte:inset 0 0 1px -3px hsla(67, 29.68%, 44.72%, 0.20), 0 30px 60px 0 rgba(0, 0, 0, 0.2);
   --shadow-kennzahl:0 30px 60px 0 rgba(0, 0, 0, 0.2);
-  --shadow-secondary:0 10px 20px 0 hsla(43.45, 33.82%, 74.81%, 0.87);
+  --shadow-secondary:0 10px 20px 0 rgba(46, 44, 63, 0.14);
   --font-display:Gambarino, "Cormorant Garamond", Georgia, serif;
   --font-sans:"Inter Tight", system-ui, sans-serif;
   --font-mono:"JetBrains Mono", ui-monospace, monospace;

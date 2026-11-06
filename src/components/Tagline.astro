@@ -1,18 +1,17 @@
 ---
 // „— KAPITEL · Nº 03“ über den Überschriften – 1:1 nach Webflow (margin_tagline_botton):
-// orangener Strich (Bild „::before.svg“, 18 × 1 px) oben am Text, direkt davor ohne Abstand
-import { bilder } from '../data/bilder';
+// Strich (in Webflow Bild „::before.svg“, 18 × 1 px) oben am Text, direkt davor ohne Abstand – jetzt als Fläche in Malve
 interface Props { wort?: string; nummer: string; hell?: boolean }
 const { wort = 'Kapitel', nummer, hell = false } = Astro.props;
 ---
 <div class:list={['tagline', { hell }]}>
-  <img class="strich" src={bilder.taglineStrich} alt="" width="18" height="1" aria-hidden="true" />
+  <span class="strich" aria-hidden="true"></span>
   <span class="wort">{wort}</span>
   <span class="nr">· Nº {nummer}</span>
 </div>
 <style>
   .tagline{display:flex;padding-bottom:1.5rem}
-  .strich{display:flex;flex:none;width:18px;height:1px;object-fit:cover}
+  .strich{display:flex;flex:none;width:18px;height:1px;background:var(--malve)}
   .wort{font-size:11px;line-height:17px;font-weight:600;letter-spacing:2.42px;text-transform:uppercase;color:var(--ink-stumpf)}
   .nr{padding-left:4px;font-family:var(--font-mono);font-size:11px;line-height:17px;font-weight:500;letter-spacing:2.42px;text-transform:uppercase;color:var(--ink-stumpf)}
   .hell .wort{color:#fff}
