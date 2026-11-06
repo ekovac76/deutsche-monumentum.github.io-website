@@ -5,11 +5,12 @@
 //   (die Overlay-Farbvariable existiert in Webflow nicht mehr → durchsichtig).
 // rahmen = testimonial53_lightbox (Interviews): 0,25rem heller Rand, Schatten auf Rahmen und Bild.
 import { bilder } from '../data/bilder';
-interface Props { bild: string; alt?: string; video?: string; rahmen?: boolean; quadrat?: boolean; label?: string }
-const { bild, alt = '', video = '', rahmen = false, quadrat = false, label = 'DEUTSCHE MONUMENTUM' } = Astro.props;
+// format: Seitenverhältnis des Bildes (Standard 1/1 wie Webflow; Erklärvideo-Sektion 4/3 – Eduard 06.11.)
+interface Props { bild: string; alt?: string; video?: string; rahmen?: boolean; quadrat?: boolean; label?: string; format?: string }
+const { bild, alt = '', video = '', rahmen = false, quadrat = false, label = 'DEUTSCHE MONUMENTUM', format = '1/1' } = Astro.props;
 ---
 <button class:list={['vorschau', { rahmen: rahmen || quadrat }]} type="button" data-video={video} aria-label="Video abspielen">
-  <img class="bild" src={bild} alt={alt} loading="lazy" />
+  <img class="bild" src={bild} alt={alt} loading="lazy" style={`aspect-ratio:${format}`} />
   <span class="play" aria-hidden="true">
     <img src={bilder.videoPlay} alt="" />
     <span class="play-text">Video</span>

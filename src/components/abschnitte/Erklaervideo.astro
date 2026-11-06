@@ -26,7 +26,7 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
           {projekteButton && <Button href="/projekte" variante="sekundaer">aktuelle Projekte</Button>}
         </div>
       </div>
-      <Videovorschau bild={bild || bilder.eduardVideo} video={video} label={label} alt="Video" />
+      <Videovorschau bild={bild || bilder.eduardVideo} video={video} label={label} alt="Video" format="4/3" />
     </div>
     <Kapitelfuss />
   </div>
