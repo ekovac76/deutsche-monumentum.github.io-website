@@ -12,12 +12,6 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build
-      - run: |
-          grep -o '<video[^>]*>.\{0,300\}' dist/index.html | head -2
-          for f in dist/*.html; do echo "$f $(wc -c < $f)"; done
-          tar czf /tmp/dist.tgz dist
-      - uses: actions/upload-artifact@v4
-        with:
-          name: dist-cms
-          path: /tmp/dist.tgz
+      - run: CMS=aus npm run build && mv dist json
+      - run: npm run build && mv dist cms
+      - run: python3 scripts/tmp/vergleich.py
