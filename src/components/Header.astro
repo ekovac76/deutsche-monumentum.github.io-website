@@ -1,5 +1,8 @@
 ---
 // Kopfzeile (geschlossen) + Vollbild-Menü nach Baustein „Navigation“
+// Animation (Nov. 2026, angelehnt an GSAP-Menü aus Flux-Academy-Video, ruhiger/edler):
+// Öffnen: Vorhang senkt sich von oben, Menüpunkte steigen nacheinander aus einer Maske auf.
+// Cursor auf Menüpunkt: Schrift rollt sanft nach oben, die anderen Punkte treten zurück.
 import Button from './Button.astro';
 import { menue, social } from '../data/navigation';
 ---
@@ -26,8 +29,11 @@ import { menue, social } from '../data/navigation';
   </div>
   <nav class="links" aria-label="Hauptmenü">
     <div class="liste">
-      {menue.map((m) => (
-        <a href={m.href}><span class="ziffer">{m.ziffer}</span><span class="name">{m.name}</span></a>
+      {menue.map((m, i) => (
+        <a href={m.href} style={`--i:${i}`}>
+          <span class="ziffer">{m.ziffer}</span>
+          <span class="name"><span class="maske"><span class="einlauf"><span class="zeile">{m.name}</span><span class="zeile kopie" aria-hidden="true">{m.name}</span></span></span></span>
+        </a>
       ))}
     </div>
   </nav>
@@ -48,16 +54,65 @@ import { menue, social } from '../data/navigation';
   .close i{position:absolute;left:4px;right:4px;top:50%;height:1.5px;background:var(--ink-tinte)}
   .close i:first-child{transform:rotate(45deg)}.close i:last-child{transform:rotate(-45deg)}
 
-  .menue{position:fixed;inset:0;z-index:100;background:var(--paper-bone);overflow-y:auto;opacity:0;transition:opacity .3s ease}
-  .menue.offen{opacity:1}
+  /* Bewegungs-Takt: bewusst langsam und weich */
+  .menue{--weich:cubic-bezier(.22,1,.36,1);--vorhang:cubic-bezier(.76,0,.24,1)}
+
+  /* Vorhang: senkt sich von oben über die Seite */
+  .menue{position:fixed;inset:0;z-index:100;background:var(--paper-bone);overflow-y:auto;
+    clip-path:inset(0 0 100% 0);transition:clip-path .9s var(--vorhang) .25s}
+  .menue.offen{clip-path:inset(0 0 0 0);transition-delay:0s}
+
   .links{display:flex;justify-content:center;padding:1rem var(--page-gutter) 2rem}
   .liste{display:grid;grid-template-columns:auto auto;column-gap:.35em;font-size:3.5rem}
   .liste a{display:contents;text-decoration:none}
   .ziffer{justify-self:end;align-self:baseline;font-family:var(--font-playfair);font-style:italic;font-weight:400;font-size:2.5rem;color:var(--signal-orange);padding:.5rem 0;margin:.5rem 0;line-height:1.2}
   .name{justify-self:start;align-self:baseline;font-family:var(--font-display);font-weight:700;line-height:1.2;color:var(--ink-stumpf);padding:.4rem 0;margin:.4rem 0;white-space:nowrap}
-  .liste a:hover .name{color:var(--ink-tinte)}
   .social{display:flex;justify-content:center;gap:var(--space-lg);padding:0 var(--page-gutter) 3rem;font-family:var(--font-mono);font-size:11px;letter-spacing:1.33px;text-transform:uppercase}
   .social a{color:var(--ink-stumpf);text-decoration:none}
+
+  /* Menüpunkte: steigen nacheinander aus einer unsichtbaren Maske auf */
+  .maske{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+  .einlauf{display:block;position:relative;transform:translateY(110%);
+    transition:transform .45s ease-in}
+  .zeile{display:block;transition:transform .8s var(--weich)}
+  .kopie{position:absolute;left:0;top:calc(100% + .12em)}
+  .menue.offen .einlauf{transform:none;transition:transform 1.2s var(--weich) calc(.45s + var(--i) * .09s)}
+
+  .ziffer,.social a{opacity:0;transform:translateY(.4rem);transition:opacity .3s ease,transform .3s ease}
+  .menue.offen .ziffer{opacity:1;transform:none;transition:opacity 1s ease calc(.75s + var(--i) * .09s),transform 1.2s var(--weich) calc(.75s + var(--i) * .09s),color .6s ease}
+  .menue.offen .social a{opacity:1;transform:none;transition:opacity 1s ease 1.1s,transform 1.2s var(--weich) 1.1s,color .4s ease}
+
+  /* Schließen-Kreuz: dreht sich beim Darüberfahren langsam */
+  .close i{transition:transform .7s var(--weich)}
+  .close:hover i:first-child{transform:rotate(135deg)}
+  .close:hover i:last-child{transform:rotate(45deg)}
+
+  /* Menü-Knopf: Striche verkürzen sich nacheinander */
+  .menu-btn i{transform-origin:right;transition:transform .6s var(--weich, cubic-bezier(.22,1,.36,1))}
+  .menu-btn i:nth-child(2){transition-delay:.05s}
+  .menu-btn i:nth-child(3){transition-delay:.1s}
+
+  /* Cursor berührt Menüpunkt: Schrift rollt nach oben, die anderen treten zurück */
+  @media (hover:hover){
+    .menu-btn:hover i:nth-child(1){transform:scaleX(.55)}
+    .menu-btn:hover i:nth-child(3){transform:scaleX(.75)}
+    .name{transition:color .6s ease}
+    .liste:hover .name{color:color-mix(in srgb, var(--ink-stumpf) 45%, transparent)}
+    .liste:hover .ziffer{color:color-mix(in srgb, var(--signal-orange) 45%, transparent)}
+    .liste a:hover .name{color:var(--ink-tinte)}
+    .liste a:hover .ziffer{color:var(--signal-orange)}
+    .liste a:hover .zeile{transform:translateY(calc(-100% - .12em))}
+    .social a:hover{color:var(--ink-tinte)}
+  }
+  @media (hover:none){ .kopie{display:none} }
+
+  @media (prefers-reduced-motion: reduce){
+    .menue,.menue.offen{clip-path:none;opacity:0;transition:opacity .2s ease}
+    .menue.offen{opacity:1}
+    .einlauf,.menue.offen .einlauf,.zeile{transform:none;transition:none}
+    .ziffer,.social a{transform:none}
+    .kopie{display:none}
+  }
 
   @media (max-width: 767px){
     .kontakt-btn{display:none}
@@ -71,12 +126,15 @@ import { menue, social } from '../data/navigation';
   const menue = document.getElementById('hauptmenue');
   const oeffnen = document.querySelector('.menu-btn');
   const schliessen = menue?.querySelector('.close');
+  let timer: number | undefined;
   function setze(offen: boolean) {
     if (!menue || !oeffnen) return;
+    if (!offen && menue.hidden) return;
+    clearTimeout(timer);
     oeffnen.setAttribute('aria-expanded', String(offen));
     document.body.style.overflow = offen ? 'hidden' : '';
-    if (offen) { menue.hidden = false; requestAnimationFrame(() => menue.classList.add('offen')); }
-    else { menue.classList.remove('offen'); setTimeout(() => { menue.hidden = true; }, 300); }
+    if (offen) { menue.hidden = false; requestAnimationFrame(() => requestAnimationFrame(() => menue.classList.add('offen'))); }
+    else { menue.classList.remove('offen'); timer = window.setTimeout(() => { menue.hidden = true; }, 1200); }
   }
   oeffnen?.addEventListener('click', () => setze(true));
   schliessen?.addEventListener('click', () => setze(false));
