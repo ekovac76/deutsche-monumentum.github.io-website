@@ -105,13 +105,52 @@ const investition = ['200.000 – 350.000 €', '350.000 – 500.000 €', '500.
   @media (max-width:479px){.raster{grid-template-columns:1fr}}
 </style>
 <script>
+  import { gsap } from 'gsap';
+  import { SplitText } from 'gsap/SplitText';
+  gsap.registerPlugin(SplitText);
+
   const modal = document.getElementById('kontakt') as HTMLDialogElement | null;
   if (modal) {
-    const oeffnen = (e: Event) => { e.preventDefault(); modal.showModal(); };
+    // Öffnen/Schließen mit derselben ruhigen Bewegung wie das Menü:
+    // Fenster gleitet herab, wächst leicht und blendet ein; X dreht sich einmal;
+    // Überschrift steigt Zeile für Zeile auf, danach Einleitung und Kontaktspalte gestaffelt.
+    const leise = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const titel = modal.querySelector<HTMLElement>('.titel')!;
+    const x = modal.querySelector<HTMLElement>('.schliessen')!;
+    const einleitung = modal.querySelector<HTMLElement>('.einleitung')!;
+    const kontaktTeile = modal.querySelectorAll<HTMLElement>('.kontakt > *');
+    let tl: gsap.core.Timeline | null = null;
+    let zeilen: SplitText | null = null;
+    let schliesst = false;
+
+    const oeffnen = (e?: Event) => {
+      e?.preventDefault();
+      if (modal.open) return;
+      schliesst = false;
+      modal.showModal();
+      if (leise) return;
+      tl?.kill();
+      zeilen?.revert();
+      zeilen = SplitText.create(titel, { type: 'lines', mask: 'lines' });
+      tl = gsap.timeline()
+        .fromTo(modal, { yPercent: -8, scale: 0.9, autoAlpha: 0 }, { yPercent: 0, scale: 1, autoAlpha: 1, duration: 1.1, ease: 'power4.out' }, 0)
+        .fromTo(x, { rotation: 0 }, { rotation: 360, duration: 1.1, ease: 'power4.out' }, 0)
+        .fromTo(zeilen.lines, { yPercent: 110 }, { yPercent: 0, duration: 1.2, ease: 'power4.out', stagger: 0.08 }, 0.15)
+        .fromTo([einleitung, ...kontaktTeile], { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.2, ease: 'power4.out', stagger: 0.06 }, 0.35)
+        .timeScale(1.25);
+    };
+    const schliessen = () => {
+      if (!modal.open || schliesst) return;
+      if (leise || !tl) { modal.close(); return; }
+      schliesst = true;
+      tl.eventCallback('onReverseComplete', () => { modal.close(); schliesst = false; });
+      tl.timeScale(2.25).reverse();
+    };
     document.querySelectorAll('[data-kontakt], a[href$="#kontakt"]').forEach((el) => el.addEventListener('click', oeffnen));
-    modal.querySelector('.schliessen')?.addEventListener('click', () => modal.close());
-    modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
-    if (location.hash === '#kontakt') modal.showModal();
+    x.addEventListener('click', schliessen);
+    modal.addEventListener('click', (e) => { if (e.target === modal) schliessen(); });
+    modal.addEventListener('cancel', (e) => { e.preventDefault(); schliessen(); });
+    if (location.hash === '#kontakt') oeffnen();
     const form = modal.querySelector('form')!;
     const meldung = form.querySelector('.meldung') as HTMLElement;
     form.addEventListener('submit', async (e) => {
