@@ -1,0 +1,36 @@
+# Holt alle Bilder, die noch direkt von Webflow geladen werden, ins Repo (public/bilder/webflow)
+# und stellt die Adressen im Code auf die lokalen Dateien um. Danach wird die Vorschau neu gebaut.
+# Startet, wenn sich scripts/bilder-start.txt ändert, oder per Hand ("Run workflow").
+name: Bilder von Webflow übernehmen
+
+on:
+  push:
+    branches: [main]
+    paths: [scripts/bilder-start.txt]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  bilder:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/bilder-holen.mjs
+      - name: Speichern
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Bilder von Webflow ins Repo übernommen"
+          git push
+      - name: Vorschau neu bauen
+        run: gh workflow run vorschau.yml --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}
