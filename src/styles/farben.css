@@ -13,6 +13,9 @@ html:root :is(.hero,.dunkel) .btn.primaer{background:var(--rosenhauch);color:var
 
 /* Projekt- und Referenzkacheln: Muschel; Tabelle, Nummer, Ort Nebelgrau; Kategorie und Status Malve */
 html:root .karte-link > .karte:not(.dunkel){background:var(--muschel)}
+/* Projektkachel beim Darüberfahren: Himmelhauch (Eduard 06.11.) */
+html:root .karte-link > .karte:not(.dunkel){transition:background-color .3s ease}
+html:root .karte-link:is(:hover,:focus-visible) > .karte:not(.dunkel){background:var(--himmelhauch)}
 html:root .karte-link :is(.wert-label,.wert,.nummer,.ort){color:var(--nebelgrau)}
 html:root .karte-link :is(.kategorie,.status){color:var(--malve)}
 html:root a.link > .karte{background:var(--muschel)}
