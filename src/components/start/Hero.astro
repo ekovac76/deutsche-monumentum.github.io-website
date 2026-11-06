@@ -1,6 +1,7 @@
 ---
 import Seitenkopf from '../abschnitte/Seitenkopf.astro';
 import { seite } from '../../data/cms';
-const h = seite('startseite').hero;
+const h: any = seite('startseite').hero;
 ---
-<Seitenkopf bild={h.bild} wort={h.tagline} titel={h.ueberschrift} text={h.text} button={h.knopf} />
+<Seitenkopf bild={h.bild} wort={h.tagline} titel={h.ueberschrift} text={h.text} button={h.knopf}
+  videoDesktop={h.videoDesktop} videoHandy={h.videoHandy} standbild={h.standbild} />

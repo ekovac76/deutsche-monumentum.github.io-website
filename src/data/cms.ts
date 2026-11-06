@@ -43,6 +43,7 @@ const QUERY = `{
   "landingpages": *[_type == "landingpage" && !(_id in path("drafts.**"))]{ _id, _type, name, crmProjekt, kampagnenHeadline, kampagnenText, "slug": slug.current, "projekt": projekt->slug.current },
   "kundenstimmen": *[_type == "kundenstimme" && !(_id in path("drafts.**"))] | order(reihenfolge asc),
   "bilder": *[_type == "sanity.imageAsset"]{ _id, url },
+  "dateien": *[_type == "sanity.fileAsset"]{ _id, url },
   "verweise": *[_type in ["projekt", "referenz", "video"] && !(_id in path("drafts.**"))]{ _id, "slug": slug.current }
 }`;
 
@@ -129,12 +130,14 @@ export const einstellungen: { mobil?: string; festnetz?: string; email?: string;
   cms?.einstellungen ?? null;
 
 // ---------- Seiten-Texte ----------
-// Sanity-Bilder → Bild-URL, Verweise (z. B. auf ein Projekt) → dessen Adresse (slug)
+// Sanity-Bilder → Bild-URL, Sanity-Dateien (Videos) → Datei-URL, Verweise (z. B. auf ein Projekt) → dessen Adresse (slug)
 const bildUrl = new Map<string, string>((cms?.bilder || []).map((b: any) => [b._id, b.url]));
+const dateiUrl = new Map<string, string>((cms?.dateien || []).map((d: any) => [d._id, d.url]));
 const slugVon = new Map<string, string>((cms?.verweise || []).map((v: any) => [v._id, v.slug]));
 function aufloesen(wert: any): any {
   if (Array.isArray(wert)) return wert.map(aufloesen);
   if (wert && typeof wert === 'object') {
+    if (wert._type === 'file' || wert.asset?._ref?.startsWith('file-')) return dateiUrl.get(wert.asset?._ref) ?? '';
     if (wert._type === 'image' || wert.asset?._ref) return bild(bildUrl.get(wert.asset?._ref)) ?? '';
     if (wert._type === 'reference') return slugVon.get(wert._ref) ?? '';
     const o: any = {};

@@ -6,6 +6,9 @@
  "hero": {
   "_type": "abschnittHero",
   "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a42667a6a0949fa8f5baada_Emden%20aussen%20bei%20tag.webp",
+  "videoDesktop": "/videos/startseite-hero-desktop-web.mp4",
+  "videoHandy": "/videos/startseite-hero-handy-web.mp4",
+  "standbild": "/videos/startseite-hero-standbild-desktop.jpg",
   "tagline": "Kapitel",
   "ueberschrift": "Deutsche Monumentum - Wir sind der führende Anbieter von Denkmälern für den Kapitalanleger",
   "text": "Alte Fabriken, Kasernen und Villen bekommen bei uns eine zweite Zukunft – als geprüfte Denkmalimmobilien, die Ihre Steuerlast in Privatvermögen verwandeln.",

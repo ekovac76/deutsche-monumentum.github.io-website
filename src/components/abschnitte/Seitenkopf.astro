@@ -2,11 +2,21 @@
 // Großer Seitenkopf mit Bild (später Video), Tagline, H1, Text, Button
 import Button from '../Button.astro';
 import Tagline from '../Tagline.astro';
-interface Props { bild: string; wort?: string; nummer?: string; titel: string; text: string; button?: string; fett?: boolean; kontur?: boolean }
-const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt aufnehmen', fett = false, kontur = false } = Astro.props;
+// Optional: Hintergrundvideo (Desktop 16:9, Handy 4:5) mit Standbild – ersetzt dann das Bild
+interface Props { bild: string; wort?: string; nummer?: string; titel: string; text: string; button?: string; fett?: boolean; kontur?: boolean;
+  videoDesktop?: string; videoHandy?: string; standbild?: string }
+const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt aufnehmen', fett = false, kontur = false,
+  videoDesktop, videoHandy, standbild } = Astro.props;
 ---
 <header class="hero">
-  <img class="bild" src={bild} alt="" fetchpriority="high" />
+  {videoDesktop ? (
+    <video class="bild" data-hero-video autoplay muted loop playsinline preload="auto" poster={standbild || bild} aria-hidden="true">
+      {videoHandy && <source src={videoHandy} type="video/mp4" media="(max-width: 767px)" />}
+      <source src={videoDesktop} type="video/mp4" />
+    </video>
+  ) : (
+    <img class="bild" src={bild} alt="" fetchpriority="high" />
+  )}
   <div class="schleier"></div>
   <div class="inhalt">
     <div class="box">
@@ -17,6 +27,11 @@ const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt au
     </div>
   </div>
 </header>
+<script>
+  // Wer im Betriebssystem „Bewegung reduzieren“ eingestellt hat, sieht nur das Standbild
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches)
+    document.querySelectorAll<HTMLVideoElement>('[data-hero-video]').forEach((v) => { v.removeAttribute('autoplay'); v.pause(); });
+</script>
 <style>
   .hero{position:relative;overflow:hidden;background:var(--ink-weich)}
   .bild{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}

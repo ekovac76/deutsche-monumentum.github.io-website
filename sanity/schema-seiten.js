@@ -40,6 +40,9 @@
   { name: 'ueberschrift', title: 'Überschrift', type: 'text', rows: 2 },
   { name: 'text', title: 'Text', type: 'text', rows: 3 },
   { name: 'knopf', title: 'Knopf-Beschriftung', type: 'string' },
+  { name: 'videoDesktop', title: 'Video Desktop (MP4, 16:9) – ersetzt das Bild', type: 'file', options: { accept: 'video/mp4' } },
+  { name: 'videoHandy', title: 'Video Handy (MP4, Hochformat 4:5)', type: 'file', options: { accept: 'video/mp4' } },
+  { name: 'standbild', title: 'Standbild (erscheint, bis das Video läuft)', type: 'image' },
 ] }
 
 { name: 'abschnittLaufband', title: 'Laufband', type: 'object', fields: [
