@@ -70,6 +70,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       html.hintergrund-bone :is(.hero,.dunkel) .btn.primaer{background:#f3e4e6}
       /* Test (Eduard, 06.11.): ProvenExpert-Laufband in Gold #CEC29B */
       html.hintergrund-bone .laufband{background:#cec29b}
+      /* Test (Eduard, 06.11.): dunkler Kontakt-Aufruf (Kasten) in Tinte Weich #4A4859 */
+      html.hintergrund-bone div.dunkel:not(.karte){background:#4a4859}
       /* Test (Eduard, 06.11.): Logo oben (Kopfzeile und Menü) in Mitternacht #2E2C3F – Bild als Maske, Fläche in Mitternacht */
       html.hintergrund-bone :is(header.kopf,.menue) .logo{background:#2e2c3f;-webkit-mask:url(/bilder/logo-deutsche-monumentum.png) center/contain no-repeat;mask:url(/bilder/logo-deutsche-monumentum.png) center/contain no-repeat;object-position:-9999px 0}
       html.hintergrund-bone :is(.text-normal,.text-small,.richtext,.richtext p,.fakten li):not(.weiss){color:#4a4859}
