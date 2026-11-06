@@ -28,7 +28,7 @@ const DATASET = 'production';
 
 const QUERY = `{
   "projekte": *[_type == "projekt" && !(_id in path("drafts.**"))] | order(reihenfolge asc) {
-    ..., "bild": bild.asset->url, "kachelVideo": kachelVideo.asset->url, "kachelStandbild": kachelStandbild.asset->url, "heroBild": heroBild.asset->url, "videoCover": videoCover.asset->url,
+    ..., "bild": bild.asset->url, "kachelVideo": kachelVideo.asset->url, "kachelStandbild": kachelStandbild.asset->url, "heroBild": heroBild.asset->url, "heroVideoDesktop": heroVideoDesktop.asset->url, "heroVideoHandy": heroVideoHandy.asset->url, "heroStandbild": heroStandbild.asset->url, "videoCover": videoCover.asset->url,
     "slider": slider[]{ text, "bild": bild.asset->url },
     "standortBilder": standortBilder[].asset->url
   },
@@ -69,6 +69,7 @@ async function laden(): Promise<any | null> {
 }
 
 const cms = await laden();
+const detailJson = (slug?: string) => (detailsJson as any[]).find((x) => x.slug === slug);
 const kachelJson = (slug?: string) => (projekteJson as any[]).find((x) => x.slug === slug);
 
 // Bild-URL von Sanity: automatisch modernes Format (WebP/AVIF)
@@ -98,7 +99,12 @@ export const projekte: typeof projekteJson = cms
 export const projektDetails: typeof detailsJson = cms
   ? cms.projekte.map((p: any) => ({
       slug: p.slug?.current, entwurf: !!p.entwurf, name: s(p.name), standort: s(p.standort),
-      heroBild: bild(p.heroBild) ?? '', heroHeadline: s(p.heroHeadline), heroSubline: s(p.heroSubline),
+      heroBild: bild(p.heroBild) ?? '',
+      // Header-Video (läuft in Schleife): aus Sanity, sonst aus projekt-details.json (Ordner public/videos)
+      heroVideoDesktop: p.heroVideoDesktop || detailJson(p.slug?.current)?.heroVideoDesktop || '',
+      heroVideoHandy: p.heroVideoHandy || detailJson(p.slug?.current)?.heroVideoHandy || '',
+      heroStandbild: bild(p.heroStandbild) || detailJson(p.slug?.current)?.heroStandbild || '',
+      heroHeadline: s(p.heroHeadline), heroSubline: s(p.heroSubline),
       fakten: paare(p.fakten, 'label', 'wert'),
       introHeadline: s(p.introHeadline), introText: html(p.introText),
       infoLabel: s(p.infoLabel), infoText: s(p.infoText),

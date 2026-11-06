@@ -29,7 +29,8 @@ const vorteilIcons = [
 const beraterBilder = [bilder.teamKovac, bilder.teamPeters];
 const infoText = landingpage ? 'Verfolgen Sie Schritt für Schritt, wie hier hochwertiger Wohnraum entsteht – dokumentiert in jeder Bauphase.' : p.infoText;
 ---
-  <Seitenkopf bild={p.heroBild} wort="Projekt" nummer="01" titel={headline || p.heroHeadline} text={text || p.heroSubline} fett kontur />
+  <Seitenkopf bild={p.heroBild} wort="Projekt" nummer="01" titel={headline || p.heroHeadline} text={text || p.heroSubline} fett kontur
+    videoDesktop={p.heroVideoDesktop} videoHandy={p.heroVideoHandy} standbild={p.heroStandbild} />
   <Laufband />
 
   <!-- II. Überblick (content23) -->
