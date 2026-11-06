@@ -5,9 +5,9 @@
 //   (die Overlay-Farbvariable existiert in Webflow nicht mehr → durchsichtig).
 // rahmen = testimonial53_lightbox (Interviews): 0,25rem heller Rand, Schatten auf Rahmen und Bild.
 import { bilder } from '../data/bilder';
-// format: Seitenverhältnis des Bildes (Standard 1/1 wie Webflow; Erklärvideo-Sektion 4/3 – Eduard 06.11.)
+// format: Seitenverhältnis des Bildes – überall 4/3 (Eduard 06.11.; in Webflow 1/1)
 interface Props { bild: string; alt?: string; video?: string; rahmen?: boolean; quadrat?: boolean; label?: string; format?: string }
-const { bild, alt = '', video = '', rahmen = false, quadrat = false, label = 'DEUTSCHE MONUMENTUM', format = '1/1' } = Astro.props;
+const { bild, alt = '', video = '', rahmen = false, quadrat = false, label = 'DEUTSCHE MONUMENTUM', format = '4/3' } = Astro.props;
 ---
 <button class:list={['vorschau', { rahmen: rahmen || quadrat }]} type="button" data-video={video} aria-label="Video abspielen">
   <img class="bild" src={bild} alt={alt} loading="lazy" style={`aspect-ratio:${format}`} />
@@ -22,7 +22,7 @@ const { bild, alt = '', video = '', rahmen = false, quadrat = false, label = 'DE
 </button>
 <style>
   .vorschau{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:100%;padding:0;border:0;background:none;overflow:visible;cursor:pointer;box-shadow:0 30px 60px 0 rgba(0,0,0,.2);font:inherit}
-  .bild{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 50%;overflow:clip;background:var(--paper-tief)}
+  .bild{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 50%;overflow:clip;background:var(--paper-tief)}
   .play{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.3rem;overflow:hidden}
   .play-text{font-family:var(--font-mono);font-size:28px;font-weight:400;color:hsl(0 0% 98%)}
   .schleier{position:absolute;inset:0;z-index:1;overflow:hidden}
