@@ -69,9 +69,15 @@ import { menue } from '../data/navigation';
   .ziffer{justify-self:end;align-self:baseline;font-family:var(--font-playfair);font-style:italic;font-weight:400;font-size:.7em;color:var(--signal-orange);padding:.3rem 0;margin:.3rem 0;line-height:1.2}
   .name{justify-self:start;align-self:baseline;font-family:var(--font-display);font-weight:700;line-height:1.2;color:var(--ink-stumpf);padding:.3rem 0;margin:.3rem 0;white-space:nowrap}
 
+  /* Tablet und Handy: Fenster fast bildschirmhoch und über dem Logo (Logo wird ausgeblendet, X bleibt) */
+  .logo{transition:opacity .3s ease}
+  @media (max-width: 991px){
+    :global(body.menue-offen) .kopf .logo{opacity:0}
+    .karte{top:.5rem;right:.5rem;width:calc(100vw - 1rem);height:calc(100svh - 1rem);max-height:none;padding:4.5rem 2.5rem 3rem}
+  }
   @media (max-width: 767px){
     .kontakt-btn{display:none}
-    .karte{width:calc(100vw - 1rem);right:.5rem;padding:2.5rem 1.5rem}
+    .karte{padding:4.5rem 1.5rem 3rem}
     .liste{font-size:2rem}
     .ziffer{margin:.2rem 0}
     .name{margin:.2rem 0;white-space:normal}
@@ -118,17 +124,25 @@ import { menue } from '../data/navigation';
       else if (leise) { tl.progress(0); menue!.hidden = true; }
       else tl.timeScale(2.25).reverse();
     }
-    // Hover wie im Video (ab 15:44): Buchstaben des Namens wachsen auf 1,2 und werden leicht durchsichtig,
-    // gestaffelt über 0,2 s; beim Verlassen läuft es rückwärts (etwas schneller)
+    // Hover (Lupen-Effekt): Buchstaben in Cursornähe wachsen bis 1,2 und werden leicht durchsichtig;
+    // die Welle folgt dem Cursor nach links und rechts, beim Verlassen gleitet alles zurück
     if (!leise && window.matchMedia('(hover: hover)').matches) {
-      menue.querySelectorAll<HTMLAnchorElement>('.liste a').forEach((a) => {
-        const name = a.querySelector<HTMLElement>('.name');
-        if (!name) return;
+      menue.querySelectorAll<HTMLElement>('.liste .name').forEach((name) => {
         const teile = SplitText.create(name, { type: 'words,chars' });
-        const hover = gsap.timeline({ paused: true })
-          .fromTo(teile.chars, { scale: 1, opacity: 1 }, { scale: 1.2, opacity: 0.6, duration: 0.4, ease: 'power2.out', stagger: { amount: 0.2 } });
-        a.addEventListener('mouseenter', () => hover.timeScale(1).play());
-        a.addEventListener('mouseleave', () => hover.timeScale(1.5).reverse());
+        const chars = teile.chars as HTMLElement[];
+        gsap.set(chars, { transformOrigin: '50% 75%' });
+        const setze = (c: HTMLElement, f: number) =>
+          gsap.to(c, { scale: 1 + 0.2 * f, opacity: 1 - 0.4 * f, duration: 0.45, ease: 'power3.out', overwrite: true });
+        name.addEventListener('mousemove', (e) => {
+          const radius = parseFloat(getComputedStyle(name).fontSize) * 2.2;
+          chars.forEach((c) => {
+            const r = c.getBoundingClientRect();
+            const nah = Math.max(0, 1 - Math.abs(e.clientX - (r.left + r.width / 2)) / radius);
+            const f = nah * nah * (3 - 2 * nah); // weicher Verlauf
+            setze(c, f);
+          });
+        });
+        name.addEventListener('mouseleave', () => chars.forEach((c) => setze(c, 0)));
       });
     }
     knopf.addEventListener('click', () => setze(!offen));
