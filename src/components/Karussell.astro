@@ -4,10 +4,11 @@
 // - wandert langsam von selbst hin und her (pendelt zwischen Anfang und Ende), hält beim Darüberfahren an
 // - mit Maus/Finger ziehbar inkl. Nachschwingen, Trackpad-Wischen seitlich
 // - weiche Ausblendung links/rechts; auf dem Handy 72 % Kartenbreite, randlos, ohne Selbstlauf
-interface Props { label?: string }
-const { label = 'Karussell' } = Astro.props;
+// maxBreite (Eduard 06.11.): Karten nie breiter als auf dem Desktop (z. B. Projektkarten 302 px)
+interface Props { label?: string; maxBreite?: number }
+const { label = 'Karussell', maxBreite } = Astro.props;
 ---
-<div class="schale" data-karussell>
+<div class="schale" data-karussell data-max-breite={maxBreite}>
   <div class="fenster" aria-label={label} role="region">
     <div class="spur">
       <slot />
@@ -34,6 +35,8 @@ const { label = 'Karussell' } = Astro.props;
       const innen = fenster.clientWidth - parseFloat(st.paddingLeft) - parseFloat(st.paddingRight);
       let breite = (innen - LUECKE * (anzahl - 1)) / anzahl;
       if (w < 768) breite = innen * 0.72;
+      const maxB = Number(schale.dataset.maxBreite);
+      if (maxB) breite = Math.min(breite, maxB);
       spur.style.setProperty('--karte-breite', breite + 'px');
       const schritt = breite + LUECKE;
       max = Math.min(0, innen - (schritt * karten.length - LUECKE));
