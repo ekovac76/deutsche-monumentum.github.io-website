@@ -60,6 +60,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       html.hintergrund-bone .f7 :is(.credit,.legal a){color:#4a4859}
       /* Test (Eduard, 06.11.): Hamburger-Menü Mitternacht */
       html.hintergrund-bone .menu-btn i{background:#2e2c3f}
+      /* Test (Eduard, 06.11.): Linien der Fragen (FAQ) in Nebelgrau #706D80 */
+      html.hintergrund-bone .liste:has(> details){border-bottom-color:#706d80}
+      html.hintergrund-bone .liste summary{border-top-color:#706d80}
       /* Test (Eduard, 05.11.): dunkle Knöpfe Malve #8E5D6E (06.11., vorher Pflaume) mit Schrift Wolke #FDFCFA; im Titelbild (Hero) und im dunklen Kontakt-Aufruf Hauchblau #E8ECEE mit Schrift Tiefblau */
       html.hintergrund-bone :is(.btn.primaer,.btn.klein,.senden){background:#8e5d6e;color:#fdfcfa}
       html.hintergrund-bone :is(.hero,.dunkel) .btn.primaer{background:#e8ecee;color:#2f4a63}
