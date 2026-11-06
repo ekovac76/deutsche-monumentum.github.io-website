@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 const ziel = 'public/bilder/webflow';
 fs.mkdirSync(ziel, { recursive: true });
-const MUSTER = /https:\/\/(?:s3\.amazonaws\.com\/webflow-prod-assets|[a-z0-9-]+\.website-files\.com)\/[^'"`\s]+/g;
+const MUSTER = /https:\/\/(?:s3\.amazonaws\.com\/webflow-prod-assets|[a-z0-9.-]+\.website-files\.com)\/[^'"`\s]+/g;
 function alleDateien(ordner) {
   return fs.readdirSync(ordner, { withFileTypes: true }).flatMap((e) => {
     const p = path.join(ordner, e.name);
