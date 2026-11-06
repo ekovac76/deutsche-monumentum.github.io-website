@@ -2,13 +2,13 @@
 // Neue Webflow-Adressen hier eintragen und den Workflow „Bilder von Webflow übernehmen“ starten.
 export const bilder = {
   // SEO: Vorschaubild für Social Media und Favicons (wie in Webflow)
-  ogStandard: 'https://cdn.prod.website-files.com/662bdbeb1e60c91c67269307/6ac5502b85bb33255d8fb10b_og-deutsche-monumentum.jpg',
-  faviconHell: 'https://cdn.prod.website-files.com/662bdbeb1e60c91c67269307/6ac548da06e581ba6d8d5687_signet-webclip.png',
-  faviconDunkel: 'https://cdn.prod.website-files.com/662bdbeb1e60c91c67269307/6ac549054fce99c7478d7941_signet-dark.png',
-  favicon48: 'https://cdn.prod.website-files.com/662bdbeb1e60c91c67269307/6ac548db8ecd1ff372880aa6_signet-webclip.png',
-  appleIcon: 'https://cdn.prod.website-files.com/662bdbeb1e60c91c67269307/6ac5491fdd64b4cd6f3bc3ff_signet-webclip-fondo.png',
-  icon192: 'https://cdn.prod.website-files.com/662bdbeb1e60c91c67269307/6ac5491f8ecd1ff372880fd3_signet-webclip-fondo.png',
-  icon512: 'https://cdn.prod.website-files.com/662bdbeb1e60c91c67269307/6ac5491f8bbc8ce5816a34a5_signet-webclip-fondo.png',
+  ogStandard: '/bilder/webflow/6ac5502b85bb33255d8fb10b_og-deutsche-monumentum.jpg',
+  faviconHell: '/bilder/webflow/6ac548da06e581ba6d8d5687_signet-webclip.png',
+  faviconDunkel: '/bilder/webflow/6ac549054fce99c7478d7941_signet-dark.png',
+  favicon48: '/bilder/webflow/6ac548db8ecd1ff372880aa6_signet-webclip.png',
+  appleIcon: '/bilder/webflow/6ac5491fdd64b4cd6f3bc3ff_signet-webclip-fondo.png',
+  icon192: '/bilder/webflow/6ac5491f8ecd1ff372880fd3_signet-webclip-fondo.png',
+  icon512: '/bilder/webflow/6ac5491f8bbc8ce5816a34a5_signet-webclip-fondo.png',
   heroEmden: '/bilder/webflow/6a42667a6a0949fa8f5baada_Emden-aussen-bei-tag.webp',
   eduardVideo: '/bilder/webflow/6a451b36d6e7edc9a4cc0634_Bild-edi.png',
   eduardPortrait: '/bilder/webflow/6a293cafeaa865b0ae2948de_kovac_foto-e1647938661453.webp',
