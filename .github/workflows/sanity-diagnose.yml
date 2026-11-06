@@ -6,15 +6,18 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
       - run: |
-          U=https://kgw2l752.api.sanity.io/v2025-02-19/data/query/production
-          echo "== 1 POST mit perspective im Body"
-          curl -s -w "\nHTTP %{http_code}\n" -X POST -H 'Content-Type: application/json' -d '{"query":"count(*)","perspective":"published"}' $U | head -c 600; echo
-          echo "== 2 POST ohne perspective"
-          curl -s -w "\nHTTP %{http_code}\n" -X POST -H 'Content-Type: application/json' -d '{"query":"count(*)"}' $U | head -c 600; echo
-          echo "== 3 POST perspective als URL-Parameter"
-          curl -s -w "\nHTTP %{http_code}\n" -X POST -H 'Content-Type: application/json' -d '{"query":"count(*)"}' "$U?perspective=published" | head -c 600; echo
-          echo "== 4 GET"
-          curl -s -w "\nHTTP %{http_code}\n" "$U?query=count(*)" | head -c 600; echo
-          echo "== 5 cms-stand"
-          curl -s -w "\nHTTP %{http_code}\n" "https://ekovac76.github.io/deutsche-monumentum.github.io-website/cms-stand.txt" | head -c 300
+          grep -o '<video[^>]*>.\{0,300\}' dist/index.html | head -2
+          for f in dist/*.html; do echo "$f $(wc -c < $f)"; done
+          tar czf /tmp/dist.tgz dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-cms
+          path: /tmp/dist.tgz
