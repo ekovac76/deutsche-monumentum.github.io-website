@@ -30,6 +30,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     {/* Test (Eduard, 04.11.): auf den Landingpages Hintergrund Paper Bone statt Paper Warm */}
     <style is:global>
       html.hintergrund-bone{--paper-warm:#fdfcfa}
+      /* Test (Eduard, 06.11.): Bild-Platzhalter (vor dem Laden von Bildern/Videos) in der Seitenfarbe Wolke statt Paper Tief */
+      html.hintergrund-bone{--paper-tief:#fdfcfa}
       /* Test (Eduard, 05.11.): Überschriften Mitternacht #2E2C3F, Fließtext und Tabelle Tinte Weich #4A4859 */
       html.hintergrund-bone :is(.h1,.h2,.h3,.h4,h1,h2,h3,h4):not(.weiss){color:#2e2c3f}
       /* Test (Eduard, 05.11.): Projektkarten in Muschel #F7F2ED, Seitengrund Wolke #FDFCFA */
