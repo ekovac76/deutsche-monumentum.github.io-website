@@ -10,36 +10,30 @@ const z = seite('startseite').zahlen;
 <section class="sektion">
   <div class="sektion-innen">
     <Kapitelkopf ziffer="II." thema={z.thema} zaehler="02 / 10" />
-    <div class="komponente">
-      <div class="kopfraster">
-        <div>
+    <div class="raster">
+      <div>
+        <div class="kopf">
           <Tagline wort={z.tagline} nummer="02" />
           <h2 class="h1 abstand-header">{z.ueberschrift}</h2>
         </div>
+        <p class="text-normal abstand-text">{z.text}</p>
+        <div class="button-zeile"><Button href={z.knopf.link}>{z.knopf.text}</Button></div>
       </div>
-      <div class="raster">
-        <div>
-          <p class="text-normal abstand-text">{z.text}</p>
-          <div class="button-zeile"><Button href={z.knopf.link}>{z.knopf.text}</Button></div>
-        </div>
-        <div class="kacheln">
-          {z.kacheln.map((k) => <Kennzahlkarte zahl={k.zahl} titel={k.titel} text={k.text} zahlen />)}
-        </div>
+      <div class="kacheln">
+        {z.kacheln.map((k) => <Kennzahlkarte zahl={k.zahl} titel={k.titel} text={k.text} zahlen />)}
       </div>
     </div>
     <Kapitelfuss />
   </div>
 </section>
 <style>
-  /* Webflow: layout245_component (Abstand 2rem), Überschrift in linker Hälfte (layout245_content 1fr 1fr),
-     Text 0.65fr / Kacheln 1fr (Grid), Kacheln 2 Spalten mit 1rem Abstand (Grid 2.is-zahlen-kacheln) */
-  .komponente{display:flex;flex-direction:column;gap:2rem}
-  .kopfraster{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
-  .raster{display:grid;grid-template-columns:.65fr 1fr;gap:3rem}
+  /* Ursprünglich Webflow layout245 (Überschrift oben über ganzer Breite, darunter Text | Kacheln).
+     Änderung Eduard 06.11.: Kacheln nach oben – Oberkante der Kacheln auf Höhe der Tagline („Kapitel · Nº 02“);
+     Überschrift, Text und Knopf stehen links, Kacheln rechts. Mobil unverändert untereinander. */
+  .kopf{margin-bottom:2rem}
+  .raster{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
   .kacheln{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;align-items:stretch;gap:1rem}
-  /* Webflow-Breakpoint „large“ (ab 1280 px): Überschrift-Spalte 1fr/.75fr, Text/Kacheln 1fr/1fr */
-  @media (min-width:1280px){.kopfraster{grid-template-columns:1fr .75fr}.raster{grid-template-columns:1fr 1fr}.kacheln{gap:2rem}}
-  @media (max-width:991px){.kopfraster{grid-template-columns:1fr;gap:2rem 3rem}.raster{grid-template-columns:1fr}.kacheln{gap:3rem}}
-  @media (max-width:767px){.kopfraster{gap:1.25rem}}
-  @media (max-width:479px){.komponente{gap:3rem}.kacheln{grid-template-columns:1fr;gap:2rem}}
+  @media (min-width:1280px){.kacheln{gap:2rem}}
+  @media (max-width:991px){.raster{grid-template-columns:1fr}.kacheln{gap:3rem}}
+  @media (max-width:479px){.kopf{margin-bottom:3rem}.kacheln{grid-template-columns:1fr;gap:2rem}}
 </style>
