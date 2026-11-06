@@ -1,5 +1,5 @@
-// Zentrale Bildliste. Vorerst direkt von Webflow geladen.
-// "npm run bilder" lädt alle Bilder nach public/bilder/webflow und stellt die Liste auf lokale Dateien um.
+// Zentrale Bildliste. Alle Bilder liegen lokal in public/bilder/webflow (ursprünglich von Webflow übernommen).
+// Neue Webflow-Adressen hier eintragen und den Workflow „Bilder von Webflow übernehmen“ starten.
 export const bilder = {
   heroEmden: '/bilder/webflow/6a42667a6a0949fa8f5baada_Emden-aussen-bei-tag.webp',
   eduardVideo: '/bilder/webflow/6a451b36d6e7edc9a4cc0634_Bild-edi.png',
@@ -62,11 +62,9 @@ export const bilder = {
   iconKalkulatorNeubau: '/bilder/webflow/6aa1466894fc26adfb49fbbe_kalkulator-neubau.svg',
   rechnerVideo: '/bilder/webflow/6ab18fd4790185be9e78c0a5_eduard-kovac-steady.webp',
   provenExpertLogo: '/bilder/webflow/6a922392978cdea86097c385_provenexpert-logo-claim.svg',
-  taglineStrich: '/bilder/webflow/6a2182aaf17b5d0bf9810c16_-before.svg',
   kennzahlIcon: '/bilder/webflow/6a2185b64996ea5040ab83b5_Component-2.svg',
   kennzahlPfeil: '/bilder/webflow/6a218452fa2e57c17ee30f41_Component-2.svg',
   videoPlay: '/bilder/webflow/6a2be45c81948b1fe5f2ca0a_Frame-427322536.png',
   eckeUntenRechtsKarte: '/bilder/webflow/6a2845d810082f32bf5c9296_Group-493.png',
-  sterne: '/bilder/webflow/6a294eb088b3f53721238c19_Stars.svg',
 } as const;
 export type BildName = keyof typeof bilder;
