@@ -34,10 +34,9 @@ const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt au
     document.querySelectorAll<HTMLVideoElement>('[data-hero-video]').forEach((v) => { v.removeAttribute('autoplay'); v.pause(); });
 </script>
 <script>
-  // Überschrift-Animation beim Laden, 1:1 nach Flux-Academy-Video „GSAP Crash Course“ (Min. 12:49–14:36):
-  // Tagline: jeder Buchstabe wächst von 0 auf volle Größe, gestaffelt über 0,2 s
-  // Überschrift: jeder Buchstabe gleitet von unten nach oben und blendet ein, zufällige Reihenfolge, gestaffelt über 0,2 s
-  // Beides startet gleichzeitig beim Laden der Seite.
+  // Überschrift-Animation beim Laden (edel, ruhig):
+  // Tagline blendet sanft ein und gleitet leicht nach oben,
+  // danach steigt die Überschrift Zeile für Zeile aus einer unsichtbaren Kante auf.
   import { gsap } from 'gsap';
   import { SplitText } from 'gsap/SplitText';
   gsap.registerPlugin(SplitText);
@@ -46,15 +45,23 @@ const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt au
   if (box) {
     const zeigen = () => document.documentElement.classList.remove('js-buchstaben');
     const h1 = box.querySelector<HTMLElement>('h1');
-    const tagline = box.querySelectorAll<HTMLElement>('.tagline .wort, .tagline .nr');
+    const tagline = box.querySelector<HTMLElement>('.tagline');
     if (!h1 || matchMedia('(prefers-reduced-motion: reduce)').matches) zeigen();
     else {
-      const titel = SplitText.create(h1, { type: 'words,chars' });
-      const tag = SplitText.create(tagline, { type: 'chars' });
-      const tl = gsap.timeline({ defaults: { duration: 0.6, ease: 'back.inOut' } });
-      tl.fromTo(tag.chars, { scale: 0 }, { scale: 1, stagger: { amount: 0.2 } }, 0);
-      tl.fromTo(titel.chars, { autoAlpha: 0, yPercent: 100 }, { autoAlpha: 1, yPercent: 0, stagger: { amount: 0.2, from: 'random' } }, 0);
-      zeigen();
+      let erstes = true;
+      document.fonts.ready.then(() => {
+        if (tagline) gsap.fromTo(tagline, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: 0.2 });
+        SplitText.create(h1, {
+          type: 'lines', mask: 'lines', autoSplit: true,
+          onSplit(self) {
+            // nach Größenänderung des Fensters nicht erneut abspielen
+            if (!erstes) return;
+            erstes = false;
+            return gsap.fromTo(self.lines, { yPercent: 110 }, { yPercent: 0, duration: 1.4, ease: 'power4.out', stagger: 0.14, delay: 0.35 });
+          },
+        });
+        zeigen();
+      });
     }
   }
 </script>
