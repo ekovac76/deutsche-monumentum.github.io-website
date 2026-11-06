@@ -1,0 +1,84 @@
+---
+// Relume „Layout 414“ (uncommon-components-2 / section_layout414) im Designsystem:
+// oben zwei Spalten (links Tagline + Überschrift, rechts Text + zwei Knöpfe),
+// darunter zwei Bildreihen über die ganze Breite, die sich beim Scrollen gegenläufig verschieben.
+import Button from '../Button.astro';
+import Tagline from '../Tagline.astro';
+import Kapitelkopf from '../Kapitelkopf.astro';
+import Kapitelfuss from '../Kapitelfuss.astro';
+interface Bild { src: string; alt: string }
+interface Knopf { text: string; link: string }
+interface Props {
+  ziffer: string; thema: string; zaehler: string; tagline?: string; nummer: string;
+  ueberschrift: string; text: string; knopf?: Knopf; knopf2?: Knopf;
+  reihe1: Bild[]; reihe2: Bild[];
+}
+const { ziffer, thema, zaehler, tagline = 'Kapitel', nummer, ueberschrift, text, knopf, knopf2, reihe1, reihe2 } = Astro.props;
+const istKontakt = (l?: string) => l === '#kontakt';
+---
+<section class="sektion l414">
+  <div class="sektion-innen">
+    <Kapitelkopf ziffer={ziffer} thema={thema} zaehler={zaehler} />
+    <div class="raster">
+      <div>
+        <Tagline wort={tagline} nummer={nummer} />
+        <h2 class="h1">{ueberschrift}</h2>
+      </div>
+      <div>
+        <p class="text-normal">{text}</p>
+        {(knopf || knopf2) && (
+          <div class="button-zeile knoepfe">
+            {knopf && <Button href={knopf.link} {...(istKontakt(knopf.link) ? { 'data-kontakt': true } : {})}>{knopf.text}</Button>}
+            {knopf2 && <Button href={knopf2.link} variante="sekundaer" {...(istKontakt(knopf2.link) ? { 'data-kontakt': true } : {})}>{knopf2.text}</Button>}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+  <div class="reihen" data-l414>
+    <div class="reihe" data-richtung="1">
+      {reihe1.map((b) => <div class="bild"><img src={b.src} alt={b.alt} loading="lazy" /></div>)}
+    </div>
+    <div class="reihe" data-richtung="-1">
+      {reihe2.map((b) => <div class="bild"><img src={b.src} alt={b.alt} loading="lazy" /></div>)}
+    </div>
+  </div>
+  <div class="sektion-innen fuss-innen"><Kapitelfuss /></div>
+</section>
+<style>
+  .l414{overflow:hidden}
+  /* Relume: zwei Spalten, Abstand 5rem (lg) / 3rem (md), oben ausgerichtet */
+  .raster{display:grid;grid-template-columns:1fr 1fr;gap:2rem 5rem;align-items:start}
+  .knoepfe{margin-top:2rem}
+  /* Bildreihen: volle Breite, Bilder 30vw (Handy 40vw), Format 4:3, Abstand 1rem */
+  .reihen{display:flex;flex-direction:column;gap:1rem;width:100%}
+  .reihe{display:flex;flex-wrap:nowrap;justify-content:center;gap:1rem;will-change:transform}
+  .bild{flex:none;width:30vw}
+  .bild img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-sm)}
+  .fuss-innen{padding-top:4rem}
+  @media (max-width:991px){.raster{gap:2rem 3rem}.fuss-innen{padding-top:3rem}}
+  @media (max-width:767px){.raster{grid-template-columns:1fr}.bild{width:40vw}}
+</style>
+<script>
+  // Gegenläufiges Verschieben beim Scrollen (wie Relume: Reihe 1 −2 % → 5 %, Reihe 2 2 % → −5 %)
+  const ruhig = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('[data-l414]').forEach((box) => {
+    if (ruhig) return;
+    const reihen = box.querySelectorAll<HTMLElement>('.reihe');
+    let geplant = false;
+    const setzen = () => {
+      geplant = false;
+      const r = box.getBoundingClientRect();
+      const h = window.innerHeight;
+      const p = Math.min(1, Math.max(0, (h - r.top) / (h + r.height)));
+      reihen.forEach((reihe) => {
+        const x = reihe.dataset.richtung === '1' ? -2 + 7 * p : 2 - 7 * p;
+        reihe.style.transform = `translateX(${x}%)`;
+      });
+    };
+    const anstossen = () => { if (!geplant) { geplant = true; requestAnimationFrame(setzen); } };
+    window.addEventListener('scroll', anstossen, { passive: true });
+    window.addEventListener('resize', anstossen);
+    setzen();
+  });
+</script>
