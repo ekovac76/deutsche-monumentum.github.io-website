@@ -21,24 +21,21 @@ import { menue, social } from '../data/navigation';
 </header>
 
 <div class="menue" id="hauptmenue" hidden>
-  <div class="bar">
-    <a href="/" aria-label="Deutsche Monumentum – Startseite">
-      <img class="logo" src="/bilder/logo-deutsche-monumentum.png" alt="Deutsche Monumentum" width="160" height="44" />
-    </a>
+  <div class="karte">
     <button class="close" aria-label="Menü schließen"><i></i><i></i></button>
-  </div>
-  <nav class="links" aria-label="Hauptmenü">
-    <div class="liste">
-      {menue.map((m, i) => (
-        <a href={m.href} style={`--i:${i}`}>
-          <span class="ziffer">{m.ziffer}</span>
-          <span class="name"><span class="maske"><span class="einlauf"><span class="zeile">{m.name}</span><span class="zeile kopie" aria-hidden="true">{m.name}</span></span></span></span>
-        </a>
-      ))}
+    <nav class="links" aria-label="Hauptmenü">
+      <div class="liste">
+        {menue.map((m, i) => (
+          <a href={m.href} style={`--i:${i}`}>
+            <span class="ziffer">{m.ziffer}</span>
+            <span class="name"><span class="maske"><span class="einlauf"><span class="zeile">{m.name}</span><span class="zeile kopie" aria-hidden="true">{m.name}</span></span></span></span>
+          </a>
+        ))}
+      </div>
+    </nav>
+    <div class="social">
+      {social.map((s) => <a href={s.href}>{s.name}</a>)}
     </div>
-  </nav>
-  <div class="social">
-    {social.map((s) => <a href={s.href}>{s.name}</a>)}
   </div>
 </div>
 
@@ -57,17 +54,21 @@ import { menue, social } from '../data/navigation';
   /* Bewegungs-Takt: bewusst langsam und weich */
   .menue{--weich:cubic-bezier(.22,1,.36,1);--vorhang:cubic-bezier(.76,0,.24,1)}
 
-  /* Vorhang: senkt sich von oben über die Seite */
-  .menue{position:fixed;inset:0;z-index:100;background:var(--paper-bone);overflow-y:auto;
-    clip-path:inset(0 0 100% 0);transition:clip-path .9s var(--vorhang) .25s}
-  .menue.offen{clip-path:inset(0 0 0 0);transition-delay:0s}
+  /* Menüfenster: Karte oben rechts (Verhältnis wie im Flux-Video), Ecken/Rand/Schatten wie Projektkarte im Designsystem */
+  .menue{position:fixed;inset:0;z-index:100}
+  .karte{position:absolute;top:.75rem;right:.75rem;width:min(44rem,calc(100vw - 1.5rem));max-height:calc(100vh - 1.5rem);overflow-y:auto;
+    display:flex;flex-direction:column;justify-content:center;padding:4rem 3rem 2.5rem;
+    background:var(--paper-bone);border:1px solid hsl(0 0% 62%);border-radius:10px;box-shadow:var(--shadow-karte);
+    clip-path:inset(0 0 100% 35% round 10px);transition:clip-path .9s var(--vorhang) .25s}
+  .menue.offen .karte{clip-path:inset(0 0 0 0 round 10px);transition-delay:0s}
+  .karte .close{position:absolute;top:1rem;right:1rem}
 
-  .links{display:flex;justify-content:center;padding:1rem var(--page-gutter) 2rem}
-  .liste{display:grid;grid-template-columns:auto auto;column-gap:.35em;font-size:3.5rem}
+  .links{display:flex;justify-content:center;padding:0 0 2rem}
+  .liste{display:grid;grid-template-columns:auto auto;column-gap:.35em;font-size:clamp(2rem,3.2vw,2.9rem)}
   .liste a{display:contents;text-decoration:none}
-  .ziffer{justify-self:end;align-self:baseline;font-family:var(--font-playfair);font-style:italic;font-weight:400;font-size:2.5rem;color:var(--signal-orange);padding:.5rem 0;margin:.5rem 0;line-height:1.2}
-  .name{justify-self:start;align-self:baseline;font-family:var(--font-display);font-weight:700;line-height:1.2;color:var(--ink-stumpf);padding:.4rem 0;margin:.4rem 0;white-space:nowrap}
-  .social{display:flex;justify-content:center;gap:var(--space-lg);padding:0 var(--page-gutter) 3rem;font-family:var(--font-mono);font-size:11px;letter-spacing:1.33px;text-transform:uppercase}
+  .ziffer{justify-self:end;align-self:baseline;font-family:var(--font-playfair);font-style:italic;font-weight:400;font-size:.7em;color:var(--signal-orange);padding:.3rem 0;margin:.3rem 0;line-height:1.2}
+  .name{justify-self:start;align-self:baseline;font-family:var(--font-display);font-weight:700;line-height:1.2;color:var(--ink-stumpf);padding:.3rem 0;margin:.3rem 0;white-space:nowrap}
+  .social{display:flex;justify-content:center;gap:var(--space-lg);font-family:var(--font-mono);font-size:11px;letter-spacing:1.33px;text-transform:uppercase}
   .social a{color:var(--ink-stumpf);text-decoration:none}
 
   /* Menüpunkte: steigen nacheinander aus einer unsichtbaren Maske auf */
@@ -107,8 +108,8 @@ import { menue, social } from '../data/navigation';
   @media (hover:none){ .kopie{display:none} }
 
   @media (prefers-reduced-motion: reduce){
-    .menue,.menue.offen{clip-path:none;opacity:0;transition:opacity .2s ease}
-    .menue.offen{opacity:1}
+    .karte,.menue.offen .karte{clip-path:none;opacity:0;transition:opacity .2s ease}
+    .menue.offen .karte{opacity:1}
     .einlauf,.menue.offen .einlauf,.zeile{transform:none;transition:none}
     .ziffer,.social a{transform:none}
     .kopie{display:none}
@@ -116,9 +117,10 @@ import { menue, social } from '../data/navigation';
 
   @media (max-width: 767px){
     .kontakt-btn{display:none}
+    .karte{top:.5rem;right:.5rem;width:calc(100vw - 1rem);padding:3.5rem 1.5rem 2rem}
     .liste{font-size:2rem}
-    .ziffer{font-size:1.5rem;margin:.25rem 0}
-    .name{margin:.25rem 0;white-space:normal}
+    .ziffer{margin:.2rem 0}
+    .name{margin:.2rem 0;white-space:normal}
   }
 </style>
 
@@ -138,5 +140,6 @@ import { menue, social } from '../data/navigation';
   }
   oeffnen?.addEventListener('click', () => setze(true));
   schliessen?.addEventListener('click', () => setze(false));
+  menue?.addEventListener('click', (e) => { if (e.target === menue) setze(false); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setze(false); });
 </script>
