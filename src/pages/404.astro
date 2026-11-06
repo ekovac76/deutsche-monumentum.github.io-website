@@ -1,0 +1,21 @@
+---
+// Fehlerseite (Seite nicht gefunden) – gleicher Aufbau wie die Danke-Seite
+import Basis from '../layouts/Basis.astro';
+import Button from '../components/Button.astro';
+---
+<Basis titel="Seite nicht gefunden | Deutsche Monumentum" noindex>
+  <section class="sektion">
+    <div class="sektion-innen oben">
+      <div class="box">
+        <h1 class="h1 fett">Diese Seite gibt es nicht</h1>
+        <p class="text-normal">Die Adresse ist falsch oder die Seite wurde verschoben. Auf der Startseite finden Sie alle aktuellen Projekte.</p>
+        <div class="button-zeile"><Button href="/">Zur Startseite</Button></div>
+      </div>
+    </div>
+  </section>
+</Basis>
+<style>
+  .oben{padding-top:calc(var(--nav-height) + 4rem);min-height:70vh;justify-content:center}
+  .box{max-width:29.8rem;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+  .fett{-webkit-text-stroke:.6px currentColor}
+</style>

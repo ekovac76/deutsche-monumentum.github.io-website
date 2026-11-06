@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/farben.css';
+import { bilder } from '../data/bilder';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FooterSchlicht from '../components/FooterSchlicht.astro';
@@ -14,8 +15,10 @@ import tracking from '../skripte/tracking.js?raw';
 import { trackingDomain } from '../data/formular';
 const trackingNurAufDomain = `if (location.hostname === '${trackingDomain}' || location.hostname.endsWith('.${trackingDomain}')) {${tracking}}`;
 // landingpage: CRM-Projektname der Projekt-Landingpage → schlichter Footer, Landingpage-Formular, verstecktes Feld „Projekt der Seite“ (wie Webflow #dm-lp-projekt)
-interface Props { titel: string; beschreibung?: string; transparent?: boolean; noindex?: boolean; landingpage?: string }
-const { titel, beschreibung = '', transparent = false, noindex = false, landingpage } = Astro.props;
+// bild: Vorschaubild für Social Media (og:image); ohne Angabe das Standardbild wie in Webflow
+interface Props { titel: string; beschreibung?: string; transparent?: boolean; noindex?: boolean; landingpage?: string; bild?: string | null }
+const { titel, beschreibung = '', transparent = false, noindex = false, landingpage, bild } = Astro.props;
+const ogBild = new URL(bild || bilder.ogStandard, Astro.site).href;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -26,6 +29,23 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{titel}</title>
     {beschreibung && <meta name="description" content={beschreibung} />}
     <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={titel} />
+    {beschreibung && <meta property="og:description" content={beschreibung} />}
+    <meta property="og:image" content={ogBild} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="Deutsche Monumentum" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={titel} />
+    {beschreibung && <meta name="twitter:description" content={beschreibung} />}
+    <meta name="twitter:image" content={ogBild} />
+    <link rel="icon" href={bilder.faviconHell} type="image/png" sizes="32x32" media="(prefers-color-scheme: light)" />
+    <link rel="icon" href={bilder.faviconDunkel} type="image/png" sizes="32x32" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href={bilder.favicon48} type="image/png" sizes="48x48" />
+    <link rel="apple-touch-icon" href={bilder.appleIcon} sizes="180x180" />
+    <link rel="icon" href={bilder.icon192} type="image/png" sizes="192x192" />
+    <link rel="icon" href={bilder.icon512} type="image/png" sizes="512x512" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="preload" href="/fonts/Gambarino-Regular.woff2" as="font" type="font/woff2" crossorigin />
   </head>

@@ -13,7 +13,8 @@ export function getStaticPaths() {
 }
 const { l, p } = Astro.props;
 const subtitle = projekte.find((x) => x.slug === p!.slug)?.titel ?? p!.name;
+const kachelbild = projekte.find((x) => x.slug === p!.slug)?.bild || p!.heroBild;
 ---
-<Basis titel={`${subtitle} | Deutsche Monumentum`} beschreibung={p!.heroSubline} landingpage={l.crmProjekt}>
+<Basis titel={`${subtitle} | Deutsche Monumentum`} beschreibung={p!.heroSubline} bild={kachelbild} landingpage={l.crmProjekt}>
   <ProjektInhalt p={p} landingpage headline={l.kampagnenHeadline} text={l.kampagnenText} />
 </Basis>

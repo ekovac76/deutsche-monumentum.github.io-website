@@ -11,7 +11,8 @@ export function getStaticPaths() {
 const { p } = Astro.props;
 // SEO-Titel wie Webflow: „{Projekt-Subtitle} | Deutsche Monumentum“
 const subtitle = projekte.find((x) => x.slug === p.slug)?.titel ?? p.name;
+const kachelbild = projekte.find((x) => x.slug === p.slug)?.bild || p.heroBild;
 ---
-<Basis titel={`${subtitle} | Deutsche Monumentum`} beschreibung={p.heroSubline}>
+<Basis titel={`${subtitle} | Deutsche Monumentum`} beschreibung={p.heroSubline} bild={kachelbild}>
   <ProjektInhalt p={p} />
 </Basis>
