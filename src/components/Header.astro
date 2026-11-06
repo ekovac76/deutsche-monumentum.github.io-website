@@ -49,7 +49,7 @@ import { menue } from '../data/navigation';
 
   /* Hamburger → X */
   .menu-btn{position:relative;width:32px;height:32px;background:none;border:0;padding:0;cursor:pointer}
-  .menu-btn i{position:absolute;left:4px;right:4px;top:15.25px;height:1.5px;background:var(--ink-tinte);transition:transform .9s cubic-bezier(.16,1,.3,1),opacity .4s ease}
+  .menu-btn i{position:absolute;left:4px;right:4px;top:15.25px;height:1.5px;background:var(--ink-tinte);transition:transform .72s cubic-bezier(.16,1,.3,1),opacity .32s ease}
   .menu-btn i:nth-child(1){transform:translateY(-6.25px)}
   .menu-btn i:nth-child(3){transform:translateY(6.25px)}
   .menu-btn[aria-expanded="true"] i:nth-child(1){transform:rotate(45deg)}
@@ -114,9 +114,9 @@ import { menue } from '../data/navigation';
       knopf!.setAttribute('aria-label', offen ? 'Menü schließen' : 'Menü öffnen');
       document.body.classList.toggle('menue-offen', offen);
       document.body.style.overflow = offen ? 'hidden' : '';
-      if (offen) { menue!.hidden = false; leise ? tl.progress(1) : tl.timeScale(1).play(); }
+      if (offen) { menue!.hidden = false; leise ? tl.progress(1) : tl.timeScale(1.25).play(); }
       else if (leise) { tl.progress(0); menue!.hidden = true; }
-      else tl.timeScale(1.8).reverse();
+      else tl.timeScale(2.25).reverse();
     }
     // Hover wie im Video (ab 15:44): Buchstaben des Namens wachsen auf 1,2 und werden leicht durchsichtig,
     // gestaffelt über 0,2 s; beim Verlassen läuft es rückwärts (etwas schneller)

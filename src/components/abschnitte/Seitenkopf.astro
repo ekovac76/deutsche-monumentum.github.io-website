@@ -51,18 +51,18 @@ const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt au
     else {
       let erstes = true;
       document.fonts.ready.then(() => {
-        if (tagline) gsap.fromTo(tagline, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: 0.2 });
+        if (tagline) gsap.fromTo(tagline, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.96, ease: 'power3.out', delay: 0.16 });
         SplitText.create(h1, {
           type: 'lines', mask: 'lines', autoSplit: true,
           onSplit(self) {
             // nach Größenänderung des Fensters nicht erneut abspielen
             if (!erstes) return;
             erstes = false;
-            return gsap.fromTo(self.lines, { yPercent: 110 }, { yPercent: 0, duration: 1.4, ease: 'power4.out', stagger: 0.14, delay: 0.35 });
+            return gsap.fromTo(self.lines, { yPercent: 110 }, { yPercent: 0, duration: 1.12, ease: 'power4.out', stagger: 0.11, delay: 0.28 });
           },
         });
         // danach Text und Knopf: gleiche weiche Bewegung, leicht versetzt
-        gsap.fromTo(rest, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.4, ease: 'power4.out', stagger: 0.15, delay: 0.9 });
+        gsap.fromTo(rest, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12, ease: 'power4.out', stagger: 0.12, delay: 0.72 });
         zeigen();
       });
     }
