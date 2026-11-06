@@ -50,10 +50,11 @@ const QUERY = `{
 async function laden(): Promise<any | null> {
   if (process.env.CMS === 'aus') return null;
   try {
-    const res = await fetch(`https://${PROJEKT}.api.sanity.io/v2025-02-19/data/query/${DATASET}`, {
+    // perspective gehört in die Adresse – im Body lehnt Sanity die Anfrage ab (HTTP 400)
+    const res = await fetch(`https://${PROJEKT}.api.sanity.io/v2025-02-19/data/query/${DATASET}?perspective=published`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: QUERY, params: { seiten: Object.keys(SEITEN) }, perspective: 'published' }),
+      body: JSON.stringify({ query: QUERY, params: { seiten: Object.keys(SEITEN) } }),
       signal: AbortSignal.timeout(20000),
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
