@@ -31,7 +31,9 @@
     "afa": "QNG Neubau",
     "kfw": "KfW 40",
     "standort": "Pfungstadt",
-    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85c00f5793db9a9b113d64_6a85bf3457f9a03dc41aacf1_pfungstadt-1-2048.webp"
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85c00f5793db9a9b113d64_6a85bf3457f9a03dc41aacf1_pfungstadt-1-2048.webp",
+    "kachelVideo": "/videos/projektkachel-pfungstadt-web.mp4",
+    "kachelStandbild": "/videos/projektkachel-pfungstadt-standbild.jpg"
   },
   {
     "slug": "wuppertal-lofts",
@@ -47,7 +49,9 @@
     "afa": "70%",
     "kfw": "261 (EE)",
     "standort": "Wuppertal",
-    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85c0ff997bc950936f1d63_6a85c02057f9a03dc41b27fc_wuppertal-lofts-1-2048.webp"
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85c0ff997bc950936f1d63_6a85c02057f9a03dc41b27fc_wuppertal-lofts-1-2048.webp",
+    "kachelVideo": "/videos/projektkachel-wuppertal-lofts-web.mp4",
+    "kachelStandbild": "/videos/projektkachel-wuppertal-lofts-standbild.jpg"
   },
   {
     "slug": "leutscher-hof-leipzig",
@@ -63,7 +67,9 @@
     "afa": "70%",
     "kfw": "261 (EE)",
     "standort": "Leipzig",
-    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85b5c65d23572fb90462ab_6a85b4dcc8d7a25a3acee503_leutscher-hof-leipzig-1-2048.webp"
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85b5c65d23572fb90462ab_6a85b4dcc8d7a25a3acee503_leutscher-hof-leipzig-1-2048.webp",
+    "kachelVideo": "/videos/projektkachel-leipzig-leutzscher-hof-web.mp4",
+    "kachelStandbild": "/videos/projektkachel-leipzig-leutzscher-hof-standbild.jpg"
   },
   {
     "slug": "edesheim",
@@ -79,7 +85,9 @@
     "afa": "81%",
     "kfw": "261 (EE)",
     "standort": "Edesheim",
-    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85bf212e281c89d22a10d5_6a85be47434c5c5884b33302_edesheim-1-2048.webp"
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85bf212e281c89d22a10d5_6a85be47434c5c5884b33302_edesheim-1-2048.webp",
+    "kachelVideo": "/videos/projektkachel-edesheim-web.mp4",
+    "kachelStandbild": "/videos/projektkachel-edesheim-standbild.jpg"
   },
   {
     "slug": "jugendstilvilla-wuppertal",
@@ -95,6 +103,8 @@
     "afa": "70%",
     "kfw": "261 (EE)",
     "standort": "Wuppertal",
-    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85be362e281c89d22975d2_6a85bd50292234f5565b4f66_jugendstilvilla-wuppertal-2-2048.webp"
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85be362e281c89d22975d2_6a85bd50292234f5565b4f66_jugendstilvilla-wuppertal-2-2048.webp",
+    "kachelVideo": "/videos/projektkachel-jugendstilvilla-wuppertal-web.mp4",
+    "kachelStandbild": "/videos/projektkachel-jugendstilvilla-wuppertal-standbild.jpg"
   }
 ]
