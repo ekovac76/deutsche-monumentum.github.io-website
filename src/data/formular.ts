@@ -9,3 +9,7 @@ export const formular = {
 
 // Tracking (Google Tag Manager, LinkedIn) nur auf der echten Domain – nicht in der Vorschau
 export const trackingDomain = 'deutsche-monumentum.de';
+
+// Auswahllisten im Kontaktformular – 1:1 wie im Webflow-Formular (Namen wie im CRM)
+export const herkunft = ['Google', 'Youtube', 'Instagram', 'Linkedin', 'Facebook'];
+export const formularProjekte = ['Denkmal Nürnberg', 'Pfungstadt QNG', 'Fabrik Lofts Wuppertal', 'Leipzig Gründerzeithaus', 'Weingut Renner Edesheim', 'Wuppertal Gründerzeithaus'];

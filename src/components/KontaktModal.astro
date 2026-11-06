@@ -1,8 +1,7 @@
 ---
 // Kontaktformular als Fenster – öffnet sich bei allen Links mit data-kontakt oder #kontakt
-import { projekte } from '../data/cms';
 import { kontakt } from '../data/navigation';
-import { formular } from '../data/formular';
+import { formular, herkunft, formularProjekte } from '../data/formular';
 // variante „landingpage“: wie Webflow „contact-modal6 Landingpage“ – fragt Jahreseinkommen und Investitionssumme statt Herkunft und Projekt
 interface Props { variante?: 'standard' | 'landingpage' }
 const { variante = 'standard' } = Astro.props;
@@ -19,7 +18,7 @@ const investition = ['200.000 – 350.000 €', '350.000 – 500.000 €', '500.
       <form class="formular" name={lp ? 'LP Kontaktformular' : 'Kontaktformular'} action="/danke" method="post" data-schluessel={formular.schluessel} data-betreff={formular.betreff} data-absender={formular.absenderName} novalidate>
         <input type="checkbox" name="botcheck" class="falle" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <div class="zwei">
-          <select name="Anrede" aria-label="Anrede" required><option value="" disabled selected hidden>Anrede</option>{lp ? <><option>Frau</option><option>Herr</option></> : <><option>Herr</option><option>Frau</option></>}<option>Divers</option></select>
+          <select name="Anrede" aria-label="Anrede" required><option value="" disabled selected hidden>Anrede</option><option>Frau</option><option>Herr</option><option>Divers</option></select>
           <input name="Vorname" type="text" placeholder="Vorname" aria-label="Vorname" autocomplete="given-name" required />
         </div>
         <div class="zwei mobil-eins">
@@ -42,17 +41,16 @@ const investition = ['200.000 – 350.000 €', '350.000 – 500.000 €', '500.
         ) : (
           <>
         <select name="Wie sind Sie auf uns aufmerksam geworden" aria-label="Wie sind Sie auf uns aufmerksam geworden?" required>
-              <option value="" disabled selected hidden>Wie sind Sie auf uns aufmerksam geworden?</option><option>Google</option><option>LinkedIn</option><option>Instagram</option><option>YouTube</option><option>Empfehlung</option><option>Sonstiges</option>
+              <option value="" disabled selected hidden>Wie sind Sie auf uns aufmerksam geworden?</option>{herkunft.map((o) => <option>{o}</option>)}
             </select>
             <select name="Für welches Projekt interessieren Sie sich" aria-label="Für welches Projekt interessieren Sie sich?" required>
               <option value="" disabled selected hidden>Für welches Projekt interessieren Sie sich?</option>
-              {projekte.map((p) => <option>{p.name}</option>)}
-              <option>Noch offen – bitte beraten Sie mich</option>
+              {formularProjekte.map((o) => <option>{o}</option>)}
             </select>
           </>
         )}
         <textarea name="Nachricht" rows="6" placeholder="Nachricht" aria-label="Nachricht" required></textarea>
-        <label class="haken"><input type="checkbox" name="Einwilligung Newsletter" required /> <span>Ich bin damit einverstanden, per E-Mail Informationen über neue Immobilienprojekte zu erhalten.</span></label>
+        <label class="haken"><input type="checkbox" name="Einwilligung Newsletter" /> <span>Ich bin damit einverstanden, per E-Mail Informationen über neue Immobilienprojekte zu erhalten.</span></label>
         <button class="senden" type="submit">Absenden</button>
         <p class="meldung" role="status" hidden></p>
       </form>

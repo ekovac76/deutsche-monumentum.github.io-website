@@ -69,7 +69,7 @@
   --radius-kennzahl:18px;
   --radius-avatar:25px;
   --radius-pill:999px;
-  --shadow-primary:0 10px 20px 0 hsla(178.2, 59.01%, 18.45%, 0.25);
+  --shadow-primary:0 10px 20px 0 rgba(46, 44, 63, 0.22);
   --shadow-karte:inset 0 0 1px -3px hsla(67, 29.68%, 44.72%, 0.20), 0 30px 60px 0 rgba(0, 0, 0, 0.2);
   --shadow-kennzahl:0 30px 60px 0 rgba(0, 0, 0, 0.2);
   --shadow-secondary:0 10px 20px 0 rgba(46, 44, 63, 0.14);
