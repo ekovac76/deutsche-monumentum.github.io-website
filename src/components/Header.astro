@@ -1,9 +1,8 @@
 ---
 // Kopfzeile + Menüfenster nach Baustein „Navigation“
 // Animation 1:1 nach Flux-Academy-Video „GSAP Crash Course“ (Min. 3–9), mit GSAP:
-// 1. Menüfenster: Größe 0,6 → 1 und von −150 % herabgleitend, Easing back.inOut, 0,6 s
-// 2. Hamburger-Knopf dreht sich gleichzeitig 360° und wird zum X (gleiche Stelle)
-// 3. Menüpunkte gleiten von unten mit Opacity ein, gestaffelt über 0,2 s
+// Ablauf wie im Video (Fenster gleitet herab, Knopf dreht 360° zum X, Punkte steigen gestaffelt auf),
+// Bewegung aber ruhig und weich wie die Hero-Überschrift
 // Erneuter Klick spielt alles rückwärts. Inhalt linksbündig (statt mittig wie im Video).
 import Button from './Button.astro';
 import { menue } from '../data/navigation';
@@ -50,7 +49,7 @@ import { menue } from '../data/navigation';
 
   /* Hamburger → X */
   .menu-btn{position:relative;width:32px;height:32px;background:none;border:0;padding:0;cursor:pointer}
-  .menu-btn i{position:absolute;left:4px;right:4px;top:15.25px;height:1.5px;background:var(--ink-tinte);transition:transform .6s cubic-bezier(.68,-.55,.27,1.55),opacity .3s ease}
+  .menu-btn i{position:absolute;left:4px;right:4px;top:15.25px;height:1.5px;background:var(--ink-tinte);transition:transform .9s cubic-bezier(.16,1,.3,1),opacity .4s ease}
   .menu-btn i:nth-child(1){transform:translateY(-6.25px)}
   .menu-btn i:nth-child(3){transform:translateY(6.25px)}
   .menu-btn[aria-expanded="true"] i:nth-child(1){transform:rotate(45deg)}
@@ -90,23 +89,22 @@ import { menue } from '../data/navigation';
 
   if (menue && knopf && karte) {
     const punkte = menue.querySelectorAll<HTMLElement>('[data-i]');
-    const zeilen = Number(punkte[punkte.length - 1]?.dataset.i ?? 0);
     const leise = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Zeitleiste wie im Video
+    // Zeitleiste: gleiche ruhige Bewegung wie die Hero-Überschrift (power4.out, weich auslaufend)
     const tl = gsap.timeline({
       paused: true,
       onReverseComplete: () => { menue.hidden = true; },
     });
-    // 1. „Menu in“: Fenster von −150 % und Größe 0,6 auf Endstellung
-    tl.fromTo(karte, { yPercent: -150, scale: 0.6 }, { yPercent: 0, scale: 1, duration: 0.6, ease: 'back.inOut' }, 0);
-    // 2. Knopf dreht sich einmal ganz herum – gleichzeitig
-    tl.fromTo(knopf, { rotation: 0 }, { rotation: 360, duration: 0.6, ease: 'back.inOut' }, 0);
-    // 3. Menüpunkte: von unten mit Opacity, gestaffelt über insgesamt 0,2 s (Ziffer + Name einer Zeile gemeinsam)
+    // 1. Fenster gleitet sanft herab, wächst leicht und blendet ein
+    tl.fromTo(karte, { yPercent: -20, scale: 0.9, autoAlpha: 0 }, { yPercent: 0, scale: 1, autoAlpha: 1, duration: 1.1, ease: 'power4.out' }, 0);
+    // 2. Knopf dreht sich gleichzeitig einmal ganz herum und wird zum X
+    tl.fromTo(knopf, { rotation: 0 }, { rotation: 360, duration: 1.1, ease: 'power4.out' }, 0);
+    // 3. Menüpunkte steigen Zeile für Zeile auf (Ziffer + Name gemeinsam)
     tl.fromTo(punkte, { yPercent: 100, opacity: 0 }, {
-      yPercent: 0, opacity: 1, duration: 0.6, ease: 'back.inOut',
-      stagger: (_i: number, el: HTMLElement) => (zeilen ? (Number(el.dataset.i) / zeilen) * 0.2 : 0),
-    }, 0.2);
+      yPercent: 0, opacity: 1, duration: 1.2, ease: 'power4.out',
+      stagger: (_i: number, el: HTMLElement) => Number(el.dataset.i) * 0.08,
+    }, 0.15);
 
     let offen = false;
     function setze(neu: boolean) {
@@ -116,9 +114,9 @@ import { menue } from '../data/navigation';
       knopf!.setAttribute('aria-label', offen ? 'Menü schließen' : 'Menü öffnen');
       document.body.classList.toggle('menue-offen', offen);
       document.body.style.overflow = offen ? 'hidden' : '';
-      if (offen) { menue!.hidden = false; leise ? tl.progress(1) : tl.play(); }
+      if (offen) { menue!.hidden = false; leise ? tl.progress(1) : tl.timeScale(1).play(); }
       else if (leise) { tl.progress(0); menue!.hidden = true; }
-      else tl.reverse();
+      else tl.timeScale(1.8).reverse();
     }
     // Hover wie im Video (ab 15:44): Buchstaben des Namens wachsen auf 1,2 und werden leicht durchsichtig,
     // gestaffelt über 0,2 s; beim Verlassen läuft es rückwärts (etwas schneller)
