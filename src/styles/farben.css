@@ -43,9 +43,9 @@ html:root div.dunkel .gold{color:var(--flieder)}
 html:root .laufband{background:var(--gold)}
 html:root .laufband .titel{color:#fff}
 
-/* Kopfzeile: Hamburger-Menü Mitternacht; Logo (Kopfzeile, Menü, Fußzeile) Mitternacht – Bild als Maske */
+/* Kopfzeile: Hamburger-Menü Mitternacht; Logo (Kopfzeile, Menü, Fußzeile, Kontaktformular) Mitternacht – Bild als Maske */
 html:root .menu-btn i{background:var(--mitternacht)}
-html:root :is(header.kopf,.menue,footer) .logo{background:var(--mitternacht);-webkit-mask:url(/bilder/logo-deutsche-monumentum.png) center/contain no-repeat;mask:url(/bilder/logo-deutsche-monumentum.png) center/contain no-repeat;object-position:-9999px 0}
+html:root :is(header.kopf,.menue,footer) .logo,html:root .modal .kontakt > img{background:var(--mitternacht);-webkit-mask:url(/bilder/logo-deutsche-monumentum.png) center/contain no-repeat;mask:url(/bilder/logo-deutsche-monumentum.png) center/contain no-repeat;object-position:-9999px 0}
 
 /* Fußzeile: Überschriften und großer Schriftzug Mitternacht, übrige Schrift Tinte Weich */
 html:root footer :is(.s,a,p,span){color:var(--tinte-weich)}
