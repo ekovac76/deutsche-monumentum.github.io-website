@@ -18,7 +18,7 @@ const { titel, beschreibung = '', transparent = false, noindex = false, landingp
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
-<html lang="de" class:list={[{ "hintergrund-bone": !!landingpage || testfarben }]}>
+<html lang="de" class="hintergrund-bone">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,6 +32,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       html.hintergrund-bone{--paper-warm:#fdfcfa}
       /* Test (Eduard, 06.11.): Bild-Platzhalter (vor dem Laden von Bildern/Videos) in der Seitenfarbe Wolke statt Paper Tief */
       html.hintergrund-bone{--paper-tief:#fdfcfa}
+      /* Neue Palette (Eduard, 06.11.) auf die ganze Seite: alte Grundfarben auf die neuen Töne umgelegt */
+      html.hintergrund-bone{--paper-bone:#fdfcfa;--paper-pergament:#f7f2ed;--paper-section:#fdfcfa;--referenz-bildgrund:#fdfcfa;
+        --ink-tinte:#2e2c3f;--ink-tinte-button:#2e2c3f;--ink-weich:#2e2c3f;--karte-titel:#2e2c3f;--outline-dunkel:#4a4859;
+        --ink-stumpf:#4a4859;--ink-mono-dunkel:#4a4859;--ink-mono-grau:#706d80;--ink-blass:#bfbdcb}
+      /* Referenzkacheln wie Projektkacheln in Muschel; Plus-Zeichen (Bauträger) in Malve */
+      html.hintergrund-bone .plus{color:#8e5d6e}
+      html.hintergrund-bone a.link > .karte{background:#f7f2ed}
+      html.hintergrund-bone a.link > .karte .bildrahmen{background:#fdfcfa}
       /* Test (Eduard, 05.11.): Überschriften Mitternacht #2E2C3F, Fließtext und Tabelle Tinte Weich #4A4859 */
       html.hintergrund-bone :is(.h1,.h2,.h3,.h4,h1,h2,h3,h4):not(.weiss){color:#2e2c3f}
       /* Test (Eduard, 05.11.): Projektkarten in Muschel #F7F2ED, Seitengrund Wolke #FDFCFA */
