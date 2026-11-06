@@ -46,6 +46,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       html.hintergrund-bone .fuss .ring{border-color:#e3e2ea}
       html.hintergrund-bone .fuss .ring::after{background:#e3e2ea}
       html.hintergrund-bone .kopf:not(.hell) .ziffer{color:#8e5d6e}
+      /* Test (Eduard, 06.11.): alles Orange/Rot in Malve #8E5D6E (Ziffern, Jahreszahlen, FAQ-Nummern, Kategorien, Punkte, Menü-Ziffern); Sterne siehe Sterne.astro */
+      html.hintergrund-bone{--signal-orange:#8e5d6e;--signal-orange-alt:#8e5d6e;--karte-orange:#8e5d6e;--kennzahl-rot:#8e5d6e}
+      html.hintergrund-bone .kopf .ziffer{color:#8e5d6e}
+      html.hintergrund-bone .punkt{background:#8e5d6e}
+      /* Strich vor „Kapitel“ ist eine orange Grafik: Grafik ausblenden, Strich als Fläche in Malve */
+      html.hintergrund-bone .tagline .strich{background:#8e5d6e;object-position:-100px 0}
+      /* Test (Eduard, 06.11.): Fußzeile wie die Seite – Überschriften und großer Schriftzug Mitternacht #2E2C3F, übrige Schrift Tinte Weich #4A4859 */
+      html.hintergrund-bone footer :is(.s,a,p,span){color:#4a4859}
+      html.hintergrund-bone footer :is(.s b,b,.gross p,.gross span){color:#2e2c3f}
+      html.hintergrund-bone footer .tel path{fill:#4a4859}
+      html.hintergrund-bone footer .social [fill="#111"]{fill:#2e2c3f}
+      html.hintergrund-bone .f7 :is(.credit,.legal a){color:#4a4859}
+      /* Test (Eduard, 06.11.): Hamburger-Menü Mitternacht */
+      html.hintergrund-bone .menu-btn i{background:#2e2c3f}
       /* Test (Eduard, 05.11.): dunkle Knöpfe Malve #8E5D6E (06.11., vorher Pflaume) mit Schrift Wolke #FDFCFA; im Titelbild (Hero) und im dunklen Kontakt-Aufruf Hauchblau #E8ECEE mit Schrift Tiefblau */
       html.hintergrund-bone :is(.btn.primaer,.btn.klein,.senden){background:#8e5d6e;color:#fdfcfa}
       html.hintergrund-bone :is(.hero,.dunkel) .btn.primaer{background:#e8ecee;color:#2f4a63}
