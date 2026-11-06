@@ -69,10 +69,8 @@ import { menue } from '../data/navigation';
   .ziffer{justify-self:end;align-self:baseline;font-family:var(--font-playfair);font-style:italic;font-weight:400;font-size:.7em;color:var(--signal-orange);padding:.3rem 0;margin:.3rem 0;line-height:1.2}
   .name{justify-self:start;align-self:baseline;font-family:var(--font-display);font-weight:700;line-height:1.2;color:var(--ink-stumpf);padding:.3rem 0;margin:.3rem 0;white-space:nowrap}
 
-  /* Tablet und Handy: Fenster fast bildschirmhoch und über dem Logo (Logo wird ausgeblendet, X bleibt) */
-  .logo{transition:opacity .3s ease}
+  /* Tablet und Handy: Fenster fast bildschirmhoch; Logo und X liegen sichtbar darauf */
   @media (max-width: 991px){
-    :global(body.menue-offen) .kopf .logo{opacity:0}
     .karte{top:.5rem;right:.5rem;width:calc(100vw - 1rem);height:calc(100svh - 1rem);max-height:none;padding:4.5rem 2.5rem 3rem}
   }
   @media (max-width: 767px){
