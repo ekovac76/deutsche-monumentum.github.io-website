@@ -64,6 +64,8 @@
     { name: 'caption', title: 'Unterzeile der Kachel', type: 'string', group: 'kachel' },
     { name: 'kachelName', title: 'Name auf der Kachel', type: 'string', group: 'kachel' },
     { name: 'bild', title: 'Kachelbild', type: 'image', group: 'kachel', options: { hotspot: true } },
+    { name: 'kachelVideo', title: 'Kachel-Video (MP4, 10:7, läuft beim Darüberfahren)', type: 'file', group: 'kachel', options: { accept: 'video/mp4' } },
+    { name: 'kachelStandbild', title: 'Kachel-Standbild (erstes Bild des Kachel-Videos)', type: 'image', group: 'kachel' },
     { name: 'einheiten', title: 'Einheiten', type: 'string', group: 'kachel' },
     { name: 'flaechen', title: 'Flächen', type: 'string', group: 'kachel' },
     { name: 'preise', title: 'Preise', type: 'string', group: 'kachel' },

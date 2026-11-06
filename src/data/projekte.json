@@ -13,7 +13,9 @@
     "afa": "75%",
     "kfw": "261 (EE)",
     "standort": "Nürnberg",
-    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85bd3fe07fb972d79e02f6_6a85bc5fc4b14e91255cf45a_nurnberg-1-2048.webp"
+    "bild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85bd3fe07fb972d79e02f6_6a85bc5fc4b14e91255cf45a_nurnberg-1-2048.webp",
+    "kachelVideo": "/videos/projektkachel-nuernberg-web.mp4",
+    "kachelStandbild": "/videos/projektkachel-nuernberg-standbild.jpg"
   },
   {
     "slug": "pfungstadt",

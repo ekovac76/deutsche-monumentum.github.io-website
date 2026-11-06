@@ -4,6 +4,7 @@ interface Props {
   slug: string; nummer: string; kategorie: string; status: string; caption: string; titel: string;
   einheiten: string; flaechen: string; preise: string; afa: string; kfw: string; standort: string; bild?: string | null;
   dunkel?: boolean;
+  kachelVideo?: string; kachelStandbild?: string;
 }
 const p = Astro.props;
 const werte = [['Einheiten', p.einheiten], ['Flächen', p.flaechen], ['Preise', p.preise], ['Afa', p.afa], ['KfW', p.kfw]];
@@ -16,7 +17,8 @@ const werte = [['Einheiten', p.einheiten], ['Flächen', p.flaechen], ['Preise', 
         <span class="nummer">{p.nummer}</span>
       </div>
       <div class="bildrahmen">
-        {p.bild && <img src={p.bild} alt={p.titel} loading="lazy" />}
+        {(p.kachelStandbild || p.bild) && <img src={p.kachelStandbild || p.bild} alt={p.titel} loading="lazy" />}
+        {p.kachelVideo && <video class="kachelvideo" src={p.kachelVideo} poster={p.kachelStandbild || undefined} muted loop playsinline preload="metadata" aria-hidden="true"></video>}
         <span class="caption">{p.caption}</span>
       </div>
       <div>
@@ -41,6 +43,9 @@ const werte = [['Einheiten', p.einheiten], ['Flächen', p.flaechen], ['Preise', 
   .nummer{font-family:var(--font-mono);color:var(--ink-mono-grau);font-size:11px;line-height:17px;font-weight:400;letter-spacing:.44px}
   .bildrahmen{position:relative;border:1px solid var(--ink-blass);overflow:hidden}
   .bildrahmen img{position:relative;display:block;width:100%;aspect-ratio:5/3.5;object-fit:cover;background:var(--paper-tief)}
+  /* Kachel-Video liegt deckungsgleich über dem Standbild und wird erst beim Darüberfahren sichtbar */
+  .kachelvideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .25s ease;pointer-events:none}
+  .kachelvideo.laeuft{opacity:1}
   .caption{position:absolute;left:5%;right:5%;bottom:10%;z-index:2;font-family:var(--font-mono);color:#fff;font-size:12px;line-height:19px}
   .titel-abstand{padding-bottom:.5rem}
   .titel{margin:0;font-family:var(--font-sans);color:#333;font-size:1.3rem;line-height:1.3;font-weight:700}
@@ -52,3 +57,13 @@ const werte = [['Einheiten', p.einheiten], ['Flächen', p.flaechen], ['Preise', 
   .ort{font-family:var(--font-sans);color:var(--ink-mono-grau);font-size:11px;line-height:17px;font-weight:400;letter-spacing:1.76px;text-transform:uppercase}
   @media (max-width:479px){.karte-link{max-width:20rem}.wert-label,.wert{font-size:1rem}}
 </style>
+<script>
+  // Kachel-Video: Maus auf die Kachel → Video startet von vorn; Maus weg → zurück zum Standbild
+  document.querySelectorAll<HTMLAnchorElement>('.karte-link').forEach((karte) => {
+    const v = karte.querySelector<HTMLVideoElement>('.kachelvideo');
+    if (!v) return;
+    v.addEventListener('playing', () => v.classList.add('laeuft'));
+    karte.addEventListener('mouseenter', () => { v.currentTime = 0; v.play().catch(() => {}); });
+    karte.addEventListener('mouseleave', () => { v.pause(); v.classList.remove('laeuft'); v.currentTime = 0; });
+  });
+</script>

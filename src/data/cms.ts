@@ -28,7 +28,7 @@ const DATASET = 'production';
 
 const QUERY = `{
   "projekte": *[_type == "projekt" && !(_id in path("drafts.**"))] | order(reihenfolge asc) {
-    ..., "bild": bild.asset->url, "heroBild": heroBild.asset->url, "videoCover": videoCover.asset->url,
+    ..., "bild": bild.asset->url, "kachelVideo": kachelVideo.asset->url, "kachelStandbild": kachelStandbild.asset->url, "heroBild": heroBild.asset->url, "videoCover": videoCover.asset->url,
     "slider": slider[]{ text, "bild": bild.asset->url },
     "standortBilder": standortBilder[].asset->url
   },
@@ -69,6 +69,7 @@ async function laden(): Promise<any | null> {
 }
 
 const cms = await laden();
+const kachelJson = (slug?: string) => (projekteJson as any[]).find((x) => x.slug === slug);
 
 // Bild-URL von Sanity: automatisch modernes Format (WebP/AVIF)
 const bild = (u?: string | null) => (u ? (u.includes('cdn.sanity.io') ? `${u}?auto=format` : u) : null);
@@ -88,6 +89,9 @@ export const projekte: typeof projekteJson = cms
         caption: s(p.caption), titel: s(p.titel), name: s(p.kachelName || p.name), einheiten: s(p.einheiten),
         flaechen: s(p.flaechen), preise: s(p.preise), afa: s(p.afa), kfw: s(p.kfw), standort: s(p.standort),
         bild: bild(p.bild) ?? '',
+        // Kachel-Video (läuft beim Darüberfahren): aus Sanity, sonst aus projekte.json (Ordner public/videos)
+        kachelVideo: p.kachelVideo || kachelJson(p.slug?.current)?.kachelVideo || '',
+        kachelStandbild: bild(p.kachelStandbild) || kachelJson(p.slug?.current)?.kachelStandbild || '',
       }))
   : projekteJson;
 
