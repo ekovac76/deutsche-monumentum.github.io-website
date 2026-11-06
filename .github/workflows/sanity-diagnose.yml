@@ -1,0 +1,20 @@
+name: Sanity-Diagnose (temporär)
+on:
+  push:
+    branches: [sanity-diagnose]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          U=https://kgw2l752.api.sanity.io/v2025-02-19/data/query/production
+          echo "== 1 POST mit perspective im Body"
+          curl -s -w "\nHTTP %{http_code}\n" -X POST -H 'Content-Type: application/json' -d '{"query":"count(*)","perspective":"published"}' $U | head -c 600; echo
+          echo "== 2 POST ohne perspective"
+          curl -s -w "\nHTTP %{http_code}\n" -X POST -H 'Content-Type: application/json' -d '{"query":"count(*)"}' $U | head -c 600; echo
+          echo "== 3 POST perspective als URL-Parameter"
+          curl -s -w "\nHTTP %{http_code}\n" -X POST -H 'Content-Type: application/json' -d '{"query":"count(*)"}' "$U?perspective=published" | head -c 600; echo
+          echo "== 4 GET"
+          curl -s -w "\nHTTP %{http_code}\n" "$U?query=count(*)" | head -c 600; echo
+          echo "== 5 cms-stand"
+          curl -s -w "\nHTTP %{http_code}\n" "https://ekovac76.github.io/deutsche-monumentum.github.io-website/cms-stand.txt" | head -c 300
