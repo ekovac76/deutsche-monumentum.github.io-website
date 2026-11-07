@@ -30,7 +30,7 @@ const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt au
 </header>
 <script>
   // Parallax beim Scrollen (alle Seitenköpfe): Hintergrund bleibt zurück und zoomt minimal, Schrift läuft schneller nach oben
-  // und blendet leicht aus – wirkt dreidimensional, als lägen Bild und Text in verschiedenen Ebenen.
+  // und blendet leicht aus – wirkt dreidimensional; Verlauf flacht zum Ende ab, damit die Ebenen nicht zu weit auseinanderdriften.
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
@@ -39,8 +39,8 @@ const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt au
       const bild = hero.querySelector<HTMLElement>('.bild');
       const inhalt = hero.querySelector<HTMLElement>('.inhalt');
       const st = { trigger: hero, start: 'top top', end: 'bottom top', scrub: true };
-      if (bild) gsap.fromTo(bild, { yPercent: 0, scale: 1.08 }, { yPercent: 30, scale: 1.18, ease: 'none', scrollTrigger: st });
-      if (inhalt) gsap.to(inhalt, { yPercent: -25, autoAlpha: 0.2, ease: 'none', scrollTrigger: st });
+      if (bild) gsap.fromTo(bild, { yPercent: 0, scale: 1.08 }, { yPercent: 15, scale: 1.12, ease: 'power2.out', scrollTrigger: st });
+      if (inhalt) gsap.to(inhalt, { yPercent: -12, autoAlpha: 0.4, ease: 'power2.out', scrollTrigger: st });
     });
   }
 </script>
