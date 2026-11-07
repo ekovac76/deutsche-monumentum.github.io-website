@@ -34,13 +34,13 @@ export function wuerfelText(tl: gsap.core.Timeline, el: HTMLElement | null | und
   gruppen.forEach((g) => {
     // 1–2 ruhige Drehungen je Gruppe (wie ein Zauberwürfel, kein schnelles Flackern)
     const drehungen = 1 + Math.floor(Math.random() * 2);
-    let t = start + 0.03 + Math.random() * 0.5;
+    let t = start + 0.03 + Math.random() * 0.4;
     for (let d = 0; d < drehungen; d++) {
       const letzte = d === drehungen - 1;
-      tl.to(g, { rotationX: 90, duration: 0.28, ease: 'power2.in', transformOrigin: '50% 50%' }, t)
-        .call(() => (letzte ? echt(g) : misch(g)), [], t + 0.28)
-        .fromTo(g, { rotationX: -90 }, { rotationX: 0, duration: 0.38, ease: 'power2.out' }, t + 0.28);
-      t += 0.7 + Math.random() * 0.1;
+      tl.to(g, { rotationX: 90, duration: 0.24, ease: 'power2.in', transformOrigin: '50% 50%' }, t)
+        .call(() => (letzte ? echt(g) : misch(g)), [], t + 0.24)
+        .fromTo(g, { rotationX: -90 }, { rotationX: 0, duration: 0.32, ease: 'power2.out' }, t + 0.24);
+      t += 0.58 + Math.random() * 0.08;
     }
     ende = Math.max(ende, t);
   });
