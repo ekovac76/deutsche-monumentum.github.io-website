@@ -1,4 +1,4 @@
-name: Temporaer Koblenz-Bilder holen
+name: Temporaer Referenz-Bilder holen
 on:
   push:
     branches: [sanity-diagnose]
@@ -10,15 +10,38 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          mkdir -p tmp/koblenz
-          curl -sSfL -o tmp/koblenz/01.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e190b1627e2ff6bb43af4_65e6a8b2c5c6cb03268be808_Image_02_210531.webp"
-          curl -sSfL -o tmp/koblenz/02.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7888_65e6a8bbad29e9e2bb590b69_Image_03_210601.webp"
-          curl -sSfL -o tmp/koblenz/03.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc786b_65e6a9b9660cc894894df5b6_210617_Exterior3_AN_Wasser_2.webp"
-          curl -sSfL -o tmp/koblenz/04.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7865_65e6e90d2d1a65bfd69102eb_210609_Interior_02_EGpsd.webp"
-          curl -sSfL -o tmp/koblenz/05.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7861_65e6e90deda6156c617391bc_210610_Interior%25203.webp"
-          curl -sSfL -o tmp/koblenz/06.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7880_65e6e90df95bc4bec7f0f41c_210611_Interior01_Orgelsaal.webp"
-          curl -sSfL -o tmp/koblenz/07.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7868_65e6e90dfeb2f9d0c8714842_210611_Interior01_Orgelsaal_Cam02%2520copy.webp"
-          curl -sSfL -o tmp/koblenz/08.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb459bed22a54cc785a_65e6e90c7b10fbcb7242303d_Bad.webp"
-          ls -la tmp/koblenz
+          mkdir -p tmp/rastatt tmp/wilhelmshaven tmp/emden tmp/pfungstadt-fabrik
+          curl -sSfL -o "tmp/rastatt/01.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e2549726873975d7749e1_65e5efc8318b8c9b35090ff7_ENDE-VIS-Nacht-Erker-RA-Joffre-Kaserne.webp"
+          curl -sSfL -o "tmp/rastatt/02.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08c6f56e4d53209350f_6a85efd2ae14e1f8b8c6773f_rastatt-hero-bild.webp"
+          curl -sSfL -o "tmp/rastatt/03.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f8db739221eb0ce39efb_6a85f80af1c7c3cec13533cd_rastatt-galerie-bild-3-01-2048.webp"
+          curl -sSfL -o "tmp/rastatt/04.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254b726873975d774a7f_65e5f2cb30aad08af5f3d099_VIS-Haus-A-DG-Whg31-RA-Joffre-Kaserne.webp"
+          curl -sSfL -o "tmp/rastatt/05.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254c726873975d774a9f_65e5f2cb47356e7834b60a80_VIS-Haus-A-EG-Whg2-RA-Joffre-Kaserne.webp"
+          curl -sSfL -o "tmp/rastatt/06.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e254c726873975d774aa8_65e5f2cb7af017703dbb44ed_VIS-Haus-B-1OG-Whg14-RA-Joffre-Kaserne.webp"
+          curl -sSfL -o "tmp/rastatt/07.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7870_65e5f2ccada0eabbee8d4f46_VIS-Haus-B-1OG-Whg15-RA-Joffre-Kaserne.webp"
+          curl -sSfL -o "tmp/rastatt/08.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb459bed22a54cc7856_65e5f2ca65a091b957cdb2bd_VIS-Haus-C-1OG-Whg14-RA-Joffre-Kaserne.webp"
+          curl -sSfL -o "tmp/wilhelmshaven/01.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9456_6a85efe5ab7f8aa3532c59ce_wilhelmshaven-galerie-bild-1.webp"
+          curl -sSfL -o "tmp/wilhelmshaven/02.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e945c_6a85efe5e5e69d45bbadd3e0_wilhelmshaven-galerie-bild-2.webp"
+          curl -sSfL -o "tmp/wilhelmshaven/03.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9477_6a85efe67ba29ecb81107ec9_wilhelmshaven-hero-bild.webp"
+          curl -sSfL -o "tmp/wilhelmshaven/04.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0fd9c33ccb63f8e942e_6a85efe5ac701e07cd28bf08_wilhelmshaven-galerie-bild-4.webp"
+          curl -sSfL -o "tmp/wilhelmshaven/05.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9459_6a85efe585c86549ebc58952_wilhelmshaven-galerie-bild-5.webp"
+          curl -sSfL -o "tmp/wilhelmshaven/06.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9453_6a85efe533c8b69b001427e8_wilhelmshaven-galerie-bild-6.webp"
+          curl -sSfL -o "tmp/wilhelmshaven/07.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0ff9c33ccb63f8e943f_6a85efe633c8b69b00142841_wilhelmshaven-galerie-bild-7.webp"
+          curl -sSfL -o "tmp/wilhelmshaven/08.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0ff9c33ccb63f8e9442_6a85efe67ba29ecb81107e9a_wilhelmshaven-galerie-bild-8.webp"
+          curl -sSfL -o "tmp/emden/01.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935ac_6a85efbee5e69d45bbadb4b5_emden-galerie-bild-1.webp"
+          curl -sSfL -o "tmp/emden/02.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935a3_6a85efbfab7f8aa3532c4ae8_emden-hero-bild.webp"
+          curl -sSfL -o "tmp/emden/03.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935b4_6a85efbe46d216b9e83c2ea7_emden-galerie-bild-3.webp"
+          curl -sSfL -o "tmp/emden/04.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935a9_6a85efbe7f9ccf52f5e4cc8e_emden-galerie-bild-4.webp"
+          curl -sSfL -o "tmp/emden/05.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935a0_6a85efbebf833c5dbca6c372_emden-galerie-bild-5.webp"
+          curl -sSfL -o "tmp/emden/06.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d53209359d_6a85efbfac701e07cd28ac90_emden-galerie-bild-6.webp"
+          curl -sSfL -o "tmp/emden/07.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935af_6a85efbf46d216b9e83c302a_emden-galerie-bild-7.webp"
+          curl -sSfL -o "tmp/emden/08.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935c7_6a85efbfe6f8c258ef9d0650_emden-galerie-bild-8.webp"
+          curl -sSfL -o "tmp/pfungstadt-fabrik/01.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e27cd411910ad3275f_68ca8b84fe01c79b90d17985_pfungstadt_bird_cam01_001.webp"
+          curl -sSfL -o "tmp/pfungstadt-fabrik/02.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e27cd411910ad32762_68ca8b84d45d9a0f75b855c0_pfungstadt_bird_cam02_001.webp"
+          curl -sSfL -o "tmp/pfungstadt-fabrik/03.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e27cd411910ad3275c_68ca8b84c8ad99d2eb846483_pfungstadt_bird_cam03_001.webp"
+          curl -sSfL -o "tmp/pfungstadt-fabrik/04.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e24e27cd411910ad32769_68ca8b8449433ac506f88f53_pfungstadt_bird_cam04_001.webp"
+          curl -sSfL -o "tmp/pfungstadt-fabrik/05.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d532093547_6a85efd111c622fe7996df8a_pfungstadt-fabrik-galerie-bild-5.webp"
+          curl -sSfL -o "tmp/pfungstadt-fabrik/06.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08b6f56e4d532093506_6a85efd1f1c7c3cec1334219_pfungstadt-fabrik-hero-bild.webp"
+          curl -sSfL -o "tmp/pfungstadt-fabrik/07.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d53209353b_6a85efd1e5e69d45bbadc038_pfungstadt-fabrik-galerie-bild-7.webp"
+          curl -sSfL -o "tmp/pfungstadt-fabrik/08.webp" "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08d6f56e4d532093541_6a85efd1ae14e1f8b8c676b3_pfungstadt-fabrik-galerie-bild-8.webp"
           git config user.name "github-actions"; git config user.email "actions@github.com"
-          git add tmp/koblenz && git commit -m "Temporaer: Koblenz-Galerie" && git push
+          git add tmp && git commit -m "Temporaer: Referenz-Galerien" && git push
