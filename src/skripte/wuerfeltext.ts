@@ -1,5 +1,5 @@
 // Zauberwürfel-Effekt für Fließtexte (Kontrast zu den aufsteigenden Überschriften):
-// innerhalb jedes Wortes klappen Gruppen von 3–4 Buchstaben 2–3-mal ruhig um die waagrechte Achse,
+// innerhalb jedes Wortes klappen Gruppen von 3–4 Buchstaben 2-mal ruhig um die waagrechte Achse,
 // zeigen zunächst Zufallszeichen derselben Art und mit der letzten Drehung den richtigen Text.
 // Wird in eine bestehende GSAP-Zeitleiste ab Zeitpunkt „start“ eingehängt; danach ist der Text wieder normal.
 import { gsap } from 'gsap';
@@ -32,8 +32,8 @@ export function wuerfelText(tl: gsap.core.Timeline, el: HTMLElement | null | und
   tl.call(() => gruppen.forEach(misch), [], start).set(el, { autoAlpha: 1, y: 0 }, start);
   let ende = start;
   gruppen.forEach((g) => {
-    // 2–3 ruhige Drehungen je Gruppe (wie ein Zauberwürfel, kein schnelles Flackern)
-    const drehungen = 2 + Math.floor(Math.random() * 2);
+    // 2 ruhige Drehungen je Gruppe (wie ein Zauberwürfel, kein schnelles Flackern)
+    const drehungen = 2;
     let t = start + 0.03 + Math.random() * 0.5;
     for (let d = 0; d < drehungen; d++) {
       const letzte = d === drehungen - 1;
