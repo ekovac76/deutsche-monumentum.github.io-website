@@ -78,7 +78,13 @@ export function sektionenAnimieren() {
     const hinweise = [...sek.querySelectorAll<HTMLElement>('.hinweis')].filter((e) => !inItem(e));
 
     gsap.set([...tagline, ...titel, ...knoepfe, ...hinweise, ...bilder], { autoAlpha: 0 });
-    gsap.set(items, { autoAlpha: 0, y: 120 });
+    // Kennzahl-/Vorteilskarten werden auf breiten Bildschirmen wie Spielkarten ausgeteilt (wie Startseite Kapitel 02)
+    const breit = matchMedia('(min-width: 992px)').matches;
+    const austeilen = breit ? items.filter((i) => i.matches('.kennzahlkarte')) : [];
+    const welle = items.filter((i) => !austeilen.includes(i));
+    let ausgeteilt = austeilen.length === 0;
+    gsap.set(welle, { autoAlpha: 0, y: 120 });
+    gsap.set(austeilen, { autoAlpha: 0 });
 
     document.fonts.ready.then(() => {
       const tl = gsap.timeline({ paused: true });
@@ -96,7 +102,30 @@ export function sektionenAnimieren() {
       ScrollTrigger.create({ trigger: sek, start: 'top 70%', once: true, onEnter: () => tl.play() });
 
       // Welle: Elemente kommen Stück für Stück, sobald sie ins Bild scrollen
-      if (items.length) ScrollTrigger.batch(items, {
+      if (austeilen.length > 1) {
+        const dtl = gsap.timeline({ paused: true });
+        const vorbereiten = () => {
+          // Stapel liegt auf dem Platz der letzten Karte (unten rechts)
+          gsap.set(austeilen, { clearProps: 'x,y,transform' });
+          const ziel = austeilen[austeilen.length - 1].getBoundingClientRect();
+          const dreh = [-5, 5, -5, 5];
+          austeilen.forEach((k, i) => {
+            const r = k.getBoundingClientRect();
+            gsap.set(k, { x: ziel.left - r.left, y: ziel.top - r.top, rotation: dreh[i % 4], zIndex: austeilen.length - i, autoAlpha: 1, yPercent: 200 });
+          });
+        };
+        // 1. Stapel fliegt von unten herein, 2. Karten werden ohne Stopp nacheinander auf ihre Plätze verteilt und drehen sich gerade
+        dtl.to(austeilen, { yPercent: 0, duration: 0.9, ease: 'power2.out', stagger: 0.06 }, 0)
+          .to(austeilen.slice(0, -1), { x: 0, y: 0, rotation: 0, duration: 1.0, ease: 'power3.out', stagger: 0.14 }, 0.6)
+          .to(austeilen[austeilen.length - 1], { rotation: 0, duration: 1.0, ease: 'power3.out' }, 0.6 + 0.14 * (austeilen.length - 1))
+          .set(austeilen, { zIndex: 'auto' })
+          .call(() => { ausgeteilt = true; });
+        ScrollTrigger.create({
+          trigger: austeilen[0].parentElement!, start: 'top 75%', once: true,
+          onEnter: () => { vorbereiten(); dtl.play(); },
+        });
+      }
+      if (welle.length) ScrollTrigger.batch(welle, {
         start: 'top 88%', once: true,
         onEnter: (batch) => gsap.to(batch, { autoAlpha: 1, y: 0, duration: 1.0, ease: 'back.out(1.6)', stagger: 0.09, overwrite: true }),
       });
@@ -107,10 +136,19 @@ export function sektionenAnimieren() {
         const t = it.querySelector<HTMLElement>('h3, .h4, .titel');
         if (t && (t.textContent || '').length < 80) lupe(t, it);
         const link = it.matches('a') ? it : it.querySelector<HTMLElement>('a.karte-link, a.link');
-        if (link && !sek.querySelector('[data-zeitstrahl]')) {
+        const kennzahl = it.matches('.kennzahlkarte');
+        if ((link || kennzahl) && !sek.querySelector('[data-zeitstrahl]')) {
           const ziel = it;
-          it.addEventListener('mouseenter', () => gsap.to(ziel, { scale: 1.03, y: -6, duration: 0.9, ease: 'power3.out', overwrite: 'auto' }));
-          it.addEventListener('mouseleave', () => gsap.to(ziel, { scale: 1, y: 0, duration: 0.9, ease: 'power3.out', overwrite: 'auto' }));
+          const pfeil = kennzahl ? it.querySelector<HTMLElement>('.pfeil') : null;
+          it.addEventListener('mouseenter', () => {
+            if (!ausgeteilt && austeilen.includes(it)) return;
+            gsap.to(ziel, { scale: kennzahl ? 1.035 : 1.03, y: -6, duration: 0.9, ease: 'power3.out', overwrite: 'auto' });
+            if (pfeil) gsap.to(pfeil, { scale: 1.2, yPercent: -40, duration: 0.6, ease: 'circ.inOut', overwrite: 'auto' });
+          });
+          it.addEventListener('mouseleave', () => {
+            gsap.to(ziel, { scale: 1, y: 0, duration: 0.9, ease: 'power3.out', overwrite: 'auto' });
+            if (pfeil) gsap.to(pfeil, { scale: 1, yPercent: 0, duration: 0.4, ease: 'circ.inOut', overwrite: 'auto' });
+          });
         }
       });
     });
