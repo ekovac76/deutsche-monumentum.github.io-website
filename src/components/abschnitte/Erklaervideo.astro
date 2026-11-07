@@ -55,7 +55,8 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
       const zeichne = () => {
         const w = buehne.offsetWidth, h = buehne.offsetHeight;
         const a = (off.dreh * Math.PI) / 180, c = Math.cos(a), si = Math.sin(a);
-        const hw = (w / 2) * off.k, hh = (h / 2) * off.k;
+        const rand = 80; // Öffnung reicht am Ende über den Rahmen hinaus, damit Schatten und Eckwinkel mit aufgehen
+        const hw = (w / 2 + rand) * off.k, hh = (h / 2 + rand) * off.k;
         const pkt = [[-hw, -hh], [hw, -hh], [hw, hh], [-hw, hh]].map(([x, y]) =>
           `${(w / 2 + x * c - y * si).toFixed(1)}px ${(h / 2 + x * si + y * c).toFixed(1)}px`);
         buehne.style.clipPath = `polygon(${pkt.join(',')})`;
@@ -69,12 +70,12 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
           .fromTo(tagline, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.96, ease: 'power3.out' }, 0)
           .to(zeilen.lines, { yPercent: 0, duration: 1.12, stagger: 0.11 }, 0.12)
           .fromTo(rest, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12, stagger: 0.12 }, 0.6)
-          // Bild steht; die rechteckige Öffnung geht schnell auf und läuft weich aus, gleichzeitig blendet es von 10 % auf 100 % Deckkraft ein; Bild zoomt leicht zurück
+          // Bild steht; die rechteckige Öffnung geht zügig in einem Zug auf (inkl. Schatten), gleichzeitig blendet es von 0 auf 100 % ein; Bild zoomt leicht zurück
           .set(buehne, { onComplete: zeichne }, 0.1)
-          .fromTo(buehne, { autoAlpha: 0.1 }, { autoAlpha: 1, duration: 2.0, ease: 'power3.out' }, 0.1)
-          .to(off, { k: 1, duration: 2.0, ease: 'power3.out', onUpdate: zeichne,
+          .fromTo(buehne, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: 'power1.out' }, 0.1)
+          .to(off, { k: 1, duration: 1.0, ease: 'power2.out', onUpdate: zeichne,
             onComplete: () => { buehne.style.clipPath = ''; } }, 0.1)
-          .fromTo(bildInnen, { scale: 1.25 }, { scale: 1, duration: 2.2, ease: 'power3.out' }, 0.1);
+          .fromTo(bildInnen, { scale: 1.2 }, { scale: 1, duration: 1.2, ease: 'power2.out' }, 0.1);
         ScrollTrigger.create({ trigger: sek, start: 'top 70%', once: true, onEnter: () => tl.play() });
       });
     });
