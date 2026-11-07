@@ -94,6 +94,27 @@ const {
       tl.set(liste, { clearProps: 'overflow' });
       wuerfelText(tl, text, 0.12);
       ScrollTrigger.create({ trigger: sek, start: 'top 70%', once: true, onEnter: () => tl.play() });
+
+      // „Noch Fragen offen?“: eigener Auslöser beim Hineinscrollen – Überschrift steigt aus der Kante auf,
+      // Text mit Zauberwürfel-Effekt gleichzeitig, danach die Knöpfe weich von unten
+      const nach = sek.querySelector<HTMLElement>('.nachfrage');
+      if (nach) {
+        const nTitel = nach.querySelector<HTMLElement>('.nachfrage-titel');
+        const nText = nach.querySelector<HTMLElement>('.abstand-text p');
+        const nKnopf = nach.querySelector<HTMLElement>('.button-zeile');
+        const ntl = gsap.timeline({ paused: true });
+        if (nTitel) {
+          const nz = SplitText.create(nTitel, { type: 'lines', mask: 'lines' });
+          gsap.set(nz.lines, { yPercent: 110 });
+          ntl.to(nz.lines, { yPercent: 0, duration: 1.12, ease: 'power4.out', stagger: 0.11 }, 0);
+        }
+        wuerfelText(ntl, nText, 0);
+        if (nKnopf) {
+          gsap.set(nKnopf, { autoAlpha: 0, y: 24 });
+          ntl.to(nKnopf, { autoAlpha: 1, y: 0, duration: 1.12, ease: 'power4.out' }, 0.6);
+        }
+        ScrollTrigger.create({ trigger: nach, start: 'top 80%', once: true, onEnter: () => ntl.play() });
+      }
     });
   });
 </script>
