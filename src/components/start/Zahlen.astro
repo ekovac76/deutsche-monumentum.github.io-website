@@ -62,37 +62,39 @@ const z = seite('startseite').zahlen;
         .to(zeilen.lines, { yPercent: 0, duration: 1.12, stagger: 0.11 }, 0.12)
         .fromTo(knopfZeile, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12 }, 0.9);
 
-      // Text: Zähler-Effekt (wie eine Anzeigetafel) gleichzeitig mit der Überschrift –
-      // Buchstaben flackern kurz durch zufällige Zeichen und rasten in Gruppen von 2–4 nebeneinander zu zufälligen Zeitpunkten ein
+      // Text: Zauberwürfel-Effekt gleichzeitig mit der Überschrift –
+      // innerhalb jedes Wortes klappen Gruppen von 2–4 Buchstaben gemeinsam um (wie eine Würfelseite),
+      // zeigen zunächst Zufallszeichen und mit der letzten Drehung den richtigen Text; Zeitpunkte zufällig verteilt
       if (fliess) {
         const zs = SplitText.create(fliess, { type: 'words,chars' });
-        const chars = zs.chars as HTMLElement[];
-        const echt = chars.map((c) => c.textContent || '');
-        chars.forEach((c) => { c.style.width = c.getBoundingClientRect().width + 'px'; c.style.textAlign = 'center'; });
         const klein = 'acenorsuvxz', gross = 'ABCDEHKNOPRSTUZ', ziffer = '0123456789';
         const zufall = (z: string) => {
           const v = /[0-9]/.test(z) ? ziffer : /[A-ZÄÖÜ]/.test(z) ? gross : /[a-zäöüß]/.test(z) ? klein : '';
           return v ? v[Math.floor(Math.random() * v.length)] : z;
         };
-        // Buchstaben in Gruppen von 2–4 nebeneinander: jede Gruppe rastet gemeinsam zu einem zufälligen Zeitpunkt ein (0,25–1,0 s)
-        const fertig: number[] = [];
-        while (fertig.length < chars.length) {
-          const n = 2 + Math.floor(Math.random() * 3), t = 0.25 + Math.random() * 0.75;
-          for (let k = 0; k < n && fertig.length < chars.length; k++) fertig.push(t);
-        }
-        const zaehler = { t: 0 };
-        let letzte = -1;
-        tl.set(fliess, { autoAlpha: 1 }, 0.12)
-          .to(zaehler, {
-            t: 1, duration: 1.0, ease: 'none',
-            onUpdate: () => {
-              const schritt = Math.floor(zaehler.t * 30); // ca. 30 Wechsel pro Sekunde
-              if (schritt === letzte && zaehler.t < 1) return;
-              letzte = schritt;
-              chars.forEach((c, i) => { c.textContent = zaehler.t >= fertig[i] ? echt[i] : zufall(echt[i]); });
-            },
-            onComplete: () => zs.revert(),
-          }, 0.12);
+        const gruppen: HTMLElement[][] = [];
+        (zs.words as HTMLElement[]).forEach((w) => {
+          const cs = [...w.querySelectorAll<HTMLElement>(':scope > div')];
+          for (let i = 0; i < cs.length;) { const n = 2 + Math.floor(Math.random() * 3); gruppen.push(cs.slice(i, i + n)); i += n; }
+        });
+        const alle = zs.chars as HTMLElement[];
+        alle.forEach((c) => { c.dataset.echt = c.textContent || ''; c.style.width = c.getBoundingClientRect().width + 'px'; c.style.textAlign = 'center'; });
+        gsap.set(fliess, { perspective: 400 });
+        const misch = (g: HTMLElement[]) => g.forEach((c) => { c.textContent = zufall(c.dataset.echt!); });
+        const echt = (g: HTMLElement[]) => g.forEach((c) => { c.textContent = c.dataset.echt!; });
+        tl.set(fliess, { autoAlpha: 1 }, 0.12).call(() => gruppen.forEach(misch), [], 0.12);
+        gruppen.forEach((g) => {
+          const drehungen = 1 + Math.floor(Math.random() * 2);
+          let t = 0.15 + Math.random() * 0.45;
+          for (let d = 0; d < drehungen; d++) {
+            const letzte = d === drehungen - 1;
+            tl.to(g, { rotationX: 90, duration: 0.16, ease: 'power2.in', transformOrigin: '50% 50%' }, t)
+              .call(() => (letzte ? echt(g) : misch(g)), [], t + 0.16)
+              .fromTo(g, { rotationX: -90 }, { rotationX: 0, duration: 0.22, ease: 'power2.out' }, t + 0.16);
+            t += 0.38 + Math.random() * 0.12;
+          }
+        });
+        tl.call(() => zs.revert(), [], '+=0.05');
       }
 
       if (breit && karten.length > 1) {
