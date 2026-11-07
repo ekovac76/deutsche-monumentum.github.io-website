@@ -5,9 +5,9 @@
   "heroHeadline": "Vom Kasernenareal zum Wohnquartier – das Joffre-Areal in Rastatt",
   "heroSubline": "112 Wohnungen, in nur sechs Monaten verkauft und 2019 übergeben – ausgezeichnet für beispielhaftes Bauen in Baden.",
   "heroBild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08c6f56e4d53209350f_6a85efd2ae14e1f8b8c6773f_rastatt-hero-bild.webp",
-  "heroVideoDesktop": "/videos/referenz-rastatt-hero-desktop-web.mp4",
-  "heroVideoHandy": "/videos/referenz-rastatt-hero-handy-web.mp4",
-  "heroStandbild": "/videos/referenz-rastatt-hero-standbild-desktop.jpg",
+  "heroVideoDesktop": "/videos/referenz-rastatt-hero_v2-desktop-web.mp4",
+  "heroVideoHandy": "/videos/referenz-rastatt-hero_v2-handy-web.mp4",
+  "heroStandbild": "/videos/referenz-rastatt-hero_v2-standbild-desktop.jpg",
   "fakten": [
    [
     "Volumen",
@@ -390,9 +390,9 @@
   "heroHeadline": "Ein Wahrzeichen, neu belebt – das Türmchengebäude in Emden",
   "heroSubline": "45 Wohnungen im Denkmal der ehemaligen Karl-von-Müller-Kaserne – in nur zwei Monaten vollständig verkauft.",
   "heroBild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935a3_6a85efbfab7f8aa3532c4ae8_emden-hero-bild.webp",
-  "heroVideoDesktop": "/videos/referenz-emden-hero-desktop-web.mp4",
-  "heroVideoHandy": "/videos/referenz-emden-hero-handy-web.mp4",
-  "heroStandbild": "/videos/referenz-emden-hero-standbild-desktop.jpg",
+  "heroVideoDesktop": "/videos/referenz-emden-hero_v2-desktop-web.mp4",
+  "heroVideoHandy": "/videos/referenz-emden-hero_v2-handy-web.mp4",
+  "heroStandbild": "/videos/referenz-emden-hero_v2-standbild-desktop.jpg",
   "fakten": [
    [
     "Volumen",
