@@ -63,7 +63,7 @@ const z = seite('startseite').zahlen;
         .fromTo(knopfZeile, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12 }, 0.9);
 
       // Text: Zähler-Effekt (wie eine Anzeigetafel) gleichzeitig mit der Überschrift –
-      // jeder Buchstabe flackert kurz durch zufällige Zeichen und rastet zu einem eigenen, zufälligen Zeitpunkt ein
+      // Buchstaben flackern kurz durch zufällige Zeichen und rasten in Gruppen von 2–4 nebeneinander zu zufälligen Zeitpunkten ein
       if (fliess) {
         const zs = SplitText.create(fliess, { type: 'words,chars' });
         const chars = zs.chars as HTMLElement[];
@@ -74,7 +74,12 @@ const z = seite('startseite').zahlen;
           const v = /[0-9]/.test(z) ? ziffer : /[A-ZÄÖÜ]/.test(z) ? gross : /[a-zäöüß]/.test(z) ? klein : '';
           return v ? v[Math.floor(Math.random() * v.length)] : z;
         };
-        const fertig = chars.map(() => 0.25 + Math.random() * 0.75); // Einrastzeit je Buchstabe (0,25–1,0 s)
+        // Buchstaben in Gruppen von 2–4 nebeneinander: jede Gruppe rastet gemeinsam zu einem zufälligen Zeitpunkt ein (0,25–1,0 s)
+        const fertig: number[] = [];
+        while (fertig.length < chars.length) {
+          const n = 2 + Math.floor(Math.random() * 3), t = 0.25 + Math.random() * 0.75;
+          for (let k = 0; k < n && fertig.length < chars.length; k++) fertig.push(t);
+        }
         const zaehler = { t: 0 };
         let letzte = -1;
         tl.set(fliess, { autoAlpha: 1 }, 0.12)
