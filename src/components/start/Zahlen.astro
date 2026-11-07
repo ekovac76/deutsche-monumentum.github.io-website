@@ -32,6 +32,7 @@ const z = seite('startseite').zahlen;
   // rechts die Karten wie beim Solitär (nach Flux-Video ab 22:43): Stapel fliegt von unten herein
   // (y 200 %, leicht gedreht −5°/5°), dann werden die Karten nacheinander auf ihre Plätze verteilt und drehen sich gerade.
   // Hover (nach Video ab 29:00): Titel rollt buchstabenweise durch, Pfeil hebt sich und wächst; beim Verlassen rückwärts.
+  // Zusätzlich wächst die Karte sanft (3,5 %) und hebt sich leicht an.
   import { gsap } from 'gsap';
   import { SplitText } from 'gsap/SplitText';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -46,6 +47,7 @@ const z = seite('startseite').zahlen;
     const rest = links.querySelectorAll<HTMLElement>('.abstand-text, .button-zeile');
     const karten = [...sek.querySelectorAll<HTMLElement>('.kacheln > .karte')];
     const breit = matchMedia('(min-width: 992px)').matches;
+    let ausgeteilt = !breit;
     gsap.set([tagline, titel, ...rest], { autoAlpha: 0 });
     gsap.set(karten, { autoAlpha: 0 });
 
@@ -72,6 +74,7 @@ const z = seite('startseite').zahlen;
         tl.to(karten.slice(0, -1), { x: 0, y: 0, rotation: 0, duration: 1.0, ease: 'power3.out', stagger: 0.14 }, 0.75);
         tl.to(karten[karten.length - 1], { rotation: 0, duration: 1.0, ease: 'power3.out' }, 0.75 + 0.14 * (karten.length - 1));
         tl.set(karten, { zIndex: 'auto' });
+        tl.call(() => { ausgeteilt = true; });
       } else {
         tl.fromTo(karten, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1.12, stagger: 0.12 }, 0.3);
       }
@@ -89,8 +92,13 @@ const z = seite('startseite').zahlen;
             .set(b.chars, { yPercent: 100 }, 0.45)
             .to(b.chars, { yPercent: 0, duration: 0.4, ease: 'power3.out', stagger: { amount: 0.2 } }, 0.45)
             .to(pfeil, { scale: 1.2, yPercent: -40, duration: 0.6, ease: 'circ.inOut' }, 0);
-          k.addEventListener('mouseenter', () => hv.timeScale(1).play());
-          k.addEventListener('mouseleave', () => hv.timeScale(1.5).reverse());
+          // Karte wächst sanft und hebt sich leicht an – wie durch einen Wassertropfen betrachtet
+          const lupe = (an: boolean) => {
+            if (!ausgeteilt) return;
+            gsap.to(k, { scale: an ? 1.035 : 1, y: an ? -6 : 0, duration: 0.9, ease: 'power3.out', overwrite: 'auto' });
+          };
+          k.addEventListener('mouseenter', () => { hv.timeScale(1).play(); lupe(true); });
+          k.addEventListener('mouseleave', () => { hv.timeScale(1.5).reverse(); lupe(false); });
         });
       }
     });
