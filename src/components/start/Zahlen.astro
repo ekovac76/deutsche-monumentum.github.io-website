@@ -67,10 +67,10 @@ const z = seite('startseite').zahlen;
           gsap.set(k, { x: ziel.left - r.left, y: ziel.top - r.top, rotation: dreh[i % 4], zIndex: karten.length - i, autoAlpha: 1, yPercent: 200 });
         });
         // 1. Stapel fliegt von unten herein, Karten leicht versetzt
-        tl.to(karten, { yPercent: 0, duration: 1.1, ease: 'power3.out', stagger: 0.08 }, 0.15);
-        // 2. Karten werden nacheinander auf ihre Plätze verteilt und drehen sich gerade
-        tl.to(karten.slice(0, -1), { x: 0, y: 0, rotation: 0, duration: 1.0, ease: 'power3.inOut', stagger: 0.18 }, 1.15);
-        tl.to(karten[karten.length - 1], { rotation: 0, duration: 0.8, ease: 'power3.inOut' }, 1.15 + 0.18 * (karten.length - 1));
+        tl.to(karten, { yPercent: 0, duration: 0.9, ease: 'power2.out', stagger: 0.06 }, 0.15);
+        // 2. Austeilen beginnt, bevor der Stapel ganz zur Ruhe kommt – durchgehende Bewegung ohne Stopp
+        tl.to(karten.slice(0, -1), { x: 0, y: 0, rotation: 0, duration: 1.0, ease: 'power3.out', stagger: 0.14 }, 0.75);
+        tl.to(karten[karten.length - 1], { rotation: 0, duration: 1.0, ease: 'power3.out' }, 0.75 + 0.14 * (karten.length - 1));
         tl.set(karten, { zIndex: 'auto' });
       } else {
         tl.fromTo(karten, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1.12, stagger: 0.12 }, 0.3);
