@@ -1,11 +1,16 @@
 # Baut die Website bei jeder Änderung und veröffentlicht sie als Vorschau auf GitHub Pages.
 # Zusätzlich alle 10 Minuten: Wurde in Sanity (CMS) etwas veröffentlicht, wird neu gebaut.
+# (GitHub führt diese Zeitsteuerung oft nur alle paar Stunden aus.)
+# Sofort neu bauen: auf GitHub unter Actions → „Vorschau veröffentlichen“ → „Run workflow“,
+# oder automatisch per Sanity-Webhook (repository_dispatch, Typ „sanity-veroeffentlicht“).
 name: Vorschau veröffentlichen
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  repository_dispatch:
+    types: [sanity-veroeffentlicht]
   schedule:
     - cron: '*/10 * * * *'
 
