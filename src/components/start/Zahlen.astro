@@ -31,7 +31,7 @@ const z = seite('startseite').zahlen;
   // links wie im Hero (Tagline, Überschrift Zeile für Zeile, dann Text und Knopf);
   // rechts die Karten wie beim Solitär (nach Flux-Video ab 22:43): Stapel fliegt von unten herein
   // (y 200 %, leicht gedreht −5°/5°), dann werden die Karten nacheinander auf ihre Plätze verteilt und drehen sich gerade.
-  // Hover: Lichtstreifen läuft einmal über die Karte; Pfeil hebt sich und wächst (nach Video ab 29:00), beim Verlassen rückwärts.
+  // Hover: Titel mit Lupen-Effekt wie im Menü (folgt dem Cursor); Pfeil hebt sich und wächst (nach Video ab 29:00), beim Verlassen rückwärts.
   // Zusätzlich wächst die Karte sanft (3,5 %) und hebt sich leicht an.
   import { gsap } from 'gsap';
   import { SplitText } from 'gsap/SplitText';
@@ -85,26 +85,30 @@ const z = seite('startseite').zahlen;
         karten.forEach((k) => {
           const pfeil = k.querySelector<HTMLElement>('.pfeil');
           if (!pfeil) return;
-          // Lichtstreifen: läuft beim Darüberfahren einmal schräg über die ganze Karte (Glanz im Material)
-          const rahmen = document.createElement('span');
-          rahmen.setAttribute('aria-hidden', 'true');
-          Object.assign(rahmen.style, { position: 'absolute', inset: '0', borderRadius: 'inherit', overflow: 'hidden', pointerEvents: 'none', zIndex: '1' });
-          const licht = document.createElement('span');
-          Object.assign(licht.style, { position: 'absolute', top: '0', bottom: '0', left: '0', width: '100%',
-            background: 'linear-gradient(105deg, transparent 30%, rgba(142,93,110,.10) 42%, rgba(255,255,255,.65) 50%, rgba(142,93,110,.10) 58%, transparent 70%)' });
-          rahmen.appendChild(licht);
-          k.appendChild(rahmen);
-          gsap.set(licht, { xPercent: -110 });
+          // Titel: Lupen-Effekt wie im Menü – Buchstaben in Cursornähe wachsen bis 1,2 und werden leicht durchsichtig
+          const h = k.querySelector<HTMLElement>('.h4');
+          const chars = h ? (SplitText.create(h, { type: 'words,chars' }).chars as HTMLElement[]) : [];
+          gsap.set(chars, { transformOrigin: '50% 75%' });
+          const zeichen = (c: HTMLElement, f: number) =>
+            gsap.to(c, { scale: 1 + 0.2 * f, opacity: 1 - 0.4 * f, duration: 0.45, ease: 'power3.out', overwrite: true });
+          k.addEventListener('mousemove', (e) => {
+            if (!h) return;
+            const radius = parseFloat(getComputedStyle(h).fontSize) * 2.2;
+            chars.forEach((c) => {
+              const r = c.getBoundingClientRect();
+              const nah = Math.max(0, 1 - Math.abs(e.clientX - (r.left + r.width / 2)) / radius);
+              zeichen(c, nah * nah * (3 - 2 * nah));
+            });
+          });
           const hv = gsap.timeline({ paused: true })
             .to(pfeil, { scale: 1.2, yPercent: -40, duration: 0.6, ease: 'circ.inOut' }, 0);
-          const glanz = () => gsap.fromTo(licht, { xPercent: -110 }, { xPercent: 110, duration: 1.2, ease: 'power2.inOut', overwrite: true });
           // Karte wächst sanft und hebt sich leicht an – wie durch einen Wassertropfen betrachtet
           const lupe = (an: boolean) => {
             if (!ausgeteilt) return;
             gsap.to(k, { scale: an ? 1.035 : 1, y: an ? -6 : 0, duration: 0.9, ease: 'power3.out', overwrite: 'auto' });
           };
-          k.addEventListener('mouseenter', () => { hv.timeScale(1).play(); lupe(true); glanz(); });
-          k.addEventListener('mouseleave', () => { hv.timeScale(1.5).reverse(); lupe(false); });
+          k.addEventListener('mouseenter', () => { hv.timeScale(1).play(); lupe(true); });
+          k.addEventListener('mouseleave', () => { hv.timeScale(1.5).reverse(); lupe(false); chars.forEach((c) => zeichen(c, 0)); });
         });
       }
     });
