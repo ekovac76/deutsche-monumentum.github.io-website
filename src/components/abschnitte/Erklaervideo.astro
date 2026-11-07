@@ -49,7 +49,7 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
       const tagline = links.querySelector<HTMLElement>('.tagline');
       const rest = links.querySelectorAll<HTMLElement>('.autor, .knoepfe');
       gsap.set([tagline, zitat, ...rest], { autoAlpha: 0 });
-      gsap.set(buehne, { autoAlpha: 0, scale: 0.55, rotation: 18 });
+      gsap.set(buehne, { autoAlpha: 0, scale: 0.3, rotation: 40 });
       document.fonts.ready.then(() => {
         const zeilen = SplitText.create(zitat, { type: 'lines', mask: 'lines' });
         gsap.set(zitat, { autoAlpha: 1 });
@@ -59,8 +59,9 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
           .to(zeilen.lines, { yPercent: 0, duration: 1.12, stagger: 0.11 }, 0.12)
           .fromTo(rest, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12, stagger: 0.12 }, 0.6)
           // Bild: kurzer Ruck mit Schwung (dreht über die Gerade hinaus, ploppt etwas zu groß auf), dann federt es in die Ruhe
-          .to(buehne, { autoAlpha: 1, scale: 1.07, rotation: -4, duration: 0.55, ease: 'power3.out' }, 0.1)
-          .to(buehne, { scale: 1, rotation: 0, duration: 1.1, ease: 'back.out(2.2)' }, 0.65);
+          .to(buehne, { autoAlpha: 1, duration: 0.3, ease: 'none' }, 0.1)
+          .to(buehne, { scale: 1.06, rotation: -4, duration: 0.9, ease: 'expo.out' }, 0.1)
+          .to(buehne, { scale: 1, rotation: 0, duration: 1.0, ease: 'back.out(2)' }, 0.85);
         ScrollTrigger.create({ trigger: sek, start: 'top 70%', once: true, onEnter: () => tl.play() });
       });
     });
