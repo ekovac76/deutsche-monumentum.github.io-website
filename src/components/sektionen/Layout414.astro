@@ -6,7 +6,7 @@ import Button from '../Button.astro';
 import Tagline from '../Tagline.astro';
 import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
-interface Bild { src: string; alt: string; caption?: string }
+interface Bild { src: string; alt: string; caption?: string; innen?: string }
 interface Knopf { text: string; link: string }
 interface Props {
   ziffer: string; thema: string; zaehler: string; tagline?: string; nummer: string;
@@ -37,10 +37,10 @@ const istKontakt = (l?: string) => l === '#kontakt';
   </div>
   <div class="reihen" data-l414>
     <div class="reihe" data-richtung="1">
-      {reihe1.map((b) => <div class="bild"><img src={b.src} alt={b.alt} loading="lazy" />{b.caption && <span class="caption">{b.caption}</span>}</div>)}
+      {reihe1.map((b) => <div class="bild"><img src={b.src} alt={b.alt} loading="lazy" />{b.innen && <img class="innen" src={b.innen} alt="" aria-hidden="true" loading="lazy" />}{b.caption && <span class="caption">{b.caption}</span>}</div>)}
     </div>
     <div class="reihe" data-richtung="-1">
-      {reihe2.map((b) => <div class="bild"><img src={b.src} alt={b.alt} loading="lazy" />{b.caption && <span class="caption">{b.caption}</span>}</div>)}
+      {reihe2.map((b) => <div class="bild"><img src={b.src} alt={b.alt} loading="lazy" />{b.innen && <img class="innen" src={b.innen} alt="" aria-hidden="true" loading="lazy" />}{b.caption && <span class="caption">{b.caption}</span>}</div>)}
     </div>
   </div>
   <div class="sektion-innen fuss-innen"><Kapitelfuss /></div>
@@ -60,6 +60,9 @@ const istKontakt = (l?: string) => l === '#kontakt';
   /* Bildstil wie in den Projektkarten: eckig, feiner Rahmen, Bildunterschrift in Mono weiß unten links */
   .bild{position:relative;flex:none;width:30vw;border:1px solid var(--ink-blass);overflow:hidden}
   .bild img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper-tief)}
+  /* Innenbild liegt deckungsgleich über dem Außenbild und wird weich ein- und ausgeblendet */
+  .bild .innen{position:absolute;inset:0;height:100%;opacity:0;transition:opacity 1.4s ease}
+  .bild.innen-an .innen{opacity:1}
   .caption{position:absolute;left:5%;right:5%;bottom:10%;z-index:1;font-family:var(--font-mono);color:#fff;font-size:12px;line-height:19px}
   .fuss-innen{padding-top:4rem}
   @media (max-width:991px){.raster{gap:2rem 3rem}.fuss-innen{padding-top:3rem}}
@@ -87,4 +90,22 @@ const istKontakt = (l?: string) => l === '#kontakt';
     window.addEventListener('resize', anstossen);
     setzen();
   });
+
+  // Innenbild: Maus ruht auf dem Bild → Innenbild blendet langsam ein.
+  // Maus bewegt sich → Außenbild blendet langsam zurück. Kleines Zittern (unter 8 px) wird ignoriert.
+  if (window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll<HTMLElement>('[data-l414] .bild').forEach((bild) => {
+      if (!bild.querySelector('.innen')) return;
+      let timer = 0, x = 0, y = 0;
+      const ruhe = () => { clearTimeout(timer); timer = window.setTimeout(() => bild.classList.add('innen-an'), 450); };
+      bild.addEventListener('pointerenter', (e) => { x = e.clientX; y = e.clientY; ruhe(); });
+      bild.addEventListener('pointermove', (e) => {
+        if (Math.hypot(e.clientX - x, e.clientY - y) < 8) return;
+        x = e.clientX; y = e.clientY;
+        bild.classList.remove('innen-an');
+        ruhe();
+      });
+      bild.addEventListener('pointerleave', () => { clearTimeout(timer); bild.classList.remove('innen-an'); });
+    });
+  }
 </script>
