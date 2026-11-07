@@ -69,6 +69,51 @@ const telIcon = '<path d="M3.6 1.5 5.7 1l1.2 3-1.6 1.2a8.4 8.4 0 0 0 4.5 4.5l1.2
     document.fonts?.ready.then(anpassen);
     new ResizeObserver(anpassen).observe(box);
   }
+
+  // Animation beim Hineinscrollen:
+  // Logo, Kontakt und die Menüspalten flackern nacheinander auf wie ein alter Fernseher (wie die Hinweise oben rechts);
+  // die Wortmarke baut sich von unten auf: Buchstaben kommen in wenigen Schwüngen – je Schwung jeder dritte Buchstabe einer Zeile
+  // gleichzeitig (z. B. D, t, h), kurz nacheinander, erst „Deutsche“, dann „Monumentum“.
+  import { gsap } from 'gsap';
+  import { SplitText } from 'gsap/SplitText';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(SplitText, ScrollTrigger);
+  const fuss = document.querySelector<HTMLElement>('footer');
+  if (fuss && box && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const bloecke = [...fuss.querySelectorAll<HTMLElement>('.logo-abstand, .kontakt, .menu > div')];
+    const zeilen = [...box.querySelectorAll<HTMLElement>('span')];
+    gsap.set(bloecke, { autoAlpha: 0 });
+    gsap.set(zeilen, { autoAlpha: 0 });
+    const flackern = [
+      { autoAlpha: 0.7, duration: 0.05 }, { autoAlpha: 0.05, duration: 0.07 },
+      { autoAlpha: 0.9, duration: 0.04 }, { autoAlpha: 0.2, duration: 0.09 },
+      { autoAlpha: 0.5, duration: 0.05 }, { autoAlpha: 0, duration: 0.12 },
+      { autoAlpha: 1, duration: 0.04 }, { autoAlpha: 0.6, duration: 0.05 }, { autoAlpha: 1, duration: 0.08 },
+    ];
+    let tl: gsap.core.Timeline | null = null;
+    const bauen = () => {
+      tl = gsap.timeline({ paused: true });
+      bloecke.forEach((b, i) => tl!.to(b, { keyframes: flackern, ease: 'none' }, i * 0.12));
+      let t = 0.2;
+      const splits: SplitText[] = [];
+      zeilen.forEach((z) => {
+        const sp = SplitText.create(z, { type: 'chars', mask: 'chars' });
+        splits.push(sp);
+        const chars = sp.chars as HTMLElement[];
+        gsap.set(z, { autoAlpha: 1 });
+        gsap.set(chars, { yPercent: 110 });
+        [0, 1, 2].forEach((g) => {
+          tl!.to(chars.filter((_, i) => i % 3 === g), { yPercent: 0, duration: 1.0, ease: 'power4.out' }, t);
+          t += 0.16;
+        });
+        t += 0.1;
+      });
+      // danach wieder normaler Text (Masken würden sonst Buchstabenkanten anschneiden)
+      tl.call(() => splits.forEach((sp) => sp.revert()));
+      ScrollTrigger.create({ trigger: fuss, start: 'top 75%', once: true, onEnter: () => tl!.play() });
+    };
+    document.fonts.ready.then(bauen);
+  }
 </script>
 
 <style>
