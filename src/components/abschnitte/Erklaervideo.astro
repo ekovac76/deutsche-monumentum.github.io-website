@@ -34,7 +34,7 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
 <script>
   // Animation beim Hineinscrollen (nur wo animiert gesetzt ist):
   // links wie im Hero (Tagline, Zitat Zeile für Zeile, dann Autor und Knöpfe),
-  // rechts das Videobild: öffnet sich wie die Blende eines Kameraobjektivs (drehendes Siebeneck), Bild zoomt dabei leicht zurück.
+  // rechts das Videobild: startet klein und gedreht, dreht sich wie ein Objektiv auf und wächst auf volle Größe; Bild zoomt dabei leicht zurück.
   import { gsap } from 'gsap';
   import { SplitText } from 'gsap/SplitText';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -49,19 +49,8 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
       const tagline = links.querySelector<HTMLElement>('.tagline');
       const rest = links.querySelectorAll<HTMLElement>('.autor, .knoepfe');
       gsap.set([tagline, zitat, ...rest], { autoAlpha: 0 });
-      gsap.set(buehne, { autoAlpha: 0 });
-      // Blende wie bei einem Kameraobjektiv: Siebeneck öffnet sich von der Mitte aus und dreht sich dabei
+      gsap.set(buehne, { autoAlpha: 0, scale: 0.3, rotation: 120 });
       const bildInnen = buehne.querySelector<HTMLElement>('.bild');
-      const blende = { r: 0, dreh: 180 };
-      const zeichneBlende = () => {
-        const w = buehne.offsetWidth, h = buehne.offsetHeight, n = 7;
-        const pkt = [];
-        for (let i = 0; i < n; i++) {
-          const a = ((blende.dreh + (i * 360) / n) * Math.PI) / 180;
-          pkt.push(`${(w / 2 + blende.r * Math.cos(a)).toFixed(1)}px ${(h / 2 + blende.r * Math.sin(a)).toFixed(1)}px`);
-        }
-        buehne.style.clipPath = `polygon(${pkt.join(',')})`;
-      };
       document.fonts.ready.then(() => {
         const zeilen = SplitText.create(zitat, { type: 'lines', mask: 'lines' });
         gsap.set(zitat, { autoAlpha: 1 });
@@ -70,13 +59,9 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
           .fromTo(tagline, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.96, ease: 'power3.out' }, 0)
           .to(zeilen.lines, { yPercent: 0, duration: 1.12, stagger: 0.11 }, 0.12)
           .fromTo(rest, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12, stagger: 0.12 }, 0.6)
-          // Bild: Blende öffnet sich schnell und läuft weich aus, dreht sich dabei; Bild zoomt leicht zurück
-          .set(buehne, { autoAlpha: 1, onComplete: zeichneBlende }, 0.1)
-          .to(blende, {
-            r: () => (Math.hypot(buehne.offsetWidth, buehne.offsetHeight) / 2) / Math.cos(Math.PI / 7) + 2,
-            dreh: 0, duration: 2.0, ease: 'power3.out', onUpdate: zeichneBlende,
-            onComplete: () => { buehne.style.clipPath = ''; },
-          }, 0.1)
+          // Bild: dreht sich wie ein Objektiv auf und wächst – schnell anlaufend, weich auslaufend; Bild zoomt dabei leicht zurück
+          .to(buehne, { autoAlpha: 1, duration: 0.3, ease: 'none' }, 0.1)
+          .to(buehne, { scale: 1, rotation: 0, duration: 2.0, ease: 'power3.out' }, 0.1)
           .fromTo(bildInnen, { scale: 1.25 }, { scale: 1, duration: 2.2, ease: 'power3.out' }, 0.1);
         ScrollTrigger.create({ trigger: sek, start: 'top 70%', once: true, onEnter: () => tl.play() });
       });
