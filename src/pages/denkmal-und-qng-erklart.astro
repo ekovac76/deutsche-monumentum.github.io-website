@@ -8,7 +8,8 @@ import { seite } from '../data/cms';
 const s = seite('erklaertseite');
 ---
 <Basis titel={s.seoTitel} beschreibung={s.seoBeschreibung}>
-  <Seitenkopf bild={s.hero.bild} wort={s.hero.tagline} nummer="08" titel={s.hero.ueberschrift} text={s.hero.text} button={s.hero.knopf} />
+  <Seitenkopf bild={s.hero.bild} wort={s.hero.tagline} nummer="08" titel={s.hero.ueberschrift} text={s.hero.text} button={s.hero.knopf}
+    videoDesktop={s.hero.videoDesktop} videoHandy={s.hero.videoHandy} standbild={s.hero.standbild} />
   <Videothek />
   <Stimmen ziffer="III." thema={s.stimmen.thema} zaehler="03 / 06"
     titel={s.stimmen.ueberschrift}

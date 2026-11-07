@@ -6,6 +6,9 @@
  "hero": {
   "_type": "abschnittHero",
   "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a85bf341b64b88969af9aa3_pfungstadt-2-2048.webp",
+  "videoDesktop": "/videos/projekte-hero-desktop-web.mp4",
+  "videoHandy": "/videos/projekte-hero-handy-web.mp4",
+  "standbild": "/videos/projekte-hero-standbild-desktop.jpg",
   "tagline": "Projekte",
   "ueberschrift": "Unsere aktuellen Projekte – geprüfte Kapitalanlagen vom Denkmal bis zum QNG-Neubau",
   "text": "Jedes Objekt in diesem Schaufenster hat unsere Prüfung bestanden – nach Lage, Bauträger und Steuerkonzept. Entdecken Sie, was gerade verfügbar ist, und finden Sie das Projekt, das zu Ihrer Anlagestrategie passt.",

@@ -6,6 +6,9 @@
  "hero": {
   "_type": "abschnittHero",
   "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a4267a40baec9ca413a4d56_Image_02_210531.avif",
+  "videoDesktop": "/videos/erklaert-hero-desktop-web.mp4",
+  "videoHandy": "/videos/erklaert-hero-handy-web.mp4",
+  "standbild": "/videos/erklaert-hero-standbild-desktop.jpg",
   "tagline": "Mediathek",
   "ueberschrift": "Steuern sparen mit Immobilien – Denkmal und QNG-Neubau kurz erklärt",
   "text": "Abschreibung, Förderung, Risiken, Kaufablauf: In kurzen Filmen erklären wir die Punkte, die im Beratungsgespräch am häufigsten kommen. Jedes Video dauert etwa eine Minute.",

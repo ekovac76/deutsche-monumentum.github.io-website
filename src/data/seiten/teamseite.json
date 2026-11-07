@@ -6,6 +6,9 @@
  "hero": {
   "_type": "abschnittHero",
   "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a85e70e2249f0826327286f_team-poster.webp",
+  "videoDesktop": "/videos/team-hero-desktop-web.mp4",
+  "videoHandy": "/videos/team-hero-handy-web.mp4",
+  "standbild": "/videos/team-hero-standbild-desktop.jpg",
   "tagline": "Team",
   "ueberschrift": "Erfahrung, Netzwerk und Leidenschaft: ein eingespieltes Team für außergewöhnliche Denkmäler",
   "text": "Unsere Leidenschaft sind Denkmalimmobilien: außergewöhnliche Objekte, die begeistern – und sich als Kapitalanlage rechnen.",

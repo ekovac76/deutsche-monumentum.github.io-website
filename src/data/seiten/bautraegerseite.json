@@ -6,6 +6,9 @@
  "hero": {
   "_type": "abschnittHero",
   "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a424b8ae288421ad44bbb50_Weingut_Brenner_outdoor_outdoor_3.webp",
+  "videoDesktop": "/videos/bautraeger-hero-desktop-web.mp4",
+  "videoHandy": "/videos/bautraeger-hero-handy-web.mp4",
+  "standbild": "/videos/bautraeger-hero-standbild-desktop.jpg",
   "tagline": "Bauträger",
   "ueberschrift": "Haben Sie ein Denkmal- oder QNG-Projekt? Wir sorgen für den schnellen Verkauf!",
   "text": "Wir vermarkten Ihr Projekt bis zur letzten Wohnung – mit geprüftem Ablauf, bonitätsstarken Käufern und über 30 Jahren Erfahrung im Denkmalvertrieb.",
