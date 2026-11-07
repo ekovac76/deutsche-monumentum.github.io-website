@@ -7,11 +7,11 @@ import Kennzahlkarte from '../Kennzahlkarte.astro';
 import { seite } from '../../data/cms';
 const z = seite('startseite').zahlen;
 ---
-<section class="sektion">
+<section class="sektion" id="zahlen-sektion">
   <div class="sektion-innen">
     <Kapitelkopf ziffer="II." thema={z.thema} zaehler="02 / 10" />
     <div class="raster">
-      <div>
+      <div class="links">
         <div class="kopf">
           <Tagline wort={z.tagline} nummer="02" />
           <h2 class="h1 abstand-header">{z.ueberschrift}</h2>
@@ -26,6 +26,76 @@ const z = seite('startseite').zahlen;
     <Kapitelfuss />
   </div>
 </section>
+<script>
+  // Animation beim Hineinscrollen:
+  // links wie im Hero (Tagline, Überschrift Zeile für Zeile, dann Text und Knopf);
+  // rechts die Karten wie beim Solitär (nach Flux-Video ab 22:43): Stapel fliegt von unten herein
+  // (y 200 %, leicht gedreht −5°/5°), dann werden die Karten nacheinander auf ihre Plätze verteilt und drehen sich gerade.
+  // Hover (nach Video ab 29:00): Titel rollt buchstabenweise durch, Pfeil hebt sich und wächst; beim Verlassen rückwärts.
+  import { gsap } from 'gsap';
+  import { SplitText } from 'gsap/SplitText';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(SplitText, ScrollTrigger);
+
+  const sek = document.getElementById('zahlen-sektion');
+  const leise = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (sek && !leise) {
+    const links = sek.querySelector<HTMLElement>('.links')!;
+    const tagline = links.querySelector<HTMLElement>('.tagline');
+    const titel = links.querySelector<HTMLElement>('h2')!;
+    const rest = links.querySelectorAll<HTMLElement>('.abstand-text, .button-zeile');
+    const karten = [...sek.querySelectorAll<HTMLElement>('.kacheln > .karte')];
+    const breit = matchMedia('(min-width: 992px)').matches;
+    gsap.set([tagline, titel, ...rest], { autoAlpha: 0 });
+    gsap.set(karten, { autoAlpha: 0 });
+
+    document.fonts.ready.then(() => {
+      const zeilen = SplitText.create(titel, { type: 'lines', mask: 'lines' });
+      gsap.set(titel, { autoAlpha: 1 });
+      gsap.set(zeilen.lines, { yPercent: 110 });
+      const tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } })
+        .fromTo(tagline, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.96, ease: 'power3.out' }, 0)
+        .to(zeilen.lines, { yPercent: 0, duration: 1.12, stagger: 0.11 }, 0.12)
+        .fromTo(rest, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12, stagger: 0.12 }, 0.6);
+
+      if (breit && karten.length > 1) {
+        // Stapel liegt auf dem Platz der letzten Karte (unten rechts)
+        const ziel = karten[karten.length - 1].getBoundingClientRect();
+        const dreh = [-5, 5, -5, 5];
+        karten.forEach((k, i) => {
+          const r = k.getBoundingClientRect();
+          gsap.set(k, { x: ziel.left - r.left, y: ziel.top - r.top, rotation: dreh[i % 4], zIndex: karten.length - i, autoAlpha: 1, yPercent: 200 });
+        });
+        // 1. Stapel fliegt von unten herein, Karten leicht versetzt
+        tl.to(karten, { yPercent: 0, duration: 1.1, ease: 'power3.out', stagger: 0.08 }, 0.15);
+        // 2. Karten werden nacheinander auf ihre Plätze verteilt und drehen sich gerade
+        tl.to(karten.slice(0, -1), { x: 0, y: 0, rotation: 0, duration: 1.0, ease: 'power3.inOut', stagger: 0.18 }, 1.15);
+        tl.to(karten[karten.length - 1], { rotation: 0, duration: 0.8, ease: 'power3.inOut' }, 1.15 + 0.18 * (karten.length - 1));
+        tl.set(karten, { zIndex: 'auto' });
+      } else {
+        tl.fromTo(karten, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1.12, stagger: 0.12 }, 0.3);
+      }
+      ScrollTrigger.create({ trigger: sek, start: 'top 70%', once: true, onEnter: () => tl.play() });
+
+      // Hover auf den Karten
+      if (matchMedia('(hover: hover)').matches) {
+        karten.forEach((k) => {
+          const h = k.querySelector<HTMLElement>('.h4');
+          const pfeil = k.querySelector<HTMLElement>('.pfeil');
+          if (!h || !pfeil) return;
+          const b = SplitText.create(h, { type: 'words,chars', mask: 'chars' });
+          const hv = gsap.timeline({ paused: true })
+            .to(b.chars, { yPercent: -100, duration: 0.25, ease: 'power2.in', stagger: { amount: 0.2 } }, 0)
+            .set(b.chars, { yPercent: 100 }, 0.45)
+            .to(b.chars, { yPercent: 0, duration: 0.4, ease: 'power3.out', stagger: { amount: 0.2 } }, 0.45)
+            .to(pfeil, { scale: 1.2, yPercent: -40, duration: 0.6, ease: 'circ.inOut' }, 0);
+          k.addEventListener('mouseenter', () => hv.timeScale(1).play());
+          k.addEventListener('mouseleave', () => hv.timeScale(1.5).reverse());
+        });
+      }
+    });
+  }
+</script>
 <style>
   /* Ursprünglich Webflow layout245 (Überschrift oben über ganzer Breite, darunter Text | Kacheln).
      Änderung Eduard 06.11.: Kacheln nach oben – Oberkante der Kacheln auf Höhe der Tagline („Kapitel · Nº 02“);
