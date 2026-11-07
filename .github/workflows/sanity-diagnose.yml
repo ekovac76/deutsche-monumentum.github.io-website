@@ -1,0 +1,24 @@
+name: Temporär: Koblenz-Bilder holen
+on:
+  push:
+    branches: [sanity-diagnose]
+permissions:
+  contents: write
+jobs:
+  holen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p tmp/koblenz
+          curl -sSfL -o tmp/koblenz/01.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e190b1627e2ff6bb43af4_65e6a8b2c5c6cb03268be808_Image_02_210531.webp"
+          curl -sSfL -o tmp/koblenz/02.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7888_65e6a8bbad29e9e2bb590b69_Image_03_210601.webp"
+          curl -sSfL -o tmp/koblenz/03.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc786b_65e6a9b9660cc894894df5b6_210617_Exterior3_AN_Wasser_2.webp"
+          curl -sSfL -o tmp/koblenz/04.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7865_65e6e90d2d1a65bfd69102eb_210609_Interior_02_EGpsd.webp"
+          curl -sSfL -o tmp/koblenz/05.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7861_65e6e90deda6156c617391bc_210610_Interior%25203.webp"
+          curl -sSfL -o tmp/koblenz/06.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7880_65e6e90df95bc4bec7f0f41c_210611_Interior01_Orgelsaal.webp"
+          curl -sSfL -o tmp/koblenz/07.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb559bed22a54cc7868_65e6e90dfeb2f9d0c8714842_210611_Interior01_Orgelsaal_Cam02%2520copy.webp"
+          curl -sSfL -o tmp/koblenz/08.webp "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e4cb459bed22a54cc785a_65e6e90c7b10fbcb7242303d_Bad.webp"
+          ls -la tmp/koblenz
+          git config user.name "github-actions"; git config user.email "actions@github.com"
+          git add tmp/koblenz && git commit -m "Temporär: Koblenz-Galerie" && git push
