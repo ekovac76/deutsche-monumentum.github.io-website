@@ -2,7 +2,7 @@
 // Baustein „Referenzkachel“ – 1:1 nach Webflow (product5_item → Product 2 → referenz_card):
 // Jahreszahl (Playfair kursiv 78px) mit Pfeil, Titel + Text (Div Block 22), Bild in „divimg“
 // (0,5rem Innenabstand, Eckwinkel-Grafiken am Außenrand, Schatten, 12px Rundung), Bildzeile unten links.
-// Beim Darüberfahren zoomt das Bild (Motion-Layer: .referenz_card:hover img → scale 1.07).
+// Beim Darüberfahren wird das ganze Bildfeld etwas größer (scale 1.05); früher Zoom im Bild – Ecken wirkten dabei rund (Eduard 07.11.).
 import { bilder } from '../data/bilder';
 interface Props { jahr: string; titel: string; text: string; bild: string; zeile: string; href?: string }
 const { jahr, titel, text, bild, zeile, href = '/referenzen' } = Astro.props;
@@ -44,7 +44,8 @@ const { jahr, titel, text, bild, zeile, href = '/referenzen' } = Astro.props;
   .ol{left:5px;top:2px}
   .ur{right:3px;bottom:4px}
   .zeile{position:absolute;left:19px;bottom:13px;font-family:var(--font-mono);font-size:10px;color:#fff}
-  .karte img{transition:transform .8s cubic-bezier(.16,1,.3,1)}
-  .karte:hover img{transform:scale(1.07)}
+  /* Hover: ganzes Bildfeld wird etwas größer (statt Zoom im Bild – sonst wirkten die Ecken rund) */
+  .divimg{transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .karte:hover .divimg{transform:scale(1.05)}
   @media (min-width:1280px){.karte{height:100%}}
 </style>
