@@ -1,6 +1,7 @@
 ---
 // Karte im Zeitstrahl – 1:1 nach Webflow (Div Block 27, leicht gedreht)
-// Optional: Kachel-Video – startet beim Darüberfahren (Handy: sobald die Karte im Bild ist), Standbild = erstes Videobild
+// Optional: Kachel-Video – startet beim Darüberfahren (Handy: sobald die Karte im Bild ist).
+// Standbild = das bisherige Kartenbild; Übergang Bild → kurz Schwarz → Video (Eduard 07.11.)
 interface Props { href: string; nummer: string; titel: string; text: string; bild: string; ort: string; drehung?: string; video?: string; standbild?: string }
 const { href, nummer, titel, text, bild, ort, drehung = '-3deg', video, standbild } = Astro.props;
 ---
@@ -9,8 +10,9 @@ const { href, nummer, titel, text, bild, ort, drehung = '-3deg', video, standbil
     <div class="inhalt">
       <div class="zeile"><span class="kategorie">Referenzprojekt</span><span class="nummer">{nummer}</span></div>
       <div class="bildrahmen">
-        <img src={video && standbild ? standbild : bild} alt={titel} loading="lazy" />
-        {video && <video class="kachelvideo" src={video} poster={standbild || undefined} muted loop playsinline preload="metadata" aria-hidden="true"></video>}
+        <img src={bild} alt={titel} loading="lazy" />
+        {video && <video class="kachelvideo" src={video} muted loop playsinline preload="metadata" aria-hidden="true"></video>}
+        {video && <span class="schwarz" aria-hidden="true"></span>}
       </div>
       <div>
         <div class="titel-abstand"><h3 class="titel">{titel}</h3></div>
@@ -32,6 +34,9 @@ const { href, nummer, titel, text, bild, ort, drehung = '-3deg', video, standbil
   .bildrahmen img{display:block;width:100%;aspect-ratio:5/3.5;object-fit:cover}
   .kachelvideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .25s ease;pointer-events:none}
   .kachelvideo.laeuft{opacity:1}
+  /* kurze Abblende ins Schwarze zwischen Standbild und Video */
+  .schwarz{position:absolute;inset:0;background:#000;opacity:0;transition:opacity .3s ease;pointer-events:none}
+  .schwarz.an{opacity:1}
   .titel-abstand{padding-bottom:.5rem}
   .titel{margin:0;font-family:var(--font-sans);color:#333;font-size:1.3rem;line-height:1.3;font-weight:700}
   .text-abstand{padding-bottom:1rem}
@@ -43,8 +48,18 @@ const { href, nummer, titel, text, bild, ort, drehung = '-3deg', video, standbil
   // Kachel-Video wie bei den Projektkarten: Maus drauf → Video von vorn, Maus weg → Standbild.
   // Handy/Tablet (kein Darüberfahren) → Video läuft, sobald die Karte zu 60 % im Bild ist.
   const ohneMaus = window.matchMedia('(hover: none)').matches;
-  const start = (v: HTMLVideoElement) => { v.currentTime = 0; v.play().catch(() => {}); };
-  const stopp = (v: HTMLVideoElement) => { v.pause(); v.classList.remove('laeuft'); v.currentTime = 0; };
+  // Bild blendet kurz ins Schwarze, dann startet das Video und blendet aus dem Schwarzen auf; zurück genauso
+  const schwarz = (v: HTMLVideoElement) => v.parentElement?.querySelector<HTMLElement>('.schwarz');
+  const start = (v: HTMLVideoElement) => {
+    const s = schwarz(v);
+    s?.classList.add('an');
+    window.setTimeout(() => { v.currentTime = 0; v.play().catch(() => {}); }, 300);
+  };
+  const stopp = (v: HTMLVideoElement) => {
+    const s = schwarz(v);
+    s?.classList.add('an');
+    window.setTimeout(() => { v.pause(); v.classList.remove('laeuft'); v.currentTime = 0; s?.classList.remove('an'); }, 300);
+  };
   const beobachter = ohneMaus && 'IntersectionObserver' in window
     ? new IntersectionObserver((eintraege) => eintraege.forEach((e) => {
         const v = e.target.querySelector<HTMLVideoElement>('.kachelvideo');
@@ -54,7 +69,7 @@ const { href, nummer, titel, text, bild, ort, drehung = '-3deg', video, standbil
   document.querySelectorAll<HTMLAnchorElement>('.ref-karte').forEach((karte) => {
     const v = karte.querySelector<HTMLVideoElement>('.kachelvideo');
     if (!v) return;
-    v.addEventListener('playing', () => v.classList.add('laeuft'));
+    v.addEventListener('playing', () => { v.classList.add('laeuft'); schwarz(v)?.classList.remove('an'); });
     if (beobachter) { beobachter.observe(karte.querySelector('.bildrahmen') || karte); return; }
     karte.addEventListener('mouseenter', () => start(v));
     karte.addEventListener('mouseleave', () => stopp(v));
