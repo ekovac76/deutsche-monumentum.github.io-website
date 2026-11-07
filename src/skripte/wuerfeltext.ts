@@ -12,8 +12,8 @@ const zufall = (z: string) => {
   return v ? v[Math.floor(Math.random() * v.length)] : z;
 };
 
-export function wuerfelText(tl: gsap.core.Timeline, el: HTMLElement | null | undefined, start: number) {
-  if (!el) return;
+export function wuerfelText(tl: gsap.core.Timeline, el: HTMLElement | null | undefined, start: number): number {
+  if (!el) return start;
   gsap.set(el, { autoAlpha: 0 });
   const zs = SplitText.create(el, { type: 'words,chars' });
   const gruppen: HTMLElement[][] = [];
@@ -44,4 +44,5 @@ export function wuerfelText(tl: gsap.core.Timeline, el: HTMLElement | null | und
     ende = Math.max(ende, t);
   });
   tl.call(() => zs.revert(), [], ende + 0.05);
+  return ende + 0.05;
 }

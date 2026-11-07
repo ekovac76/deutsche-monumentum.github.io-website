@@ -66,7 +66,7 @@ export function sektionenAnimieren() {
   document.querySelectorAll<HTMLElement>('section.sektion:not([data-eigen])').forEach((sek) => {
     if (sek.querySelector('.sektion-innen.oben > .text')) return; // Rechtstexte bleiben ruhig
     let items = [...sek.querySelectorAll<HTMLElement>(ITEM)];
-    items = items.filter((el) => ohne(el, items));
+    items = items.filter((el) => ohne(el, items) && !el.matches('[data-zeitstrahl] .reihe'));
     const inItem = (el: Element) => items.some((i) => i.contains(el));
     const bilder = [...sek.querySelectorAll<HTMLElement>(BILD)].filter((b) => !inItem(b));
 
@@ -150,6 +150,44 @@ export function sektionenAnimieren() {
             if (pfeil) gsap.to(pfeil, { scale: 1, yPercent: 0, duration: 0.4, ease: 'circ.inOut', overwrite: 'auto' });
           });
         }
+      });
+    });
+
+    // Referenzen-Zeitstrahl: jede Reihe baut sich beim Hineinscrollen auf wie die übrigen Sektionen –
+    // Jahreszahl und Titel steigen aus der Kante, Text mit Zauberwürfel-Effekt, Knopf weich, Karte fliegt ein;
+    // danach Lupen-Hover auf allen Texten, Karte hebt sich beim Darüberfahren
+    sek.querySelectorAll<HTMLElement>('[data-zeitstrahl] .reihe').forEach((r) => {
+      const jahr = r.querySelector<HTMLElement>('.text-spalte .jahr');
+      const tit = r.querySelector<HTMLElement>('.text-spalte .titel');
+      const txt = r.querySelector<HTMLElement>('.text-spalte .text');
+      const knopf = r.querySelector<HTMLElement>('.text-spalte .btn');
+      const karte = r.querySelector<HTMLElement>('.bild-spalte .link');
+      const kTexte = [...r.querySelectorAll<HTMLElement>('.bild-spalte .titel, .bild-spalte .text-small')];
+      gsap.set([jahr, tit, knopf, karte].filter(Boolean), { autoAlpha: 0 });
+      document.fonts.ready.then(() => {
+        const tl = gsap.timeline({ paused: true });
+        const splits: SplitText[] = [];
+        [jahr, tit].forEach((h, i) => {
+          if (!h) return;
+          const z = SplitText.create(h, { type: 'lines', mask: 'lines' });
+          splits.push(z);
+          gsap.set(h, { autoAlpha: 1 });
+          gsap.set(z.lines, { yPercent: 110 });
+          tl.to(z.lines, { yPercent: 0, duration: 1.12, ease: 'power4.out', stagger: 0.11 }, i * 0.12);
+        });
+        const textEnde = wuerfelText(tl, txt, 0.15);
+        if (knopf) tl.fromTo(knopf, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12, ease: 'power4.out' }, 0.7);
+        if (karte) tl.fromTo(karte, { autoAlpha: 0, y: 80 }, { autoAlpha: 1, y: 0, duration: 1.0, ease: 'back.out(1.6)' }, 0.1);
+        tl.call(() => {
+          splits.forEach((z) => z.revert());
+          if (!hover) return;
+          [jahr, tit, txt, ...kTexte].forEach((el) => el && lupe(el));
+          if (karte) {
+            karte.addEventListener('mouseenter', () => gsap.to(karte, { scale: 1.03, y: -6, duration: 0.9, ease: 'power3.out', overwrite: 'auto' }));
+            karte.addEventListener('mouseleave', () => gsap.to(karte, { scale: 1, y: 0, duration: 0.9, ease: 'power3.out', overwrite: 'auto' }));
+          }
+        }, [], Math.max(2.0, textEnde + 0.1));
+        ScrollTrigger.create({ trigger: r, start: 'top 80%', once: true, onEnter: () => tl.play() });
       });
     });
 
