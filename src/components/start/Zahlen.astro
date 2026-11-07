@@ -44,7 +44,9 @@ const z = seite('startseite').zahlen;
     const links = sek.querySelector<HTMLElement>('.links')!;
     const tagline = links.querySelector<HTMLElement>('.tagline');
     const titel = links.querySelector<HTMLElement>('h2')!;
-    const rest = links.querySelectorAll<HTMLElement>('.abstand-text, .button-zeile');
+    const fliess = links.querySelector<HTMLElement>('.abstand-text');
+    const knopfZeile = links.querySelector<HTMLElement>('.button-zeile');
+    const rest = [fliess, knopfZeile].filter(Boolean) as HTMLElement[];
     const karten = [...sek.querySelectorAll<HTMLElement>('.kacheln > .karte')];
     const breit = matchMedia('(min-width: 992px)').matches;
     let ausgeteilt = !breit;
@@ -58,7 +60,35 @@ const z = seite('startseite').zahlen;
       const tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } })
         .fromTo(tagline, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.96, ease: 'power3.out' }, 0)
         .to(zeilen.lines, { yPercent: 0, duration: 1.12, stagger: 0.11 }, 0.12)
-        .fromTo(rest, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12, stagger: 0.12 }, 0.6);
+        .fromTo(knopfZeile, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12 }, 0.9);
+
+      // Text: Zähler-Effekt (wie eine Anzeigetafel) gleichzeitig mit der Überschrift –
+      // jeder Buchstabe flackert kurz durch zufällige Zeichen und rastet zu einem eigenen, zufälligen Zeitpunkt ein
+      if (fliess) {
+        const zs = SplitText.create(fliess, { type: 'words,chars' });
+        const chars = zs.chars as HTMLElement[];
+        const echt = chars.map((c) => c.textContent || '');
+        chars.forEach((c) => { c.style.width = c.getBoundingClientRect().width + 'px'; c.style.textAlign = 'center'; });
+        const klein = 'acenorsuvxz', gross = 'ABCDEHKNOPRSTUZ', ziffer = '0123456789';
+        const zufall = (z: string) => {
+          const v = /[0-9]/.test(z) ? ziffer : /[A-ZÄÖÜ]/.test(z) ? gross : /[a-zäöüß]/.test(z) ? klein : '';
+          return v ? v[Math.floor(Math.random() * v.length)] : z;
+        };
+        const fertig = chars.map(() => 0.25 + Math.random() * 0.75); // Einrastzeit je Buchstabe (0,25–1,0 s)
+        const zaehler = { t: 0 };
+        let letzte = -1;
+        tl.set(fliess, { autoAlpha: 1 }, 0.12)
+          .to(zaehler, {
+            t: 1, duration: 1.0, ease: 'none',
+            onUpdate: () => {
+              const schritt = Math.floor(zaehler.t * 30); // ca. 30 Wechsel pro Sekunde
+              if (schritt === letzte && zaehler.t < 1) return;
+              letzte = schritt;
+              chars.forEach((c, i) => { c.textContent = zaehler.t >= fertig[i] ? echt[i] : zufall(echt[i]); });
+            },
+            onComplete: () => zs.revert(),
+          }, 0.12);
+      }
 
       if (breit && karten.length > 1) {
         // Stapel liegt auf dem Platz der letzten Karte (unten rechts)
