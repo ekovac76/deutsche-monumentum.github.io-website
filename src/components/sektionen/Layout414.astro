@@ -91,23 +91,25 @@ const istKontakt = (l?: string) => l === '#kontakt';
     setzen();
   });
 
-  // Innenbild: Maus ruht auf dem Bild → Innenbild blendet langsam ein.
-  // Maus bewegt sich → Außenbild blendet langsam zurück. Kleines Zittern (unter 8 px) wird ignoriert.
-  // Klicken bzw. Antippen (auch am Handy) → wechselt langsam zwischen außen und innen.
+  // Innenbild-Wechsel:
+  // Maus aufs Bild → Innenbild blendet langsam ein.
+  // Jede neue Mausbewegung (nach kurzer Ruhe) → wechselt langsam zum jeweils anderen Bild (innen ↔ außen).
+  // Während einer durchgehenden Bewegung wird nur einmal gewechselt; Zittern unter 8 px zählt nicht.
+  // Maus weg → zurück zum Außenbild. Klicken bzw. Antippen (auch am Handy) → wechselt ebenfalls.
   const mitMaus = window.matchMedia('(hover: hover)').matches;
   document.querySelectorAll<HTMLElement>('[data-l414] .bild').forEach((bild) => {
     if (!bild.querySelector('.innen')) return;
-    let timer = 0, x = 0, y = 0;
+    let timer = 0, x = 0, y = 0, ruht = false;
     bild.style.cursor = 'pointer';
-    bild.addEventListener('click', () => { clearTimeout(timer); bild.classList.toggle('innen-an'); });
+    bild.addEventListener('click', () => bild.classList.toggle('innen-an'));
     if (!mitMaus) return;
-    const ruhe = () => { clearTimeout(timer); timer = window.setTimeout(() => bild.classList.add('innen-an'), 450); };
-    bild.addEventListener('pointerenter', (e) => { x = e.clientX; y = e.clientY; ruhe(); });
+    const bewegt = () => { ruht = false; clearTimeout(timer); timer = window.setTimeout(() => { ruht = true; }, 400); };
+    bild.addEventListener('pointerenter', (e) => { x = e.clientX; y = e.clientY; bild.classList.add('innen-an'); bewegt(); });
     bild.addEventListener('pointermove', (e) => {
       if (Math.hypot(e.clientX - x, e.clientY - y) < 8) return;
       x = e.clientX; y = e.clientY;
-      bild.classList.remove('innen-an');
-      ruhe();
+      if (ruht) bild.classList.toggle('innen-an');
+      bewegt();
     });
     bild.addEventListener('pointerleave', () => { clearTimeout(timer); bild.classList.remove('innen-an'); });
   });
