@@ -60,5 +60,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <script is:inline set:html={cookieCss} />
     <script is:inline set:html={cookies} />
     <script is:inline set:html={trackingNurAufDomain} />
+    <script>
+      import { sektionenAnimieren } from '../skripte/animationen';
+      sektionenAnimieren();
+    </script>
   </body>
 </html>

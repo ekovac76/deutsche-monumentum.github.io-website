@@ -8,7 +8,7 @@ import Karussell from '../Karussell.astro';
 import { projekte, seite } from '../../data/cms';
 const s = seite('startseite').projekte;
 ---
-<section class="sektion" id="projekte-sektion">
+<section class="sektion" id="projekte-sektion" data-eigen>
   <div class="sektion-innen">
     <Kapitelkopf ziffer="III." thema={s.thema} zaehler="03 / 10" />
     <div class="kopfraster">

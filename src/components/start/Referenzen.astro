@@ -8,7 +8,7 @@ import Referenzkachel from '../Referenzkachel.astro';
 import { seite } from '../../data/cms';
 const r = seite('startseite').referenzen;
 ---
-<section class="sektion ueberlauf" id="referenzen-sektion">
+<section class="sektion ueberlauf" id="referenzen-sektion" data-eigen>
   <div class="sektion-innen">
     <Kapitelkopf ziffer="V." thema={r.thema} zaehler="05 / 10" />
     <div class="kopfraster">

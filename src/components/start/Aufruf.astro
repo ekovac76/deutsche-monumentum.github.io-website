@@ -6,7 +6,7 @@ import { projekte, seite } from '../../data/cms';
 const a = seite('aufruf');
 const karte = { ...projekte.find((p) => p.slug === a.projekt)!, bild: a.kartenbild, nummer: a.kartenNummer };
 ---
-<section class="sektion" id="aufruf-sektion">
+<section class="sektion" id="aufruf-sektion" data-eigen>
   <div class="sektion-innen">
     <div class="dunkel">
       <div class="regel">

@@ -6,9 +6,9 @@ import Kapitelfuss from '../Kapitelfuss.astro';
 import Videovorschau from '../Videovorschau.astro';
 import { bilder } from '../../data/bilder';
 interface Props { ziffer: string; thema: string; zaehler: string; wort?: string; nummer: string; zitat: string; projekteButton?: boolean; video?: string; bild?: string; label?: string; autorGross?: boolean; animiert?: boolean }
-const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton = true, video = '', bild, label, autorGross = false, animiert = false } = Astro.props;
+const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton = true, video = '', bild, label, autorGross = false, animiert = true } = Astro.props;
 ---
-<section class="sektion" data-erklaer-animiert={animiert ? '' : undefined}>
+<section class="sektion" data-eigen data-erklaer-animiert={animiert ? '' : undefined}>
   <div class="sektion-innen">
     <Kapitelkopf ziffer={ziffer} thema={thema} zaehler={zaehler} />
     <div class="raster">

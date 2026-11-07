@@ -7,7 +7,7 @@ import Kennzahlkarte from '../Kennzahlkarte.astro';
 import { seite } from '../../data/cms';
 const z = seite('startseite').zahlen;
 ---
-<section class="sektion" id="zahlen-sektion">
+<section class="sektion" id="zahlen-sektion" data-eigen>
   <div class="sektion-innen">
     <Kapitelkopf ziffer="II." thema={z.thema} zaehler="02 / 10" />
     <div class="raster">

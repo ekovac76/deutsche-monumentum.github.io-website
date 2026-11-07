@@ -6,7 +6,7 @@ import Tagline from '../Tagline.astro';
 interface Props { bild: string; wort?: string; nummer?: string; titel: string; text: string; button?: string; fett?: boolean; kontur?: boolean;
   videoDesktop?: string; videoHandy?: string; standbild?: string; buchstaben?: boolean }
 const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt aufnehmen', fett = false, kontur = false,
-  videoDesktop, videoHandy, standbild, buchstaben = false } = Astro.props;
+  videoDesktop, videoHandy, standbild, buchstaben = true } = Astro.props;
 ---
 {buchstaben && <script is:inline>document.documentElement.classList.add('js-buchstaben')</script>}
 <header class="hero">
