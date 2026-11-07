@@ -23,6 +23,8 @@
   { name: 'karteTitel', title: 'Karte – Titel', type: 'string' },
   { name: 'karteText', title: 'Karte – Text', type: 'text', rows: 3 },
   { name: 'karteBild', title: 'Karte – Bild', type: 'image', options: { hotspot: true } },
+  { name: 'kachelVideo', title: 'Karte – Video (MP4, startet beim Darüberfahren)', type: 'file', options: { accept: 'video/mp4' } },
+  { name: 'kachelStandbild', title: 'Karte – Standbild zum Video (erstes Videobild)', type: 'image' },
   { name: 'ort', title: 'Karte – Ort', type: 'string' },
 ] }
 

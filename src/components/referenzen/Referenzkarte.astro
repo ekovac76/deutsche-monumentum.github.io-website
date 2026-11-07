@@ -1,13 +1,17 @@
 ---
 // Karte im Zeitstrahl – 1:1 nach Webflow (Div Block 27, leicht gedreht)
-interface Props { href: string; nummer: string; titel: string; text: string; bild: string; ort: string; drehung?: string }
-const { href, nummer, titel, text, bild, ort, drehung = '-3deg' } = Astro.props;
+// Optional: Kachel-Video – startet beim Darüberfahren (Handy: sobald die Karte im Bild ist), Standbild = erstes Videobild
+interface Props { href: string; nummer: string; titel: string; text: string; bild: string; ort: string; drehung?: string; video?: string; standbild?: string }
+const { href, nummer, titel, text, bild, ort, drehung = '-3deg', video, standbild } = Astro.props;
 ---
-<a class="link" href={href}>
+<a class="link ref-karte" href={href}>
   <div class="karte" style={`--dreh:${drehung}`}>
     <div class="inhalt">
       <div class="zeile"><span class="kategorie">Referenzprojekt</span><span class="nummer">{nummer}</span></div>
-      <div class="bildrahmen"><img src={bild} alt={titel} loading="lazy" /></div>
+      <div class="bildrahmen">
+        <img src={video && standbild ? standbild : bild} alt={titel} loading="lazy" />
+        {video && <video class="kachelvideo" src={video} poster={standbild || undefined} muted loop playsinline preload="metadata" aria-hidden="true"></video>}
+      </div>
       <div>
         <div class="titel-abstand"><h3 class="titel">{titel}</h3></div>
         <div class="text-abstand"><p class="text-small">{text}</p></div>
@@ -24,8 +28,10 @@ const { href, nummer, titel, text, bild, ort, drehung = '-3deg' } = Astro.props;
   .zeile{display:flex;justify-content:space-between;align-items:center}
   .kategorie{font-family:var(--font-sans);color:var(--karte-orange);font-size:10px;line-height:16.27px;font-weight:600;letter-spacing:1.89px;text-transform:uppercase}
   .nummer{font-family:var(--font-mono);color:var(--ink-mono-grau);font-size:11px;line-height:17px;letter-spacing:.44px}
-  .bildrahmen{overflow:hidden;border:1px solid hsl(0 0% 63.33%);border-radius:5px;background:hsl(45.6 60.98% 91.96%)}
+  .bildrahmen{position:relative;overflow:hidden;border:1px solid hsl(0 0% 63.33%);border-radius:5px;background:hsl(45.6 60.98% 91.96%)}
   .bildrahmen img{display:block;width:100%;aspect-ratio:5/3.5;object-fit:cover}
+  .kachelvideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .25s ease;pointer-events:none}
+  .kachelvideo.laeuft{opacity:1}
   .titel-abstand{padding-bottom:.5rem}
   .titel{margin:0;font-family:var(--font-sans);color:#333;font-size:1.3rem;line-height:1.3;font-weight:700}
   .text-abstand{padding-bottom:1rem}
@@ -33,3 +39,24 @@ const { href, nummer, titel, text, bild, ort, drehung = '-3deg' } = Astro.props;
   .status{font-family:var(--font-sans);color:var(--karte-orange);font-size:11px;line-height:17px;font-weight:600;letter-spacing:1.76px;text-transform:uppercase}
   .ort{font-family:var(--font-sans);color:var(--ink-mono-grau);font-size:11px;line-height:17px;letter-spacing:1.76px;text-transform:uppercase}
 </style>
+<script>
+  // Kachel-Video wie bei den Projektkarten: Maus drauf → Video von vorn, Maus weg → Standbild.
+  // Handy/Tablet (kein Darüberfahren) → Video läuft, sobald die Karte zu 60 % im Bild ist.
+  const ohneMaus = window.matchMedia('(hover: none)').matches;
+  const start = (v: HTMLVideoElement) => { v.currentTime = 0; v.play().catch(() => {}); };
+  const stopp = (v: HTMLVideoElement) => { v.pause(); v.classList.remove('laeuft'); v.currentTime = 0; };
+  const beobachter = ohneMaus && 'IntersectionObserver' in window
+    ? new IntersectionObserver((eintraege) => eintraege.forEach((e) => {
+        const v = e.target.querySelector<HTMLVideoElement>('.kachelvideo');
+        if (v) (e.isIntersecting ? start(v) : stopp(v));
+      }), { threshold: 0.6 })
+    : null;
+  document.querySelectorAll<HTMLAnchorElement>('.ref-karte').forEach((karte) => {
+    const v = karte.querySelector<HTMLVideoElement>('.kachelvideo');
+    if (!v) return;
+    v.addEventListener('playing', () => v.classList.add('laeuft'));
+    if (beobachter) { beobachter.observe(karte.querySelector('.bildrahmen') || karte); return; }
+    karte.addEventListener('mouseenter', () => start(v));
+    karte.addEventListener('mouseleave', () => stopp(v));
+  });
+</script>

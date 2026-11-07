@@ -26,7 +26,7 @@ const s = seite('referenzenseite').zeitstrahl;
         {s.eintraege.map((e, i) => (
           <div class:list={['reihe', { gespiegelt: i % 2 === 1 }]}>
             <div class="bild-spalte">
-              <Referenzkarte href={`/referenzen-cms/${e.referenz}`} nummer={`0${i + 1} / 05`} drehung={i % 2 === 1 ? '4deg' : '-3deg'} titel={e.karteTitel} text={e.karteText} bild={e.karteBild} ort={e.ort} />
+              <Referenzkarte href={`/referenzen-cms/${e.referenz}`} nummer={`0${i + 1} / 05`} drehung={i % 2 === 1 ? '4deg' : '-3deg'} titel={e.karteTitel} text={e.karteText} bild={e.karteBild} ort={e.ort} video={e.kachelVideo} standbild={e.kachelStandbild} />
             </div>
             <div class="punkt-spalte"><span class="punkt"></span></div>
             <div class="text-spalte">

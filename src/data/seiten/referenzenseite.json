@@ -33,6 +33,8 @@
     "karteTitel": "Joffre-Areal in Rastatt",
     "karteText": "Drei sanierte Denkmalhäuser, verbunden durch moderne Bauteile, mit Balkonblick ins Grüne – ein Quartier, das Historie und modernen Komfort vereint.",
     "karteBild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a4265b0b0fed1f934561806_ENDE-VIS-Uebersicht-RA-Joffre-Kaserne.webp",
+    "kachelVideo": "/videos/referenzkachel-rastatt-web.mp4",
+    "kachelStandbild": "/videos/referenzkachel-rastatt-standbild.jpg",
     "ort": "Rastatt"
    },
    {
@@ -44,6 +46,8 @@
     "karteTitel": "Kaiserlofts in Wilhelmshaven",
     "karteText": "Nur 350 m vom Hafen und 3 km vom Südstrand entfernt, mitten in einem gewachsenen Wohngebiet – maritimes Flair trifft auf denkmalgeschützte Architektur.",
     "karteBild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a4265f2c2079b034bad863b_ENDE-VIS-Ansicht-3-Wilhelmshaven.webp",
+    "kachelVideo": "/videos/referenzkachel-wilhelmshaven-web.mp4",
+    "kachelStandbild": "/videos/referenzkachel-wilhelmshaven-standbild.jpg",
     "ort": "Wilhelmshaven"
    },
    {
@@ -55,6 +59,8 @@
     "karteTitel": "Das Türmchengebäude in Emden",
     "karteText": "Emden ist nicht nur Urlaubsort, sondern auch Standort eines der größten Automobilwerke Deutschlands – ein starker Arbeitsmarkt sichert die Nachfrage nach Wohnraum.",
     "karteBild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a42667a6a0949fa8f5baada_Emden%20aussen%20bei%20tag.webp",
+    "kachelVideo": "/videos/referenzkachel-emden-web.mp4",
+    "kachelStandbild": "/videos/referenzkachel-emden-standbild.jpg",
     "ort": "Emden"
    },
    {
@@ -66,6 +72,8 @@
     "karteTitel": "Palais 3-Klang in Koblenz",
     "karteText": "Im Villenviertel Koblenz-Oberwerth direkt am Rhein gelegen – ein repräsentatives Baudenkmal mit Geschichte und erstklassiger Lage.",
     "karteBild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a4267a40baec9ca413a4d56_Image_02_210531.avif",
+    "kachelVideo": "/videos/referenzkachel-koblenz-web.mp4",
+    "kachelStandbild": "/videos/referenzkachel-koblenz-standbild.jpg",
     "ort": "Koblenz"
    },
    {
