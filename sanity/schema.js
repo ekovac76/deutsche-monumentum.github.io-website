@@ -133,6 +133,7 @@
     { name: 'videoZitat', title: 'Video – Zitat', type: 'text', rows: 3, group: 'inhalt' },
     { name: 'videoLink', title: 'Video – Link (YouTube)', type: 'url', group: 'inhalt' },
     { name: 'videoLabel', title: 'Video – Bezeichnung', type: 'string', group: 'inhalt' },
+    { name: 'videoVorschau', title: 'Video – Vorschau (MP4 4:3, läuft beim Darüberfahren)', type: 'file', group: 'inhalt', options: { accept: 'video/mp4' } },
 
     { name: 'galerie', title: 'Galerie (Slider)', type: 'array', group: 'bilder', of: [{ type: 'bildMitText' }] },
     { name: 'bauHeadline', title: 'Baufortschritt – Überschrift', type: 'text', rows: 2, group: 'bilder' },

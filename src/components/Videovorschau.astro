@@ -6,11 +6,15 @@
 // rahmen = testimonial53_lightbox (Interviews): 0,25rem heller Rand, Schatten auf Rahmen und Bild.
 import { bilder } from '../data/bilder';
 // format: Seitenverhältnis des Bildes – überall 4/3 (Eduard 06.11.; in Webflow 1/1)
-interface Props { bild: string; alt?: string; video?: string; rahmen?: boolean; quadrat?: boolean; label?: string; format?: string }
-const { bild, alt = '', video = '', rahmen = false, quadrat = false, label = 'DEUTSCHE MONUMENTUM', format = '4/3' } = Astro.props;
+// vorschau: optionales kurzes MP4 (4:3, ohne Ton) – läuft, solange die Maus auf dem Bild ist (Handy: sobald es im Bild ist);
+//   Einstieg über Schwarz, danach wieder das Deckbild.
+interface Props { bild: string; alt?: string; video?: string; rahmen?: boolean; quadrat?: boolean; label?: string; format?: string; vorschau?: string }
+const { bild, alt = '', video = '', rahmen = false, quadrat = false, label = 'DEUTSCHE MONUMENTUM', format = '4/3', vorschau } = Astro.props;
 ---
-<button class:list={['vorschau', { rahmen: rahmen || quadrat }]} type="button" data-video={video} aria-label="Video abspielen">
+<button class:list={['vorschau', { rahmen: rahmen || quadrat }]} data-vorschau={vorschau ? '' : undefined} type="button" data-video={video} aria-label="Video abspielen">
   <img class="bild" src={bild} alt={alt} loading="lazy" style={`aspect-ratio:${format}`} />
+  {vorschau && <video class="vorschauvideo" src={vorschau} muted loop playsinline preload="none" aria-hidden="true"></video>}
+  {vorschau && <span class="blende" aria-hidden="true"></span>}
   <span class="play" aria-hidden="true">
     <img src={bilder.videoPlay} alt="" />
     <span class="play-text">Video</span>
@@ -35,5 +39,44 @@ const { bild, alt = '', video = '', rahmen = false, quadrat = false, label = 'DE
   /* testimonial53_lightbox */
   .rahmen{overflow:visible;padding:.25rem}
   .rahmen .bild{box-shadow:0 30px 60px 0 rgba(0,0,0,.2)}
+  .vorschauvideo{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none}
+  .vorschauvideo.an{opacity:1}
+  .blende{position:absolute;inset:0;z-index:1;background:#000;opacity:0;pointer-events:none;transition:opacity .35s ease}
+  .blende.an{opacity:1}
   @media (max-width:991px){.bild{height:100%}}
 </style>
+<script>
+  // Video-Vorschau: Maus drauf → kurz schwarz, dann läuft das Video; Maus weg → über Schwarz zurück zum Deckbild.
+  // Handy/Tablet (kein Darüberfahren) → läuft, sobald das Bild zu 60 % zu sehen ist.
+  const ohneMaus = window.matchMedia('(hover: none)').matches;
+  const ruhig = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const warte = (ms: number) => new Promise((r) => setTimeout(r, ms));
+  document.querySelectorAll<HTMLElement>('[data-vorschau]').forEach((el) => {
+    const v = el.querySelector<HTMLVideoElement>('.vorschauvideo');
+    const b = el.querySelector<HTMLElement>('.blende');
+    if (!v || !b || ruhig) return;
+    let lauf = 0;
+    const start = async () => {
+      const id = ++lauf;
+      b.classList.add('an'); v.preload = 'auto';
+      await warte(350); if (id !== lauf) return;
+      v.currentTime = 0;
+      try { await v.play(); } catch { b.classList.remove('an'); return; }
+      if (id !== lauf) return;
+      v.classList.add('an'); b.classList.remove('an');
+    };
+    const stopp = async () => {
+      const id = ++lauf;
+      if (!v.classList.contains('an')) { b.classList.remove('an'); return; }
+      b.classList.add('an');
+      await warte(350); if (id !== lauf) return;
+      v.pause(); v.classList.remove('an'); b.classList.remove('an');
+    };
+    if (ohneMaus && 'IntersectionObserver' in window) {
+      new IntersectionObserver((e) => e.forEach((x) => (x.isIntersecting ? start() : stopp())), { threshold: 0.6 }).observe(el);
+    } else {
+      el.addEventListener('mouseenter', start);
+      el.addEventListener('mouseleave', stopp);
+    }
+  });
+</script>

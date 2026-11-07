@@ -86,7 +86,7 @@ const { r } = Astro.props;
 
   <!-- IV. Projektvideo -->
   <Erklaervideo ziffer="IV." thema="Projektvideo / Das Projekt" zaehler="04 / 05" wort="Referenz" nummer="05" projekteButton={false}
-    zitat={r.videoZitat} video={r.videoLink} bild={r.heroBild} label={r.videoLabel} />
+    zitat={r.videoZitat} video={r.videoLink} bild={r.heroBild} label={r.videoLabel} vorschau={(r as any).videoVorschau} />
 
   <!-- V. Baufortschritt -->
   {r.bau.length > 0 && (

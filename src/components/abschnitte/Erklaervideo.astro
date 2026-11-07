@@ -5,8 +5,8 @@ import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
 import Videovorschau from '../Videovorschau.astro';
 import { bilder } from '../../data/bilder';
-interface Props { ziffer: string; thema: string; zaehler: string; wort?: string; nummer: string; zitat: string; projekteButton?: boolean; video?: string; bild?: string; label?: string; autorGross?: boolean; animiert?: boolean }
-const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton = true, video = '', bild, label, autorGross = false, animiert = true } = Astro.props;
+interface Props { ziffer: string; thema: string; zaehler: string; wort?: string; nummer: string; zitat: string; projekteButton?: boolean; video?: string; bild?: string; label?: string; autorGross?: boolean; animiert?: boolean; vorschau?: string }
+const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton = true, video = '', bild, label, autorGross = false, animiert = true, vorschau } = Astro.props;
 ---
 <section class="sektion" data-eigen data-erklaer-animiert={animiert ? '' : undefined}>
   <div class="sektion-innen">
@@ -26,7 +26,7 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
           {projekteButton && <Button href="/projekte" variante="sekundaer">aktuelle Projekte</Button>}
         </div>
       </div>
-      <div class="buehne"><Videovorschau bild={bild || bilder.eduardVideo} video={video} label={label} alt="Video" /></div>
+      <div class="buehne"><Videovorschau bild={bild || bilder.eduardVideo} video={video} label={label} alt="Video" vorschau={vorschau} /></div>
     </div>
     <Kapitelfuss />
   </div>
