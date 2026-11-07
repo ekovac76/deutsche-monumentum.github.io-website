@@ -5,14 +5,14 @@ import Kapitelkopf from '../Kapitelkopf.astro';
 import Kapitelfuss from '../Kapitelfuss.astro';
 import Videovorschau from '../Videovorschau.astro';
 import { bilder } from '../../data/bilder';
-interface Props { ziffer: string; thema: string; zaehler: string; wort?: string; nummer: string; zitat: string; projekteButton?: boolean; video?: string; bild?: string; label?: string; autorGross?: boolean }
-const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton = true, video = '', bild, label, autorGross = false } = Astro.props;
+interface Props { ziffer: string; thema: string; zaehler: string; wort?: string; nummer: string; zitat: string; projekteButton?: boolean; video?: string; bild?: string; label?: string; autorGross?: boolean; animiert?: boolean }
+const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton = true, video = '', bild, label, autorGross = false, animiert = false } = Astro.props;
 ---
-<section class="sektion">
+<section class="sektion" data-erklaer-animiert={animiert ? '' : undefined}>
   <div class="sektion-innen">
     <Kapitelkopf ziffer={ziffer} thema={thema} zaehler={zaehler} />
     <div class="raster">
-      <div>
+      <div class="links">
         <Tagline wort={wort} nummer={nummer} />
         <p class="h3 abstand-header">{zitat}</p>
         <div class="autor">
@@ -26,12 +26,46 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
           {projekteButton && <Button href="/projekte" variante="sekundaer">aktuelle Projekte</Button>}
         </div>
       </div>
-      <Videovorschau bild={bild || bilder.eduardVideo} video={video} label={label} alt="Video" />
+      <div class="buehne"><Videovorschau bild={bild || bilder.eduardVideo} video={video} label={label} alt="Video" /></div>
     </div>
     <Kapitelfuss />
   </div>
 </section>
+<script>
+  // Animation beim Hineinscrollen (nur wo animiert gesetzt ist):
+  // links wie im Hero (Tagline, Zitat Zeile für Zeile, dann Autor und Knöpfe),
+  // rechts das Videobild wie das Hero-Bild im Flux-Video: blendet ein, wächst aus mittlerer Größe auf und dreht sich langsam gerade.
+  import { gsap } from 'gsap';
+  import { SplitText } from 'gsap/SplitText';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(SplitText, ScrollTrigger);
+
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLElement>('[data-erklaer-animiert]').forEach((sek) => {
+      const links = sek.querySelector<HTMLElement>('.links');
+      const zitat = links?.querySelector<HTMLElement>('.h3');
+      const buehne = sek.querySelector<HTMLElement>('.buehne');
+      if (!links || !zitat || !buehne) return;
+      const tagline = links.querySelector<HTMLElement>('.tagline');
+      const rest = links.querySelectorAll<HTMLElement>('.autor, .knoepfe');
+      gsap.set([tagline, zitat, ...rest], { autoAlpha: 0 });
+      gsap.set(buehne, { autoAlpha: 0, scale: 0.55, rotation: 15 });
+      document.fonts.ready.then(() => {
+        const zeilen = SplitText.create(zitat, { type: 'lines', mask: 'lines' });
+        gsap.set(zitat, { autoAlpha: 1 });
+        gsap.set(zeilen.lines, { yPercent: 110 });
+        const tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } })
+          .fromTo(tagline, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.96, ease: 'power3.out' }, 0)
+          .to(zeilen.lines, { yPercent: 0, duration: 1.12, stagger: 0.11 }, 0.12)
+          .fromTo(rest, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12, stagger: 0.12 }, 0.6)
+          .to(buehne, { autoAlpha: 1, scale: 1, rotation: 0, duration: 1.8, ease: 'power3.out' }, 0.1);
+        ScrollTrigger.create({ trigger: sek, start: 'top 70%', once: true, onEnter: () => tl.play() });
+      });
+    });
+  }
+</script>
 <style>
+  .buehne{transform-origin:50% 50%}
   /* 1:1 nach Webflow: layout2_content, divauthor, testimonial12_client-image-wrapper, text_extrasmall(.bold), margin_button */
   .raster{display:grid;grid-template-columns:1fr 1fr;gap:4rem 5rem;align-items:center}
   .autor{display:flex;width:100%;padding:0 15% 3rem 0;justify-content:flex-start;align-items:flex-end;gap:18px}
