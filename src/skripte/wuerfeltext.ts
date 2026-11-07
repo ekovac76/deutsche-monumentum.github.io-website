@@ -1,5 +1,5 @@
 // Zauberwürfel-Effekt für Fließtexte (Kontrast zu den aufsteigenden Überschriften):
-// innerhalb jedes Wortes klappen Gruppen von 2–4 Buchstaben gemeinsam um die waagrechte Achse,
+// innerhalb jedes Wortes klappen Gruppen von 3–4 Buchstaben 2–3-mal ruhig um die waagrechte Achse,
 // zeigen zunächst Zufallszeichen derselben Art und mit der letzten Drehung den richtigen Text.
 // Wird in eine bestehende GSAP-Zeitleiste ab Zeitpunkt „start“ eingehängt; danach ist der Text wieder normal.
 import { gsap } from 'gsap';
@@ -19,7 +19,7 @@ export function wuerfelText(tl: gsap.core.Timeline, el: HTMLElement | null | und
   const gruppen: HTMLElement[][] = [];
   (zs.words as HTMLElement[]).forEach((w) => {
     const cs = [...w.querySelectorAll<HTMLElement>(':scope > div')];
-    for (let i = 0; i < cs.length;) { const n = 2 + Math.floor(Math.random() * 3); gruppen.push(cs.slice(i, i + n)); i += n; }
+    for (let i = 0; i < cs.length;) { const n = 3 + Math.floor(Math.random() * 2); gruppen.push(cs.slice(i, i + n)); i += n; }
   });
   (zs.chars as HTMLElement[]).forEach((c) => {
     c.dataset.echt = c.textContent || '';
@@ -32,14 +32,15 @@ export function wuerfelText(tl: gsap.core.Timeline, el: HTMLElement | null | und
   tl.call(() => gruppen.forEach(misch), [], start).set(el, { autoAlpha: 1, y: 0 }, start);
   let ende = start;
   gruppen.forEach((g) => {
-    const drehungen = 1 + Math.floor(Math.random() * 2);
-    let t = start + 0.03 + Math.random() * 0.45;
+    // 2–3 ruhige Drehungen je Gruppe (wie ein Zauberwürfel, kein schnelles Flackern)
+    const drehungen = 2 + Math.floor(Math.random() * 2);
+    let t = start + 0.03 + Math.random() * 0.5;
     for (let d = 0; d < drehungen; d++) {
       const letzte = d === drehungen - 1;
-      tl.to(g, { rotationX: 90, duration: 0.16, ease: 'power2.in', transformOrigin: '50% 50%' }, t)
-        .call(() => (letzte ? echt(g) : misch(g)), [], t + 0.16)
-        .fromTo(g, { rotationX: -90 }, { rotationX: 0, duration: 0.22, ease: 'power2.out' }, t + 0.16);
-      t += 0.38 + Math.random() * 0.12;
+      tl.to(g, { rotationX: 90, duration: 0.28, ease: 'power2.in', transformOrigin: '50% 50%' }, t)
+        .call(() => (letzte ? echt(g) : misch(g)), [], t + 0.28)
+        .fromTo(g, { rotationX: -90 }, { rotationX: 0, duration: 0.38, ease: 'power2.out' }, t + 0.28);
+      t += 0.7 + Math.random() * 0.1;
     }
     ende = Math.max(ende, t);
   });
