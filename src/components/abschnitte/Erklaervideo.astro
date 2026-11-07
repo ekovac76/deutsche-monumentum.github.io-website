@@ -34,7 +34,7 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
 <script>
   // Animation beim Hineinscrollen (nur wo animiert gesetzt ist):
   // links wie im Hero (Tagline, Zitat Zeile für Zeile, dann Autor und Knöpfe),
-  // rechts das Videobild wie das Hero-Bild im Flux-Video: blendet ein, wächst aus mittlerer Größe auf und dreht sich langsam gerade.
+  // rechts das Videobild: blendet ein, schnellt aus mittlerer Größe mit Drehung auf, schwingt kurz über und federt in die Ruhe.
   import { gsap } from 'gsap';
   import { SplitText } from 'gsap/SplitText';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -49,7 +49,7 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
       const tagline = links.querySelector<HTMLElement>('.tagline');
       const rest = links.querySelectorAll<HTMLElement>('.autor, .knoepfe');
       gsap.set([tagline, zitat, ...rest], { autoAlpha: 0 });
-      gsap.set(buehne, { autoAlpha: 0, scale: 0.55, rotation: 15 });
+      gsap.set(buehne, { autoAlpha: 0, scale: 0.55, rotation: 18 });
       document.fonts.ready.then(() => {
         const zeilen = SplitText.create(zitat, { type: 'lines', mask: 'lines' });
         gsap.set(zitat, { autoAlpha: 1 });
@@ -58,7 +58,9 @@ const { ziffer, thema, zaehler, wort = 'Kapitel', nummer, zitat, projekteButton 
           .fromTo(tagline, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.96, ease: 'power3.out' }, 0)
           .to(zeilen.lines, { yPercent: 0, duration: 1.12, stagger: 0.11 }, 0.12)
           .fromTo(rest, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12, stagger: 0.12 }, 0.6)
-          .to(buehne, { autoAlpha: 1, scale: 1, rotation: 0, duration: 1.8, ease: 'power3.out' }, 0.1);
+          // Bild: kurzer Ruck mit Schwung (dreht über die Gerade hinaus, ploppt etwas zu groß auf), dann federt es in die Ruhe
+          .to(buehne, { autoAlpha: 1, scale: 1.07, rotation: -4, duration: 0.55, ease: 'power3.out' }, 0.1)
+          .to(buehne, { scale: 1, rotation: 0, duration: 1.1, ease: 'back.out(2.2)' }, 0.65);
         ScrollTrigger.create({ trigger: sek, start: 'top 70%', once: true, onEnter: () => tl.play() });
       });
     });
