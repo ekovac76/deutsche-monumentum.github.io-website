@@ -33,7 +33,7 @@ const QUERY = `{
     "standortBilder": standortBilder[].asset->url
   },
   "referenzen": *[_type == "referenz" && !(_id in path("drafts.**"))] | order(reihenfolge asc) {
-    ..., "heroBild": heroBild.asset->url,
+    ..., "heroBild": heroBild.asset->url, "heroVideoDesktop": heroVideoDesktop.asset->url, "heroVideoHandy": heroVideoHandy.asset->url, "heroStandbild": heroStandbild.asset->url,
     "galerie": galerie[]{ text, "bild": bild.asset->url },
     "bau": bau[]{ datum, "bilder": bilder[].asset->url }
   },
@@ -117,10 +117,14 @@ export const projektDetails: typeof detailsJson = cms
     }))
   : detailsJson;
 
+const referenzJson = (slug: string) => (referenzenJson as any[]).find((x) => x.slug === slug);
 export const referenzen: typeof referenzenJson = cms
   ? cms.referenzen.map((r: any) => ({
       slug: r.slug?.current, name: s(r.name), heroHeadline: s(r.heroHeadline), heroSubline: s(r.heroSubline),
       heroBild: bild(r.heroBild) ?? '', fakten: paare(r.fakten, 'label', 'wert'),
+      heroVideoDesktop: r.heroVideoDesktop || referenzJson(r.slug?.current)?.heroVideoDesktop || '',
+      heroVideoHandy: r.heroVideoHandy || referenzJson(r.slug?.current)?.heroVideoHandy || '',
+      heroStandbild: bild(r.heroStandbild) || referenzJson(r.slug?.current)?.heroStandbild || '',
       introHeadline: s(r.introHeadline), introText: html(r.introText),
       infoNummer: s(r.infoNummer), infoLabel: s(r.infoLabel), infoText: s(r.infoText),
       videoZitat: s(r.videoZitat), videoLink: s(r.videoLink), videoLabel: s(r.videoLabel), bauHeadline: s(r.bauHeadline),

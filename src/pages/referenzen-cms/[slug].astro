@@ -19,7 +19,8 @@ export function getStaticPaths() {
 const { r } = Astro.props;
 ---
 <Basis titel="Referenz – Deutsche Monumentum" beschreibung="Erfolgreich sanierte Denkmalprojekte der Deutschen Monumentum – vom Verkauf bis zur Übergabe dokumentiert.">
-  <Seitenkopf bild={r.heroBild} wort="Referenz" titel={r.heroHeadline} text={r.heroSubline} fett />
+  <Seitenkopf bild={r.heroBild} wort="Referenz" titel={r.heroHeadline} text={r.heroSubline} fett
+    videoDesktop={(r as any).heroVideoDesktop} videoHandy={(r as any).heroVideoHandy} standbild={(r as any).heroStandbild} />
 
   <!-- II. Überblick -->
   <section class="sektion">

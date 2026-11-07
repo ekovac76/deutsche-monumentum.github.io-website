@@ -6,9 +6,9 @@
  "hero": {
   "_type": "abschnittHero",
   "bild": "https://s3.amazonaws.com/webflow-prod-assets/662bdbeb1e60c91c67269307/6a4267a40baec9ca413a4d56_Image_02_210531.avif",
-  "videoDesktop": "/videos/referenzen-hero-desktop-web.mp4",
-  "videoHandy": "/videos/referenzen-hero-handy-web.mp4",
-  "standbild": "/videos/referenzen-hero-standbild-desktop.jpg",
+  "videoDesktop": "/videos/referenzen-hero_v2-desktop-web.mp4",
+  "videoHandy": "/videos/referenzen-hero_v2-handy-web.mp4",
+  "standbild": "/videos/referenzen-hero_v2-standbild-desktop.jpg",
   "tagline": "Referenzen",
   "ueberschrift": "Unsere großen Referenzprojekte – erfolgreich saniert, verkauft und übergeben",
   "text": "Hier sehen Sie nur unsere größten Projekte – die vielen kleineren, die wir zusätzlich realisiert haben, präsentieren wir Ihnen gern persönlich.",

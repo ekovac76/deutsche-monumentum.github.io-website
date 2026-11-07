@@ -5,6 +5,9 @@
   "heroHeadline": "Vom Kasernenareal zum Wohnquartier – das Joffre-Areal in Rastatt",
   "heroSubline": "112 Wohnungen, in nur sechs Monaten verkauft und 2019 übergeben – ausgezeichnet für beispielhaftes Bauen in Baden.",
   "heroBild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08c6f56e4d53209350f_6a85efd2ae14e1f8b8c6773f_rastatt-hero-bild.webp",
+  "heroVideoDesktop": "/videos/referenz-rastatt-hero-desktop-web.mp4",
+  "heroVideoHandy": "/videos/referenz-rastatt-hero-handy-web.mp4",
+  "heroStandbild": "/videos/referenz-rastatt-hero-standbild-desktop.jpg",
   "fakten": [
    [
     "Volumen",
@@ -197,6 +200,9 @@
   "heroHeadline": "Maritimes Loftwohnen mit Geschichte – die Kaiserlofts in Wilhelmshaven",
   "heroSubline": "75 % Sonderabschreibung, hochwertige Sanierung und eine Lage nur 350 m vom Hafen – ein Stück maritime Geschichte, vollständig verkauft und übergeben.",
   "heroBild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f1009c33ccb63f8e9477_6a85efe67ba29ecb81107ec9_wilhelmshaven-hero-bild.webp",
+  "heroVideoDesktop": "/videos/referenz-wilhelmshaven-hero-desktop-web.mp4",
+  "heroVideoHandy": "/videos/referenz-wilhelmshaven-hero-handy-web.mp4",
+  "heroStandbild": "/videos/referenz-wilhelmshaven-hero-standbild-desktop.jpg",
   "fakten": [
    [
     "Volumen",
@@ -384,6 +390,9 @@
   "heroHeadline": "Ein Wahrzeichen, neu belebt – das Türmchengebäude in Emden",
   "heroSubline": "45 Wohnungen im Denkmal der ehemaligen Karl-von-Müller-Kaserne – in nur zwei Monaten vollständig verkauft.",
   "heroBild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f0916f56e4d5320935a3_6a85efbfab7f8aa3532c4ae8_emden-hero-bild.webp",
+  "heroVideoDesktop": "/videos/referenz-emden-hero-desktop-web.mp4",
+  "heroVideoHandy": "/videos/referenz-emden-hero-handy-web.mp4",
+  "heroStandbild": "/videos/referenz-emden-hero-standbild-desktop.jpg",
   "fakten": [
    [
     "Volumen",
@@ -542,6 +551,9 @@
   "heroHeadline": "Neorenaissance am Rhein – das Palais 3-Klang in Koblenz-Oberwerth",
   "heroSubline": "62 Wohnungen im ehemaligen Königlich Preußischen Lehrerinnenseminar – in nur drei Monaten verkauft und notariell beurkundet.",
   "heroBild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a5e190b1627e2ff6bb43af4_65e6a8b2c5c6cb03268be808_Image_02_210531.webp",
+  "heroVideoDesktop": "/videos/referenz-koblenz-hero-desktop-web.mp4",
+  "heroVideoHandy": "/videos/referenz-koblenz-hero-handy-web.mp4",
+  "heroStandbild": "/videos/referenz-koblenz-hero-standbild-desktop.jpg",
   "fakten": [
    [
     "Volumen",
@@ -714,6 +726,9 @@
   "heroHeadline": "Vom Fabrikgelände zum Wohnquartier – die Seidelsche Fabrik in Pfungstadt",
   "heroSubline": "26 Denkmalwohnungen in der ehemaligen Seiden- und Wäschereifabrik – in unter sechs Monaten vollständig verkauft, derzeit im Bau.",
   "heroBild": "https://cdn.prod.website-files.com/6a5b658499bab2df15d0cb4d/6a85f08b6f56e4d532093506_6a85efd1f1c7c3cec1334219_pfungstadt-fabrik-hero-bild.webp",
+  "heroVideoDesktop": "/videos/referenz-pfungstadt-hero-desktop-web.mp4",
+  "heroVideoHandy": "/videos/referenz-pfungstadt-hero-handy-web.mp4",
+  "heroStandbild": "/videos/referenz-pfungstadt-hero-standbild-desktop.jpg",
   "fakten": [
    [
     "Volumen",
