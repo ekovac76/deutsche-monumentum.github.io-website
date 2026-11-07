@@ -47,3 +47,13 @@ export function wuerfelText(tl: gsap.core.Timeline, el: HTMLElement | null | und
   tl.call(() => zs.revert(), [], ende + 0.05);
   return ende + 0.05;
 }
+
+// Hinweis (Nummer im Ring/Plus + kurzer Text) – wie eine Abflugtafel: Ring blendet ein, Text klappt um
+export function wuerfelHinweis(tl: gsap.core.Timeline, hinweis: HTMLElement | null | undefined, start: number): number {
+  if (!hinweis) return start;
+  const text = hinweis.querySelector<HTMLElement>('p');
+  const zeichen = hinweis.querySelectorAll<HTMLElement>('.ring, .plus');
+  tl.set(hinweis, { autoAlpha: 1, scale: 1 }, start);
+  if (zeichen.length) tl.fromTo(zeichen, { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.6, ease: 'power3.out' }, start);
+  return wuerfelText(tl, text, start);
+}

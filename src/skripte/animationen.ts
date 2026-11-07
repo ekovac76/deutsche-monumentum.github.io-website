@@ -1,7 +1,7 @@
 // Gemeinsame Animationen für alle Sektionen ohne eigene Animation (Eduard, Nov. 2026).
 // Gleiche Regeln wie auf der Startseite:
 // – Tagline blendet ein, Überschriften steigen Zeile für Zeile aus der Kante, Einleitungstexte mit Zauberwürfel-Effekt,
-//   Knöpfe weich von unten, Hinweise flackern verzögert wie ein Fernseher
+//   Knöpfe weich von unten, Hinweise verzögert wie eine Abflugtafel
 // – Karten/Listen bauen sich als Welle auf (beim Hineinscrollen, auch bei langen Listen Stück für Stück)
 // – Bildrahmen und Videovorschauen öffnen sich aus der Mitte
 // – Karten-Hover: Lupe auf dem Titel, verlinkte Karten heben sich leicht
@@ -10,15 +10,8 @@
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { wuerfelText } from './wuerfeltext';
+import { wuerfelText, wuerfelHinweis } from './wuerfeltext';
 gsap.registerPlugin(SplitText, ScrollTrigger);
-
-const flackern = [
-  { autoAlpha: 0.7, duration: 0.05 }, { autoAlpha: 0.05, duration: 0.07 },
-  { autoAlpha: 0.9, duration: 0.04 }, { autoAlpha: 0.2, duration: 0.09 },
-  { autoAlpha: 0.5, duration: 0.05 }, { autoAlpha: 0, duration: 0.12 },
-  { autoAlpha: 1, duration: 0.04 }, { autoAlpha: 0.6, duration: 0.05 }, { autoAlpha: 1, duration: 0.08 },
-];
 
 export function lupe(el: HTMLElement, ausloeser: HTMLElement = el) {
   const chars = SplitText.create(el, { type: 'words,chars' }).chars as HTMLElement[];
@@ -97,8 +90,7 @@ export function sektionenAnimieren() {
       });
       texte.forEach((t) => wuerfelText(tl, t, 0.12));
       knoepfe.forEach((k) => tl.fromTo(k, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12, ease: 'power4.out' }, 0.8));
-      hinweise.forEach((h) => tl.to(h, { keyframes: flackern, ease: 'none' }, 1.3)
-        .fromTo(h, { scale: 0.97 }, { scale: 1, duration: 0.6, ease: 'power2.out' }, 1.3));
+      hinweise.forEach((h) => wuerfelHinweis(tl, h, 1.3));
       ScrollTrigger.create({ trigger: sek, start: 'top 70%', once: true, onEnter: () => tl.play() });
 
       // Welle: Elemente kommen Stück für Stück, sobald sie ins Bild scrollen

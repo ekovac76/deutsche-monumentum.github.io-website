@@ -71,26 +71,33 @@ const telIcon = '<path d="M3.6 1.5 5.7 1l1.2 3-1.6 1.2a8.4 8.4 0 0 0 4.5 4.5l1.2
   }
 
   // Animation beim Hineinscrollen:
-  // Logo, Kontakt und die Menüspalten flackern nacheinander auf wie ein alter Fernseher (wie die Hinweise oben rechts);
+  // Logo blendet ein, Kontakt- und Menütexte klappen wie eine Abflugtafel um (gleicher Effekt wie die Fließtexte), Spalte für Spalte;
   // die Wortmarke baut sich von unten auf: Buchstaben kommen in wenigen Schwüngen – je Schwung jeder dritte Buchstabe einer Zeile
   // gleichzeitig (z. B. D, t, h), kurz nacheinander, erst „Deutsche“, dann „Monumentum“.
   import { gsap } from 'gsap';
   import { SplitText } from 'gsap/SplitText';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { wuerfelText } from '../skripte/wuerfeltext';
   gsap.registerPlugin(SplitText, ScrollTrigger);
   const fuss = document.querySelector<HTMLElement>('footer');
 
   // Hover wie im Menü (Lupe): Buchstaben in Cursornähe wachsen bis 1,2 und werden leicht durchsichtig, folgen dem Cursor
+  // Text in Flex-Elementen (Telefon-, Social-Links) in einen Span packen, sonst zerfallen beim Aufteilen die Abstände
+  const textZiel = (el: HTMLElement) => {
+    if (!getComputedStyle(el).display.includes('flex')) return el;
+    const da = el.querySelector<HTMLElement>(':scope > .tx');
+    if (da) return da;
+    const span = document.createElement('span');
+    span.className = 'tx';
+    [...el.childNodes].filter((n) => n.nodeType === 3 && n.textContent!.trim()).forEach((n, i) => {
+      if (i === 0) el.insertBefore(span, n);
+      span.appendChild(n);
+    });
+    return span;
+  };
+  const FUSS_TEXTE = '.kontakt b, .kontakt a.tel, .kontakt a.u, .menu .kopf b, .menu a.s, .unten p.s, .legal a.s';
   const lupe = (el: HTMLElement, weite = 2.2, staerke = 0.2) => {
-    // Text in Flex-Elementen (Telefon-Links) erst in einen Span packen, sonst zerfallen die Abstände
-    if (getComputedStyle(el).display.includes('flex')) {
-      const span = document.createElement('span');
-      [...el.childNodes].filter((n) => n.nodeType === 3 && n.textContent!.trim()).forEach((n, i, arr) => {
-        if (i === 0) el.insertBefore(span, n);
-        span.appendChild(n);
-      });
-      el = span;
-    }
+    el = textZiel(el);
     const chars = SplitText.create(el, { type: 'words,chars' }).chars as HTMLElement[];
     if (!chars.length) return;
     gsap.set(chars, { transformOrigin: '50% 75%' });
@@ -109,31 +116,26 @@ const telIcon = '<path d="M3.6 1.5 5.7 1l1.2 3-1.6 1.2a8.4 8.4 0 0 0 4.5 4.5l1.2
     el.addEventListener('mouseleave', () => chars.forEach((c) => zeichen(c, 0)));
   };
   const hoverAn = fuss && matchMedia('(hover: hover)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (hoverAn) {
-    document.fonts.ready.then(() => {
-      fuss!.querySelectorAll<HTMLElement>('.kontakt p.s, .menu .kopf, .menu a.s, .unten p.s, .legal a.s').forEach((el) => {
-        // Telefonzeilen: nur den Text, nicht das Hörer-Symbol aufspalten
-        lupe(el.querySelector<HTMLElement>('a.tel, a.u, b') ?? el);
-      });
-    });
-  }
+  // Lupe erst nach der Einspiel-Animation einschalten (sonst kollidieren die Buchstaben-Aufteilungen)
+  const fussLupe = () => { if (hoverAn) fuss!.querySelectorAll<HTMLElement>(FUSS_TEXTE).forEach((el) => lupe(el)); };
   const wortmarkeLupe = () => { if (hoverAn && box) lupe(box.querySelector<HTMLElement>('p')!, 0.6, 0.08); };
 
+  if (fuss && matchMedia('(prefers-reduced-motion: reduce)').matches) document.fonts.ready.then(fussLupe);
   if (fuss && box && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const bloecke = [...fuss.querySelectorAll<HTMLElement>('.logo-abstand, .kontakt, .menu > div')];
+    const logo = fuss.querySelector<HTMLElement>('.logo-abstand');
+    const spalten = [...fuss.querySelectorAll<HTMLElement>('.kontakt, .menu > div')];
     const zeilen = [...box.querySelectorAll<HTMLElement>('span')];
-    gsap.set(bloecke, { autoAlpha: 0 });
-    gsap.set(zeilen, { autoAlpha: 0 });
-    const flackern = [
-      { autoAlpha: 0.7, duration: 0.05 }, { autoAlpha: 0.05, duration: 0.07 },
-      { autoAlpha: 0.9, duration: 0.04 }, { autoAlpha: 0.2, duration: 0.09 },
-      { autoAlpha: 0.5, duration: 0.05 }, { autoAlpha: 0, duration: 0.12 },
-      { autoAlpha: 1, duration: 0.04 }, { autoAlpha: 0.6, duration: 0.05 }, { autoAlpha: 1, duration: 0.08 },
-    ];
+    gsap.set([logo, ...zeilen].filter(Boolean), { autoAlpha: 0 });
+    gsap.set(fuss.querySelectorAll('.social svg, .tel svg'), { autoAlpha: 0 });
     let tl: gsap.core.Timeline | null = null;
     const bauen = () => {
       tl = gsap.timeline({ paused: true });
-      bloecke.forEach((b, i) => tl!.to(b, { keyframes: flackern, ease: 'none' }, i * 0.12));
+      if (logo) tl.fromTo(logo, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.96, ease: 'power3.out' }, 0);
+      let textEnde = 0;
+      spalten.forEach((sp, i) => {
+        sp.querySelectorAll<HTMLElement>(FUSS_TEXTE).forEach((el) => { textEnde = Math.max(textEnde, wuerfelText(tl!, textZiel(el), 0.1 + i * 0.12)); });
+      });
+      tl.to(fuss.querySelectorAll('.social svg, .tel svg'), { autoAlpha: 1, duration: 0.6, ease: 'power2.out', stagger: 0.05 }, 0.5);
       let t = 0.2;
       const splits: SplitText[] = [];
       zeilen.forEach((z) => {
@@ -150,6 +152,7 @@ const telIcon = '<path d="M3.6 1.5 5.7 1l1.2 3-1.6 1.2a8.4 8.4 0 0 0 4.5 4.5l1.2
       });
       // danach wieder normaler Text (Masken würden sonst Buchstabenkanten anschneiden)
       tl.call(() => { splits.forEach((sp) => sp.revert()); wortmarkeLupe(); });
+      tl.call(fussLupe, [], Math.max(tl.duration(), textEnde + 0.1));
       ScrollTrigger.create({ trigger: fuss, start: 'top 75%', once: true, onEnter: () => tl!.play() });
     };
     document.fonts.ready.then(bauen);
