@@ -10,7 +10,8 @@ import { seite } from '../data/cms';
 const s = seite('referenzenseite');
 ---
 <Basis titel={s.seoTitel} beschreibung={s.seoBeschreibung}>
-  <Seitenkopf bild={s.hero.bild} wort={s.hero.tagline} titel={s.hero.ueberschrift} text={s.hero.text} button={s.hero.knopf} />
+  <Seitenkopf bild={s.hero.bild} wort={s.hero.tagline} titel={s.hero.ueberschrift} text={s.hero.text} button={s.hero.knopf}
+    videoDesktop={s.hero.videoDesktop} videoHandy={s.hero.videoHandy} standbild={s.hero.standbild} />
   <Laufband />
   <Zeitstrahl />
   <VorherNachherListe />
