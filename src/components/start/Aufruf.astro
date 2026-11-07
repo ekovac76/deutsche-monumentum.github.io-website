@@ -6,7 +6,7 @@ import { projekte, seite } from '../../data/cms';
 const a = seite('aufruf');
 const karte = { ...projekte.find((p) => p.slug === a.projekt)!, bild: a.kartenbild, nummer: a.kartenNummer };
 ---
-<section class="sektion">
+<section class="sektion" id="aufruf-sektion">
   <div class="sektion-innen">
     <div class="dunkel">
       <div class="regel">
@@ -29,6 +29,23 @@ const karte = { ...projekte.find((p) => p.slug === a.projekt)!, bild: a.kartenbi
     </div>
   </div>
 </section>
+<script>
+  // Animation beim Hineinscrollen: der ganze dunkle Block bläst sich wie ein Luftballon aus der Mitte auf –
+  // von unsichtbar und Größe 0 in alle Richtungen bis knapp über die volle Größe (104 %), dann schnalzt er federnd zurück.
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  const sek = document.getElementById('aufruf-sektion');
+  const block = sek?.querySelector<HTMLElement>('.dunkel');
+  if (sek && block && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.set(block, { autoAlpha: 0, scale: 0, transformOrigin: '50% 50%' });
+    const tl = gsap.timeline({ paused: true })
+      .to(block, { autoAlpha: 1, duration: 0.4, ease: 'power1.out' }, 0)
+      .to(block, { scale: 1.04, duration: 0.75, ease: 'power3.out' }, 0)
+      .to(block, { scale: 1, duration: 0.9, ease: 'elastic.out(1, 0.45)' }, 0.75);
+    ScrollTrigger.create({ trigger: sek, start: 'top 75%', once: true, onEnter: () => tl.play() });
+  }
+</script>
 <style>
   .dunkel{display:flex;flex-direction:column;gap:2rem;padding:2rem 4rem;border-radius:18px;background:var(--ink-stumpf)}
   .regel{display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid rgba(247,241,222,.16)}
