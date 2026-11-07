@@ -9,6 +9,7 @@ html:root :is(.text-normal,.text-small,.richtext,.richtext p,.fakten li):not(.we
 
 /* Knöpfe: Malve mit Schrift Wolke; im Titelbild und im dunklen Kontakt-Aufruf Rosenhauch */
 html:root :is(.btn.primaer,.btn.klein,.senden){background:var(--malve);color:var(--wolke)}
+html:root :is(.btn.primaer,.btn.klein):hover{background:var(--pflaume);color:var(--wolke)} /* Hover: Malve → Pflaume, Schrift bleibt hell */
 html:root :is(.hero,.dunkel) .btn.primaer{background:var(--rosenhauch);color:var(--tiefblau)}
 
 /* Projekt- und Referenzkacheln: Muschel; Tabelle, Nummer, Ort Nebelgrau; Kategorie und Status Malve */
