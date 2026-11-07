@@ -48,6 +48,7 @@ const s = seite('startseite').interviews;
   // Karten als Welle nacheinander: Videobild öffnet sich wie in der Erklärvideo-Sektion (Rechteck aus der Mitte, Einblenden von 0,
   // Bild zoomt zurück), darunter Sterne, Zitat und Kunde steigen auf.
   import { gsap } from 'gsap';
+  import { wuerfelText } from '../../skripte/wuerfeltext';
   import { SplitText } from 'gsap/SplitText';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -86,8 +87,8 @@ const s = seite('startseite').interviews;
       gsap.set(zeilen.lines, { yPercent: 110 });
       const tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } })
         .fromTo(tagline, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.96, ease: 'power3.out' }, 0)
-        .to(zeilen.lines, { yPercent: 0, duration: 1.12, stagger: 0.11 }, 0.12)
-        .fromTo(text, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12 }, 0.6);
+        .to(zeilen.lines, { yPercent: 0, duration: 1.12, stagger: 0.11 }, 0.12);
+      wuerfelText(tl, text, 0.12);
       // Welle: Karte für Karte versetzt
       karten.forEach((_, i) => {
         const t = 0.5 + i * 0.22;

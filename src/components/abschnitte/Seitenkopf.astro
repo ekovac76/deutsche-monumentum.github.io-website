@@ -38,6 +38,7 @@ const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt au
   // Tagline blendet sanft ein und gleitet leicht nach oben, danach steigt die Überschrift
   // Zeile für Zeile aus einer unsichtbaren Kante auf, zuletzt folgen Text und Knopf.
   import { gsap } from 'gsap';
+  import { wuerfelText } from '../../skripte/wuerfeltext';
   import { SplitText } from 'gsap/SplitText';
   gsap.registerPlugin(SplitText);
 
@@ -61,8 +62,12 @@ const { bild, wort = 'Kapitel', nummer = '01', titel, text, button = 'Kontakt au
             return gsap.fromTo(self.lines, { yPercent: 110 }, { yPercent: 0, duration: 1.12, ease: 'power4.out', stagger: 0.11, delay: 0.28 });
           },
         });
-        // danach Text und Knopf: gleiche weiche Bewegung, leicht versetzt
-        gsap.fromTo(rest, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12, ease: 'power4.out', stagger: 0.12, delay: 0.72 });
+        // Text: Zauberwürfel-Effekt gleichzeitig mit der Überschrift; danach der Knopf mit weicher Bewegung
+        const texte = [...rest].filter((el) => el.tagName === 'P');
+        const knopf = [...rest].filter((el) => el.tagName !== 'P');
+        const tl = gsap.timeline();
+        texte.forEach((t) => wuerfelText(tl, t, 0.28));
+        gsap.fromTo(knopf, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12, ease: 'power4.out', delay: 0.9 });
         zeigen();
       });
     }

@@ -49,6 +49,7 @@ const {
   // oben wie die anderen Sektionen (Tagline, Überschrift Zeile für Zeile, Text; Hinweis rechts flackert verzögert wie ein Fernseher);
   // die Fragen fahren wie Perlen an der Schnur nacheinander von unten hoch, werden beim Einrasten kurz etwas größer und setzen sich.
   import { gsap } from 'gsap';
+  import { wuerfelText } from '../../skripte/wuerfeltext';
   import { SplitText } from 'gsap/SplitText';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -70,8 +71,7 @@ const {
       gsap.set(zeilen.lines, { yPercent: 110 });
       const tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } })
         .fromTo(tagline, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.96, ease: 'power3.out' }, 0)
-        .to(zeilen.lines, { yPercent: 0, duration: 1.12, stagger: 0.11 }, 0.12)
-        .fromTo(text, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.12 }, 0.6);
+        .to(zeilen.lines, { yPercent: 0, duration: 1.12, stagger: 0.11 }, 0.12);
       // Fragen: schnell von unten hoch, beim Einrasten kurz 103 %, dann zurück
       // während der Bewegung nichts abschneiden (Vergrößerung ragt kurz über den Rand)
       const liste = sek.querySelector<HTMLElement>('.liste');
@@ -92,6 +92,7 @@ const {
         }, 1.3).fromTo(hinweis, { scale: 0.97 }, { scale: 1, duration: 0.6, ease: 'power2.out' }, 1.3);
       }
       tl.set(liste, { clearProps: 'overflow' });
+      wuerfelText(tl, text, 0.12);
       ScrollTrigger.create({ trigger: sek, start: 'top 70%', once: true, onEnter: () => tl.play() });
     });
   });
