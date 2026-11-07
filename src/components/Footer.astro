@@ -79,6 +79,46 @@ const telIcon = '<path d="M3.6 1.5 5.7 1l1.2 3-1.6 1.2a8.4 8.4 0 0 0 4.5 4.5l1.2
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(SplitText, ScrollTrigger);
   const fuss = document.querySelector<HTMLElement>('footer');
+
+  // Hover wie im Menü (Lupe): Buchstaben in Cursornähe wachsen bis 1,2 und werden leicht durchsichtig, folgen dem Cursor
+  const lupe = (el: HTMLElement, weite = 2.2, staerke = 0.2) => {
+    // Text in Flex-Elementen (Telefon-Links) erst in einen Span packen, sonst zerfallen die Abstände
+    if (getComputedStyle(el).display.includes('flex')) {
+      const span = document.createElement('span');
+      [...el.childNodes].filter((n) => n.nodeType === 3 && n.textContent!.trim()).forEach((n, i, arr) => {
+        if (i === 0) el.insertBefore(span, n);
+        span.appendChild(n);
+      });
+      el = span;
+    }
+    const chars = SplitText.create(el, { type: 'words,chars' }).chars as HTMLElement[];
+    if (!chars.length) return;
+    gsap.set(chars, { transformOrigin: '50% 75%' });
+    const zeichen = (c: HTMLElement, f: number) =>
+      gsap.to(c, { scale: 1 + staerke * f, opacity: 1 - 0.4 * f, duration: 0.45, ease: 'power3.out', overwrite: true });
+    el.addEventListener('mousemove', (e) => {
+      const m = chars.map((c) => { const r = c.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2, h: r.height }; });
+      let n = 0;
+      m.forEach((q, i) => { if (Math.abs(q.y - e.clientY) < Math.abs(m[n].y - e.clientY)) n = i; });
+      chars.forEach((c, i) => {
+        if (Math.abs(m[i].y - m[n].y) > m[n].h * 0.4) { zeichen(c, 0); return; }
+        const nah = Math.max(0, 1 - Math.abs(e.clientX - m[i].x) / (m[i].h * weite));
+        zeichen(c, nah * nah * (3 - 2 * nah));
+      });
+    });
+    el.addEventListener('mouseleave', () => chars.forEach((c) => zeichen(c, 0)));
+  };
+  const hoverAn = fuss && matchMedia('(hover: hover)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (hoverAn) {
+    document.fonts.ready.then(() => {
+      fuss!.querySelectorAll<HTMLElement>('.kontakt p.s, .menu .kopf, .menu a.s, .unten p.s, .legal a.s').forEach((el) => {
+        // Telefonzeilen: nur den Text, nicht das Hörer-Symbol aufspalten
+        lupe(el.querySelector<HTMLElement>('a.tel, a.u, b') ?? el);
+      });
+    });
+  }
+  const wortmarkeLupe = () => { if (hoverAn && box) lupe(box.querySelector<HTMLElement>('p')!, 0.6, 0.08); };
+
   if (fuss && box && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const bloecke = [...fuss.querySelectorAll<HTMLElement>('.logo-abstand, .kontakt, .menu > div')];
     const zeilen = [...box.querySelectorAll<HTMLElement>('span')];
@@ -109,7 +149,7 @@ const telIcon = '<path d="M3.6 1.5 5.7 1l1.2 3-1.6 1.2a8.4 8.4 0 0 0 4.5 4.5l1.2
         t += 0.1;
       });
       // danach wieder normaler Text (Masken würden sonst Buchstabenkanten anschneiden)
-      tl.call(() => splits.forEach((sp) => sp.revert()));
+      tl.call(() => { splits.forEach((sp) => sp.revert()); wortmarkeLupe(); });
       ScrollTrigger.create({ trigger: fuss, start: 'top 75%', once: true, onEnter: () => tl!.play() });
     };
     document.fonts.ready.then(bauen);
@@ -134,7 +174,7 @@ const telIcon = '<path d="M3.6 1.5 5.7 1l1.2 3-1.6 1.2a8.4 8.4 0 0 0 4.5 4.5l1.2
   .tel{display:inline-flex;align-items:center;gap:6px;text-decoration:none}
   .tel svg{width:12px;height:12px}
   .tel :global(path){fill:var(--ink-stumpf)}
-  .u{text-decoration:underline;text-underline-offset:2px}
+  .u{text-decoration:none;padding-bottom:1px;background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat} /* Linie statt Unterstreichung, damit sie beim Hover-Effekt erhalten bleibt */
   .menu{display:grid;grid-template-columns:1fr 1fr 1fr;column-gap:2rem;row-gap:1rem;align-items:start}
   .kopf{margin-bottom:.5rem}
   .liste{display:flex;flex-direction:column;align-items:flex-start}
