@@ -93,19 +93,22 @@ const istKontakt = (l?: string) => l === '#kontakt';
 
   // Innenbild: Maus ruht auf dem Bild → Innenbild blendet langsam ein.
   // Maus bewegt sich → Außenbild blendet langsam zurück. Kleines Zittern (unter 8 px) wird ignoriert.
-  if (window.matchMedia('(hover: hover)').matches) {
-    document.querySelectorAll<HTMLElement>('[data-l414] .bild').forEach((bild) => {
-      if (!bild.querySelector('.innen')) return;
-      let timer = 0, x = 0, y = 0;
-      const ruhe = () => { clearTimeout(timer); timer = window.setTimeout(() => bild.classList.add('innen-an'), 450); };
-      bild.addEventListener('pointerenter', (e) => { x = e.clientX; y = e.clientY; ruhe(); });
-      bild.addEventListener('pointermove', (e) => {
-        if (Math.hypot(e.clientX - x, e.clientY - y) < 8) return;
-        x = e.clientX; y = e.clientY;
-        bild.classList.remove('innen-an');
-        ruhe();
-      });
-      bild.addEventListener('pointerleave', () => { clearTimeout(timer); bild.classList.remove('innen-an'); });
+  // Klicken bzw. Antippen (auch am Handy) → wechselt langsam zwischen außen und innen.
+  const mitMaus = window.matchMedia('(hover: hover)').matches;
+  document.querySelectorAll<HTMLElement>('[data-l414] .bild').forEach((bild) => {
+    if (!bild.querySelector('.innen')) return;
+    let timer = 0, x = 0, y = 0;
+    bild.style.cursor = 'pointer';
+    bild.addEventListener('click', () => { clearTimeout(timer); bild.classList.toggle('innen-an'); });
+    if (!mitMaus) return;
+    const ruhe = () => { clearTimeout(timer); timer = window.setTimeout(() => bild.classList.add('innen-an'), 450); };
+    bild.addEventListener('pointerenter', (e) => { x = e.clientX; y = e.clientY; ruhe(); });
+    bild.addEventListener('pointermove', (e) => {
+      if (Math.hypot(e.clientX - x, e.clientY - y) < 8) return;
+      x = e.clientX; y = e.clientY;
+      bild.classList.remove('innen-an');
+      ruhe();
     });
-  }
+    bild.addEventListener('pointerleave', () => { clearTimeout(timer); bild.classList.remove('innen-an'); });
+  });
 </script>
