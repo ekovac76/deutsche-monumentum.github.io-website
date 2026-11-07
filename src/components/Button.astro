@@ -4,7 +4,7 @@ interface Props { href: string; variante?: 'primaer' | 'sekundaer' | 'klein'; pf
 const { href, variante = 'primaer', pfeil = variante !== 'klein', ...rest } = Astro.props;
 ---
 <a class={`btn ${variante}`} href={href} {...rest}>
-  <slot />
+  <span class="btn-text"><slot /></span>
   {pfeil && (
     <span class="pfeil" aria-hidden="true">
       <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 10 10 2M3.5 2H10v6.5" /></svg>
@@ -13,8 +13,10 @@ const { href, variante = 'primaer', pfeil = variante !== 'klein', ...rest } = As
 </a>
 
 <style>
-  .btn{display:inline-flex;align-items:center;gap:10px;border-radius:var(--radius-pill);text-decoration:none;font-family:var(--font-sans);font-size:13px;line-height:21.7px;font-weight:500;letter-spacing:-0.07px;cursor:pointer;white-space:nowrap;transition:transform .2s ease, box-shadow .2s ease}
-  .btn:hover{transform:translateY(-1px)}
+  .btn{display:inline-flex;align-items:center;gap:10px;border-radius:var(--radius-pill);text-decoration:none;font-family:var(--font-sans);font-size:13px;line-height:21.7px;font-weight:500;letter-spacing:-0.07px;cursor:pointer;white-space:nowrap;transition:transform .5s cubic-bezier(.16,1,.3,1), box-shadow .3s ease, background-color .35s ease, color .35s ease, border-color .35s ease;transform-origin:50% 50%}
+  /* Hover (Eduard 07.11.): beide Knopfarten werden Rosenhauch und wachsen leicht aus der Mitte; Schrift mit Lupen-Effekt */
+  .btn:hover{transform:scale(1.06)}
+  .btn.primaer:hover,.btn.sekundaer:hover,html:root .btn.primaer:hover{background:var(--rosenhauch);color:var(--tiefblau);border-color:var(--rosenhauch)}
   .pfeil{display:flex;width:16px;height:16px;justify-content:center;align-items:center}
   .pfeil path{fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
   .primaer{background:var(--signal-orange-alt);color:var(--paper-bone);padding:var(--button-pad-y) var(--button-pad-x);box-shadow:var(--shadow-primary);border:1px solid transparent}
@@ -22,3 +24,29 @@ const { href, variante = 'primaer', pfeil = variante !== 'klein', ...rest } = As
   .sekundaer .pfeil path{stroke-width:1.1}
   .klein{background:var(--signal-orange);color:var(--paper-bone);padding:8.5px 16px}
 </style>
+
+<script>
+  // Lupen-Effekt wie im Menü auf der Knopfschrift
+  import { gsap } from 'gsap';
+  import { SplitText } from 'gsap/SplitText';
+  gsap.registerPlugin(SplitText);
+  if (matchMedia('(hover: hover)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.fonts.ready.then(() => {
+      document.querySelectorAll<HTMLElement>('.btn .btn-text').forEach((t) => {
+        const btn = t.closest<HTMLElement>('.btn')!;
+        const chars = SplitText.create(t, { type: 'words,chars' }).chars as HTMLElement[];
+        gsap.set(chars, { transformOrigin: '50% 75%' });
+        const zeichen = (c: HTMLElement, f: number) =>
+          gsap.to(c, { scale: 1 + 0.2 * f, opacity: 1 - 0.4 * f, duration: 0.45, ease: 'power3.out', overwrite: true });
+        btn.addEventListener('mousemove', (e) => {
+          chars.forEach((c) => {
+            const r = c.getBoundingClientRect();
+            const nah = Math.max(0, 1 - Math.abs(e.clientX - (r.left + r.width / 2)) / (r.height * 2.2));
+            zeichen(c, nah * nah * (3 - 2 * nah));
+          });
+        });
+        btn.addEventListener('mouseleave', () => chars.forEach((c) => zeichen(c, 0)));
+      });
+    });
+  }
+</script>
