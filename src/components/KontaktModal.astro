@@ -68,7 +68,7 @@ const investition = ['200.000 – 350.000 €', '350.000 – 500.000 €', '500.
 <style>
   .falle{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
   /* Fenster (Hintergrund abgedunkelt, scrollbar) – Inhalt 1:1 nach Webflow contact-modal6 */
-  .modal{width:min(60rem,94vw);max-height:92vh;padding:0;border:0;border-radius:var(--radius-md);background:var(--paper-warm);color:var(--ink-weich);box-shadow:var(--shadow-karte)}
+  .modal{width:min(60rem,calc(100vw - 2rem));max-height:92vh;margin:auto;padding:0;border:0;border-radius:var(--radius-md);background:var(--paper-warm);color:var(--ink-weich);box-shadow:var(--shadow-karte)}
   .modal:focus,.modal:focus-visible{outline:none}
   .modal::backdrop{background:rgba(22,21,19,.6)}
   /* container-small: Inhalt 48rem breit (+ Innenabstand des Fensters) */
