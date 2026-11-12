@@ -127,6 +127,8 @@ const { r } = Astro.props;
   .ueberblick{display:grid;grid-template-columns:1fr 1fr;gap:5rem}
   .fakten{display:flex;flex-direction:column;margin:0;padding:2rem 0 4rem;list-style:none}
   .fakten li{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:20px 0;border-top:1px solid rgba(139,134,118,1);font-family:var(--font-mono);font-size:13px;line-height:1.5;letter-spacing:1.76px;color:var(--ink-stumpf)}
+  /* Tabelle auch unten mit Linie abschließen */
+  .fakten li:last-child{border-bottom:1px solid rgba(139,134,118,1)}
   .fakten .wert{text-align:right}
   .richtext{padding-bottom:3rem;font-size:1rem;line-height:1.5;color:var(--ink-stumpf)}
   .richtext :global(p){margin:0 0 1rem}
