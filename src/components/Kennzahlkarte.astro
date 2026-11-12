@@ -4,9 +4,9 @@ interface Props { zahl: string; neben?: string; titel: string; text: string; hre
 import { bilder } from '../data/bilder';
 const { zahl, neben, titel, text, href, icon = bilder.kennzahlIcon, zahlen = false, vorteil = false, schmalerTitel = false } = Astro.props;
 const Tag = href ? 'a' : 'div';
-// Titel-Umbruch: nie mitten im Wort. Ein Wort mit Bindestrich darf nur nach dem ersten Bindestrich umbrechen
-// (BAUTRÄGER- / SICHERHEIT, TÜV- / BAUBEGLEITUNG, FULL- / SERVICE-PAKET)
-const glieder = titel.split(' ').map((w) => { const i = w.indexOf('-'); return i > 0 && i < w.length - 1 ? [w.slice(0, i + 1), w.slice(i + 1)] : [w]; });
+// Titel-Umbruch: nie mitten im Wort. Ein Wort mit Bindestrich darf nur nach dem letzten Bindestrich umbrechen
+// (BAUTRÄGER- / SICHERHEIT, TÜV- / BAUBEGLEITUNG, FULL-SERVICE- / PAKET)
+const glieder = titel.split(' ').map((w) => { const i = w.lastIndexOf('-'); return i > 0 && i < w.length - 1 ? [w.slice(0, i + 1), w.slice(i + 1)] : [w]; });
 ---
 <Tag class:list={['karte', 'kennzahlkarte', { zahlen, vorteil, 'schmaler-titel': schmalerTitel }]} href={href}>
   <div class="oben">
