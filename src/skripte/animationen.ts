@@ -16,6 +16,8 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 export function lupe(el: HTMLElement, ausloeser: HTMLElement = el) {
   const chars = SplitText.create(el, { type: 'words,chars' }).chars as HTMLElement[];
   if (!chars.length) return;
+  // Wörter nie zwischen einzelnen Buchstaben umbrechen
+  new Set(chars.map((c) => c.parentElement!)).forEach((w) => { if (w !== el) w.style.whiteSpace = 'nowrap'; });
   gsap.set(chars, { transformOrigin: '50% 75%' });
   const zeichen = (c: HTMLElement, f: number) =>
     gsap.to(c, { scale: 1 + 0.2 * f, opacity: 1 - 0.4 * f, duration: 0.45, ease: 'power3.out', overwrite: true });
