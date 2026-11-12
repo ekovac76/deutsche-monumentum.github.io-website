@@ -10,12 +10,8 @@ import { menue } from '../data/navigation';
 <header class="kopf">
   <div class="bar">
     <a class="logo-link" href="/" aria-label="Deutsche Monumentum – Startseite">
-      <!-- Leichter heller Schein um das Logo – nur solange es oben über dem Seitenkopf-Bild liegt -->
-      <span class="schein" aria-hidden="true">
-        <img class="logo s1" src="/bilder/logo-deutsche-monumentum.png" alt="" width="160" height="44" />
-        <img class="logo s2" src="/bilder/logo-deutsche-monumentum.png" alt="" width="160" height="44" />
-        <img class="logo s3" src="/bilder/logo-deutsche-monumentum.png" alt="" width="160" height="44" />
-      </span>
+      <!-- Heller Hof hinter dem Logo – nur solange es oben über dem Seitenkopf-Bild liegt -->
+      <span class="schein" aria-hidden="true"></span>
       <img class="logo" src="/bilder/logo-deutsche-monumentum.png" alt="Deutsche Monumentum" width="160" height="44" />
     </a>
     <div class="rechts">
@@ -50,11 +46,7 @@ import { menue } from '../data/navigation';
   .bar{display:flex;justify-content:space-between;align-items:center;min-height:var(--nav-height);padding:0 var(--page-gutter)}
   .logo{display:block;height:44px;width:auto}
   .logo-link{position:relative;display:block;isolation:isolate}
-  .schein{position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .6s ease;pointer-events:none}
-  .schein .logo{position:absolute;left:0;top:0}
-  .schein .s1{filter:brightness(0) invert(1) blur(3px)}
-  .schein .s2{filter:brightness(0) invert(1) blur(9px);opacity:.9}
-  .schein .s3{filter:brightness(0) invert(1) blur(18px);opacity:.7}
+  .schein{position:absolute;inset:-22px -40px;z-index:-1;background:radial-gradient(closest-side,rgba(253,252,250,.75) 35%,rgba(253,252,250,0));filter:blur(4px);opacity:0;transition:opacity .6s ease;pointer-events:none}
   :global(body.logo-oben) .schein{opacity:1}
   :global(body.menue-offen) .schein{opacity:0}
   .rechts{display:flex;align-items:center;gap:var(--space-md)}
