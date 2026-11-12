@@ -4,6 +4,12 @@
  "menue": [
   {
    "_type": "menuepunkt",
+   "ziffer": "I.",
+   "name": "Startseite",
+   "href": "/"
+  },
+  {
+   "_type": "menuepunkt",
    "ziffer": "II.",
    "name": "Aktuelle Projekte",
    "href": "/projekte"
