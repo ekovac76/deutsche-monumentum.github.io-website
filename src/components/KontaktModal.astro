@@ -19,13 +19,13 @@ const investition = ['200.000 – 350.000 €', '350.000 – 500.000 €', '500.
         <input type="checkbox" name="botcheck" class="falle" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <div class="zwei">
           <select name="Anrede" aria-label="Anrede" required><option value="" disabled selected hidden>Anrede</option><option>Frau</option><option>Herr</option><option>Divers</option></select>
+        </div>
+        <div class="zwei">
           <input name="Vorname" type="text" placeholder="Vorname" aria-label="Vorname" autocomplete="given-name" required />
-        </div>
-        <div class="zwei mobil-eins">
           <input name="Nachname" type="text" placeholder="Nachname" aria-label="Nachname" autocomplete="family-name" required />
-          <input name="E-Mail" type="email" placeholder="Email" aria-label="E-Mail" autocomplete="email" required />
         </div>
-        <div class="zwei mobil-eins">
+        <input name="E-Mail" type="email" placeholder="Email" aria-label="E-Mail" autocomplete="email" required />
+        <div class="zwei">
           <input name="Telefonnummer" type="tel" placeholder="Telefonnummer" aria-label="Telefonnummer" autocomplete="tel" required />
           <input name="PLZ" type="text" placeholder="Postleitzahl" aria-label="Postleitzahl" autocomplete="postal-code" inputmode="numeric" required />
         </div>
@@ -68,7 +68,7 @@ const investition = ['200.000 – 350.000 €', '350.000 – 500.000 €', '500.
 <style>
   .falle{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
   /* Fenster (Hintergrund abgedunkelt, scrollbar) – Inhalt 1:1 nach Webflow contact-modal6 */
-  .modal{width:min(60rem,calc(100vw - 2rem));max-height:92vh;margin:auto;padding:0;border:0;border-radius:var(--radius-md);background:var(--paper-warm);color:var(--ink-weich);box-shadow:var(--shadow-karte)}
+  .modal{width:min(60rem,calc(100vw - 2rem));max-height:calc(100vh - 2rem);max-height:calc(100dvh - 2rem);margin:auto;padding:0;border:0;border-radius:var(--radius-md);background:var(--paper-warm);color:var(--ink-weich);box-shadow:var(--shadow-karte)}
   .modal:focus,.modal:focus-visible{outline:none}
   .modal::backdrop{background:rgba(22,21,19,.6)}
   /* container-small: Inhalt 48rem breit (+ Innenabstand des Fensters) */
@@ -79,8 +79,8 @@ const investition = ['200.000 – 350.000 €', '350.000 – 500.000 €', '500.
   /* Div Block 62: Formular | Kontakt = 1fr .5fr, 2rem Abstand */
   .raster{display:grid;grid-template-columns:1fr .5fr;gap:2rem;align-items:start}
   /* contact-modal6_form / form_field-2col: 1,5rem Abstand */
-  .formular{display:grid;grid-template-columns:1fr;gap:1.5rem}
-  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  .formular{display:grid;grid-template-columns:1fr;gap:1rem}
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
   /* form_input: Inconsolata 1rem/1,6, 1px Rahmen, keine Rundung, heller Grund */
   input,select,textarea{width:100%;min-height:2.75rem;margin:0;padding:.5rem .75rem;border:1.5px solid var(--nebelgrau);border-radius:0;background:var(--paper-bone);font-family:var(--font-daten);font-size:1rem;line-height:1.6;color:var(--ink-stumpf)}
   input::placeholder,textarea::placeholder{color:var(--nebelgrau);opacity:1}
@@ -101,7 +101,9 @@ const investition = ['200.000 – 350.000 €', '350.000 – 500.000 €', '500.
   .schliessen i{position:absolute;left:6px;right:6px;top:50%;height:1.5px;background:var(--ink-weich)}
   .schliessen i:first-child{transform:rotate(45deg)}.schliessen i:last-child{transform:rotate(-45deg)}
   @media (max-width:991px){.innen{padding-top:4rem;padding-bottom:4rem}}
-  @media (max-width:767px){.zwei.mobil-eins{grid-template-columns:1fr}.innen{padding-bottom:7rem}}
+  @media (max-width:767px){.innen{padding-bottom:7rem}}
+  /* Handy: etwas weniger Rand links und rechts, Felder nebeneinander mit kleinerem Abstand */
+  @media (max-width:479px){.innen{padding-left:1rem;padding-right:1rem}.zwei{gap:.75rem}}
   @media (max-width:479px){.raster{grid-template-columns:1fr}}
 </style>
 <script>
