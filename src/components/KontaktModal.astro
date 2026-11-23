@@ -184,7 +184,24 @@ const investition = ['200.000 – 350.000 €', '350.000 – 500.000 €', '500.
         const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(daten) });
         const antwort = await res.json();
         if (!res.ok || !antwort.success) throw new Error(antwort.message || res.status);
-        location.href = form.action; // weiter zur Danke-Seite
+        // Lead-Messung wie in Webflow: Der Google Tag Manager (GTM-WQP39CQ) löst Google Ads, Meta (beide Pixel),
+        // LinkedIn und Microsoft Ads bei „ajaxComplete“ mit einer Adresse „/api/v1/form“ und Status 200 aus –
+        // genau das meldet Webflow nach dem Absenden. Dasselbe Signal senden wir hier, danach geht es zur Danke-Seite.
+        // Zusätzlich „formular_gesendet“ als eigenes, sprechendes Ereignis für spätere Auslöser im Tag Manager.
+        // Ohne Tag Manager (keine Einwilligung, Vorschau) geht es sofort weiter.
+        let weiter = false;
+        const zurDankeseite = () => { if (!weiter) { weiter = true; location.href = form.action; } };
+        if (w.google_tag_manager && Array.isArray(w.dataLayer)) {
+          w.dataLayer.push({ event: 'formular_gesendet', formular: form.getAttribute('name') || 'Kontaktformular', projekt: projektSeite });
+          w.dataLayer.push({
+            event: 'ajaxComplete',
+            attributes: { type: 'POST', url: `${location.origin}/api/v1/form/deutsche-monumentum`, pathname: '/api/v1/form/deutsche-monumentum', hostname: location.hostname, statusCode: 200, statusText: 'OK' },
+            eventCallback: zurDankeseite, eventTimeout: 2000,
+          });
+          setTimeout(zurDankeseite, 2500);
+        } else {
+          zurDankeseite();
+        }
       } catch {
         knopf.disabled = false; knopf.textContent = 'Absenden';
         meldung.hidden = false;
