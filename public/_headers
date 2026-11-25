@@ -1,0 +1,15 @@
+# Schutzeinstellungen des Servers – werden von Cloudflare Pages gelesen (auf GitHub Pages ohne Wirkung).
+# HSTS: Browser verbinden sich nur noch verschlüsselt (bewusst ohne Subdomains, damit E-Mail-Einträge u. Ä. unberührt bleiben).
+# frame-ancestors / X-Frame-Options: Die Seite darf nicht in fremde Seiten eingebettet werden (Schutz vor Klick-Betrug).
+# Bewusst KEINE strenge Skript-Regel (script-src), damit Tag Manager, Meta, LinkedIn, Microsoft und Clarity weiter laden.
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Content-Security-Policy: frame-ancestors 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests
+
+# Dateien mit Prüfsumme im Namen ändern sich nie – dürfen ein Jahr im Browser bleiben (schnellere Seite)
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
