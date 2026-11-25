@@ -1,0 +1,12 @@
+# Weiterleitungen alter Webflow-Adressen – werden von Cloudflare Pages gelesen (auf GitHub Pages ohne Wirkung).
+# Abgeglichen am 25.11.2026 mit allen veröffentlichten Webflow-Seiten und CMS-Einträgen von „Deutsche Monumentum NEU“.
+
+# Alte Hilfsseiten aus Webflow
+/projektseite      /projekte          301
+/referenzseite     /referenzen        301
+/ablage/ablage     /                  301
+/kalkulator        /berechnungstool   301
+
+# Mediathek: In Webflow hatte jedes Video eine eigene Seite. Auf der neuen Seite stehen alle Videos
+# gesammelt unter „Denkmal und QNG erklärt“. Vorläufig dorthin – ggf. später eigene Videoseiten.
+/mediathek-cms/*   /denkmal-und-qng-erklart   301
